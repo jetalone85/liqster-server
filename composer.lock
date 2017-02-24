@@ -1495,12 +1495,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pyrkamarcin/instaxer.git",
-                "reference": "9e25faf527796977320d08d81dfd9e5fef7de87b"
+                "reference": "d513e457b41b387d31b3781d7835876b172ad8d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pyrkamarcin/instaxer/zipball/9e25faf527796977320d08d81dfd9e5fef7de87b",
-                "reference": "9e25faf527796977320d08d81dfd9e5fef7de87b",
+                "url": "https://api.github.com/repos/pyrkamarcin/instaxer/zipball/d513e457b41b387d31b3781d7835876b172ad8d2",
+                "reference": "d513e457b41b387d31b3781d7835876b172ad8d2",
                 "shasum": ""
             },
             "require": {
@@ -1525,7 +1525,7 @@
                 }
             ],
             "description": "Small script to test Instagram PHP SDK libray.",
-            "time": "2017-02-24 10:07:05"
+            "time": "2017-02-24 12:42:48"
         },
         {
             "name": "ramsey/uuid",
