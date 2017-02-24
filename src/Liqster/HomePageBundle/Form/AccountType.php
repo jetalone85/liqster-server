@@ -3,6 +3,7 @@
 namespace Liqster\HomePageBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,7 @@ class AccountType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('password');
+            ->add('password', PasswordType::class);
     }
 
     /**
