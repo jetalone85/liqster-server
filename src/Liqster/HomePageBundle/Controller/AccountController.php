@@ -2,6 +2,7 @@
 
 namespace Liqster\HomePageBundle\Controller;
 
+use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -133,5 +134,26 @@ class AccountController extends Controller
         }
 
         return $this->redirectToRoute('account_index');
+    }
+
+
+    /**
+     * Finds and displays a Account entity.
+     *
+     * @Route("/{id}/check", name="account_check")
+     * @Method("GET")
+     * @throws \Exception
+     */
+    public function checkAction(Account $account)
+    {
+
+        $instaxer = new Instaxer($account->getName(), $account->getPassword());
+        $photo_url = $instaxer->instagram->getLoggedInUser()->getProfilePicUrl();
+
+
+        return $this->render('LiqsterHomePageBundle:Account:check.html.twig', array(
+            'account' => $account,
+            'photo_url' => $photo_url,
+        ));
     }
 }

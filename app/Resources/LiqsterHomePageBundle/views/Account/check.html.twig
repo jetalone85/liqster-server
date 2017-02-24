@@ -12,20 +12,14 @@
         </tbody>
     </table>
 
+    <img src="{{ photo_url }}"/>
+
     <ul>
         <li>
             <a href="{{ path('account_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('account_check', { 'id': account.id }) }}">Sprawdź</a>
-        </li>
-        <li>
             <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}
