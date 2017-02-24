@@ -32,6 +32,8 @@
 
 {% block dorz_navigation %}
 
+    <a href="{{ path('homepage') }}">Główna</a>
+
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
         <span>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</span>
