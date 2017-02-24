@@ -1,9 +1,11 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
-{% block dorz_header %}
+{% block header %}
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <p>jestem zalogowany - jakiś ekran</p>
+
+        <h1><a href="{{ path("account_new") }}">Dodaj konto</a></h1>
+
     {% endif %}
 
 {% endblock %}

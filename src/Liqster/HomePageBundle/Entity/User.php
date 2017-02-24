@@ -2,6 +2,7 @@
 
 namespace Liqster\HomePageBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -22,9 +23,15 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="user")
+     */
+    private $account;
+
     public function __construct()
     {
         parent::__construct();
+        $this->account = new ArrayCollection();
     }
 
     /**
