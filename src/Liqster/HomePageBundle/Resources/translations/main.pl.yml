@@ -1,6 +1,6 @@
 apps:
-    name: 'dorzucamy.pl'
-    title: 'dorzucamy.pl | Liqster się wspólnie aby pomóc...'
+    name: 'liqster.pl'
+    title: 'liqster.pl'
     settings: 'Ustawienia'
     baner:
         header: 'Dodaj zbiórkę'
@@ -44,7 +44,7 @@ registration:
         user_created: 'Stworzono użytkownika.'
     email:
         subject: 'Witaj %username%!'
-        message: "Cześć %username%!\n\nAby potwierdzić swoje konto - proszę przejść do %confirmationUrl%\n\nPozdrawiamy,\nZespół dorzucamy.pl.\n"
+        message: "Cześć %username%!\n\nAby potwierdzić swoje konto - proszę przejść do %confirmationUrl%\n\nPozdrawiamy,\nZespół liqster.pl.\n"
 resetting:
     check_email: '|
         E-mail został wysłany. Zawiera on link do formularza zmiany hasła.
@@ -60,7 +60,7 @@ resetting:
         success: 'Hasło zostało zresetowane.'
     email:
         subject: 'Resetowanie hasła'
-        message: "Cześć %username%!\n\nAby zresetować hasło - proszę przejść do %confirmationUrl%\n\nPozdrawiamy,\nZespół dorzucamy.pl.\n"
+        message: "Cześć %username%!\n\nAby zresetować hasło - proszę przejść do %confirmationUrl%\n\nPozdrawiamy,\nZespół liqster.pl.\n"
 layout:
     logout: 'Wyloguj'
     login: 'Zaloguj się'

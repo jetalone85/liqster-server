@@ -1,4 +1,4 @@
-dorzucamy_home_page:
+liqster_home_page:
     resource: "@LiqsterHomePageBundle/Controller/DefaultController.php"
     type:     annotation
 

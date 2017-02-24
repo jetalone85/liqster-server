@@ -35,7 +35,7 @@ DirectoryIndex app.php
     RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     RewriteCond %{HTTPS} !=on
-    RewriteRule ^(.*)$ https://dorzucamy.pl/$1 [R=301,L]
+    RewriteRule ^(.*)$ https://liqster.pl/$1 [R=301,L]
 
     # Redirect to URI without front controller to prevent duplicate content
     # (with and without `/app.php`). Only do this redirect on the initial

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -17,6 +18,7 @@
         <![endif]-->
 
     {% endblock %}
+
     {% block stylesheets %}
 
         {% stylesheets 'css/bootstrap.css' filter='cssrewrite' %}
@@ -25,29 +27,34 @@
 
     {% endblock %}
 </head>
+
 <body>
 
 {% block dorz_navigation %}
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
+        <span>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</span>
+        <span> | </span>
+        <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+
     {% else %}
 
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
+        <span> | </span>
+        <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
+
     {% endif %}
+
 {% endblock %}
 
-{% block dorz_header %}
-{% endblock %}
+{% block header %}{% endblock %}
 
-{% block fos_user_content %}
-{% endblock %}
+{% block fos_user_content %}{% endblock %}
 
 {% block body %}{% endblock %}
 
-{% block dorz_footer %}
-{% endblock %}
-
-
+{% block footer %}{% endblock %}
 
 {% block javascripts %}
 
