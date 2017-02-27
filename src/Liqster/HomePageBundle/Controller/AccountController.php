@@ -4,6 +4,7 @@ namespace Liqster\HomePageBundle\Controller;
 
 use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
+use Liqster\HomePageBundle\Form\AccountType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,6 +22,7 @@ class AccountController extends Controller
      *
      * @Route("/", name="account_index")
      * @Method("GET")
+     * @throws \LogicException
      */
     public function indexAction()
     {
@@ -38,11 +40,14 @@ class AccountController extends Controller
      *
      * @Route("/new", name="account_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
      */
     public function newAction(Request $request)
     {
         $account = new Account();
-        $form = $this->createForm('Liqster\HomePageBundle\Form\AccountType', $account);
+        $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,6 +70,8 @@ class AccountController extends Controller
      *
      * @Route("/{id}", name="account_show")
      * @Method("GET")
+     * @param Account $account
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Account $account)
     {
@@ -96,11 +103,15 @@ class AccountController extends Controller
      *
      * @Route("/{id}/edit", name="account_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Account $account
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
      */
     public function editAction(Request $request, Account $account)
     {
         $deleteForm = $this->createDeleteForm($account);
-        $editForm = $this->createForm('Liqster\HomePageBundle\Form\AccountType', $account);
+        $editForm = $this->createForm(AccountType::class, $account);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -121,6 +132,10 @@ class AccountController extends Controller
      *
      * @Route("/{id}", name="account_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Account $account
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \LogicException
      */
     public function deleteAction(Request $request, Account $account)
     {
@@ -142,18 +157,18 @@ class AccountController extends Controller
      *
      * @Route("/{id}/check", name="account_check")
      * @Method("GET")
-     * @throws \Exception
+     * @param Account $account
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function checkAction(Account $account)
     {
+        $instaxer = new Instaxer(__DIR__ . '/../../../../var/cache/dev/instaxer/profiles/default.dat');
+        $instaxer->login($account->getName(), $account->getPassword());
 
-        $instaxer = new Instaxer($account->getName(), $account->getPassword());
-        $photo_url = $instaxer->instagram->getLoggedInUser()->getProfilePicUrl();
-
+        dump($instaxer);
 
         return $this->render('LiqsterHomePageBundle:Account:check.html.twig', array(
             'account' => $account,
-            'photo_url' => $photo_url,
         ));
     }
 }
