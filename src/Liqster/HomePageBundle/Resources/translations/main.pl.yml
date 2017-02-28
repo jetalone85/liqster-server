@@ -3,7 +3,6 @@ apps:
     title: 'liqster.pl'
     settings: 'Ustawienia'
     baner:
-        header: 'Dodaj zbiórkę'
         text1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc accumsan molestie purus et bibendum.'
         text2: 'Mauris sapien velit, pretium nec odio vel, tincidunt tempor purus. Donec a condimentum nibh.'
 group:

@@ -151,7 +151,6 @@ class AccountController extends Controller
         return $this->redirectToRoute('account_index');
     }
 
-
     /**
      * Finds and displays a Account entity.
      *
@@ -159,10 +158,13 @@ class AccountController extends Controller
      * @Method("GET")
      * @param Account $account
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
     public function checkAction(Account $account)
     {
-        $instaxer = new Instaxer(__DIR__ . '/../../../../var/cache/dev/instaxer/profiles/default.dat');
+        $cacheDir = $this->container->get('kernel')->getCacheDir();
+
+        $instaxer = new Instaxer($cacheDir . '/instaxer/profiles/default.dat');
         $instaxer->login($account->getName(), $account->getPassword());
 
         dump($instaxer);
