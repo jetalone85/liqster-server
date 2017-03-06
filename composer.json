@@ -31,7 +31,9 @@
     "friendsofsymfony/rest-bundle": "^2.1",
     "symfony/assetic-bundle": "^2.8",
     "riimu/kit-securerandom": "^1.2",
-    "pyrkamarcin/instaxer": "dev-master"
+    "pyrkamarcin/instaxer": "dev-master",
+    "pyrkamarcin/instation": "dev-master"
+
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
