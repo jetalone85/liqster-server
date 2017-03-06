@@ -2,11 +2,12 @@
   "name": "symfony/framework-standard-edition",
   "license": "MIT",
   "type": "project",
-  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "minimum-stability": "dev",
   "description": "The \"Symfony Standard Edition\" distribution",
   "autoload": {
     "psr-4": {
-      "": "src/"
+      "Liqster\\": "src/Liqster/"
     },
     "classmap": [
       "app/AppKernel.php",
@@ -30,8 +31,6 @@
     "friendsofsymfony/rest-bundle": "^2.1",
     "symfony/assetic-bundle": "^2.8",
     "riimu/kit-securerandom": "^1.2",
-    "doctrine/mongodb-odm": "^1.0",
-    "doctrine/mongodb-odm-bundle": "^3.0",
     "pyrkamarcin/instaxer": "dev-master"
   },
   "require-dev": {
