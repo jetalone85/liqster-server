@@ -32,7 +32,8 @@
     "symfony/assetic-bundle": "^2.8",
     "riimu/kit-securerandom": "^1.2",
     "pyrkamarcin/instaxer": "dev-master",
-    "pyrkamarcin/instation": "dev-master"
+    "pyrkamarcin/instation": "dev-master",
+    "cron/cron-bundle": "^1.1"
 
   },
   "require-dev": {

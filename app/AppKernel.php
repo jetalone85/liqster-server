@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Liqster\HomePageBundle\LiqsterHomePageBundle(),
+            new Monotype\Bundle\TransportLayerBundle\MonotypeTransportLayerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -59,13 +60,5 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir() . '/config/config_' . $this->getEnvironment() . '.yml');
-    }
-
-    /**
-     * @return string
-     */
-    public function getRootDir()
-    {
-        return __DIR__;
     }
 }
