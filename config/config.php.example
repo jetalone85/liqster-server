@@ -1,0 +1,8 @@
+<?php
+
+$array = [
+    1 => [
+        'username' => '',
+        'password' => '',
+        'tags' => []
+    ]];
