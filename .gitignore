@@ -18,3 +18,4 @@
 /composer.phar
 /app/data.db3
 !/var/cache/dev/instaxer/profiles/.gitkeep
+/composer.lock
