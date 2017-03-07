@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Account
  *
- * @ORM\Table(name="Account")
+ * @ORM\Table(name="account")
  * @ORM\Entity(repositoryClass="Liqster\HomePageBundle\Repository\AccountRepository")
  */
 class Account
