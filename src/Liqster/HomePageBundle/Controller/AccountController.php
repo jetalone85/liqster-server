@@ -8,6 +8,7 @@ use Liqster\HomePageBundle\Form\AccountType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -152,24 +153,44 @@ class AccountController extends Controller
     }
 
     /**
-     * Finds and displays a Account entity.
-     *
      * @Route("/{id}/check", name="account_check")
      * @Method("GET")
      * @param Account $account
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
     public function checkAction(Account $account)
     {
         $cacheDir = $this->container->get('kernel')->getCacheDir();
 
-        $instaxer = new Instaxer($cacheDir . '/instaxer/profiles/default.dat');
+
+        $fs = new Filesystem();
+        $fs->mkdir($cacheDir . '/instaxer/profiles/' . $account->getUser());
+
+        $path = $cacheDir . '/instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
+
+        $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
-        dump($instaxer);
-
         return $this->render('LiqsterHomePageBundle:Account:check.html.twig', array(
+            'account' => $account,
+        ));
+    }
+
+
+    /**
+     * @Route("/{id}/activate", name="account_activate")
+     * @Method("GET")
+     * @param Account $account
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     */
+    public function activateAction(Account $account)
+    {
+
+        return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
         ));
     }

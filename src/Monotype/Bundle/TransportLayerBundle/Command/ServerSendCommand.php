@@ -26,7 +26,7 @@ class ServerSendCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('server:send')
+            ->setName('monotypen:send')
             ->setDescription('Send test data to server or devices')
             ->addArgument('address', InputArgument::REQUIRED, 'address')
             ->addArgument('port', InputArgument::REQUIRED, 'port')

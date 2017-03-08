@@ -25,7 +25,7 @@ class ServerCommandCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('server:command')
+            ->setName('monotype:command')
             ->setDescription('Send command to local server')
             ->addArgument('argument', InputArgument::OPTIONAL, 'Argument description')
             ->addOption('option', null, InputOption::VALUE_NONE, 'Option description');
