@@ -53,7 +53,7 @@ class CronCreateCommand extends ContainerAwareCommand
         $question = new Question('<question>Command:</question> ', false);
 
         $command = $this->getQuestionHelper()->ask($input, $output, $question);
-        $this->validateCommand($command);
+//        $this->validateCommand($command);
         $job->setCommand($command);
 
         $output->writeln('');
@@ -127,6 +127,19 @@ class CronCreateCommand extends ContainerAwareCommand
     }
 
     /**
+     * Validate the schedule.
+     *
+     * @param  string $schedule
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    protected function validateSchedule($schedule)
+    {
+        //TODO Validate the schedule.
+        return $schedule;
+    }
+
+    /**
      * Validate the command.
      *
      * @param  string $command
@@ -139,18 +152,5 @@ class CronCreateCommand extends ContainerAwareCommand
         $this->getApplication()->get((string)$parts[0]);
 
         return $command;
-    }
-
-    /**
-     * Validate the schedule.
-     *
-     * @param  string $schedule
-     * @return string
-     * @throws \InvalidArgumentException
-     */
-    protected function validateSchedule($schedule)
-    {
-        //TODO Validate the schedule.
-        return $schedule;
     }
 }
