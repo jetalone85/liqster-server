@@ -26,7 +26,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Liqster\HomePageBundle\LiqsterHomePageBundle(),
             new Monotype\Bundle\TransportLayerBundle\MonotypeTransportLayerBundle(),
-            new \Cron\CronBundle\CronCronBundle(),
+            new Cron\CronBundle\CronCronBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
