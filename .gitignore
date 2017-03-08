@@ -20,3 +20,4 @@
 !/var/cache/dev/instaxer/profiles/.gitkeep
 /composer.lock
 /config/config.php
+/bin/symfony_requirements
