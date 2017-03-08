@@ -8,9 +8,9 @@
   "autoload": {
     "psr-4": {
       "Liqster\\": "src/Liqster/",
-      "Instaxer\\": "src/Instaxer",
-      "Monotype\\": "src/Monotype",
-      "Cron\\CronBundle\\": "src/Cron"
+      "Instaxer\\": "src/Instaxer/",
+      "Monotype\\": "src/Monotype/",
+      "Cron\\CronBundle\\": "src/Cron/Bundle/"
     },
     "classmap": [
       "app/AppKernel.php",
