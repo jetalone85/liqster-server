@@ -164,7 +164,6 @@ class AccountController extends Controller
     {
         $cacheDir = $this->container->get('kernel')->getCacheDir();
 
-
         $fs = new Filesystem();
         $fs->mkdir($cacheDir . '/instaxer/profiles/' . $account->getUser());
 
@@ -183,6 +182,7 @@ class AccountController extends Controller
      * @Method("GET")
      * @param Account $account
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
@@ -191,9 +191,10 @@ class AccountController extends Controller
         $em = $this->getDoctrine()->getManager();
         $cron = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
 
+
         return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
-            'cron' => $cron
+            'cron' => $cron,
         ));
     }
 }
