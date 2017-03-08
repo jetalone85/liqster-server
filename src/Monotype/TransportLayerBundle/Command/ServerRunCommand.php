@@ -1,6 +1,6 @@
 <?php
 
-namespace Monotype\Bundle\TransportLayerBundle\Command;
+namespace Monotype\TransportLayerBundle\Command;
 
 use Monotype\Server\Server;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;

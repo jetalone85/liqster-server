@@ -1,12 +1,12 @@
 <?php
 
-namespace Monotype\Bundle\TransportLayerBundle;
+namespace Monotype\TransportLayerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class MonotypeTransportLayerBundle
- * @package Monotype\Bundle\TransportLayerBundle
+ * @package Monotype\CronBundle\TransportLayerBundle
  */
 class MonotypeTransportLayerBundle extends Bundle
 {

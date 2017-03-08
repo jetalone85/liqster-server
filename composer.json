@@ -10,7 +10,7 @@
       "Liqster\\": "src/Liqster/",
       "Instaxer\\": "src/Instaxer/",
       "Monotype\\": "src/Monotype/",
-      "Cron\\CronBundle\\": "src/Cron/Bundle/"
+      "Cron\\": "src/Cron/"
     },
     "classmap": [
       "app/AppKernel.php",

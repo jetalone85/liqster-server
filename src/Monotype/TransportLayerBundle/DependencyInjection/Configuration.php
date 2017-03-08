@@ -1,6 +1,6 @@
 <?php
 
-namespace Monotype\Bundle\TransportLayerBundle\DependencyInjection;
+namespace Monotype\TransportLayerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

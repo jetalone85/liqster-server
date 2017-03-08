@@ -1,6 +1,6 @@
 <?php
 
-namespace Monotype\Bundle\TransportLayerBundle\Command;
+namespace Monotype\TransportLayerBundle\Command;
 
 use React\Datagram;
 use React\Dns\Resolver;
@@ -12,12 +12,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-
 /**
- * Class ServerSendCommand
- * @package Monotype\Bundle\TransportLayerBundle\Command
+ * Class ServerCommandCommand
+ * @package Monotype\CronBundle\TransportLayerBundle\Command
  */
-class ServerSendCommand extends ContainerAwareCommand
+class ServerCommandCommand extends ContainerAwareCommand
 {
     /**
      *
@@ -26,12 +25,10 @@ class ServerSendCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('monotypen:send')
-            ->setDescription('Send test data to server or devices')
-            ->addArgument('address', InputArgument::REQUIRED, 'address')
-            ->addArgument('port', InputArgument::REQUIRED, 'port')
-            ->addArgument('name', InputArgument::OPTIONAL, 'name')
-            ->addOption('file', null, InputOption::VALUE_NONE, 'Option description');
+            ->setName('monotype:command')
+            ->setDescription('Send command to local server')
+            ->addArgument('argument', InputArgument::OPTIONAL, 'Argument description')
+            ->addOption('option', null, InputOption::VALUE_NONE, 'Option description');
     }
 
     /**
@@ -44,9 +41,7 @@ class ServerSendCommand extends ContainerAwareCommand
     {
         $inputOutput = new SymfonyStyle($input, $output);
 
-        $address = $input->getArgument('address');
-        $port = $input->getArgument('port');
-        $name = $input->getArgument('name');
+        $argument = $input->getArgument('argument');
 
         $loop = EventLoop\Factory::create();
         $factory = new Resolver\Factory();
@@ -54,9 +49,8 @@ class ServerSendCommand extends ContainerAwareCommand
         $resolver = $factory->createCached('8.8.8.8', $loop);
         $factory = new Datagram\Factory($loop, $resolver);
 
-        $factory->createClient($address . ':' . $port)->then(function (Datagram\Socket $client) use ($loop, $name, $inputOutput) {
-            $client->send(file_get_contents(__DIR__ . '/../../../../../var/temp/stock/' . $name . '.tmp'));
-            $inputOutput->success('Send.');
+        $factory->createClient('127.0.0.1:4000')->then(function (Datagram\Socket $client) use ($argument) {
+            $client->send($argument);
             $client->end();
         }, function ($error) use ($inputOutput) {
             $inputOutput->error('ERROR: ' . $error->getMessage());
