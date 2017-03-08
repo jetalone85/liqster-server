@@ -178,7 +178,6 @@ class AccountController extends Controller
         ));
     }
 
-
     /**
      * @Route("/{id}/activate", name="account_activate")
      * @Method("GET")
@@ -189,9 +188,12 @@ class AccountController extends Controller
      */
     public function activateAction(Account $account)
     {
+        $em = $this->getDoctrine()->getManager();
+        $cron = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
 
         return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
+            'cron' => $cron
         ));
     }
 }

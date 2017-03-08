@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CronReport
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Cron\CronBundle\Entity\CronReportRepository")
+ * @ORM\Entity(repositoryClass="Cron\CronBundle\Repository\CronReportRepository")
  */
 class CronReport
 {

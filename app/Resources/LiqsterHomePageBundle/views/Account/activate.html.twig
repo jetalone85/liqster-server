@@ -1,25 +1,37 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block body %}
-    <h1>Account</h1>
+    <h1>Konta</h1>
 
     <h3>Będziemy aktywować !!!!</h3>
 
     <table>
         <tbody>
         <tr>
-            <th>Name</th>
+            <th>Nazwa</th>
             <td>{{ account.name }}</td>
         </tr>
         </tbody>
     </table>
 
+    {% if cron %}
+        <ul>
+            <li>cron name {{ cron.name }}</li>
+            <li>cron command {{ cron.command }}</li>
+            <li>cron schedule {{ cron.schedule }}</li>
+            <li>cron description {{ cron.description }}</li>
+            <li>cron enabled {{ cron.enabled }}</li>
+        </ul>
+    {% else %}
+        <p>nie ma jeszcze zadania: utworzyć?</p>
+    {% endif %}
+
     <ul>
         <li>
-            <a href="{{ path('account_index') }}">Back to the list</a>
+            <a href="{{ path('account_index') }}">Wróć do listy</a>
         </li>
         <li>
-            <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
+            <a href="{{ path('account_edit', { 'id': account.id }) }}">Edytuj</a>
         </li>
     </ul>
 {% endblock %}

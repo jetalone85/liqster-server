@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CronJob
  *
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="un_name", columns={"name"})})
- * @ORM\Entity(repositoryClass="Cron\CronBundle\Entity\CronJobRepository")
+ * @ORM\Entity(repositoryClass="Cron\CronBundle\Repository\CronJobRepository")
  */
 class CronJob
 {
@@ -57,6 +57,15 @@ class CronJob
      */
     private $enabled;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
+     */
+    private $account;
+
+    /**
+     * CronJob constructor.
+     */
     public function __construct()
     {
         $this->reports = new ArrayCollection();
