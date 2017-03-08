@@ -13,9 +13,14 @@ class CronJobType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('command')->add('schedule')->add('description')->add('enabled')->add('account');
+        $builder
+            ->add('name')
+            ->add('command')
+            ->add('schedule')
+            ->add('description')
+            ->add('enabled');
     }
-    
+
     /**
      * {@inheritdoc}
      */

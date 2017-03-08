@@ -49,4 +49,5 @@ class CronListCommand extends ContainerAwareCommand
     {
         return $this->getContainer()->get('cron.manager')->listJobs();
     }
+
 }

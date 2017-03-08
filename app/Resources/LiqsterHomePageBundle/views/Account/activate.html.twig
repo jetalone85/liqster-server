@@ -23,7 +23,7 @@
             <li>cron enabled {{ cron.enabled }}</li>
         </ul>
     {% else %}
-        <p>nie ma jeszcze zadania: utworzyć?</p>
+        <p>nie ma jeszcze zadania: <a href="{{ path("account_addTask", { 'id': account.id }) }}">utworzyć?</a></p>
     {% endif %}
 
     <ul>

@@ -2,6 +2,7 @@
 
 namespace Liqster\HomePageBundle\Controller;
 
+use Cron\CronBundle\Entity\CronJob;
 use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Form\AccountType;
@@ -189,12 +190,43 @@ class AccountController extends Controller
     public function activateAction(Account $account)
     {
         $em = $this->getDoctrine()->getManager();
-        $cron = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
-
+        $cron = $em->getRepository('CronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
 
         return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
             'cron' => $cron,
+        ));
+    }
+
+
+    /**
+     * @Route("/{id}/add_task", name="account_addTask")
+     * @Method({"GET", "POST"})
+     * @param Account $account
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     */
+    public function addTaskAction(Request $request, Account $account)
+    {
+        $cronJob = new CronJob();
+        $form = $this->createForm('Cron\CronBundle\Form\CronJobType', $cronJob);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $cronJob->setAccount($account);
+            $em->persist($cronJob);
+            $em->flush($cronJob);
+
+            return $this->redirectToRoute('account_activate', array('id' => $account->getId()));
+        }
+
+        return $this->render('LiqsterHomePageBundle:Account:addTask.html.twig', array(
+            'account' => $account,
+            'form' => $form->createView(),
+//            'cron' => $cron,
         ));
     }
 }
