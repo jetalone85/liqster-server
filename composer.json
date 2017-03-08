@@ -9,7 +9,8 @@
     "psr-4": {
       "Liqster\\": "src/Liqster/",
       "Instaxer\\": "src/Instaxer",
-      "Monotype\\": "src/Monotype"
+      "Monotype\\": "src/Monotype",
+      "Cron\\CronBundle\\": "src/Cron"
     },
     "classmap": [
       "app/AppKernel.php",
