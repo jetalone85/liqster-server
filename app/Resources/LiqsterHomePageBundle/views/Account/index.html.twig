@@ -9,7 +9,8 @@
                 {% for account in accounts %}
 
                     <div class="card">
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <img class="card-img" data-src="holder.js/100px270/#55595c:#373a3c/text:Sample obrazek"
+                             alt="Card image"/>
                         <div class="card-block">
                             <h4 class="card-title"><a
                                         href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>

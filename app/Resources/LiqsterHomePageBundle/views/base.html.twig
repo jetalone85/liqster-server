@@ -175,23 +175,21 @@
         </div>
     </nav>
 
-<div class="container-fluid" style="margin:0;padding: 0;">
 
-    {% endblock %}
+{% endblock %}
 
-    {% block header %}{% endblock %}
+{% block header %}{% endblock %}
 
-    {% block fos_user_content %}{% endblock %}
+{% block fos_user_content %}{% endblock %}
 
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
-</div>
 
 {% block footer %}{% endblock %}
 
 {% block javascripts %}
 
-    {% javascripts 'js/jquery.min.js' 'js/bootstrap.js' %}
+    {% javascripts 'js/jquery.min.js' 'js/bootstrap.js' 'js/holder.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
