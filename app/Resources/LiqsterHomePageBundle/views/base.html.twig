@@ -28,11 +28,11 @@
 
         <style>
             body {
-                min-height: 75rem;
+                min-height: 100%;
 
                 font-family: 'Raleway', 'Open Sans', sans-serif;
 
-                /*padding-top: 4.5rem;*/
+                padding-top: 4.5rem;
             }
 
             /* GLOBAL STYLES
@@ -175,13 +175,17 @@
         </div>
     </nav>
 
-{% endblock %}
+<div class="container-fluid" style="margin:0;padding: 0;">
 
-{% block header %}{% endblock %}
+    {% endblock %}
 
-{% block fos_user_content %}{% endblock %}
+    {% block header %}{% endblock %}
 
-{% block body %}{% endblock %}
+    {% block fos_user_content %}{% endblock %}
+
+    {% block body %}{% endblock %}
+
+</div>
 
 {% block footer %}{% endblock %}
 

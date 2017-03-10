@@ -1,36 +1,44 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block body %}
-    <h1>Accounts list</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for account in accounts %}
-            <tr>
-                <td><a href="{{ path('account_show', { 'id': account.id }) }}">{{ account.id }}</a></td>
-                <td>{{ account.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('account_show', { 'id': account.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('account_edit', { 'id': account.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container-fluid">
+        <div class="container" style="padding-top: 3rem;">
 
+            <div class="card-deck">
+                {% for account in accounts %}
+
+
+
+                    <div class="card">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-block">
+                            <h4 class="card-title"><a
+                                        href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>
+                            </h4>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href="{{ path('account_show', { 'id': account.id }) }}">show</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ path('account_edit', { 'id': account.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
     <ul>
         <li>
             <a href="{{ path('account_new') }}">Create a new account</a>
