@@ -1,11 +1,29 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block fos_user_content %}
-    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans({}, 'main') }}"/>
-    </div>
-    {{ form_end(form) }}
 
+    <div class="container-fluid">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-3"></div>
+
+                <div class="col-6">
+
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                    {{ form_widget(form) }}
+                    <div>
+                        <input class="btn btn-primary" type="submit"
+                               value="{{ 'registration.submit'|trans({}, 'main') }}"/>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+
+
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </div>
 {% endblock fos_user_content %}
