@@ -44,7 +44,6 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
         $tags = ['love', 'TagsForLikes', 'TagsForLikesApp', 'TFLers', 'tweegram', 'photooftheday', '20likes', 'amazing', 'smile', 'follow4follow', 'like4like', 'look', 'instalike'];
 
-
         $likeRepository = new RunLikeRepository(new ItemRepository($tags), $instaxer, $counter, $long);
         $likeRepository->run();
 
