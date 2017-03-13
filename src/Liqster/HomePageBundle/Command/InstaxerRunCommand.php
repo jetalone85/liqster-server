@@ -23,12 +23,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if ($input->getOption('option')) {
-            // ...
-        }
-
         $cacheDir = $this->getContainer()->get('kernel')->getCacheDir();
-
 
         $repository = $this->getContainer()->get('doctrine')->getRepository('LiqsterHomePageBundle:Account');
         $account = $repository->find($input->getArgument('account'));
@@ -42,7 +37,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
-        $counter = 5;
+        $counter = 4;
         $long = 4;
 
         $tags = ['love', 'TagsForLikes', 'TagsForLikesApp', 'TFLers', 'tweegram', 'photooftheday', '20likes', 'amazing', 'smile', 'follow4follow', 'like4like', 'look', 'instalike'];
@@ -78,11 +73,11 @@ class InstaxerRunCommand extends ContainerAwareCommand
                     echo sprintf('[liked] ');
                 }
 
-                sleep(random_int(10, 15));
+                sleep(random_int(8, 12));
                 echo sprintf("\r\n");
             }
 
-            sleep(random_int(1, 5));
+            sleep(1);
         }
 
         $output->writeln('Command result.');
