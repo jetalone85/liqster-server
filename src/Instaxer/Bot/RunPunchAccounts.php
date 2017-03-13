@@ -73,32 +73,5 @@ class RunPunchAccounts
 
             }
         }
-        die();
-
-        $items = array_slice($hashTagFeed->getItems(), 0, 2);
-
-        foreach ($items as $hashTagFeedItem) {
-
-            $id = $hashTagFeedItem->getId();
-            $user = $this->instaxer->instagram->getUserInfo($hashTagFeedItem->getUser())->getUser();
-            $followRatio = $user->getFollowerCount() / $user->getFollowingCount();
-
-            echo sprintf('User: %s; ', $user->getUsername());
-            echo sprintf('id: %s,  ', $id);
-            echo sprintf('followers: %s,  ratio: %s, ', $user->getFollowerCount(), round($followRatio, 1));
-
-            $likeCount = $hashTagFeedItem->getLikeCount();
-            $commentCount = $hashTagFeedItem->getCommentCount();
-
-            echo sprintf('photo: %s/%s ', $likeCount, $commentCount);
-
-            if ($user->getFollowingCount() > 100) {
-                $this->instaxer->instagram->likeMedia($hashTagFeedItem->getID());
-                echo sprintf('[liked] ');
-            }
-
-            sleep(random_int(8, 12));
-            echo sprintf("\r\n");
-        }
     }
 }
