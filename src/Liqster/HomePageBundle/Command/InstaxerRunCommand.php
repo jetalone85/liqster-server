@@ -44,7 +44,6 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
         $itemRepository = new \Instaxer\Domain\Model\ItemRepository($tags);
 
-
         for ($c = 0; $c < $counter; $c++) {
             $item = $itemRepository->getRandomItem();
 
