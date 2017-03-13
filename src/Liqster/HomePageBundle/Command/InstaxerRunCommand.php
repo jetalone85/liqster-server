@@ -2,6 +2,8 @@
 
 namespace Liqster\HomePageBundle\Command;
 
+use Instaxer\Bot\RunLikeRepository;
+use Instaxer\Domain\Model\ItemRepository;
 use Instaxer\Instaxer;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -42,42 +44,9 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
         $tags = ['love', 'TagsForLikes', 'TagsForLikesApp', 'TFLers', 'tweegram', 'photooftheday', '20likes', 'amazing', 'smile', 'follow4follow', 'like4like', 'look', 'instalike'];
 
-        $itemRepository = new \Instaxer\Domain\Model\ItemRepository($tags);
 
-        for ($c = 0; $c < $counter; $c++) {
-            $item = $itemRepository->getRandomItem();
-
-            echo sprintf('#%s: ' . "\r\n", $item->getItem());
-
-            $hashTagFeed = $instaxer->instagram->getTagFeed($item->getItem());
-            $items = array_slice($hashTagFeed->getItems(), 0, $long);
-
-            foreach ($items as $hashTagFeedItem) {
-
-                $id = $hashTagFeedItem->getId();
-                $user = $instaxer->instagram->getUserInfo($hashTagFeedItem->getUser())->getUser();
-                $followRatio = $user->getFollowerCount() / $user->getFollowingCount();
-
-                echo sprintf('User: %s; ', $user->getUsername());
-                echo sprintf('id: %s,  ', $id);
-                echo sprintf('followers: %s,  ratio: %s, ', $user->getFollowerCount(), round($followRatio, 1));
-
-                $likeCount = $hashTagFeedItem->getLikeCount();
-                $commentCount = $hashTagFeedItem->getCommentCount();
-
-                echo sprintf('photo: %s/%s ', $likeCount, $commentCount);
-
-                if ($user->getFollowingCount() > 100) {
-                    $instaxer->instagram->likeMedia($hashTagFeedItem->getID());
-                    echo sprintf('[liked] ');
-                }
-
-                sleep(random_int(8, 12));
-                echo sprintf("\r\n");
-            }
-
-            sleep(1);
-        }
+        $likeRepository = new RunLikeRepository(new ItemRepository($tags), $instaxer, $counter, $long);
+        $likeRepository->run();
 
         $output->writeln('Command result.');
     }
