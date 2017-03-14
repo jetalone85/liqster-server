@@ -131,5 +131,4 @@ class Account
     {
         $this->image = $image;
     }
-
 }

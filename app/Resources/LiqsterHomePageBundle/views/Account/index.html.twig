@@ -6,7 +6,7 @@
     <div class="container" style="padding-top: 3rem;">
 
         <div class="row">
-            {% for account in accounts|slice(0, 3) %}
+            {% for account in accounts %}
                 <div class=" col-xs-4 col-md-4 card-deck">
                     <div class="card card-cascade wider">
 
@@ -20,20 +20,9 @@
                                         href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>
                             </h4>
 
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to
-                                additional content. This content is a little bit longer.</p>
-                            <p class="card-text">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </p>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <a href="{{ path('account_show', { 'id': account.id }) }}">show</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{ path('account_edit', { 'id': account.id }) }}">edit</a>
-                                </li>
-                            </ul>
+                            <p class="card-text">Może statystyki? ...</p>
+                            <a class="btn btn-primary"
+                               href="{{ path('account_show', { 'id': account.id }) }}">Szczegóły</a>
                         </div>
                     </div>
                 </div>

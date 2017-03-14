@@ -30,10 +30,10 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
+        $account = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
 
         return $this->render('LiqsterHomePageBundle:Account:index.html.twig', array(
-            'accounts' => $accounts,
+            'accounts' => $account,
         ));
     }
 
@@ -49,6 +49,7 @@ class AccountController extends Controller
     public function newAction(Request $request)
     {
         $account = new Account();
+        $cronJob = new CronJob();
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
 
@@ -57,6 +58,15 @@ class AccountController extends Controller
             $account->setUser($this->getUser());
             $em->persist($account);
             $em->flush($account);
+
+            $cronJob->setName('name ' . $account->getId());
+            $cronJob->setAccount($account);
+            $cronJob->setCommand('instaxer:run ' . $account->getId());
+            $cronJob->setDescription(' ');
+            $cronJob->setSchedule('*/30 * * * *');
+            $cronJob->setEnabled(false);
+            $em->persist($cronJob);
+            $em->flush($cronJob);
 
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
         }
@@ -197,7 +207,7 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $cron = $em->getRepository('CronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
-
+        dump($cron);
         return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
             'cron' => $cron,
