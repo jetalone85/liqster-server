@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Liqster\HomePageBundle\LiqsterHomePageBundle(),
-            new Monotype\TransportLayerBundle\MonotypeTransportLayerBundle(),
             new Cron\CronBundle\CronBundle(),
         ];
 

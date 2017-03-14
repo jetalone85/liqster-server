@@ -1,15 +1,14 @@
 {
-  "name": "symfony/framework-standard-edition",
-  "license": "MIT",
+  "name": "pyrkamarcin/liqster-server",
+  "license": "proprietary",
   "type": "project",
   "prefer-stable": true,
   "minimum-stability": "dev",
-  "description": "The \"Symfony Standard Edition\" distribution",
+  "description": "",
   "autoload": {
     "psr-4": {
       "Liqster\\": "src/Liqster/",
       "Instaxer\\": "src/Instaxer/",
-      "Monotype\\": "src/Monotype/",
       "Cron\\": "src/Cron/"
     },
     "classmap": [
@@ -34,10 +33,6 @@
     "friendsofsymfony/rest-bundle": "^2.1",
     "riimu/kit-securerandom": "^1.2",
     "symfony/assetic-bundle": "2.*",
-    "react/socket-client": "0.5.*",
-    "react/http": "0.4.*",
-    "react/stream": "0.4.*",
-    "react/datagram": "1.*",
     "ramsey/uuid": "3.*",
     "ramsey/uuid-doctrine": "1.*",
     "ramsey/uuid-console": "1.*",
