@@ -5,6 +5,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+    <meta name="theme-color" content="#4285F4">
+
     <title>{% block title %}{{ 'apps.title'|trans({}, 'main') }}{% endblock %}</title>
 
     {% block headers %}
@@ -22,9 +24,67 @@
 
     {% block stylesheets %}
 
-        {% stylesheets 'css/bootstrap.css' filter='cssrewrite' %}
+        {% stylesheets
+        'css/bootstrap.min.css'
+        'css/mdb.min.css'
+        'css/tether.css'
+        filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
+
+        <style rel="stylesheet">
+            /* TEMPLATE STYLES */
+
+            html,
+            body,
+            .view {
+                height: 100%;
+            }
+
+            .scrolling-navbar {
+                -webkit-transition: background .1s ease-in-out, padding .1s ease-in-out;
+                -moz-transition: background .1s ease-in-out, padding .1s ease-in-out;
+                transition: background .1s ease-in-out, padding .1s ease-in-out;
+            }
+
+            .top-nav-collapse {
+                background-color: #1C2331;
+            }
+
+            footer.page-footer {
+                background-color: #1C2331;
+                margin-top: -1px;
+            }
+
+            .navbar {
+                margin-bottom: 1rem;
+            }
+
+            @media only screen and (max-width: 768px) {
+                .navbar {
+                    background-color: #1C2331;
+                }
+            }
+
+            .jumbotron {
+                text-align: center;
+
+            }
+
+            /*Call to action*/
+
+            .flex-center {
+                color: #fff;
+            }
+
+            .view {
+                background: url("http://mdbootstrap.com/img/Photos/Horizontal/City/full%20page/img%20(1).jpg") no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+        </style>
 
     {% endblock %}
 </head>
@@ -32,17 +92,19 @@
 <body>
 
 {% block navigation %}
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
 
+    <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
         <div class="container">
-
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <a class="navbar-brand" href="{{ path('homepage') }}">liqster</a>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <div class="collapse navbar-collapse" id="navbarNav1">
+
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Jak to działa</a>
@@ -54,25 +116,35 @@
                         <a class="nav-link" href="#">Cennik</a>
                     </li>
                 </ul>
-                <span class="navbar-text">
+
+                <ul class="navbar-nav ml-auto">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-                        <span>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</span>
-                        <span> | </span>
-                        <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+                        <li class="nav-item"><a class="nav-link waves-effect waves-light"
+                                                href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link waves-effect waves-light"
+                                                href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+                        </li>
                     {% else %}
 
-                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
-                        <span> | </span>
-                        <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
+                        <li class="nav-item"><a class="nav-link waves-effect waves-light"
+                                                href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light"
+                               href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
+                        </li>
 
                     {% endif %}
-                </span>
+                </ul>
             </div>
         </div>
     </nav>
-{% endblock %}
 
+{% endblock %}
 
 {% block header %}{% endblock %}
 
@@ -84,7 +156,11 @@
 
 {% block javascripts %}
 
-    {% javascripts 'js/jquery.min.js' 'js/bootstrap.js' 'js/holder.min.js' %}
+    {% javascripts
+    'js/jquery.min.js'
+    'js/bootstrap.min.js'
+    'js/tether.min.js'
+    'js/mdb.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 

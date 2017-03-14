@@ -6,8 +6,8 @@
 
             <div class="row">
 
-                <div class="col-3"></div>
-                <div class="col-6" style="background-color: rgba(255,255,255,0.5);">
+                <div class="col-md-3 col-xs-1"></div>
+                <div class="col-md-6 col-xs-10" style="background-color: rgba(255,255,255,0.5);">
 
                     {% if error %}
                         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -49,7 +49,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-3"></div>
+                <div class="col-md-3 col-xs-1"></div>
             </div>
         </div>
     </div>

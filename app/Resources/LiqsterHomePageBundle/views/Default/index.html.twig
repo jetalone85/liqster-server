@@ -4,107 +4,33 @@
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-        <h2><a href="{{ path("account_index") }}">Lista kont</a></h2>
-        <h2><a href="{{ path("account_new") }}">Dodaj konto</a></h2>
-
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><a href="{{ path("account_index") }}">Lista kont</a></h2>
+                    <h2><a href="{{ path("account_new") }}">Dodaj konto</a></h2>
+                </div>
+            </div>
+        </div>
     {% else %}
 
-        <div class="container-fluid" style="background: url('img/AndroidPIT.jpg') no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; padding-top: 3.5rem;">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-6"></div>
-                    <div class="col-6">
-                        <div class="jumbotron" style="background: rgba(255,255,255, 0.50);">
-                            <h1 class="display-3">Hello, world!</h1>
-                            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling
-                                extra
-                                attention
-                                to featured content or information.</p>
-                            <hr class="my-4">
-                            <p>It uses utility classes for typography and spacing to space content out within the larger
-                                container.</p>
-                            <p class="lead">
-                                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="containter-fluid">
-            <div class="container">
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span>
-                        </h2>
-                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta
-                            felis
-                            euismod
-                            semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
-                            tellus
-                            ac
-                            cursus
-                            commodo.</p>
-                    </div>
-                    <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto"
-                             alt="Generic placeholder image">
-                    </div>
-                </div>
-
-                <hr class="featurette-divider">
-
-                <div class="row featurette">
-                    <div class="col-md-7 push-md-5">
-                        <h2 class="featurette-heading">Oh yeah, it's that good. <span
-                                    class="text-muted">See for yourself.</span>
-                        </h2>
-                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta
-                            felis
-                            euismod
-                            semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
-                            tellus
-                            ac
-                            cursus
-                            commodo.</p>
-                    </div>
-                    <div class="col-md-5 pull-md-7">
-                        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto"
-                             alt="Generic placeholder image">
-                    </div>
-                </div>
-
-                <hr class="featurette-divider">
-
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span>
-                        </h2>
-                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta
-                            felis
-                            euismod
-                            semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
-                            tellus
-                            ac
-                            cursus
-                            commodo.</p>
-                    </div>
-                    <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto"
-                             alt="Generic placeholder image">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h2 class="h2-responsive">Material Design for Bootstrap</h2>
+                        <br>
+                        <p>Powerful and free Material Design UI KIT</p>
+                        <hr>
+                        <p>Register for free and get access to amazing framework and beautiful components</p>
+                        <a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-mdb btn-stc">Download
+                            <i class="fa fa-download right"></i></a>
+                        <a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/"
+                           class="btn btn-unique btn-ptc">Learn more <i class="fa fa-book right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-
 
     {% endif %}
 
