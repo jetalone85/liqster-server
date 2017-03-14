@@ -51,6 +51,11 @@
                 background-color: #1C2331;
             }
 
+            .extra-margins {
+                margin-top: 3rem;
+                margin-bottom: 2.5rem;
+            }
+
             footer.page-footer {
                 background-color: #1C2331;
                 margin-top: -1px;
@@ -78,11 +83,36 @@
             }
 
             .view {
-                background: url("http://mdbootstrap.com/img/Photos/Horizontal/City/full%20page/img%20(1).jpg") no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 background-size: cover;
+            }
+
+            .widget-wrapper {
+                padding-bottom: 2rem;
+                border-bottom: 1px solid #e0e0e0;
+                margin-bottom: 2rem;
+            }
+
+            .reviews {
+                text-align: center;
+                border-top: 1px solid #e0e0e0;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 1rem;
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .price {
+                position: absolute;
+                left: 0;
+                top: 0;
+                margin-top: -2px;
+            }
+
+            .price .tag {
+                margin: 0;
             }
         </style>
 
@@ -107,13 +137,13 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jak to działa</a>
+                        <a class="nav-link" href="{{ path('homepage') }}#works">Jak to działa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Kontakt</a>
+                        <a class="nav-link" href="{{ path('homepage') }}#contact">Kontakt</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cennik</a>
+                        <a class="nav-link" href="{{ path('homepage') }}#prices">Cennik</a>
                     </li>
                 </ul>
 

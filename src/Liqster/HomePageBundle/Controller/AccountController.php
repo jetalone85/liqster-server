@@ -173,6 +173,12 @@ class AccountController extends Controller
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
+        $image = $instaxer->instagram->getCurrentUserAccount()->getUser()->getHdProfilePicUrlInfo()->getUrl();
+
+        $em = $this->getDoctrine()->getManager();
+        $account->setImage($image);
+        $em->flush();
+
         return $this->render('LiqsterHomePageBundle:Account:check.html.twig', array(
             'account' => $account,
         ));

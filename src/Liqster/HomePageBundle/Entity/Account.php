@@ -31,6 +31,13 @@ class Account
     /**
      * @var string
      *
+     * @ORM\Column(name="instagram_image", type="string", length=255, unique=false, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="password", type="string", length=255, unique=false)
      */
     private $password;
@@ -107,6 +114,22 @@ class Account
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image)
+    {
+        $this->image = $image;
     }
 
 }
