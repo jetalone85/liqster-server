@@ -21,3 +21,4 @@
 /composer.lock
 /config/config.php
 /bin/symfony_requirements
+/bower_components/
