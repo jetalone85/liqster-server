@@ -1,25 +1,31 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block body %}
-    <h1>Konta</h1>
 
-    <h3>Będziemy aktywować !!!!</h3>
+    <div class="container-fluid">
+        <div class="container">
+            <h1>Konta</h1>
 
-    <h1>To chyba już ?</h1>
+            <h3>Będziemy aktywować !!!!</h3>
 
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Create"/>
-    {{ form_end(form) }}
+            <h1>To chyba już ?</h1>
 
 
-    <ul>
-        <li>
-            <a href="{{ path('account_index') }}">Wróć do listy</a>
-        </li>
-        <li>
-            <a href="{{ path('account_edit', { 'id': account.id }) }}">Edytuj</a>
-        </li>
-    </ul>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create"/>
+            {{ form_end(form) }}
+
+
+            <ul>
+                <li>
+                    <a href="{{ path('account_index') }}">Wróć do listy</a>
+                </li>
+                <li>
+                    <a href="{{ path('account_edit', { 'id': account.id }) }}">Edytuj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 {% endblock %}

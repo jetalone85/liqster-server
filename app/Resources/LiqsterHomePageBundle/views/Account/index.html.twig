@@ -2,38 +2,38 @@
 
 {% block body %}
 
-<div class="container-fluid">
-    <div class="container" style="padding-top: 3rem;">
+    <div class="container-fluid">
+        <div class="container">
 
-        <div class="row">
-            {% for account in accounts %}
-                <div class=" col-xs-4 col-md-4 card-deck">
-                    <div class="card card-cascade wider">
+            <div class="row">
+                {% for account in accounts %}
+                    <div class=" col-xs-4 col-md-4 card-deck">
+                        <div class="card card-cascade wider">
 
-                        <div class="view overlay hm-white-slight">
-                            <img src="{{ account.image }}"
-                                 class="img-fluid" alt="">
-                        </div>
+                            <div class="view overlay hm-white-slight">
+                                <img src="{{ account.image }}"
+                                     class="img-fluid" alt="" height="150" width="150">
+                            </div>
 
-                        <div class="card-block text-xs-center">
-                            <h4 class="card-title"><a
-                                        href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>
-                            </h4>
+                            <div class="card-block text-xs-center">
+                                <h4 class="card-title"><a
+                                            href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>
+                                </h4>
 
-                            <p class="card-text">Może statystyki? ...</p>
-                            <a class="btn btn-primary"
-                               href="{{ path('account_show', { 'id': account.id }) }}">Szczegóły</a>
+                                <p class="card-text">Może statystyki? ...</p>
+                                <a class="btn btn-primary"
+                                   href="{{ path('account_show', { 'id': account.id }) }}">Szczegóły</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
-
 
     <ul>
         <li>
             <a href="{{ path('account_new') }}">Create a new account</a>
         </li>
     </ul>
-    {% endblock %}
+{% endblock %}

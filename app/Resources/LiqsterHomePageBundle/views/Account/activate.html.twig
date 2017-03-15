@@ -1,37 +1,44 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block body %}
-    <h1>Konta</h1>
 
-    <h3>Będziemy aktywować !!!!</h3>
+    <div class="container-fluid">
+        <div class="container">
+            <h1>Konta</h1>
 
-    <table>
-        <tbody>
-        <tr>
-            <th>Nazwa</th>
-            <td>{{ account.name }}</td>
-        </tr>
-        </tbody>
-    </table>
+            <h3>Będziemy aktywować !!!!</h3>
 
-    {% if cron %}
-        <ul>
-            <li>cron name {{ cron.name }}</li>
-            <li>cron command {{ cron.command }}</li>
-            <li>cron schedule {{ cron.schedule }}</li>
-            <li>cron description {{ cron.description }}</li>
-            <li>cron enabled {{ cron.enabled }}</li>
-        </ul>
-    {% else %}
-        <p>nie ma jeszcze zadania: <a href="{{ path("account_addTask", { 'id': account.id }) }}">utworzyć?</a></p>
-    {% endif %}
+            <table>
+                <tbody>
+                <tr>
+                    <th>Nazwa</th>
+                    <td>{{ account.name }}</td>
+                </tr>
+                </tbody>
+            </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('account_index') }}">Wróć do listy</a>
-        </li>
-        <li>
-            <a href="{{ path('account_edit', { 'id': account.id }) }}">Edytuj</a>
-        </li>
-    </ul>
+            {% if cron %}
+                <ul>
+                    <li>cron name {{ cron.name }}</li>
+                    <li>cron command {{ cron.command }}</li>
+                    <li>cron schedule {{ cron.schedule }}</li>
+                    <li>cron description {{ cron.description }}</li>
+                    <li>cron enabled {{ cron.enabled }}</li>
+                </ul>
+            {% else %}
+                <p>nie ma jeszcze zadania: <a href="{{ path("account_addTask", { 'id': account.id }) }}">utworzyć?</a>
+                </p>
+            {% endif %}
+
+            <ul>
+                <li>
+                    <a href="{{ path('account_index') }}">Wróć do listy</a>
+                </li>
+                <li>
+                    <a href="{{ path('account_edit', { 'id': account.id }) }}">Edytuj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 {% endblock %}
