@@ -39,8 +39,8 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
-        $counter = 4;
-        $long = 4;
+        $counter = 20;
+        $long = 10;
 
         $tags = ['love', 'TagsForLikes', 'TagsForLikesApp', 'TFLers', 'tweegram', 'photooftheday', '20likes', 'amazing', 'smile', 'follow4follow', 'like4like', 'look', 'instalike'];
 
