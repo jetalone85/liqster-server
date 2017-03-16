@@ -169,18 +169,21 @@ class AccountController extends Controller
      * @Method("GET")
      * @param Account $account
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException
+     * @throws \InvalidArgumentException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
-     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \LogicException
+     * @throws \Exception
      */
     public function checkAction(Account $account)
     {
-        $cacheDir = $this->container->get('kernel')->getCacheDir();
+//        $cacheDir = $this->container->get('kernel')->getCacheDir();
 
         $fs = new Filesystem();
-        $fs->mkdir($cacheDir . '/instaxer/profiles/' . $account->getUser());
+        $fs->mkdir('/instaxer/profiles/' . $account->getUser());
+//        $fs->mkdir($cacheDir . '/instaxer/profiles/' . $account->getUser());
 
-        $path = $cacheDir . '/instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
+        $path = '/instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
+//        $path = $cacheDir . '/instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
 
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
