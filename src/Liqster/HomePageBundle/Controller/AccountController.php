@@ -32,6 +32,8 @@ class AccountController extends Controller
 
         $account = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
 
+        dump($account);
+
         return $this->render('LiqsterHomePageBundle:Account:index.html.twig', array(
             'accounts' => $account,
         ));

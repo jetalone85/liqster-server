@@ -2,6 +2,7 @@
 
 namespace Liqster\HomePageBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,8 +49,15 @@ class Account
      */
     private $user;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Cron\CronBundle\Entity\CronJob", mappedBy="account")
+     */
+    private $cronJob;
+
     public function __construct()
     {
+        parent::__construct();
+        $this->cronJob = new ArrayCollection();
     }
 
     /**
@@ -131,4 +139,21 @@ class Account
     {
         $this->image = $image;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCronJob()
+    {
+        return $this->cronJob;
+    }
+
+    /**
+     * @param mixed $cronJob
+     */
+    public function setCronJob($cronJob)
+    {
+        $this->cronJob = $cronJob;
+    }
+
 }

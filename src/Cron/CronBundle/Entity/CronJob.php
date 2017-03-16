@@ -58,7 +58,7 @@ class CronJob
     private $enabled;
 
     /**
-     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account")
+     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="cronJob")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      */
     private $account;
