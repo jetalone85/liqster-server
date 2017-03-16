@@ -2,10 +2,8 @@
 
 namespace Liqster\HomePageBundle\Controller;
 
-use Liqster\HomePageBundle\Entity\Foundrise;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -16,11 +14,10 @@ class DefaultController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException
      * @Route("/", name="homepage")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         return $this->redirectToRoute('account_index');
     }
