@@ -2,7 +2,6 @@
 
 namespace Liqster\HomePageBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,8 +55,7 @@ class Account
 
     public function __construct()
     {
-        parent::__construct();
-        $this->cronJob = new ArrayCollection();
+//        $this->cronJob = new ArrayCollection();
     }
 
     /**
