@@ -92,9 +92,6 @@ class AccountController extends Controller
     {
         $deleteForm = $this->createDeleteForm($account);
 
-
-        dump($account);
-
         return $this->render('LiqsterHomePageBundle:Account:show.html.twig', array(
             'account' => $account,
             'delete_form' => $deleteForm->createView(),
@@ -181,14 +178,10 @@ class AccountController extends Controller
      */
     public function checkAction(Account $account)
     {
-//        $cacheDir = $this->container->get('kernel')->getCacheDir();
-
         $fs = new Filesystem();
         $fs->mkdir('./instaxer/profiles/' . $account->getUser());
-//        $fs->mkdir($cacheDir . '/instaxer/profiles/' . $account->getUser());
 
         $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
-//        $path = $cacheDir . '/instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
 
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
@@ -199,9 +192,7 @@ class AccountController extends Controller
         $account->setImage($image);
         $em->flush();
 
-        return $this->render('LiqsterHomePageBundle:Account:check.html.twig', array(
-            'account' => $account,
-        ));
+        return $this->redirectToRoute('account_show', array('id' => $account->getId()));
     }
 
     /**
@@ -218,7 +209,7 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $cron = $em->getRepository('CronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
-        dump($cron);
+
         return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
             'cron' => $cron,
