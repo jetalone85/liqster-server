@@ -38,11 +38,12 @@ class CronReport
      */
     protected $job;
     /**
-     * @var integer
+     * @var \Ramsey\Uuid\Uuid
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\Column(type="uuid")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 

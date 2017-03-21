@@ -19,11 +19,12 @@ class CronJob
      */
     protected $reports;
     /**
-     * @var integer
+     * @var \Ramsey\Uuid\Uuid
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\Column(type="uuid")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
     /**
@@ -32,24 +33,28 @@ class CronJob
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
     /**
      * @var string
      *
      * @ORM\Column(name="command", type="string", length=255)
      */
     private $command;
+
     /**
      * @var string
      *
      * @ORM\Column(name="schedule", type="string", length=255)
      */
     private $schedule;
+
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
+
     /**
      * @var boolean
      *

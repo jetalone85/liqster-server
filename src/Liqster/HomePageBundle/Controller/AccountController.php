@@ -31,10 +31,10 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $account = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
+        $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
 
         return $this->render('LiqsterHomePageBundle:Account:index.html.twig', array(
-            'accounts' => $account,
+            'accounts' => $accounts,
         ));
     }
 
@@ -89,6 +89,9 @@ class AccountController extends Controller
     public function showAction(Account $account)
     {
         $deleteForm = $this->createDeleteForm($account);
+
+
+        dump($account);
 
         return $this->render('LiqsterHomePageBundle:Account:show.html.twig', array(
             'account' => $account,

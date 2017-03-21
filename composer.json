@@ -34,7 +34,7 @@
     "riimu/kit-securerandom": "^1.2",
     "symfony/assetic-bundle": "2.*",
     "ramsey/uuid": "3.*",
-    "ramsey/uuid-doctrine": "1.*",
+    "ramsey/uuid-doctrine": "^1.2",
     "ramsey/uuid-console": "1.*",
     "mockery/mockery": "^0.9",
     "phpspec/php-diff": "1.1.*",
