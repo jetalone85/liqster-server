@@ -22,3 +22,5 @@
 /config/config.php
 /bin/symfony_requirements
 /bower_components/
+/var/SymfonyRequirements.php
+/web/instaxer/profiles/*

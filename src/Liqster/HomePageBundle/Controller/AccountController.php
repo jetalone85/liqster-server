@@ -184,10 +184,10 @@ class AccountController extends Controller
 //        $cacheDir = $this->container->get('kernel')->getCacheDir();
 
         $fs = new Filesystem();
-        $fs->mkdir('/instaxer/profiles/' . $account->getUser());
+        $fs->mkdir('./instaxer/profiles/' . $account->getUser());
 //        $fs->mkdir($cacheDir . '/instaxer/profiles/' . $account->getUser());
 
-        $path = '/instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
+        $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
 //        $path = $cacheDir . '/instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
 
         $instaxer = new Instaxer($path);
