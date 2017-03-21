@@ -44,6 +44,18 @@ class Account
     private $password;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="date_modif", type="datetime", unique=false, nullable=true)
+     */
+    private $modif;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
@@ -56,7 +68,6 @@ class Account
 
     public function __construct()
     {
-//        $this->cronJob = new ArrayCollection();
     }
 
     /**
@@ -153,6 +164,38 @@ class Account
     public function setCronJob($cronJob)
     {
         $this->cronJob = $cronJob;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated(): \DateTime
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated(\DateTime $created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModif(): \DateTime
+    {
+        return $this->modif;
+    }
+
+    /**
+     * @param \DateTime $modif
+     */
+    public function setModif(\DateTime $modif)
+    {
+        $this->modif = $modif;
     }
 
 }

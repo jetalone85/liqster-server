@@ -57,14 +57,16 @@ class AccountController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $account->setUser($this->getUser());
+            $account->setCreated(new \DateTime('now'));
+            $account->setModif(new \DateTime('now'));
             $em->persist($account);
             $em->flush();
 
-            $cronJob->setName('name ' . $account->getId());
+            $cronJob->setName($account->getId());
             $cronJob->setAccount($account);
             $cronJob->setCommand('instaxer:run ' . $account->getId());
             $cronJob->setDescription(' ');
-            $cronJob->setSchedule('*/10 * * * *');
+            $cronJob->setSchedule('*/30 * * * *');
             $cronJob->setEnabled(false);
             $em->persist($cronJob);
             $em->flush();
