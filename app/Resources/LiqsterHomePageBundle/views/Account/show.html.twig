@@ -6,14 +6,10 @@
         <div class="container">
             <h1>Account</h1>
 
-            <table>
-                <tbody>
-                <tr>
-                    <th>Name</th>
-                    <td>{{ account.name }}</td>
-                </tr>
-                </tbody>
-            </table>
+            <ul>
+                <li>Login: {{ account.name }}</li>
+                <li>Pełna nazwa: {{ instaxer.instagram.loggedInUser.fullName }}</li>
+            </ul>
 
             <ul>
                 <li>

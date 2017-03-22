@@ -87,13 +87,23 @@ class AccountController extends Controller
      * @Method("GET")
      * @param Account $account
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function showAction(Account $account)
     {
         $deleteForm = $this->createDeleteForm($account);
 
+        $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
+
+        $instaxer = new Instaxer($path);
+        $instaxer->login($account->getName(), $account->getPassword());
+
+
+        dump($instaxer);
+
         return $this->render('LiqsterHomePageBundle:Account:show.html.twig', array(
             'account' => $account,
+            'instaxer' => $instaxer,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -63,4 +63,12 @@ class Instaxer
             $this->session->saveSession($savedSession);
         }
     }
+
+    /**
+     * @return Instagram
+     */
+    public function getInstagram(): Instagram
+    {
+        return $this->instagram;
+    }
 }

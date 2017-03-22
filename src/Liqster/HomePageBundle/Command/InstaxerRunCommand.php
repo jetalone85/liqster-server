@@ -30,7 +30,6 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $repository = $this->getContainer()->get('doctrine')->getRepository('LiqsterHomePageBundle:Account');
         $account = $repository->find($input->getArgument('account'));
 
-
         $fs = new Filesystem();
         $fs->mkdir($cacheDir . '/instaxer/profiles/' . $account->getUser());
 
