@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -103,7 +104,11 @@ class AccountController extends Controller
         $instagram = $instaxer->instagram->getUserInfo($instaxer->instagram->getCurrentUserAccount()->getUser());
 
         $editForm = $this->createFormBuilder($account)
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array(
+                'label' => 'Nazwa',
+                'required' => false
+            ))
+            ->add('save', SubmitType::class)
             ->getForm();
 
         $editForm->handleRequest($request);
