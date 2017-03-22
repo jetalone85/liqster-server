@@ -15,6 +15,13 @@
                 <li>Obserwowane: {{ instagram.user.followingCount }}</li>
             </ul>
 
+            <h1>Account edit</h1>
+
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input type="submit" value="Edit"/>
+            {{ form_end(edit_form) }}
+
             <ul>
                 <li>
                     <a href="{{ path('account_index') }}">Back to the list</a>

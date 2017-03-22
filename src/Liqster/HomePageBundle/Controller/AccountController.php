@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -84,12 +85,13 @@ class AccountController extends Controller
      * Finds and displays a Account entity.
      *
      * @Route("/{id}", name="account_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
+     * @param Request $request
      * @param Account $account
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      */
-    public function showAction(Account $account)
+    public function showAction(Request $request, Account $account)
     {
         $deleteForm = $this->createDeleteForm($account);
 
@@ -100,10 +102,23 @@ class AccountController extends Controller
 
         $instagram = $instaxer->instagram->getUserInfo($instaxer->instagram->getCurrentUserAccount()->getUser());
 
+        $editForm = $this->createFormBuilder($account)
+            ->add('name', TextType::class)
+            ->getForm();
+
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+        }
+
         return $this->render('LiqsterHomePageBundle:Account:show.html.twig', array(
             'account' => $account,
             'instagram' => $instagram,
             'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView(),
         ));
     }
 
