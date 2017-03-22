@@ -8,7 +8,11 @@
 
             <ul>
                 <li>Login: {{ account.name }}</li>
-                <li>Pełna nazwa: {{ instaxer.instagram.loggedInUser.fullName }}</li>
+                <li>Pełna nazwa: {{ instagram.user.fullName }}</li>
+                <li>Opis: {{ instagram.user.biography }}</li>
+                <li>Posty: {{ instagram.user.mediaCount }}</li>
+                <li>Obserwujący: {{ instagram.user.followerCount }}</li>
+                <li>Obserwowane: {{ instagram.user.followingCount }}</li>
             </ul>
 
             <ul>

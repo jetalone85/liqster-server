@@ -98,12 +98,11 @@ class AccountController extends Controller
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
-
-        dump($instaxer);
+        $instagram = $instaxer->instagram->getUserInfo($instaxer->instagram->getCurrentUserAccount()->getUser());
 
         return $this->render('LiqsterHomePageBundle:Account:show.html.twig', array(
             'account' => $account,
-            'instaxer' => $instaxer,
+            'instagram' => $instagram,
             'delete_form' => $deleteForm->createView(),
         ));
     }
