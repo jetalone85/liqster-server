@@ -58,8 +58,7 @@
     ],
     "post-install-cmd": [
       "@symfony-scripts",
-      "bower install mdbootstrap",
-      "bower install angular"
+      "bower install MDBootstrap"
     ],
     "post-update-cmd": [
       "@symfony-scripts",
