@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta name="theme-color" content="#4285F4">
+    <meta name="theme-color" content="">
 
     <title>{% block title %}{{ 'apps.title'|trans({}, 'main') }}{% endblock %}</title>
 
@@ -30,90 +30,6 @@
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
 
-        <style rel="stylesheet">
-            /* TEMPLATE STYLES */
-
-            html,
-            body,
-            .view {
-                height: 100%;
-            }
-
-            .scrolling-navbar {
-                -webkit-transition: background .1s ease-in-out, padding .1s ease-in-out;
-                -moz-transition: background .1s ease-in-out, padding .1s ease-in-out;
-                transition: background .1s ease-in-out, padding .1s ease-in-out;
-            }
-
-            .top-nav-collapse {
-                background-color: #1C2331;
-            }
-
-            .extra-margins {
-                margin-top: 3rem;
-                margin-bottom: 2.5rem;
-            }
-
-            footer.page-footer {
-                background-color: #1C2331;
-                margin-top: -1px;
-            }
-
-            .navbar {
-                margin-bottom: 1rem;
-            }
-
-            @media only screen and (max-width: 768px) {
-                .navbar {
-                    background-color: #1C2331;
-                }
-            }
-
-            .jumbotron {
-                text-align: center;
-
-            }
-
-            /*Call to action*/
-
-            .flex-center {
-                color: #fff;
-            }
-
-            .view {
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                -o-background-size: cover;
-                background-size: cover;
-            }
-
-            .widget-wrapper {
-                padding-bottom: 2rem;
-                border-bottom: 1px solid #e0e0e0;
-                margin-bottom: 2rem;
-            }
-
-            .reviews {
-                text-align: center;
-                border-top: 1px solid #e0e0e0;
-                border-bottom: 1px solid #e0e0e0;
-                padding: 1rem;
-                margin-top: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .price {
-                position: absolute;
-                left: 0;
-                top: 0;
-                margin-top: -2px;
-            }
-
-            .price .tag {
-                margin: 0;
-            }
-        </style>
-
     {% endblock %}
 </head>
 
@@ -122,56 +38,18 @@
 
 {% block navigation %}
 
-    <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <a class="navbar-brand" href="{{ path('homepage') }}">liqster</a>
+    <a class="" href="{{ path('homepage') }}">liqster</a>
+    <a class="nav-link" href="{{ path('homepage') }}#works">Jak to działa</a>
+    <a class="nav-link" href="{{ path('homepage') }}#contact">Kontakt</a>
 
-            <div class="collapse navbar-collapse" id="navbarNav1">
-
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}#works">Jak to działa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}#contact">Kontakt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('homepage') }}#prices">Cennik</a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ml-auto">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-                        <li class="nav-item"><a class="nav-link waves-effect waves-light"
-                                                href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
-                        </li>
-
-                        <li class="nav-item"><a class="nav-link waves-effect waves-light"
-                                                href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
-                        </li>
-                    {% else %}
-
-                        <li class="nav-item"><a class="nav-link waves-effect waves-light"
-                                                href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-light"
-                               href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
-                        </li>
-
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a class="" href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+        <a class="" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+    {% else %}
+        <a class="" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
+        <a class="" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
+    {% endif %}
 
 {% endblock %}
 

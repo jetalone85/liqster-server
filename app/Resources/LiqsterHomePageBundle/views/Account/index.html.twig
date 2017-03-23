@@ -15,24 +15,21 @@
 
             <div class="row">
                 {% for account in accounts %}
-                    <div class=" col-xs-4 col-md-4 card-deck">
-                        <div class="card card-cascade wider">
+                    <div class="card card-cascade wider">
 
-                            <div class="view overlay hm-white-slight">
-                                <img src="{{ account.image }}"
-                                     class="img-fluid" alt="">
-                            </div>
-
-                            <div class="card-block text-xs-center">
-                                <h4 class="card-title"><a
-                                            href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>
-                                </h4>
-
-                                <p class="card-text">Może statystyki? ...</p>
-                                <a class="btn btn-primary"
-                                   href="{{ path('account_show', { 'id': account.id }) }}">Szczegóły</a>
-                            </div>
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ account.image }}"
+                                 class="img-fluid" alt="" width="100" height="100">
                         </div>
+
+                        <h4 class="card-title"><a
+                                    href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>
+                        </h4>
+
+                        <p class="card-text">Może statystyki? ...</p>
+                        <a class="btn btn-primary"
+                           href="{{ path('account_show', { 'id': account.id }) }}">Szczegóły</a>
+
                     </div>
                 {% endfor %}
             </div>
