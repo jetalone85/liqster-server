@@ -58,7 +58,7 @@
     ],
     "post-install-cmd": [
       "@symfony-scripts",
-      "bower install foundation-sites"
+      "bower install bootstrap#v4.0.0-alpha.6"
     ],
     "post-update-cmd": [
       "@symfony-scripts",
