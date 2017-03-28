@@ -12,7 +12,7 @@
     {% block headers %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
 
         <!--[if lt IE 9]>
@@ -38,18 +38,41 @@
 
 {% block navigation %}
 
+    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="https://s-media-cache-ak0.pinimg.com/avatars/sitecaddy-1347131511_30.jpg" width="30"
+                     height="30" alt="Logo">
+            </a>
+            <h1 class="navbar-brand mb-0">Navbar</h1>
 
-    <a class="" href="{{ path('homepage') }}">liqster</a>
-    <a class="nav-link" href="{{ path('homepage') }}#works">Jak to działa</a>
-    <a class="nav-link" href="{{ path('homepage') }}#contact">Kontakt</a>
-
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <a class="" href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
-        <a class="" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
-    {% else %}
-        <a class="" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
-        <a class="" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
-    {% endif %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link " href="{{ path('homepage') }}">liqster</a>
+                    <a class="nav-item nav-link " href="{{ path('homepage') }}#works">Jak to działa</a>
+                    <a class="nav-item nav-link " href="{{ path('homepage') }}#contact">Kontakt</a>
+                </div>
+            </div>
+            <div class="navbar-nav">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="nav-link"
+                       href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+                    <a class="nav-link"
+                       href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+                {% else %}
+                    <a class="nav-link"
+                       href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
+                    <a class="nav-link"
+                       href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
 
 {% endblock %}
 
