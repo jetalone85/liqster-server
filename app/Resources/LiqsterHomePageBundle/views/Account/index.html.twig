@@ -5,35 +5,34 @@
     <div class="container-fluid">
         <div class="container">
 
-            <div class="row">
-                <ul>
-                    <li>
-                        <a href="{{ path('account_new') }}">Dodaj nowe konto</a>
-                    </li>
-                </ul>
+            <div class="jumbotron">
+                <h1 class="display-4">Hello, world!</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
+                    attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger
+                    container.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{{ path('account_new') }}" role="button">Dodaj nowe
+                        konto</a>
+                </p>
             </div>
 
-            <div class="row">
+        </div>
+
+        <div class="container">
+            <div class="card-group">
                 {% for account in accounts %}
-                    <div class="card card-cascade wider">
-
-                        <div class="view overlay hm-white-slight">
-                            <img src="{{ account.image }}"
-                                 class="img-fluid" alt="" width="100" height="100">
+                    <div class="card w-100">
+                        <div class="card-block">
+                            <h4 class="card-title">{{ account.name }}</h4>
                         </div>
-
-                        <h4 class="card-title"><a
-                                    href="{{ path('account_show', { 'id': account.id }) }}">{{ account.name }}</a>
-                        </h4>
-
-                        <p class="card-text">Może statystyki? ...</p>
-                        <a class="btn btn-primary"
-                           href="{{ path('account_show', { 'id': account.id }) }}">Szczegóły</a>
-
+                        <div class="card-block">
+                            <a href="{{ path('account_show', { 'id': account.id }) }}" class="card-link">Szczegóły</a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
-
         </div>
     </div>
 
