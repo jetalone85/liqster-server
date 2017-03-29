@@ -94,8 +94,6 @@ class AccountController extends Controller
      */
     public function showAction(Request $request, Account $account)
     {
-        dump($account->getCronJob());
-
         $deleteForm = $this->createDeleteForm($account);
 
         $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
