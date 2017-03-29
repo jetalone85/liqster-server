@@ -26,14 +26,29 @@ class AccountController extends Controller
      * Lists all Account entities.
      *
      * @Route("/", name="account_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \LogicException
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
+
+        $query = $request->request->get('form');
+
+        if ($query) {
+            $cronJob = $em->getRepository('CronBundle:CronJob')->findOneBy(['account' => $query['id']]);
+
+            $newStatus = false;
+            if (count($query) === 2) {
+                $newStatus = $query['enable'] === 'on' ? true : false;
+            }
+            $cronJob->setEnabled($newStatus);
+            $em->flush();
+        }
 
         return $this->render('LiqsterHomePageBundle:Account:index.html.twig', array(
             'accounts' => $accounts,

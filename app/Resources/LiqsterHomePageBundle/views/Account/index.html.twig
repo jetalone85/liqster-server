@@ -27,6 +27,27 @@
                         <div class="card-block">
                             <h4 class="card-title">{{ account.name }}</h4>
                         </div>
+
+                        <form name="form" method="post">
+
+                            <label for="form_enable_{{ account.id }}">
+                                Czy aktywne:
+                            </label>
+                            <input
+                                    type="hidden"
+                                    name="form[id]"
+                                    value="{{ account.id }}"
+                            />
+                            <input
+                                    type="checkbox"
+                                    {% if account.cronJob.enabled %}checked{% endif %}
+                                    id="form_enable_{{ account.id }}"
+                                    name="form[enable]"
+                            />
+                            <input type="submit" value="zapisz"/>
+
+                        </form>
+
                         <div class="card-block">
                             <a href="{{ path('account_show', { 'id': account.id }) }}" class="card-link">Szczegóły</a>
                         </div>
