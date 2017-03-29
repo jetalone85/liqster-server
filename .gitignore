@@ -23,3 +23,4 @@
 /bower_components/
 /var/SymfonyRequirements.php
 /web/instaxer/profiles/*
+/node_modules/

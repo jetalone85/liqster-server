@@ -58,10 +58,12 @@
     ],
     "post-install-cmd": [
       "@symfony-scripts",
+      "npm install bower",
       "bower install bootstrap#v4.0.0-alpha.6"
     ],
     "post-update-cmd": [
       "@symfony-scripts",
+      "npm update",
       "bower update"
     ]
   },
