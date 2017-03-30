@@ -24,9 +24,11 @@
             <div class="card-group">
                 {% for account in accounts %}
                     <div class="card w-100">
+
                         <div class="card-block">
                             <h4 class="card-title">{{ account.name }}</h4>
                         </div>
+
                         <div class="card-block">
                             <form name="form" method="post">
 
@@ -52,6 +54,7 @@
                         <div class="card-block">
                             <a href="{{ path('account_show', { 'id': account.id }) }}" class="card-link">Szczegóły</a>
                         </div>
+
                     </div>
                 {% endfor %}
             </div>
