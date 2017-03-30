@@ -19,6 +19,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->redirectToRoute('account_index');
+        return $this->render('LiqsterHomePageBundle:Default:index.html.twig', array());
     }
+
 }

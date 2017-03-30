@@ -38,19 +38,17 @@
 
 {% block navigation %}
 
-    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
-        <div class="container">
+    <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse">
+        <div class=" container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="{{ path('homepage') }}">
-                <img src="https://s-media-cache-ak0.pinimg.com/avatars/sitecaddy-1347131511_30.jpg" width="30"
+                <img src="{{ asset('bundles/img/30x30lq.png') }}" width="30"
                      height="30" alt="Logo">
             </a>
-            <h1 class="navbar-brand mb-0"><a class="nav-item nav-link" href="{{ path('homepage') }}">liqster</h1>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link " href="{{ path('homepage') }}">coś tam...</a>
