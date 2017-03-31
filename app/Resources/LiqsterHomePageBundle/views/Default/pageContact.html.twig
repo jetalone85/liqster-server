@@ -1,0 +1,24 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block header %}
+
+    <div class="container">
+
+        <h1>Kontakt</h1>
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+            <p>Dla zalogowanego</p>
+
+        {% else %}
+
+            <p>Dla niezalogowanego</p>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block body %}
+{% endblock %}
