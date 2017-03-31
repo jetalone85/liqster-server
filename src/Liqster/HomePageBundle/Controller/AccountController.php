@@ -109,8 +109,6 @@ class AccountController extends Controller
      */
     public function showAction(Request $request, Account $account)
     {
-        $deleteForm = $this->createDeleteForm($account);
-
         $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
 
         $instaxer = new Instaxer($path);
@@ -118,14 +116,9 @@ class AccountController extends Controller
 
         $instagram = $instaxer->instagram->getUserInfo($instaxer->instagram->getCurrentUserAccount()->getUser());
 
-        $editForm = $this->createFormBuilder($account)
-            ->add('name', TextType::class, array(
-                'label' => 'Nazwa',
-                'required' => false
-            ))
-            ->add('save', SubmitType::class)
-            ->getForm();
+        $deleteForm = $this->createDeleteForm($account);
 
+        $editForm = $this->createEditForm($account);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -154,6 +147,21 @@ class AccountController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('account_delete', array('id' => $account->getId())))
             ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
+     * @param Account $account
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(Account $account)
+    {
+        return $this->createFormBuilder($account)
+            ->add('name', TextType::class, array(
+                'label' => 'Nazwa',
+                'required' => false
+            ))
+            ->add('save', SubmitType::class)
             ->getForm();
     }
 
@@ -259,7 +267,6 @@ class AccountController extends Controller
             'cron' => $cron,
         ));
     }
-
 
     /**
      * @Route("/{id}/add_task", name="account_addTask")
