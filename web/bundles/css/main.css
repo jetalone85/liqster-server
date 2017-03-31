@@ -9,3 +9,7 @@ body {
 .navbar-nav {
     white-space: nowrap;
 }
+
+.bg-inverse {
+    background-color: #ad1c56 !important;
+}
