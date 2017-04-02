@@ -38,10 +38,12 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
-        $counter = 20;
+        $counter = 10;
         $long = 10;
 
-        $tags = ['love', 'TagsForLikes', 'TagsForLikesApp', 'TFLers', 'tweegram', 'photooftheday', '20likes', 'amazing', 'smile', 'follow4follow', 'like4like', 'look', 'instalike'];
+        $tags = ['photo', 'photos', 'picture', 'photographer', 'pictures', 'snapshot', 'art', 'beautiful', 'instagood', 'picoftheday', 'photooftheday', 'color', 'all_shots', 'exposure', 'composition', 'focus', 'capture', 'moment', 'photoshoot', 'photodaily', 'photogram',
+            'follow', 'like4like', 'love', 'instagood', 'photooftheday', 'tbt', 'cute', 'beautiful', 'me', 'followme', 'happy', 'follow', 'fashion', 'selfie', 'picoftheday', 'like4like', 'girl', 'tagsforlikes', 'instadaily', 'friends', 'summer', 'fun', 'smile', 'igers', 'instalike', 'likeforlike', 'repost', 'food', 'instamood', 'follow4follow', 'art', 'style'];
+
 
         $likeRepository = new RunLikeRepository(new ItemRepository($tags), $instaxer, $counter, $long);
         $likeRepository->run();
