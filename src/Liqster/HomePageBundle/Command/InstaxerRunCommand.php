@@ -38,8 +38,8 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
-        $counter = 25;
-        $long = 2;
+        $counter = 5;
+        $long = 5;
 
         $tags = ['photo', 'photos', 'picture', 'photographer', 'pictures', 'snapshot', 'art', 'beautiful', 'instagood', 'picoftheday', 'photooftheday', 'color', 'all_shots', 'exposure', 'composition', 'focus', 'capture', 'moment', 'photoshoot', 'photodaily', 'photogram',
             'follow', 'like4like', 'love', 'instagood', 'photooftheday', 'tbt', 'cute', 'beautiful', 'me', 'followme', 'happy', 'follow', 'fashion', 'selfie', 'picoftheday', 'like4like', 'girl', 'tagsforlikes', 'instadaily', 'friends', 'summer', 'fun', 'smile', 'igers', 'instalike', 'likeforlike', 'repost', 'food', 'instamood', 'follow4follow', 'art', 'style'];
