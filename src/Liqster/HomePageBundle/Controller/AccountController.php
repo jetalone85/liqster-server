@@ -220,7 +220,7 @@ class AccountController extends Controller
 
     /**
      * @Route("/{id}/check", name="account_check")
-     * @Method("GET")
+     * @Method({"GET", "PUT"})
      * @param Account $account
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \InvalidArgumentException
