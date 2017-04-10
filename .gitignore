@@ -13,7 +13,7 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /vendor/
-.idea/
+/.idea
 /composer.phar
 /app/data.db3
 !/var/cache/dev/instaxer/profiles/.gitkeep
@@ -22,7 +22,7 @@
 /bin/symfony_requirements
 /bower_components/
 /var/SymfonyRequirements.php
-/web/instaxer/profiles/*
 /node_modules/
 /bash.exe.stackdump
 /web/bundles/
+web/instaxer/
