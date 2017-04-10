@@ -39,7 +39,7 @@ class RunLocationAccount
                 sleep(random_int(2, 5));
             }
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
         }
     }

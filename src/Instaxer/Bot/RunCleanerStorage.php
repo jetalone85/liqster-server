@@ -44,7 +44,7 @@ class RunCleanerStorage
             if (file_exists('storage.tmp')) @unlink('storage.tmp');
 
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
         }
     }
