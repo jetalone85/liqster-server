@@ -44,7 +44,7 @@ class AccountController extends Controller
 
             $newStatus = false;
             if (count($query) === 2) {
-                $newStatus = $query['enable'] === 'on' ? true : false;
+                $newStatus = $query['enable'] === 'on';
             }
             $cronJob->setEnabled($newStatus);
             $em->flush();
