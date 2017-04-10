@@ -38,13 +38,11 @@ class RunCleanerAccounts
                         $instaxer->instagram->unfollowUser($user);
                         echo $user->getUsername() . ' ' . $userMostImportantStat . ' [ out ] ' . "\r\n";
 
-                        sleep(random_int(3, 10));
                     } else {
 
                         echo $c . ": \t";
                         echo $user->getUsername() . ' ' . $userMostImportantStat . ' [ skip - too preaty ! ] ' . "\r\n";
 
-                        sleep(random_int(2, 6));
                     }
                 } else {
                     echo $c . ": \t";

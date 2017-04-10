@@ -57,11 +57,8 @@ class RunLikeRepository
                     echo sprintf('[liked] ');
                 }
 
-                sleep(random_int(4, 15));
                 echo sprintf("\r\n");
             }
-
-            sleep(1);
         }
     }
 }

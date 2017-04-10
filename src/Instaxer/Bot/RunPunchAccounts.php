@@ -67,7 +67,6 @@ class RunPunchAccounts
                         echo sprintf('[liked] ');
                     }
 
-                    sleep(random_int(1, 3));
                     echo sprintf("\r\n");
                 }
 

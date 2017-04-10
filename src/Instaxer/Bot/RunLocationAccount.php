@@ -33,10 +33,8 @@ class RunLocationAccount
                     $instaxer->instagram->likeMedia($hashTagFeedItem->getID());
                     echo sprintf('[liked] ');
 
-                    sleep(random_int(2, 5));
                     echo sprintf("\r\n");
                 }
-                sleep(random_int(2, 5));
             }
 
         } catch (\Exception $e) {
