@@ -44,12 +44,12 @@ class AccountController extends Controller
 
             $newStatus = false;
             if (count($query) === 2) {
-                $newStatus = $query['enable'] === 'on';
+                $newStatus = $query['enable'] === 'on' ? true : false;
             }
             $cronJob->setEnabled($newStatus);
             $em->flush();
 
-            return $this->redirectToRoute('account_index');
+//            return $this->redirectToRoute('account_index');
         }
 
         return $this->render('LiqsterHomePageBundle:Account:index.html.twig', array(
