@@ -18,7 +18,6 @@ class InstaxerPunchCommand extends ContainerAwareCommand
     {
         $this
             ->setName('instaxer:punch')
-            ->setDescription('...')
             ->addArgument('account', InputArgument::OPTIONAL, 'Argument description')
             ->addOption('option', null, InputOption::VALUE_NONE, 'Option description');
     }
