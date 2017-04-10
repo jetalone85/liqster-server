@@ -49,7 +49,7 @@ class AccountController extends Controller
             $cronJob->setEnabled($newStatus);
             $em->flush();
 
-//            return $this->redirectToRoute('account_index');
+            return $this->redirectToRoute('account_index');
         }
 
         return $this->render('LiqsterHomePageBundle:Account:index.html.twig', array(
