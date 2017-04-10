@@ -1,7 +1,3 @@
-cron_cron_job:
-    resource: "@CronBundle/Controller/CronJobController.php"
-    type:     annotation
-
 liqster_home_page_account:
     resource: "@LiqsterHomePageBundle/Controller/AccountController.php"
     type:     annotation

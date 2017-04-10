@@ -1,0 +1,15 @@
+body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+    margin-bottom: 2rem;
+}
+
+.navbar-nav {
+    white-space: nowrap;
+}
+
+.bg-inverse {
+    background-color: #ad1c56 !important;
+}

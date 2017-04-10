@@ -32,7 +32,7 @@
     "friendsofsymfony/user-bundle": "~2.0@dev",
     "friendsofsymfony/rest-bundle": "^2.1",
     "riimu/kit-securerandom": "^1.2",
-    "symfony/assetic-bundle": "2.*",
+    "symfony/assetic-bundle": "^2.8",
     "ramsey/uuid": "3.*",
     "ramsey/uuid-doctrine": "^1.2",
     "ramsey/uuid-console": "1.*",

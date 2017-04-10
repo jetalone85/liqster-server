@@ -25,7 +25,7 @@
     {% block stylesheets %}
 
         {% stylesheets
-        'bundles/css/*'
+        'asset/css/*'
         filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
@@ -46,7 +46,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="{{ path('homepage') }}">
-                <img src="{{ asset('bundles/img/30x30lq.png') }}" width="30"
+                <img src="{{ asset('asset/img/30x30lq.png') }}" width="30"
                      height="30" alt="Logo">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -85,7 +85,7 @@
 {% block javascripts %}
 
     {% javascripts
-    'bundles/js/*' %}
+    'asset/js/*' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
