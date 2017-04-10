@@ -45,9 +45,7 @@ registration:
         subject: 'Witaj %username%!'
         message: "Cześć %username%!\n\nAby potwierdzić swoje konto - proszę przejść do %confirmationUrl%\n\nPozdrawiamy,\nZespół liqster.pl.\n"
 resetting:
-    check_email: "E-mail został wysłany. Zawiera on link do formularza zmiany hasła.
-        Uwaga: Możesz zresetować hasło tylko jeden raz w ciągu %tokenLifetime% godzin.
-        Sprawdź swoją skrzynkę pocztową, jeśli jednak nie widzisz wiadomości od nas, sprawdź folder spam lub spróbuj ponownie później."
+    check_email: "E-mail został wysłany. Zawiera on link do formularza zmiany hasła. Uwaga: Możesz zresetować hasło tylko jeden raz w ciągu %tokenLifetime% godzin. Sprawdź swoją skrzynkę pocztową, jeśli jednak nie widzisz wiadomości od nas, sprawdź folder spam lub spróbuj ponownie później."
     request:
         username: 'Nazwa użytkownika lub e-mail'
         submit: 'Resetuj hasło'

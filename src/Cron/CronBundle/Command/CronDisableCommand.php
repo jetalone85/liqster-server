@@ -23,6 +23,7 @@ class CronDisableCommand extends ContainerAwareCommand
 {
     /**
      * {@inheritdoc}
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
     protected function configure()
     {

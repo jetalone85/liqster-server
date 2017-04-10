@@ -58,13 +58,10 @@
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
     ],
     "post-install-cmd": [
-      "@symfony-scripts",
-      "npm install bower",
-      "bower install bootstrap#v4.0.0-alpha.6"
+      "@symfony-scripts"
     ],
     "post-update-cmd": [
-      "@symfony-scripts",
-      "npm update"
+      "@symfony-scripts"
     ]
   },
   "config": {
