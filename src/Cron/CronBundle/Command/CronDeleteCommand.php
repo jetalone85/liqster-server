@@ -24,6 +24,7 @@ class CronDeleteCommand extends ContainerAwareCommand
 {
     /**
      * {@inheritdoc}
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
     protected function configure()
     {
@@ -34,6 +35,7 @@ class CronDeleteCommand extends ContainerAwareCommand
 
     /**
      * {@inheritdoc}
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -72,7 +74,8 @@ class CronDeleteCommand extends ContainerAwareCommand
     }
 
     /**
-     * @return QuestionHelper
+     * @return \Symfony\Component\Console\Helper\HelperInterface
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
     private function getQuestionHelper()
     {

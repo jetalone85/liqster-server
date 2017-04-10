@@ -33,6 +33,7 @@ class CronCreateCommand extends ContainerAwareCommand
 
     /**
      * {@inheritdoc}
+     * @throws \InvalidArgumentException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -53,7 +54,6 @@ class CronCreateCommand extends ContainerAwareCommand
         $question = new Question('<question>Command:</question> ', false);
 
         $command = $this->getQuestionHelper()->ask($input, $output, $question);
-//        $this->validateCommand($command);
         $job->setCommand($command);
 
         $output->writeln('');
@@ -89,7 +89,8 @@ class CronCreateCommand extends ContainerAwareCommand
     }
 
     /**
-     * @return QuestionHelper
+     * @return \Symfony\Component\Console\Helper\HelperInterface
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
     private function getQuestionHelper()
     {
@@ -119,6 +120,7 @@ class CronCreateCommand extends ContainerAwareCommand
     /**
      * @param  string $jobName
      * @return CronJob
+     * @throws \LogicException
      */
     protected function queryJob($jobName)
     {
