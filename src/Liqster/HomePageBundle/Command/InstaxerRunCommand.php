@@ -37,7 +37,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
 
-        $counter = 5;
+        $counter = 1;
         $long = 5;
 
         $tags = ['photo', 'photos', 'picture', 'photographer', 'pictures', 'snapshot', 'art', 'beautiful', 'instagood', 'picoftheday', 'photooftheday', 'color', 'all_shots', 'exposure', 'composition', 'focus', 'capture', 'moment', 'photoshoot', 'photodaily', 'photogram',
