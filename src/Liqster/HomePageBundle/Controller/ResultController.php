@@ -25,7 +25,7 @@ class ResultController extends Controller
 
         $reports = $em->getRepository('CronBundle:CronReport')->findBy(['job' => $account->getCronJob()]);
 
-        $reports = array_slice($reports, -10, 10, true);
+        $reports = array_reverse(array_slice($reports, -100, 100, true));
 
         return $this->render('LiqsterHomePageBundle:Result:list.html.twig', array(
             'reports' => $reports,
