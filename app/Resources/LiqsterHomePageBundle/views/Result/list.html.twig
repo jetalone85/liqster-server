@@ -1,0 +1,34 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="container">
+            <h1>Szczegóły: Aktywność</h1>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Start</th>
+                    <th>Działało</th>
+                    <th>Konsola</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for report in reports %}
+                    <tr>
+                        <td>{{ report.runat|date("Y-m-d H:i:s") }}</td>
+                        <td>{{ report.runtime }} s</td>
+                        <td>
+                            <pre>{{ report.output }}</pre>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+{% endblock %}

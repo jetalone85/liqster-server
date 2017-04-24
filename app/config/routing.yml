@@ -1,3 +1,7 @@
+liqster_home_page_result:
+    resource: "@LiqsterHomePageBundle/Controller/ResultController.php"
+    type:     annotation
+
 liqster_home_page_account:
     resource: "@LiqsterHomePageBundle/Controller/AccountController.php"
     type:     annotation
