@@ -56,6 +56,13 @@ class Account
     private $modif;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="tags", type="string", length=100000, unique=false, nullable=true)
+     */
+    private $tags;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
@@ -66,6 +73,9 @@ class Account
      */
     private $cronJob;
 
+    /**
+     * Account constructor.
+     */
     public function __construct()
     {
     }
@@ -116,6 +126,22 @@ class Account
     public function setPassword(string $password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param string $tags
+     */
+    public function setTags(string $tags)
+    {
+        $this->tags = $tags;
     }
 
     /**
