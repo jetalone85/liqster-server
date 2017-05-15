@@ -25,3 +25,4 @@
 /node_modules/
 /bash.exe.stackdump
 web/instaxer/
+web/bundles/
