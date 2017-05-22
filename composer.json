@@ -46,6 +46,7 @@
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
+    "codacy/coverage": "^1.1",
     "symfony/phpunit-bridge": "^3.0"
   },
   "scripts": {
