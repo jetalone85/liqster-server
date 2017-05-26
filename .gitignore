@@ -27,3 +27,4 @@
 web/instaxer/
 web/bundles/
 /coverage-dir/
+/tests/coverage/
