@@ -2,6 +2,9 @@
 
 namespace Liqster\HomePageBundle\Entity;
 
+use Beelab\TagBundle\Tag\TaggableInterface;
+use Beelab\TagBundle\Tag\TagInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +13,19 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="account")
  * @ORM\Entity(repositoryClass="Liqster\HomePageBundle\Repository\AccountRepository")
  */
-class Account
+class Account implements TaggableInterface
 {
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag")
+     */
+    protected $tags;
+    protected $tagsText;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $updated;
     /**
      * @var \Ramsey\Uuid\Uuid
      *
@@ -21,53 +35,39 @@ class Account
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
-
     /**
      * @var string
      *
      * @ORM\Column(name="instagram_image", type="string", length=255, unique=false, nullable=true)
      */
     private $image;
-
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, unique=false)
      */
     private $password;
-
     /**
      * @var \DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $created;
-
     /**
      * @var \DateTime
      * @ORM\Column(name="date_modif", type="datetime", unique=false, nullable=true)
      */
     private $modif;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tags", type="string", length=100000, unique=false, nullable=true)
-     */
-    private $tags;
-
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
-
     /**
      * @ORM\OneToOne(targetEntity="Cron\CronBundle\Entity\CronJob", mappedBy="account")
      */
@@ -78,6 +78,7 @@ class Account
      */
     public function __construct()
     {
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -126,22 +127,6 @@ class Account
     public function setPassword(string $password)
     {
         $this->password = $password;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param string $tags
-     */
-    public function setTags(string $tags)
-    {
-        $this->tags = $tags;
     }
 
     /**
@@ -222,6 +207,67 @@ class Account
     public function setModif(\DateTime $modif)
     {
         $this->modif = $modif;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addTag(TagInterface $tag)
+    {
+        $this->tags[] = $tag;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeTag(TagInterface $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasTag(TagInterface $tag)
+    {
+        return $this->tags->contains($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTagNames()
+    {
+        return empty($this->tagsText) ? [] : array_map('trim', explode(',', $this->tagsText));
+    }
+
+    // ...
+
+    /**
+     * @return string
+     */
+    public function getTagsText()
+    {
+        $this->tagsText = implode(', ', $this->tags->toArray());
+
+        return $this->tagsText;
+    }
+
+    /**
+     * @param string
+     */
+    public function setTagsText($tagsText)
+    {
+        $this->tagsText = $tagsText;
+        $this->updated = new \DateTime();
     }
 
 }

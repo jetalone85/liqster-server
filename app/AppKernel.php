@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Liqster\HomePageBundle\LiqsterHomePageBundle(),
             new Cron\CronBundle\CronBundle(),
+            new Beelab\TagBundle\BeelabTagBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

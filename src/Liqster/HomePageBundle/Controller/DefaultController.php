@@ -48,4 +48,14 @@ class DefaultController extends Controller
     {
         return $this->render('LiqsterHomePageBundle:Default:pageContact.html.twig', array());
     }
+
+    /**
+     * @Route("/tags.json", name="tags", defaults={"_format": "json"})
+     */
+    public function tagsAction()
+    {
+        $tags = $this->getDoctrine()->getRepository('LiqsterHomePageBundle:Tag')->findBy([], ['name' => 'ASC']);
+
+        return $this->render('LiqsterHomePageBundle:Default:tags.json.twig', ['tags' => $tags]);
+    }
 }

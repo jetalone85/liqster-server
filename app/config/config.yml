@@ -86,3 +86,8 @@ assetic:
         cssrewrite: ~
 parameters:
     user_photo_directory: '%kernel.root_dir%/../web/uploads/user_photos'
+
+# BeelabTag Configuration
+beelab_tag:
+    tag_class: Liqster\HomePageBundle\Entity\Tag
+    purge:     true
