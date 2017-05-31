@@ -21,6 +21,7 @@ class Account implements TaggableInterface
      * @ORM\ManyToMany(targetEntity="Tag")
      */
     protected $tags;
+
     protected $tagsText;
     /**
      * @ORM\Column(type="datetime", nullable=true)

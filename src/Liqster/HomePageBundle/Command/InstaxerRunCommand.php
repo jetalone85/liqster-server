@@ -40,7 +40,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $counter = 8;
         $long = 5;
 
-        $tags = explode(',', $account->getTags());
+        $tags = explode(', ', $account->getTagsText());
 
         $likeRepository = new RunLikeRepository(new ItemRepository($tags), $instaxer, $counter, $long);
         $likeRepository->run();

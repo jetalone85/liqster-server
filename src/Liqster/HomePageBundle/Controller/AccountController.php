@@ -3,7 +3,6 @@
 namespace Liqster\HomePageBundle\Controller;
 
 use Cron\CronBundle\Entity\CronJob;
-use Cron\CronBundle\Form\CronJobType;
 use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Form\AccountType;
@@ -13,7 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Account controller.
@@ -28,10 +30,10 @@ class AccountController extends Controller
      * @Route("/", name="account_index")
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \LogicException
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -44,7 +46,7 @@ class AccountController extends Controller
 
             $newStatus = false;
             if (count($query) === 2) {
-                $newStatus = $query['enable'] === 'on' ? true : false;
+                $newStatus = $query['enable'] === 'on';
             }
             $cronJob->setEnabled($newStatus);
             $em->flush();
@@ -63,7 +65,7 @@ class AccountController extends Controller
      * @Route("/new", name="account_new")
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      * @throws \LogicException
      */
     public function newAction(Request $request)
@@ -106,10 +108,10 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param Account $account
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Exception
      */
-    public function showAction(Request $request, Account $account)
+    public function showAction(Request $request, Account $account): Response
     {
         $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
 
@@ -142,9 +144,9 @@ class AccountController extends Controller
      *
      * @param Account $account The Account entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
-    private function createDeleteForm(Account $account)
+    private function createDeleteForm(Account $account): Form
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('account_delete', array('id' => $account->getId())))
@@ -154,9 +156,9 @@ class AccountController extends Controller
 
     /**
      * @param Account $account
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
-    private function createEditForm(Account $account)
+    private function createEditForm(Account $account): Form
     {
         return $this->createFormBuilder($account)
             ->add('name', TextType::class, array(
@@ -174,7 +176,7 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param Account $account
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      * @throws \LogicException
      */
     public function editAction(Request $request, Account $account)
@@ -203,10 +205,10 @@ class AccountController extends Controller
      * @Method("DELETE")
      * @param Request $request
      * @param Account $account
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      * @throws \LogicException
      */
-    public function deleteAction(Request $request, Account $account)
+    public function deleteAction(Request $request, Account $account): RedirectResponse
     {
         $form = $this->createDeleteForm($account);
         $form->handleRequest($request);
@@ -224,13 +226,13 @@ class AccountController extends Controller
      * @Route("/{id}/check", name="account_check")
      * @Method({"GET", "PUT"})
      * @param Account $account
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \InvalidArgumentException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      * @throws \LogicException
      * @throws \Exception
      */
-    public function checkAction(Account $account)
+    public function checkAction(Account $account): Response
     {
         $fs = new Filesystem();
         $fs->mkdir('./instaxer/profiles/' . $account->getUser());
@@ -253,13 +255,13 @@ class AccountController extends Controller
      * @Route("/{id}/activate", name="account_activate")
      * @Method("GET")
      * @param Account $account
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \InvalidArgumentException
      * @throws \LogicException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      */
-    public function activateAction(Account $account)
+    public function activateAction(Account $account): Response
     {
         $em = $this->getDoctrine()->getManager();
         $cron = $em->getRepository('CronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
@@ -275,10 +277,10 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param Account $account
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \LogicException
      */
-    public function addTaskAction(Request $request, Account $account)
+    public function addTaskAction(Request $request, Account $account): Response
     {
         $cronJob = new CronJob();
         $form = $this->createForm(CronJobType::class, $cronJob);
