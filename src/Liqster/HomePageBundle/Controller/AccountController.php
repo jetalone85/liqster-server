@@ -31,6 +31,8 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      * @throws \LogicException
      */
     public function indexAction(Request $request): Response
@@ -162,7 +164,7 @@ class AccountController extends Controller
     {
         return $this->createFormBuilder($account)
             ->add('name', TextType::class, array(
-                'label' => 'Nazwa',
+                'label' => 'Name',
                 'required' => false
             ))
             ->add('save', SubmitType::class)
@@ -269,35 +271,6 @@ class AccountController extends Controller
         return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
             'cron' => $cron,
-        ));
-    }
-
-    /**
-     * @Route("/{id}/add_task", name="account_addTask")
-     * @Method({"GET", "POST"})
-     * @param Request $request
-     * @param Account $account
-     * @return Response
-     * @throws \LogicException
-     */
-    public function addTaskAction(Request $request, Account $account): Response
-    {
-        $cronJob = new CronJob();
-        $form = $this->createForm(CronJobType::class, $cronJob);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $cronJob->setAccount($account);
-            $em->persist($cronJob);
-            $em->flush();
-
-            return $this->redirectToRoute('account_activate', array('id' => $account->getId()));
-        }
-
-        return $this->render('LiqsterHomePageBundle:Account:addTask.html.twig', array(
-            'account' => $account,
-            'form' => $form->createView()
         ));
     }
 }

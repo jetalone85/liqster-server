@@ -17,13 +17,15 @@ class ResultController extends Controller
      * @Method({"GET"})
      * @param Account $account
      * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      * @throws \LogicException
      */
     public function listAction(Account $account): Response
     {
         $em = $this->getDoctrine()->getManager();
 
-        $reports = $em->getRepository('CronBundle:CronReport')->findBy(['job' => $account->getCronJob()]);
+        $reports = $em->getRepository('CronBundle:CronReport')->findBy(['job' => $account->getCronJob()], [['runAt' => 'DESC']], 10);
 
         $reports = array_reverse(array_slice($reports, -100, 100, true));
 
