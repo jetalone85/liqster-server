@@ -10,5 +10,9 @@ liqster_home_page:
     resource: "@LiqsterHomePageBundle/Controller/DefaultController.php"
     type:     annotation
 
+liqster_api:
+    resource: "@LiqsterHomePageBundle/Controller/ApiController.php"
+    type:     annotation
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
