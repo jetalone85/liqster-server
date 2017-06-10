@@ -24,12 +24,13 @@ class RunPunchAccounts
     public function run()
     {
         $item = $this->repository->getRandomItem();
+        echo sprintf("---------- Account ----------\n");
 
         echo sprintf('@%s: ' . "\r\n", $item->getItem());
 
         $usersFeed = $this->instaxer->instagram->getUserFeed($this->instaxer->instagram->getUserByUsername($item->getItem()));
 
-        $usersItems = array_slice($usersFeed->getItems(), 0, 10);
+        $usersItems = array_slice($usersFeed->getItems(), 0, 200);
 
 
         foreach ($usersItems as $usersItem) {
@@ -38,18 +39,23 @@ class RunPunchAccounts
             foreach ($comments as $comment) {
                 $commentUser = $comment->getUser();
                 echo sprintf("---------- Comment ----------\n");
+
+                if ($commentUser->getFollowerCount() <= 2000) {
+                    echo sprintf("------ Add to followed ------\n");
+                    $this->instaxer->instagram->followUser($commentUser);
+                }
+
                 echo sprintf("User: %s [%s]\n", $commentUser->getFullName(), $commentUser->getUsername());
                 echo sprintf("Text: %s\n", $comment->getText());
                 echo sprintf("--------- \\Comment ----------\n");
 
-
                 $singleUserFeed = $this->instaxer->instagram->getUserFeed($commentUser);
 
-                foreach (array_slice($singleUserFeed->getItems(), 0, 3) as $hashTagFeedItem) {
+                foreach (array_slice($singleUserFeed->getItems(), 0, 6) as $hashTagFeedItem) {
 
                     $id = $hashTagFeedItem->getId();
                     $user = $this->instaxer->instagram->getUserInfo($hashTagFeedItem->getUser())->getUser();
-                    $followRatio = $user->getFollowerCount() / $user->getFollowingCount();
+                    $followRatio = $user->getFollowerCount() / ($user->getFollowingCount() + 1);
 
                     echo sprintf('User: %s; ', $user->getUsername());
                     echo sprintf('id: %s,  ', $id);

@@ -38,17 +38,7 @@ class InstaxerPunchCommand extends ContainerAwareCommand
         $instaxer->login($account->getName(), $account->getPassword());
 
         $accounts = [
-            'insta_warsaw',
-            'poland.online',
-            'polandbeautiful',
-            'polandsights',
-            'igerspoland',
-            'arianagrande',
-            'taylorswift',
-            'kyliejenner',
-            'kendalljenner',
-            'khloekardashian',
-            'anastasiyascheglova'
+            'karolinagilonofficial'
         ];
 
         $likeRepository = new RunPunchAccounts(new ItemRepository($accounts), $instaxer);
