@@ -38,15 +38,4 @@ class DefaultController extends Controller
     {
         return $this->render('LiqsterHomePageBundle:Default:pageHowTo.html.twig', array());
     }
-
-    /**
-     * @return Response
-     * @throws \LogicException
-     * @Route("/contact", name="pageContact")
-     * @Method({"GET"})
-     */
-    public function pageContactAction(): Response
-    {
-        return $this->render('LiqsterHomePageBundle:Default:pageContact.html.twig', array());
-    }
 }

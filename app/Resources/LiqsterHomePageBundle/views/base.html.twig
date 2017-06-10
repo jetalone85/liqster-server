@@ -33,12 +33,11 @@
     {% endblock %}
 </head>
 
-<body>
-
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
 {% block navigation %}
 
-    <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
         <div class=" container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -51,9 +50,12 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link " href="{{ path('homepage') }}">Start</a>
-                    <a class="nav-item nav-link " href="{{ path('pageHowTo') }}">Jak to działa?</a>
-                    <a class="nav-item nav-link " href="{{ path('pageContact') }}">Kontakt</a>
+                    <a class="nav-item nav-link" href="{{ path('homepage') }}">Start</a>
+                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a>
+                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#services">Usługi</a>
+                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a>
+                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#contact">Kontakt</a>
+                    <a class="nav-item nav-link" href="{{ path('pageHowTo') }}">Jak to działa?</a>
                 </div>
             </div>
             <div class="navbar-nav">
@@ -85,6 +87,24 @@
 {% block javascripts %}
 
     <script>
+        $(window).scroll(function () {
+            if ($(".navbar").offset().top > 50) {
+                $(".navbar-fixed-top").addClass("top-nav-collapse");
+            } else {
+                $(".navbar-fixed-top").removeClass("top-nav-collapse");
+            }
+        });
+
+        $(function () {
+            $(document).on('click', 'a.page-scroll', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
         $(document).ready(function () {
             (function () {
                 var $tagInput = $('input[name$="[tagsText]"]');

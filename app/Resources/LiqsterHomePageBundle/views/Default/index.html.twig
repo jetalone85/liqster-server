@@ -15,256 +15,71 @@
 
     {% else %}
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="jumbotron">
-                        <h1 class="h1-responsive">liqster - zwiększ swój zasięg!</h1>
-                        <br>
-                        <p>Powerful and free Material Design UI KIT</p>
-                        <hr>
-                        <p>Register for free and get access to amazing framework and beautiful components</p>
-                        <a class="btn btn-mdb btn-stc"
-                           href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
-
-                        <a href="{{ path('homepage') }}#works"
-                           class="btn btn-unique btn-ptc">Dowiedz się więcej...</a>
+        <section id="intro" class="intro-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Scrolling Nav</h1>
+                        <p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>,
+                            <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link
+                            smooth scroll to another section on the page, give the link the <code>.page-scroll</code>
+                            class and set the link target to a corresponding ID on the page.</p>
+                        <a class="btn btn-default page-scroll" href="#about">Click Me to Scroll Down!</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <a name="works"></a>
-                    <h1 class="h1-responsive">Page heading
-                        <small class="text-muted">secondary text</small>
-                    </h1>
-                </div>
-            </div>
-            <!--/.Page heading-->
-            <hr>
-
-            <!--First row-->
-            <div class="row">
-                <!--Featured image-->
-                <div class="col-lg-7">
-                    <div class="view overlay hm-white-light z-depth-1-half">
-                        <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(107).jpg" class="img-fluid" alt="">
-                        <div class="mask"></div>
-                    </div>
-                </div>
-                <!--/.Featured image-->
-
-                <!--Post excerpt-->
-                <div class="col-lg-5">
-                    <a href="#!"><h2 class="post-title">Post title</h2></a>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit molestias
-                        voluptates incidunt tempora ducimus! At cum iusto necessitatibus sed omnis nemo natus. iure
-                        magni quasi dolores similique aspernatur.</p>
-                    <div class="read-more">
-                        <a href="#!" class="btn btn-primary">Learn more</a>
-                    </div>
-                </div>
-                <!--/.Post excerpt-->
-            </div>
-            <!--/.First row-->
-            <hr class="extra-margin">
-
-            <!--Second row-->
-            <div class="row">
-                <!--/.Post excerpt-->
-                <div class="col-lg-5">
-                    <a href="#!"><h2 class="post-title">Post title</h2></a>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit molestias
-                        voluptates incidunt tempora ducimus! At cum iusto necessitatibus sed omnis nemo natus. iure
-                        magni quasi dolores similique aspernatur.</p>
-                    <div class="read-more">
-                        <a href="#!" class="btn btn-primary">Learn more</a>
-                    </div>
-                </div>
-                <!--/.Post excerpt-->
-
-                <!--Featured image-->
-                <div class="col-lg-7">
-                    <div class="view overlay hm-white-light z-depth-1-half">
-                        <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(108).jpg" class="img-fluid" alt="">
-                        <div class="mask"></div>
-                    </div>
-                </div>
-                <!--Featured image-->
-            </div>
-            <!--/.Second row-->
-            <hr class="extra-margin">
-
-            <!--Third row-->
-            <div class="row">
-                <!--Featured image-->
-                <div class="col-lg-7">
-                    <div class="view overlay hm-white-light z-depth-1-half">
-                        <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(109).jpg" class="img-fluid" alt="">
-                        <div class="mask"></div>
-                    </div>
-                </div>
-                <!--Featured image-->
-
-                <!--/.Post excerpt-->
-                <div class="col-lg-5">
-                    <a href="#!"><h2 class="post-title">Post title</h2></a>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit molestias
-                        voluptates incidunt tempora ducimus! At cum iusto necessitatibus sed omnis nemo natus. iure
-                        magni quasi dolores similique aspernatur.</p>
-                    <div class="read-more">
-                        <a href="#!" class="btn btn-primary">Learn more</a>
-                    </div>
-                </div>
-                <!--/.Post excerpt-->
-            </div>
-            <!--/.Third row-->
-
-            <hr class="extra-margins">
-
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <!--Product-->
-                    <div class="product-wrapper">
-
-                        <!--Featured image-->
-                        <div class="view overlay hm-white-light z-depth-1-half">
-                            <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(109).jpg" class="img-fluid "
-                                 alt="">
-                        </div>
-                        <!--/.Featured image-->
-
-                        <br>
-
-                        <!--Product data-->
-                        <h2 class="h2-responsive">Product title</h2>
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius totam, officiis doloremque
-                            velit
-                            nobis
-                            dolor nulla unde architecto alias praesentium, soluta error omnis sint, impedit, delectus
-                            ipsam
-                            eveniet
-                            debitis nemo.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius totam, officiis doloremque
-                            velit
-                            nobis
-                            dolor nulla unde architecto alias praesentium, soluta error omnis sint, impedit, delectus
-                            ipsam
-                            eveniet
-                            debitis nemo.</p>
-
-                        <ul class="rating inline-ul">
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                        </ul>
-
-                    </div>
-                    <!--Product-->
-
-                </div>
-            </div>
-            <!--/.First row-->
-
-            <!--Second row-->
-            <div class="row">
-
-                <!--Heading-->
-                <div class="col reviews">
-                    <h2 class="h2-responsive">Reviews</h2>
-                </div>
-
-                <!--First review-->
-                <div class="media">
-                    <a class="media-left" href="#">
-                        <img class="rounded-circle" src="http://mdbootstrap.com/img//Photos/Avatars/avatar-7.jpg"
-                             alt="Generic placeholder image">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe</h4>
-                        <ul class="rating inline-ul">
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
-                            soluta.
-                            Quasi
-                            mollitia maxime nemo quam accusamus possimus, voluptatum expedita assumenda. Earum sit id
-                            ullam
-                            eum vel
-                            delectus!</p>
-                    </div>
-                </div>
-
-                <!--Second review-->
-                <br>
-                <div class="media">
-                    <a class="media-left" href="#">
-                        <img class="rounded-circle" src="http://mdbootstrap.com/img//Photos/Avatars/avatar-5.jpg"
-                             alt="Generic placeholder image">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Maria Casie</h4>
-                        <ul class="rating inline-ul">
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
-                            soluta.
-                            Quasi
-                            mollitia maxime nemo quam accusamus possimus, voluptatum expedita assumenda. Earum sit id
-                            ullam
-                            eum vel
-                            delectus!</p>
-                    </div>
-                </div>
-
-                <!--Second review-->
-                <br>
-                <div class="media">
-                    <a class="media-left" href="#">
-                        <img class="rounded-circle" src="http://mdbootstrap.com/img//Photos/Avatars/avatar-10.jpg"
-                             alt="Generic placeholder image">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Kate Snow</h4>
-                        <ul class="rating inline-ul">
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star amber-text"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate temporibus iure
-                            soluta.
-                            Quasi
-                            mollitia maxime nemo quam accusamus possimus, voluptatum expedita assumenda. Earum sit id
-                            ullam
-                            eum vel
-                            delectus!</p>
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>About Section</h1>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Services Section</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="price" class="price-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Price Section</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Contact Section</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
     {% endif %}
 
 {% endblock %}
 
-    {% block body %}
-    {% endblock %}
+
+{% block body %}
+
+{% endblock %}
