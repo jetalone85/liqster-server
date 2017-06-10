@@ -38,7 +38,11 @@ class InstaxerPunchCommand extends ContainerAwareCommand
         $instaxer->login($account->getName(), $account->getPassword());
 
         $accounts = [
-            'selenagomez',
+            'insta_warsaw',
+            'poland.online',
+            'polandbeautiful',
+            'polandsights',
+            'igerspoland',
             'arianagrande',
             'taylorswift',
             'kyliejenner',
