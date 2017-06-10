@@ -26,33 +26,37 @@
                     <div class="card w-100">
 
                         <div class="card-block">
-                            <h4 class="card-title">{{ account.name }}</h4>
+                            <h2 class="card-title center-block text-center">{{ account.name }}</h2>
                         </div>
 
                         <div class="card-block">
                             <form name="form" method="post">
-
-                                <label for="form_enable_{{ account.id }}">
-                                    Czy aktywne:
-                                </label>
                                 <input
                                         type="hidden"
                                         name="form[id]"
                                         value="{{ account.id }}"
                                 />
+
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="form[enable]"
+                                           id="form_enable_{{ account.id }}"
+                                           {% if account.cronJob.enabled %}checked{% endif %}
+                                           class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Konto aktywne</span>
+                                </label>
+
                                 <input
-                                        type="checkbox"
-                                        {% if account.cronJob.enabled %}checked{% endif %}
-                                        id="form_enable_{{ account.id }}"
-                                        name="form[enable]"
-                                />
-                                <input type="submit" value="zapisz"/>
+                                        class="btn btn-outline-primary btn-block"
+                                        type="submit"
+                                        value="zapisz"/>
 
                             </form>
                         </div>
 
                         <div class="card-block">
-                            <a href="{{ path('account_show', { 'id': account.id }) }}" class="card-link">Szczegóły</a>
+                            <a class="btn btn-outline-info btn-blockcard-link"
+                               href="{{ path('account_show', { 'id': account.id }) }}" role="button">Szczegóły</a>
                         </div>
 
                     </div>
