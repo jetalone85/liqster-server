@@ -48,9 +48,6 @@ final class Session
      */
     public function saveSession($savedSession)
     {
-        $result = file_put_contents($this->sessionFile, $savedSession);
-        if (!$result) {
-            unlink($this->sessionFile);
-        }
+        file_put_contents($this->sessionFile, $savedSession);
     }
 }

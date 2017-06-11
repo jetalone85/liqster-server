@@ -32,11 +32,11 @@ class SessionTest extends TestCase
             unlink($path);
         }
 
-        $savedSession = 'example';
+        $savedSession = '{sessionData: example}';
 
         $session = new Session($path);
         $session->saveSession($savedSession);
 
-        $this->assertEquals('example', $session->getSevedSession());
+        $this->assertEquals($savedSession, $session->getSevedSession());
     }
 }
