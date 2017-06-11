@@ -1,6 +1,9 @@
 <?php
 
-class DownloaderTest extends PHPUnit_Framework_TestCase
+use Instaxer\Downloader;
+use PHPUnit\Framework\TestCase;
+
+class DownloaderTest extends TestCase
 {
     public function testDrain()
     {
@@ -8,9 +11,9 @@ class DownloaderTest extends PHPUnit_Framework_TestCase
             unlink(__DIR__ . '/../../app/storage/test.jpg');
         }
 
-        $downloader = new \Instaxer\Downloader();
-        $downloader->drain('https://www.google.pl/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
+        $downloader = new Downloader();
+        $downloader->drain(__DIR__ . '/../../app/storage/test.jpg', 'https://www.google.pl/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png');
 
-        $this->assertTrue(file_exists(__DIR__ . '/../../app/storage/test.jpg'));
+        $this->assertFileExists(__DIR__ . '/../../app/storage/test.jpg');
     }
 }

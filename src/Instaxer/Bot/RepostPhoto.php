@@ -2,13 +2,22 @@
 
 namespace Instaxer\Bot;
 
+use Instagram\API\Response\ConfigureMediaResponse;
 use Instaxer\Downloader;
 use Instaxer\Request;
 
+/**
+ * Class RepostPhoto
+ * @package Instaxer\Bot
+ */
 class RepostPhoto extends Request
 {
-
-    public function exec(string $userName)
+    /**
+     * @param string $userName
+     * @return ConfigureMediaResponse
+     * @throws \Exception
+     */
+    public function exec(string $userName): ConfigureMediaResponse
     {
         $request = new Request\UserFeed($this->instaxer);
         $userFeed = $request->get($this->instaxer->instagram->getUserByUsername($userName));
@@ -19,7 +28,7 @@ class RepostPhoto extends Request
         $image = $lastFeedItem->getImageVersions2()->getCandidates();
 
         $downloader = new Downloader();
-        $downloader->drain($image[0]->getUrl());
+        $downloader->drain(__DIR__ . '/../../../app/storage/test.jpg', $image[0]->getUrl());
 
         $requestPublishPhoto = new Request\PublishPhoto($this->instaxer);
 

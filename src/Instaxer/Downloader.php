@@ -5,10 +5,12 @@ namespace Instaxer;
 class Downloader
 {
     /**
-     * @param $path
+     * @param $destiny
+     * @param $source
+     * @internal param $path
      */
-    public function drain($path)
+    public function drain($destiny, $source)
     {
-        file_put_contents(__DIR__ . '/../../app/storage/test.jpg', fopen($path, 'r'));
+        file_put_contents($destiny, fopen($source, 'rb'));
     }
 }
