@@ -19,7 +19,7 @@ class CronJobControllerTest extends WebTestCase
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'cron_cronbundle_cronjob[field_name]'  => 'Test',
+            'cron_cronbundle_cronjob[field_name]'  => 'ModelTest',
             // ... other fields to fill
         ));
 
@@ -27,7 +27,7 @@ class CronJobControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
 
         // Check data in the show view
-        $this->assertGreaterThan(0, $crawler->filter('td:contains("Test")')->count(), 'Missing element td:contains("Test")');
+        $this->assertGreaterThan(0, $crawler->filter('td:contains("ModelTest")')->count(), 'Missing element td:contains("ModelTest")');
 
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());

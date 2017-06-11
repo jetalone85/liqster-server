@@ -13,7 +13,7 @@ class PublishPhotoTest extends TestCase
         $instaxer->login('vodefgafy', 'vodef@gafy.net');
 
         $request = new PublishPhoto($instaxer);
-        $result = $request->pull(__DIR__ . '/test.jpg', 'test');
+        $result = $request->pull(__DIR__ . '/test.jpg', 'ModelTest');
 
         $this->assertEquals('ok', $result->getStatus());
     }

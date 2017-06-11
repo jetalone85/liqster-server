@@ -41,14 +41,6 @@ class ItemRepository extends Repository
     }
 
     /**
-     * @return Item
-     */
-    public function getLastItem(): Item
-    {
-        return new Item($this->arrayOfTags[count($this->arrayOfTags)]);
-    }
-
-    /**
      * @param $int
      * @return Item
      */
