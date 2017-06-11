@@ -31,4 +31,29 @@ class ItemRepository extends Repository
     {
         return new Item($this->arrayOfTags[random_int(0, count($this->arrayOfTags) - 1)]);
     }
+
+    /**
+     * @return Item
+     */
+    public function getFirstItem(): Item
+    {
+        return new Item($this->arrayOfTags[0]);
+    }
+
+    /**
+     * @return Item
+     */
+    public function getLastItem(): Item
+    {
+        return new Item($this->arrayOfTags[count($this->arrayOfTags)]);
+    }
+
+    /**
+     * @param $int
+     * @return Item
+     */
+    public function getIntItem($int): Item
+    {
+        return new Item($this->arrayOfTags[$int]);
+    }
 }

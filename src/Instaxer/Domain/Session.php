@@ -6,12 +6,13 @@ namespace Instaxer\Domain;
  * Class Session
  * @package Instaxer\Domain
  */
-class Session
+final class Session
 {
     /**
      * @var
      */
     public $restoredFromSession;
+
     /**
      * @var
      */

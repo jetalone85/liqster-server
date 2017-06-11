@@ -35,13 +35,14 @@ class Border
     {
         $file = file_get_contents($this->listFile);
         $this->haystack = explode(';', $file);
+        return $this->haystack;
     }
 
     /**
      * @param $data
      * @return bool
      */
-    public function check($data)
+    public function check($data): bool
     {
         return in_array($data, $this->haystack, true);
     }
@@ -49,7 +50,7 @@ class Border
     /**
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->haystack);
     }

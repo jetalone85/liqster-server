@@ -4,5 +4,4 @@ namespace Instaxer\Domain;
 
 class Storage
 {
-
 }

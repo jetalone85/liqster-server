@@ -2,16 +2,31 @@
 
 namespace Instaxer\Request;
 
+/**
+ * Class Following
+ * @package Instaxer\Request
+ */
 class Following
 {
+    /**
+     * @var
+     */
     private $instaxer;
 
+    /**
+     * Following constructor.
+     * @param $instaxer
+     */
     public function __construct($instaxer)
     {
         $this->instaxer = $instaxer;
     }
 
-    public function getFollowing($user)
+    /**
+     * @param $user
+     * @return array
+     */
+    public function getFollowing($user): array
     {
         $followingCount = $this->instaxer->instagram->getUserInfo($user)->getUser()->getFollowingCount();
 

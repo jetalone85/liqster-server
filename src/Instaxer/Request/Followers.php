@@ -2,16 +2,31 @@
 
 namespace Instaxer\Request;
 
+/**
+ * Class Followers
+ * @package Instaxer\Request
+ */
 class Followers
 {
+    /**
+     * @var
+     */
     private $instaxer;
 
+    /**
+     * Followers constructor.
+     * @param $instaxer
+     */
     public function __construct($instaxer)
     {
         $this->instaxer = $instaxer;
     }
 
-    public function getFollowers($user)
+    /**
+     * @param $user
+     * @return array
+     */
+    public function getFollowers($user): array
     {
         $followersCount = $this->instaxer->instagram->getUserInfo($user)->getUser()->getFollowerCount();
 
