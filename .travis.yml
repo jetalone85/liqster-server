@@ -5,3 +5,9 @@ php:
 
 before_script:
   - composer install
+
+script:
+  - php vendor/bin/phpunit
+
+after_script:
+  - php vendor/bin/codacycoverage clover path/to/clover.xml
