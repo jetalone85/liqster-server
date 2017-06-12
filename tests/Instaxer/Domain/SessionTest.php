@@ -27,10 +27,7 @@ class SessionTest extends TestCase
 
     public function testSaveSessionAndGetSevedSession()
     {
-        $path = __DIR__ . '/../../../var/cache/instaxer/profiles/session.dat';
-        if (file_exists($path)) {
-            unlink($path);
-        }
+        $path = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '../var/cache/instaxer/profiles/session.dat';
 
         $savedSession = '{sessionData: example}';
 

@@ -2,6 +2,8 @@
 
 namespace Instaxer\Domain;
 
+use Symfony\Component\Filesystem\Filesystem;
+
 /**
  * Class Session
  * @package Instaxer\Domain
@@ -48,6 +50,13 @@ final class Session
      */
     public function saveSession($savedSession)
     {
+        if (file_exists($this->sessionFile)) {
+            unlink($this->sessionFile);
+        } else {
+            $fs = new Filesystem();
+            $fs->mkdir(dirname($this->sessionFile));
+        }
+
         file_put_contents($this->sessionFile, $savedSession);
     }
 }
