@@ -44,13 +44,20 @@
     "cron/cron": "^1.0",
     "roave/security-advisories": "dev-master",
     "beelab/tag-bundle": "^1.2",
-    "phpvisualdebt/phpvisualdebt": "^1.0"
+    "phpvisualdebt/phpvisualdebt": "^1.0",
+    "cron/cron-bundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
     "codacy/coverage": "^1.1",
     "symfony/phpunit-bridge": "^3.0"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/pyrkamarcin/Symfony-Bundle"
+    }
+  ],
   "scripts": {
     "symfony-scripts": [
     ],

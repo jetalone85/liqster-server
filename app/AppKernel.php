@@ -25,7 +25,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Liqster\HomePageBundle\LiqsterHomePageBundle(),
-            new Cron\CronBundle\CronBundle(),
+            new Cron\CronBundle\CronCronBundle(),
             new Beelab\TagBundle\BeelabTagBundle(),
         ];
 
