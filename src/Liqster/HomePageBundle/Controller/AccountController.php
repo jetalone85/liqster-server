@@ -44,7 +44,7 @@ class AccountController extends Controller
         $query = $request->request->get('form');
 
         if ($query) {
-            $cronJob = $em->getRepository('CronBundle:CronJob')->findOneBy(['account' => $query['id']]);
+            $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $query['id']]);
 
             $newStatus = false;
             if (count($query) === 2) {
@@ -266,7 +266,7 @@ class AccountController extends Controller
     public function activateAction(Account $account): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $cron = $em->getRepository('CronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
+        $cron = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
 
         return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
