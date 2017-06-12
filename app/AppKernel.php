@@ -11,7 +11,7 @@ class AppKernel extends Kernel
     /**
      * @return array
      */
-    public function registerBundles()
+    public function registerBundles(): array
     {
         $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
@@ -42,7 +42,7 @@ class AppKernel extends Kernel
     /**
      * @return string
      */
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return dirname(__DIR__) . '/var/cache/' . $this->getEnvironment();
     }
@@ -50,13 +50,14 @@ class AppKernel extends Kernel
     /**
      * @return string
      */
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return dirname(__DIR__) . '/var/logs';
     }
 
     /**
      * @param LoaderInterface $loader
+     * @throws \Exception
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
