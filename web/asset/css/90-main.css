@@ -36,10 +36,6 @@ body {
     color: #f7f7f7;
 }
 
-.price-section .card img {
-    clip-path: circle(174px at center);
-}
-
 .price-section .card-footer {
     background-color: rgba(0, 0, 0, 0.05) !important;
     color: #f7f7f7;

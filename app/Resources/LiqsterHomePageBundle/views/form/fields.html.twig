@@ -1,12 +1,10 @@
 {% block form_row %}
     {% spaceless %}
-        <div class="container-fluid">
-            <div class="form-group row">
-                {{ form_errors(form) }}
-                {{ form_label(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
-            </div>
+        <div class="container input-field col s12">
+            {{ form_errors(form) }}
+            {{ form_label(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
         </div>
     {% endspaceless %}
 {% endblock form_row %}
