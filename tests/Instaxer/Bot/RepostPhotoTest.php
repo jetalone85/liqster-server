@@ -6,7 +6,7 @@ class RepostPhotoTest extends PHPUnit_Framework_TestCase
     {
         $path = __DIR__ . '/../../../var/cache/instaxer/profiles/session.dat';
         $instaxer = new \Instaxer\Instaxer($path);
-        $instaxer->login('vodefgafy', 'vodef@gafy.net');
+        $instaxer->login('vodefgafy', 'dupadupa1');
 
         $request = new \Instaxer\Bot\RepostPhoto($instaxer);
         $result = $request->exec('instagram');
