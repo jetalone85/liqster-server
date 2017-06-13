@@ -8,8 +8,7 @@
   "autoload": {
     "psr-4": {
       "Liqster\\": "src/Liqster/",
-      "Instaxer\\": "src/Instaxer/",
-      "Cron\\": "src/Cron/"
+      "Instaxer\\": "src/Instaxer/"
     },
     "classmap": [
       "app/AppKernel.php",
@@ -60,10 +59,18 @@
   ],
   "scripts": {
     "symfony-scripts": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
     ],
     "post-install-cmd": [
+      "@symfony-scripts"
     ],
     "post-update-cmd": [
+      "@symfony-scripts"
     ]
   },
   "config": {
