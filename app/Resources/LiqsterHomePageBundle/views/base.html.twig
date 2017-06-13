@@ -14,6 +14,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -37,41 +38,46 @@
 
 {% block navigation %}
 
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('homepage') }}">
-                <img src="{{ asset('asset/img/30x30lq.png') }}" width="30"
-                     height="30" alt="Logo">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{{ path('homepage') }}">Start</a>
-                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a>
-                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#services">Usługi</a>
-                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a>
-                    <a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#contact">Kontakt</a>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper pink darken-2">
+                <div class="container">
+                    <a href="#" class="brand-logo center valign-wrapper">
+                        <img src="{{ asset('asset/img/30x30lq.png') }}" width="30"
+                             height="30" alt="Logo"></a>
+                    </a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><a class="nav-item nav-link" href="{{ path('homepage') }}">Start</a></li>
+                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a></li>
+                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#services">Usługi</a>
+                        </li>
+                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a></li>
+                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#contact">Kontakt</a>
+                        </li>
+                    </ul>
+
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li>
+                                <a href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
-            <div class="navbar-nav">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <a class="nav-link"
-                       href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
-                    <a class="nav-link"
-                       href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
-                {% else %}
-                    <a class="nav-link"
-                       href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
-                    <a class="nav-link"
-                       href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
 {% endblock %}
 
@@ -86,88 +92,9 @@
 {% block javascripts %}
 
     <script>
-        $(window).scroll(function () {
-            if ($(".navbar").offset().top > 50) {
-                $(".navbar-fixed-top").addClass("top-nav-collapse");
-            } else {
-                $(".navbar-fixed-top").removeClass("top-nav-collapse");
-            }
-        });
-
-        $(function () {
-            $(document).on('click', 'a.page-scroll', function (event) {
-                var $anchor = $(this);
-                $('html, body').stop().animate({
-                    scrollTop: $($anchor.attr('href')).offset().top
-                }, 1500, 'easeInOutExpo');
-                event.preventDefault();
-            });
-        });
-
         $(document).ready(function () {
-            (function () {
-                var $tagInput = $('input[name$="[tagsText]"]');
-
-                function tags($input) {
-                    $input.attr('type', 'hidden').select2({
-                        tags: true,
-                        tokenSeparators: [","],
-                        createSearchChoice: function (term, data) {
-                            if ($(data).filter(function () {
-                                    return this.text.localeCompare(term) === 0;
-                                }).length === 0) {
-                                return {
-                                    id: term,
-                                    text: term
-                                };
-                            }
-                        },
-                        multiple: true,
-                        ajax: {
-                            url: $input.data('ajax'),
-                            dataType: "json",
-                            data: function (term, page) {
-                                return {
-                                    q: term
-                                };
-                            },
-                            results: function (data, page) {
-                                return {
-                                    results: data
-                                };
-                            }
-                        },
-                        initSelection: function (element, callback) {
-                            var data = [];
-
-                            function splitVal(string, separator) {
-                                var val, i, l;
-                                if (string === null || string.length < 1) {
-                                    return [];
-                                }
-                                val = string.split(separator);
-                                for (i = 0, l = val.length; i < l; i = i + 1) {
-                                    val[i] = $.trim(val[i]);
-                                }
-                                return val;
-                            }
-
-                            $(splitVal(element.val(), ",")).each(function () {
-                                data.push({
-                                    id: this,
-                                    text: this
-                                });
-                            });
-                            callback(data);
-                        }
-                    });
-                }
-
-                if ($tagInput.length > 0) {
-                    tags($tagInput);
-                }
-            }());
-        });
+            $(".button-collapse").sideNav();
+        })
     </script>
 
     {% javascripts

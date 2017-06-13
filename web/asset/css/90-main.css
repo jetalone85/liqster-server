@@ -1,11 +1,11 @@
 body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; /* Show it is fixed to the top */
     min-height: 100%;
-    margin-top: 5rem;
+    /*margin-top: 5rem;*/
+    font-size: 1.4rem;
 }
 
-.intro-section {
-    background-image: url(https://s-media-cache-ak0.pinimg.com/originals/97/63/53/976353d83be6638169aad1ad06a00f96.png);
+.full-section {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -13,11 +13,38 @@ body {
     height: 100%;
     padding-top: 5rem;
     padding-bottom: 5rem;
-    min-height: 45rem;
+    min-height: 55rem;
+}
+
+.intro-section {
+    background-image: url(https://s-media-cache-ak0.pinimg.com/originals/97/63/53/976353d83be6638169aad1ad06a00f96.png);
 }
 
 .intro-section .jumbotron {
     min-height: 35rem;
     background-color: rgba(0, 0, 0, 0.15) !important;
     color: #f7f7f7;
+}
+
+.price-section {
+    background-image: url(http://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg);
+}
+
+.price-section .card {
+    min-height: 35rem;
+    background-color: rgba(0, 0, 0, 0.15) !important;
+    color: #f7f7f7;
+}
+
+.price-section .card img {
+    clip-path: circle(174px at center);
+}
+
+.price-section .card-footer {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: #f7f7f7;
+}
+
+.navbar-toggleable-md {
+    min-height: 5rem;
 }
