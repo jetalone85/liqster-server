@@ -40,7 +40,6 @@
     "liamcottle/instagram-sdk-php": "=1.0.4",
     "phpmailer/phpmailer": "=5.2.23",
     "phpunit/phpunit": "=6.2.2",
-    "cron/cron": "^1.0",
     "beelab/tag-bundle": "=1.2.0",
     "phpvisualdebt/phpvisualdebt": "=1.0.3",
     "cron/cron-bundle": "dev-master"
