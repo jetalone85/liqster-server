@@ -1,5 +1,4 @@
 app/config/parameters.yml
-build/
 var/*
 !var/cache
 var/cache/*
@@ -16,7 +15,6 @@ vendor/
 composer.phar
 app/data.db3
 !var/cache/dev/instaxer/profiles/.gitkeep
-composer.lock
 config/config.php
 bin/symfony_requirements
 bower_components/
