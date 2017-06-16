@@ -1,12 +1,14 @@
 <?php
 
-class RepostPhotoTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class RepostPhotoTest extends TestCase
 {
     public function testExec()
     {
         $path = __DIR__ . '/../../../var/cache/instaxer/profiles/session.dat';
         $instaxer = new \Instaxer\Instaxer($path);
-        $instaxer->login('vodefgafy', 'dupadupa1');
+        $instaxer->login('lucy@lucyu.com', 'lucyu@');
 
         $request = new \Instaxer\Bot\RepostPhoto($instaxer);
         $result = $request->exec('instagram');

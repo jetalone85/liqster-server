@@ -10,7 +10,7 @@ class PublishPhotoTest extends TestCase
     {
         $path = __DIR__ . '/../../../var/cache/instaxer/profiles/session.dat';
         $instaxer = new Instaxer($path);
-        $instaxer->login('vodefgafy', 'dupadupa1');
+        $instaxer->login('lucy@lucyu.com', 'lucyu@');
 
         $request = new PublishPhoto($instaxer);
         $result = $request->pull(__DIR__ . '/test.jpg', 'ModelTest');

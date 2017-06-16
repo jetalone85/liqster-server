@@ -10,7 +10,7 @@ class TagFeedTest extends TestCase
     {
         $path = __DIR__ . '/../../../var/cache/instaxer/profiles/session.dat';
         $instaxer = new Instaxer($path);
-        $instaxer->login('vodefgafy', 'vodef@gafy.net');
+        $instaxer->login('lucy@lucyu.com', 'lucyu@');
 
         $tag = 'instagram';
         $request = new TagFeed($instaxer);
