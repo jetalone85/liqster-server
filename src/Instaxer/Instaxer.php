@@ -37,6 +37,7 @@ class Instaxer
     /**
      * @param string $user
      * @param string $password
+     * @return $this
      * @throws \Exception
      */
     public function login(string $user, string $password)
@@ -62,6 +63,8 @@ class Instaxer
             $savedSession = $this->instagram->saveSession();
             $this->session->saveSession($savedSession);
         }
+
+        return $this;
     }
 
     /**

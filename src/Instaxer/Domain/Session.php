@@ -47,16 +47,18 @@ final class Session
 
     /**
      * @param $savedSession
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
      */
     public function saveSession($savedSession)
     {
+        $fs = new Filesystem();
+
         if (file_exists($this->sessionFile)) {
             unlink($this->sessionFile);
         } else {
-            $fs = new Filesystem();
             $fs->mkdir(dirname($this->sessionFile));
         }
 
-        file_put_contents($this->sessionFile, $savedSession);
+        $fs->dumpFile($this->sessionFile, $savedSession);
     }
 }
