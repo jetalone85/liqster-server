@@ -21,7 +21,6 @@ bower_components/
 var/SymfonyRequirements.php
 node_modules/
 bash.exe.stackdump
-web/instaxer/
 web/bundles/
 coverage-dir/
 tests/coverage/*
@@ -30,5 +29,6 @@ app/storage/*
 !var/cache/instaxer/profiles/.gitkeep
 !web/instaxer/profiles/.gitkeep
 !/tests/coverage/.gitkeep
-!/web/instaxer/profiles/marcin/.gitkeep
-
+web/instaxer/
+!/web/instaxer/profiles/.gitkeep
+!/web/instaxer/profiles/*/.gitkeep
