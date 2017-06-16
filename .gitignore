@@ -30,3 +30,5 @@ app/storage/*
 !var/cache/instaxer/profiles/.gitkeep
 !web/instaxer/profiles/.gitkeep
 !/tests/coverage/.gitkeep
+!/web/instaxer/profiles/marcin/.gitkeep
+
