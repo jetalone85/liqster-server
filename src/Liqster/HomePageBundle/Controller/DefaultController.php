@@ -21,21 +21,6 @@ class DefaultController extends Controller
      */
     public function indexAction(): Response
     {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('account_index');
-        }
-
-        return $this->render('LiqsterHomePageBundle:Default:index.html.twig', array());
-    }
-
-    /**
-     * @return Response
-     * @throws \LogicException
-     * @Route("/howtoworks", name="pageHowTo")
-     * @Method({"GET"})
-     */
-    public function pageHowToAction(): Response
-    {
-        return $this->render('LiqsterHomePageBundle:Default:pageHowTo.html.twig', array());
+        return $this->render('LiqsterHomePageBundle:Default:index.html.twig');
     }
 }
