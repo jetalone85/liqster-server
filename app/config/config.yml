@@ -78,12 +78,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:
-            type:                 file
-            path:                 '%kernel.cache_dir%/swiftmailer/spool'
-    logging:              '%kernel.debug%'
+            type:   file
+            path:   '%kernel.cache_dir%/swiftmailer/spool'
+    logging:        '%kernel.debug%'
     antiflood:
-        threshold:            99
-        sleep:                0
+        threshold:  99
+        sleep:      0
     delivery_addresses:   []
 
 fos_user:
