@@ -44,7 +44,7 @@
                 <div class="userView">
                     <div class="background">
                         <img class="shelf-img"
-                             src="https://opengameart.org/sites/default/files/Preview3_1.jpg">
+                             src="https://static1.squarespace.com/static/50305c7684ae7fae2e65756a/t/563f570ce4b04f0e6ef9c643/1446991630181/">
                     </div>
                     <a href="{{ path('profile_index') }}"><img class="circle"
                                                                src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png"></a>
@@ -52,6 +52,9 @@
                                 class="white-text name">{{ app.user.username }}</span></a>
                     <a href="{{ path('profile_index') }}"><span class="white-text email">{{ app.user.email }}</span></a>
                 </div>
+            </li>
+            <li>
+                <a href="{{ path('account_index') }}">Panel</a>
             </li>
         {% endif %}
 
@@ -102,6 +105,9 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <li>
+                                <a href="{{ path('account_index') }}">Panel</a>
+                            </li>
+                            <li>
                                 <a href="{{ path('profile_index') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
                             </li>
                             <li>
@@ -142,19 +148,6 @@
         $(document).ready(function () {
             Materialize.updateTextFields();
             $('.same-size').matchHeight();
-            $(function () {
-                $('.valign-center').css({
-                    'position': 'absolute',
-                    'left': '50%',
-                    'top': '50%',
-                    'margin-left': function () {
-                        return -$(this).outerWidth() / 2
-                    },
-                    'margin-top': function () {
-                        return -$(this).outerHeight() / 2
-                    }
-                });
-            });
             $('.button-collapse').sideNav({
                     menuWidth: 300, // Default is 300
                     edge: 'left', // Choose the horizontal origin

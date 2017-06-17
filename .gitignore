@@ -32,3 +32,4 @@ app/storage/*
 web/instaxer/
 !/web/instaxer/profiles/.gitkeep
 !/web/instaxer/profiles/*/.gitkeep
+/package-lock.json

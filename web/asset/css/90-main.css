@@ -1,8 +1,13 @@
+html {
+    overflow-y: scroll;
+}
+
 body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; /* Show it is fixed to the top */
     min-height: 100%;
     /*margin-top: 5rem;*/
     font-size: 1.4rem;
+    background-color: #f4f4f4;
 }
 
 .full-section {
@@ -48,4 +53,14 @@ body {
 .valign-center {
     height: 100%;
     vertical-align: middle;
+}
+
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
 }
