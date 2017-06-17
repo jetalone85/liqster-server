@@ -1,0 +1,70 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block header %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col l5">
+
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://news.usc.edu/files/2016/03/Sample_Steven-1-824x549.jpg">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ user.username }}<i
+                                class="material-icons right">more_vert</i></span>
+                    <p><a href="#">Dashboard</a></p>
+                </div>
+                <div class="card-action">
+                    <ul class="">
+                        <li><a class="collection-item" href="{{ path('profile_index') }}">Profil</a></li>
+                        <li><a class="collection-item" href="{{ path('profile_setting') }}">Ustawienia konta</a></li>
+                        <li><a class="collection-item" href="{{ path('profile_notifications') }}">Powiadomienia
+                                email</a></li>
+                        <li><a class="collection-item" href="{{ path('profile_billing') }}">Rozlicznia</a></li>
+                        <li><a class="collection-item" href="{{ path('profile_security') }}">Bezpieczeństwo</a></li>
+                    </ul>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Informacje<i class="material-icons right">close</i></span>
+                    <p>Przykładowa informacja o przyszłych możliwościach</p>
+                    <p>Może zawierać <a href="#">linki</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        {% endblock %}
+
+        {% block body %}
+
+        <div class="col l7">
+            {% block body_on_single_page %}
+
+                <h4>Edycja danych</h4>
+
+                {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                {{ form_end(edit_form) }}
+
+                <h4>Kasowanie konta użytkownika</h4>
+                <p>Usunięcie ma nieodwracalne skutki. Nie będziesz mógł się już zalogować, ponieważ wszystkie Twoje
+                    ustawienia zostaną skasowane.</p>
+                {{ form_start(delete_form) }}
+                <input class="waves-effect waves-light btn red" type="submit" value="Usuń moje konto">
+                {{ form_end(delete_form) }}
+
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts_on_single_page %}
+
+    <script>
+    </script>
+
+{% endblock %}

@@ -60,7 +60,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <li>
-                                <a href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+                                <a href="{{ path('profile_index') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
                             </li>
                             <li>
                                 <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
@@ -91,6 +91,11 @@
 
 {% block javascripts %}
 
+    {% javascripts
+    'asset/js/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
     <script>
         $(document).ready(function () {
             Materialize.updateTextFields();
@@ -98,11 +103,9 @@
         })
     </script>
 
-    {% javascripts
-    'asset/js/*' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+{% endblock %}
 
+{% block javascripts_on_single_page %}
 {% endblock %}
 
 </body>
