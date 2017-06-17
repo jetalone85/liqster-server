@@ -52,7 +52,7 @@ class ProfileProfileType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix(): ?string
+    public function getBlockPrefix(): string
     {
         return 'liqster_homepagebundle_account';
     }
