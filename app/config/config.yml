@@ -75,9 +75,9 @@ fos_user:
     registration:
         confirmation:
             enabled: true
-    from_email:
-        address:        noreply@example.com
-        sender_name:    Demo App
+            from_email:
+                address:        admin@liqster.pl
+                sender_name:    Admin liqster.pl
 
 assetic:
     debug:          '%kernel.debug%'
