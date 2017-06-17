@@ -31,10 +31,8 @@ class ProfileController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-
         $editForm = $this->createForm(ProfileProfileType::class, $this->getUser());
         $editForm->handleRequest($request);
-
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
