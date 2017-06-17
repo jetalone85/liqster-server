@@ -30,7 +30,11 @@
 
                         <div class="card same-size">
                             <div class="card-image">
-                                <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
+                                {% if account.image %}
+                                    <img src="{{ account.image }}">
+                                {% else %}
+                                    <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
+                                {% endif %}
                                 <a href="{{ path('account_show', { 'id': account.id }) }}"
                                    class="btn-floating halfway-fab btn-large waves-effect waves-light red"><i
                                             class="material-icons">settings</i></a>

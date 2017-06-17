@@ -38,6 +38,46 @@
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
 {% block navigation %}
+    <ul id="slide-out" class="side-nav">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li>
+                <div class="userView">
+                    <div class="background">
+                        <img class="shelf-img"
+                             src="https://opengameart.org/sites/default/files/Preview3_1.jpg">
+                    </div>
+                    <a href="{{ path('profile_index') }}"><img class="circle"
+                                                               src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png"></a>
+                    <a href="{{ path('profile_index') }}"><span
+                                class="white-text name">{{ app.user.username }}</span></a>
+                    <a href="{{ path('profile_index') }}"><span class="white-text email">{{ app.user.email }}</span></a>
+                </div>
+            </li>
+        {% endif %}
+
+
+        <li><a class="" href="{{ path('homepage') }}">Start</a></li>
+        <li><a class="" href="{{ path('homepage') }}#about">O nas</a></li>
+        <li><a class="" href="{{ path('homepage') }}#price">Cennik</a></li>
+        <li><a class="" href="{{ path('homepage') }}#services">Usługi</a></li>
+        <li><a class="" href="{{ path('homepage') }}#contact">Kontakt</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li>
+                <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
+            </li>
+        {% endif %}
+    </ul>
 
     <div class="navbar-fixed">
         <nav>
@@ -47,7 +87,8 @@
                         <img src="{{ asset('asset/img/30x30lq.png') }}" width="30"
                              height="30" alt="Logo"></a>
                     </a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <a href="#" data-activates="slide-out" class="button-collapse"><i
+                                class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a class="nav-item nav-link" href="{{ path('homepage') }}">Start</a></li>
                         <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a></li>
@@ -100,7 +141,6 @@
     <script>
         $(document).ready(function () {
             Materialize.updateTextFields();
-            $(".button-collapse").sideNav();
             $('.same-size').matchHeight();
             $(function () {
                 $('.valign-center').css({
@@ -114,6 +154,33 @@
                         return -$(this).outerHeight() / 2
                     }
                 });
+            });
+            $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 300
+                    edge: 'left', // Choose the horizontal origin
+                    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                    draggable: true // Choose whether you can drag to open on touch screens
+                }
+            );
+            $('img.shelf-img').each(function (i, item) {
+                var img_height = $(item).height();
+                var div_height = $(item).parent().height();
+                if (img_height < div_height) {
+                    //INCREASE HEIGHT OF IMAGE TO MATCH CONTAINER
+                    $(item).css({'width': 'auto', 'height': div_height});
+                    //GET THE NEW WIDTH AFTER RESIZE
+                    var img_width = $(item).width();
+                    //GET THE PARENT WIDTH
+                    var div_width = $(item).parent().width();
+                    //GET THE NEW HORIZONTAL MARGIN
+                    var newMargin = (div_width - img_width) / 2 + 'px';
+                    //SET THE NEW HORIZONTAL MARGIN (EXCESS IMAGE WIDTH IS CROPPED)
+                    $(item).css({'margin-left': newMargin});
+                } else {
+                    //CENTER IT VERTICALLY (EXCESS IMAGE HEIGHT IS CROPPED)
+                    var newMargin = (div_height - img_height) / 2 + 'px';
+                    $(item).css({'margin-top': newMargin});
+                }
             });
         })
     </script>
