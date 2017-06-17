@@ -51,7 +51,7 @@ final class Session
      * @param $savedSession
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      */
-    public function saveSession($savedSession): void
+    public function saveSession($savedSession)
     {
         $fs = new Filesystem();
 
