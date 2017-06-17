@@ -4,6 +4,7 @@ namespace Liqster\HomePageBundle\Controller;
 
 use Liqster\HomePageBundle\Entity\User;
 use Liqster\HomePageBundle\Form\ProfileProfileType;
+use Liqster\HomePageBundle\Form\ProfileSettingsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
@@ -34,7 +35,6 @@ class ProfileController extends Controller
         $editForm = $this->createForm(ProfileProfileType::class, $this->getUser());
         $editForm->handleRequest($request);
 
-        $deleteForm = $this->createDeleteForm($this->getUser());
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -44,7 +44,6 @@ class ProfileController extends Controller
         return $this->render('LiqsterHomePageBundle:Profile:index.html.twig', [
             'user' => $this->getUser(),
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -62,15 +61,31 @@ class ProfileController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return Response
      * @throws \LogicException
      * @Route("/setting", name="profile_setting")
-     * @Method({"GET"})
+     * @Method({"GET","POST"})
      */
-    public function settingsAction(): Response
+    public function settingsAction(Request $request): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $editForm = $this->createForm(ProfileSettingsType::class, $this->getUser());
+        $editForm->handleRequest($request);
+
+        $deleteForm = $this->createDeleteForm($this->getUser());
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $userManager = $this->get('fos_user.user_manager');
+            $userManager->updatePassword($this->getUser());
+            $em->flush();
+            return $this->redirectToRoute('profile_setting');
+        }
+
         return $this->render('LiqsterHomePageBundle:Profile:setting.html.twig', [
             'user' => $this->getUser(),
+            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView(),
         ]);
     }
 

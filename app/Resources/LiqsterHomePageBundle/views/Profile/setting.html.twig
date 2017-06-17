@@ -1,5 +1,18 @@
 {% extends '@LiqsterHomePage/Profile/index.html.twig' %}
 
 {% block body_on_single_page %}
-    <h1>setting</h1>
+
+    <h4>Edycja hasła</h4>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    {{ form_end(edit_form) }}
+
+    <h4>Kasowanie konta użytkownika</h4>
+    <p>Usunięcie ma nieodwracalne skutki. Nie będziesz mógł się już zalogować, ponieważ wszystkie Twoje
+        ustawienia zostaną skasowane.</p>
+    {{ form_start(delete_form) }}
+    <input class="waves-effect waves-light btn red" type="submit" value="Usuń moje konto">
+    {{ form_end(delete_form) }}
+
 {% endblock %}
