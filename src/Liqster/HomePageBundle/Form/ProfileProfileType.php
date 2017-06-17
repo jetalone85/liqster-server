@@ -42,7 +42,7 @@ class ProfileProfileType extends AbstractType
      * {@inheritdoc}
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => User::class
@@ -52,7 +52,7 @@ class ProfileProfileType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix(): string
+    public function getBlockPrefix()
     {
         return 'liqster_homepagebundle_account';
     }
