@@ -51,9 +51,9 @@
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a class="nav-item nav-link" href="{{ path('homepage') }}">Start</a></li>
                         <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a></li>
+                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a></li>
                         <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#services">Usługi</a>
                         </li>
-                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a></li>
                         <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#contact">Kontakt</a>
                         </li>
                     </ul>
@@ -101,6 +101,20 @@
         $(document).ready(function () {
             Materialize.updateTextFields();
             $(".button-collapse").sideNav();
+            $('.same-size').matchHeight();
+            $(function () {
+                $('.valign-center').css({
+                    'position': 'absolute',
+                    'left': '50%',
+                    'top': '50%',
+                    'margin-left': function () {
+                        return -$(this).outerWidth() / 2
+                    },
+                    'margin-top': function () {
+                        return -$(this).outerHeight() / 2
+                    }
+                });
+            });
         })
     </script>
 

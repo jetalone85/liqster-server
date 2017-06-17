@@ -44,3 +44,8 @@ body {
 .navbar-toggleable-md {
     min-height: 5rem;
 }
+
+.valign-center {
+    height: 100%;
+    vertical-align: middle;
+}

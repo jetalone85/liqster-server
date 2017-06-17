@@ -4,8 +4,8 @@
 
     <div class="container-fluid">
         <div class="container">
+            <div class="row">
 
-            <div class="jumbotron">
                 <h1 class="display-4">Hello, world!</h1>
                 <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
                     attention to featured content or information.</p>
@@ -16,51 +16,81 @@
                     <a class="btn btn-primary btn-lg" href="{{ path('account_new') }}" role="button">Dodaj nowe
                         konto</a>
                 </p>
-            </div>
 
+            </div>
         </div>
 
+
         <div class="container">
-            <div class="card-group">
+            <div class="row">
+
                 {% for account in accounts %}
-                    <div class="card w-100">
 
-                        <div class="card-block">
-                            <h2 class="card-title center-block text-center">{{ account.name }}</h2>
+                    <div class="col s12 m6 l6 xl4">
+
+                        <div class="card same-size">
+                            <div class="card-image">
+                                <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
+                                <a href="{{ path('account_show', { 'id': account.id }) }}"
+                                   class="btn-floating halfway-fab btn-large waves-effect waves-light red"><i
+                                            class="material-icons">settings</i></a>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <h2 class="card-title center-block text-center">{{ account.name }}</h2>
+                                </div>
+                                <p>I am a very simple card. I am good at containing small bits of information. I am
+                                    convenient because I require little markup to use effectively.</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <h4 class="card-title center-block text-center">Ustawienia</h4>
+                                </div>
+                                <div class="card-block">
+                                    <form name="form" method="post">
+                                        <input
+                                                type="hidden"
+                                                name="form[id]"
+                                                value="{{ account.id }}"
+                                        />
+                                        <div class="row">
+                                            <div class="switch left">
+                                                <label>
+                                                    <input type="checkbox" name="form[enable]"
+                                                           id="form_enable_{{ account.id }}"
+                                                           {% if account.cronJob.enabled %}checked{% endif %}
+                                                           class="custom-control-input">
+                                                    <span class="lever"></span>
+                                                    Konto aktywne
+                                                </label>
+                                            </div>
+                                            <input
+                                                    class="btn btn-outline-primary btn-block right"
+                                                    type="submit"
+                                                    value="zapisz"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="card-block">
-                            <form name="form" method="post">
-                                <input
-                                        type="hidden"
-                                        name="form[id]"
-                                        value="{{ account.id }}"
-                                />
-
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="form[enable]"
-                                           id="form_enable_{{ account.id }}"
-                                           {% if account.cronJob.enabled %}checked{% endif %}
-                                           class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Konto aktywne</span>
-                                </label>
-
-                                <input
-                                        class="btn btn-outline-primary btn-block"
-                                        type="submit"
-                                        value="zapisz"/>
-
-                            </form>
-                        </div>
-
-                        <div class="card-block">
-                            <a class="btn btn-outline-info btn-blockcard-link"
-                               href="{{ path('account_show', { 'id': account.id }) }}" role="button">Szczegóły</a>
-                        </div>
-
                     </div>
+
                 {% endfor %}
+
+
+                <div class="col s12 m6 l6 xl4 ">
+
+                    <div class="card same-size">
+                        <div class="card-content">
+                            <div class="valign-wrapper offset-m3 valign-center valign-wrapper center-align">
+                                <a class="btn btn-floating btn-large red" href="{{ path('account_new') }}"><i
+                                            class="material-icons">add</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
