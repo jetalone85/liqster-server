@@ -42,14 +42,16 @@ final class Session
      */
     public function getSevedSession(): string
     {
-        return file_get_contents($this->sessionFile);
+        if (is_writable(dirname($this->sessionFile))) {
+            return file_get_contents($this->sessionFile);
+        }
     }
 
     /**
      * @param $savedSession
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      */
-    public function saveSession($savedSession)
+    public function saveSession($savedSession): void
     {
         $fs = new Filesystem();
 
