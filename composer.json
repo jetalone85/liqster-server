@@ -43,13 +43,11 @@
     "ramsey/uuid": "=3.6.1",
     "ramsey/uuid-doctrine": "=1.3.0",
     "ramsey/uuid-console": "=1.1.1",
-    "mockery/mockery": "=0.9.9",
     "phpspec/php-diff": "=1.1.0",
     "liamcottle/instagram-sdk-php": "=1.0.4",
     "phpmailer/phpmailer": "=5.2.23",
     "phpunit/phpunit": "=6.2.2",
     "beelab/tag-bundle": "=1.2.0",
-    "phpvisualdebt/phpvisualdebt": "=1.0.3",
     "cron/cron-bundle": "dev-master"
   },
   "require-dev": {
