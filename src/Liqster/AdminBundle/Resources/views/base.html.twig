@@ -1,0 +1,50 @@
+{% spaceless %}<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta name="theme-color" content="">
+
+    <title>{% block title %}{{ 'apps.title'|trans({}, 'main') }}{% endblock %}</title>
+
+    {% block headers %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+{% block navigation %}
+
+    <ul>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li>
+                <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
+            </li>
+        {% endif %}
+    </ul>
+
+
+{% endblock %}
+
+{% block body %}{% endblock %}
+
+{% block javascripts_on_single_page %}
+{% endblock %}
+
+</body>
+</html>
+{% endspaceless %}

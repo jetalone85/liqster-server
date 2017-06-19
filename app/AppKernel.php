@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Cron\CronBundle\CronCronBundle(),
             new Beelab\TagBundle\BeelabTagBundle(),
             new Liqster\PaymentBundle\LiqsterPaymentBundle(),
+            new Liqster\AdminBundle\AdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'ModelTest'], true)) {

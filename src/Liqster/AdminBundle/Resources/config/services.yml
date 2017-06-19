@@ -1,0 +1,4 @@
+services:
+#    liqster_admin.example:
+#        class: Liqster\AdminBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
