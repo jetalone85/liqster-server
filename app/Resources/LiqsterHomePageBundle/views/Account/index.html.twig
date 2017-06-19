@@ -43,10 +43,13 @@
                                         <div class="row">
                                             <div class="switch left">
                                                 <label>
-                                                    <input type="checkbox" name="form[enable]"
-                                                           id="form_enable_{{ account.id }}"
-                                                           {% if account.cronJob.enabled %}checked{% endif %}
-                                                           class="custom-control-input">
+                                                    <input
+                                                            {% if account.payed == false %}disabled{% endif %}
+                                                            type="checkbox" name="form[enable]"
+                                                            id="form_enable_{{ account.id }}"
+                                                            {% if account.cronJob.enabled %}checked{% endif %}
+                                                            class="custom-control-input
+                                                            ">
                                                     <span class="lever"></span>
                                                     Konto aktywne
                                                 </label>
