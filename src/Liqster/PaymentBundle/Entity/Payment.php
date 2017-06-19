@@ -21,4 +21,16 @@ class Payment
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
+     */
+    private $create;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Purchase", inversedBy="purchase")
+     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=false)
+     */
+    private $purchase;
 }

@@ -23,10 +23,12 @@ class Account implements TaggableInterface
     protected $tags;
 
     protected $tagsText;
+
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
+
     /**
      * @var \Ramsey\Uuid\Uuid
      *
@@ -36,39 +38,46 @@ class Account implements TaggableInterface
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+
     /**
      * @var string
      *
      * @ORM\Column(name="instagram_image", type="string", length=255, unique=false, nullable=true)
      */
     private $image;
+
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, unique=false)
      */
     private $password;
+
     /**
      * @var \DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $created;
+
     /**
      * @var \DateTime
      * @ORM\Column(name="date_modif", type="datetime", unique=false, nullable=true)
      */
     private $modif;
+
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
+
     /**
      * @ORM\OneToOne(targetEntity="Cron\CronBundle\Entity\CronJob", mappedBy="account")
      */
@@ -254,8 +263,6 @@ class Account implements TaggableInterface
     {
         return empty($this->tagsText) ? [] : array_map('trim', explode(',', $this->tagsText));
     }
-
-    // ...
 
     /**
      * @return string

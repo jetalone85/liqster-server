@@ -23,12 +23,6 @@ class Purchase
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="account")
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
-     */
-    private $account;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
      */
@@ -51,4 +45,15 @@ class Purchase
      * @ORM\Column(name="status", type="string", unique=false, nullable=true)
      */
     private $status;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Liqster\PaymentBundle\Entity\Payment", mappedBy="purchase")
+     */
+    private $payment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="account")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
+     */
+    private $account;
 }
