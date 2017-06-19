@@ -79,6 +79,12 @@ class Account implements TaggableInterface
     private $user;
 
     /**
+     * @var boolean
+     * @ORM\Column(name="payed", type="boolean", unique=false)
+     */
+    private $payed = false;
+
+    /**
      * @ORM\OneToOne(targetEntity="Cron\CronBundle\Entity\CronJob", mappedBy="account")
      */
     private $cronJob;
@@ -283,4 +289,51 @@ class Account implements TaggableInterface
         $this->updated = new \DateTime();
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param mixed $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPayed()
+    {
+        return $this->payed;
+    }
+
+    /**
+     * @param bool $payed
+     */
+    public function setPayed(bool $payed)
+    {
+        $this->payed = $payed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPurchase()
+    {
+        return $this->purchase;
+    }
+
+    /**
+     * @param mixed $purchase
+     */
+    public function setPurchase($purchase)
+    {
+        $this->purchase = $purchase;
+    }
 }

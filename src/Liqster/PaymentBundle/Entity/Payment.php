@@ -23,6 +23,12 @@ class Payment
     private $id;
 
     /**
+     * @var string
+     * @ORM\Column(name="token", type="string", unique=false, nullable=false)
+     */
+    private $token;
+
+    /**
      * @var \DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
