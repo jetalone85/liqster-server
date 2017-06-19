@@ -9,7 +9,7 @@
 
                 {% for account in accounts %}
 
-                    <div class="col s12 m6 l6 xl4">
+                    <div class="col s12 m6 l6 xl6">
 
                         <div class="card same-size">
                             <div class="card-image">
@@ -47,11 +47,17 @@
                                                             {% if account.payed == false %}disabled{% endif %}
                                                             type="checkbox" name="form[enable]"
                                                             id="form_enable_{{ account.id }}"
-                                                            {% if account.cronJob.enabled %}checked{% endif %}
+                                                            {% if account.cronJob.enabled == true %}checked{% endif %}
                                                             class="custom-control-input
                                                             ">
                                                     <span class="lever"></span>
-                                                    Konto aktywne
+                                                    {% if account.payed == false %}
+                                                        Konto nieopłacone
+                                                    {% elseif account.payed == true and account.cronJob.enabled == true %}
+                                                        Konto aktywne
+                                                    {% else %}
+                                                        Konto nieaktywne
+                                                    {% endif %}
                                                 </label>
                                             </div>
                                             <input

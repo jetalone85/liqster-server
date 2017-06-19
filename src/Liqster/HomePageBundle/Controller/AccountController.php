@@ -3,6 +3,7 @@
 namespace Liqster\HomePageBundle\Controller;
 
 use Cron\CronBundle\Entity\CronJob;
+use Instagram\API\Framework\InstagramException;
 use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Form\AccountType;
@@ -56,9 +57,9 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_index');
         }
 
-        return $this->render('LiqsterHomePageBundle:Account:index.html.twig', array(
+        return $this->render('LiqsterHomePageBundle:Account:index.html.twig', [
             'accounts' => $accounts,
-        ));
+        ]);
     }
 
     /**
@@ -68,23 +69,37 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @return RedirectResponse|Response
+     * @throws \Exception
      * @throws \LogicException
      */
     public function newAction(Request $request)
     {
         $account = new Account();
-        $cronJob = new CronJob();
+
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            try {
+                $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
+
+                $instaxer = new Instaxer($path);
+                $instaxer->login($account->getName(), $account->getPassword());
+
+            } catch (InstagramException $exception) {
+                return $this->redirectToRoute('account_new', [
+                    'status' => $exception->getMessage()
+                ]);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $account->setUser($this->getUser());
             $account->setCreated(new \DateTime('now'));
             $account->setModif(new \DateTime('now'));
             $em->persist($account);
-            $em->flush();
 
+            $cronJob = new CronJob();
             $cronJob->setName($account->getId());
             $cronJob->setAccount($account);
             $cronJob->setCommand('instaxer:run ' . $account->getId());
@@ -94,13 +109,14 @@ class AccountController extends Controller
             $em->persist($cronJob);
             $em->flush();
 
-            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
+
         }
 
-        return $this->render('LiqsterHomePageBundle:Account:new.html.twig', array(
+        return $this->render('LiqsterHomePageBundle:Account:new.html.twig', [
             'Account' => $account,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -115,7 +131,7 @@ class AccountController extends Controller
      */
     public function showAction(Request $request, Account $account): Response
     {
-        $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
+        $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
 
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());
@@ -239,7 +255,7 @@ class AccountController extends Controller
         $fs = new Filesystem();
         $fs->mkdir('./instaxer/profiles/' . $account->getUser());
 
-        $path = './instaxer/profiles/' . $account->getUser() . DIRECTORY_SEPARATOR . $account->getId() . '.dat';
+        $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
 
         $instaxer = new Instaxer($path);
         $instaxer->login($account->getName(), $account->getPassword());

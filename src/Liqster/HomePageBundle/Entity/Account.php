@@ -90,7 +90,7 @@ class Account implements TaggableInterface
     private $cronJob;
 
     /**
-     * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="purchase")
+     * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="account")
      */
     private $purchase;
 

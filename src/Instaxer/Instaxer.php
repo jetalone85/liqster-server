@@ -2,6 +2,7 @@
 
 namespace Instaxer;
 
+use Instagram\API\Framework\InstagramException;
 use Instagram\Instagram;
 use Instaxer\Domain\Session;
 
@@ -59,9 +60,13 @@ class Instaxer
         }
 
         if (!$this->session->restoredFromSession) {
-            $this->instagram->login($user, $password);
-            $savedSession = $this->instagram->saveSession();
-            $this->session->saveSession($savedSession);
+            try {
+                $this->instagram->login($user, $password);
+                $savedSession = $this->instagram->saveSession();
+                $this->session->saveSession($savedSession);
+            } catch (InstagramException $e) {
+                throw new InstagramException('Error login', 1);
+            }
         }
 
         return $this;

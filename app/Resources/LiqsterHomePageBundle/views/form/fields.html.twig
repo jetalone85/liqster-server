@@ -1,10 +1,10 @@
 {% block form_row %}
-    {% spaceless %}
+    <div class="row">
         <div class="container input-field col s12">
             {{ form_errors(form) }}
             {{ form_label(form) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
         </div>
-    {% endspaceless %}
+    </div>
 {% endblock form_row %}

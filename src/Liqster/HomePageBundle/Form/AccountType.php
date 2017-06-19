@@ -6,7 +6,6 @@ use Liqster\HomePageBundle\Entity\Account;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,21 +19,14 @@ class AccountType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'name',
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
-            ->add('tagsText', TextareaType::class, [
-                'required' => false,
-                'label' => 'tags',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
             ->add('password', PasswordType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'password',
                 'attr' => [
                     'class' => 'form-control'
@@ -42,7 +34,7 @@ class AccountType extends AbstractType
             ])
             ->add('Zapisz', SubmitType::class, [
                 'attr' => [
-                    'class' => 'form-control btn btn-success']
+                    'class' => 'form-control btn waves-effect waves-light rigth']
             ]);
     }
 
