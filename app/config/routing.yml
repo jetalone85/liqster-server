@@ -1,3 +1,8 @@
+liqster_payment:
+    resource: "@LiqsterPaymentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 liqster_home_page_result:
     resource: "@LiqsterHomePageBundle/Controller/ResultController.php"
     type:     annotation
