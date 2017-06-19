@@ -1,5 +1,5 @@
-liqster_payment:
-    resource: "@LiqsterPaymentBundle/Controller/"
+liqster_payment_default:
+    resource: "@LiqsterPaymentBundle/Controller/DefaultController.php"
     type:     annotation
     prefix:   /
 
