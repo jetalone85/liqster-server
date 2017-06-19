@@ -29,7 +29,7 @@ class Payment
     private $create;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Purchase", inversedBy="purchase")
+     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Purchase", inversedBy="purchase")
      * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=false)
      */
     private $purchase;

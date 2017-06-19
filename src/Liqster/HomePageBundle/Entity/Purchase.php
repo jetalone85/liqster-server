@@ -47,7 +47,7 @@ class Purchase
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity="Liqster\PaymentBundle\Entity\Payment", mappedBy="purchase")
+     * @ORM\OneToOne(targetEntity="Liqster\PaymentBundle\Entity\Payment", mappedBy="purchase")
      */
     private $payment;
 
