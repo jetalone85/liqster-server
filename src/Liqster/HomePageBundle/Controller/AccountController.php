@@ -107,6 +107,7 @@ class AccountController extends Controller
             $cronJob->setSchedule('*/30 * * * *');
             $cronJob->setEnabled(false);
             $em->persist($cronJob);
+
             $em->flush();
 
             return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
