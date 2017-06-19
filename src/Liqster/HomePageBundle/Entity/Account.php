@@ -65,7 +65,7 @@ class Account implements TaggableInterface
      */
     private $modif;
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="account")
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
@@ -73,6 +73,11 @@ class Account implements TaggableInterface
      * @ORM\OneToOne(targetEntity="Cron\CronBundle\Entity\CronJob", mappedBy="account")
      */
     private $cronJob;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="purchase")
+     */
+    private $purchase;
 
     /**
      * Account constructor.

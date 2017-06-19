@@ -1,0 +1,54 @@
+<?php
+
+namespace Liqster\HomePageBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Purchase
+ *
+ * @ORM\Table(name="purchase")
+ * @ORM\Entity(repositoryClass="Liqster\HomePageBundle\Repository\PurchaseRepository")
+ */
+class Purchase
+{
+    /**
+     * @var \Ramsey\Uuid\Uuid
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid")
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="account")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
+     */
+    private $account;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="product")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     */
+    private $product;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
+     */
+    private $create;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="date_modification", type="datetime", unique=false, nullable=true)
+     */
+    private $modification;
+
+    /**
+     * @var string
+     * @ORM\Column(name="status", type="string", unique=false, nullable=true)
+     */
+    private $status;
+}
