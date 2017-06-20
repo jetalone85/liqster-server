@@ -4,6 +4,7 @@ namespace Liqster\HomePageBundle\Entity;
 
 use Beelab\TagBundle\Tag\TaggableInterface;
 use Beelab\TagBundle\Tag\TagInterface;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -61,13 +62,13 @@ class Account implements TaggableInterface
     private $password;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $created;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="date_modif", type="datetime", unique=false, nullable=true)
      */
     private $modif;
@@ -204,33 +205,33 @@ class Account implements TaggableInterface
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreated(): \DateTime
+    public function getCreated(): DateTime
     {
         return $this->created;
     }
 
     /**
-     * @param \DateTime $created
+     * @param DateTime $created
      */
-    public function setCreated(\DateTime $created)
+    public function setCreated(DateTime $created)
     {
         $this->created = $created;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getModif(): \DateTime
+    public function getModif(): DateTime
     {
         return $this->modif;
     }
 
     /**
-     * @param \DateTime $modif
+     * @param DateTime $modif
      */
-    public function setModif(\DateTime $modif)
+    public function setModif(DateTime $modif)
     {
         $this->modif = $modif;
     }
@@ -291,7 +292,7 @@ class Account implements TaggableInterface
     public function setTagsText($tagsText)
     {
         $this->tagsText = $tagsText;
-        $this->updated = new \DateTime();
+        $this->updated = new DateTime();
     }
 
     /**

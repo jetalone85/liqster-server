@@ -2,7 +2,9 @@
 
 namespace Liqster\HomePageBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Product
@@ -13,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Product
 {
     /**
-     * @var \Ramsey\Uuid\Uuid
+     * @var Uuid
      *
      * @ORM\Id
      * @ORM\Column(type="uuid")
@@ -28,13 +30,13 @@ class Product
     private $purchase;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $create;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="date_modification", type="datetime", unique=false, nullable=true)
      */
     private $modification;
@@ -52,18 +54,18 @@ class Product
     private $type;
 
     /**
-     * @return \Ramsey\Uuid\Uuid
+     * @return Uuid
      */
-    public function getId(): \Ramsey\Uuid\Uuid
+    public function getId(): Uuid
     {
         return $this->id;
     }
 
     /**
-     * @param \Ramsey\Uuid\Uuid $id
+     * @param Uuid $id
      * @return Product
      */
-    public function setId(\Ramsey\Uuid\Uuid $id): Product
+    public function setId(Uuid $id): Product
     {
         $this->id = $id;
         return $this;
@@ -88,36 +90,36 @@ class Product
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreate(): \DateTime
+    public function getCreate(): DateTime
     {
         return $this->create;
     }
 
     /**
-     * @param \DateTime $create
+     * @param DateTime $create
      * @return Product
      */
-    public function setCreate(\DateTime $create): Product
+    public function setCreate(DateTime $create): Product
     {
         $this->create = $create;
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getModification(): \DateTime
+    public function getModification(): DateTime
     {
         return $this->modification;
     }
 
     /**
-     * @param \DateTime $modification
+     * @param DateTime $modification
      * @return Product
      */
-    public function setModification(\DateTime $modification): Product
+    public function setModification(DateTime $modification): Product
     {
         $this->modification = $modification;
         return $this;

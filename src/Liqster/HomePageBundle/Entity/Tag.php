@@ -60,4 +60,3 @@ class Tag implements TagInterface
         $this->name = $name;
     }
 }
-

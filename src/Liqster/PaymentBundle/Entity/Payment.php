@@ -2,7 +2,9 @@
 
 namespace Liqster\PaymentBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Payment
@@ -13,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Payment
 {
     /**
-     * @var \Ramsey\Uuid\Uuid
+     * @var Uuid
      *
      * @ORM\Id
      * @ORM\Column(type="uuid")
@@ -29,7 +31,7 @@ class Payment
     private $token;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $create;
@@ -39,4 +41,68 @@ class Payment
      * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=false)
      */
     private $purchase;
+
+    /**
+     * @return Uuid
+     */
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param Uuid $id
+     */
+    public function setId(Uuid $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken(string $token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreate(): DateTime
+    {
+        return $this->create;
+    }
+
+    /**
+     * @param DateTime $create
+     */
+    public function setCreate(DateTime $create)
+    {
+        $this->create = $create;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPurchase()
+    {
+        return $this->purchase;
+    }
+
+    /**
+     * @param mixed $purchase
+     */
+    public function setPurchase($purchase)
+    {
+        $this->purchase = $purchase;
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace Liqster\HomePageBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Purchase
@@ -13,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Purchase
 {
     /**
-     * @var \Ramsey\Uuid\Uuid
+     * @var Uuid
      *
      * @ORM\Id
      * @ORM\Column(type="uuid")
@@ -23,13 +25,13 @@ class Purchase
     private $id;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $create;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      * @ORM\Column(name="date_modification", type="datetime", unique=false, nullable=true)
      */
     private $modification;
@@ -58,49 +60,49 @@ class Purchase
     private $account;
 
     /**
-     * @return \Ramsey\Uuid\Uuid
+     * @return Uuid
      */
-    public function getId(): \Ramsey\Uuid\Uuid
+    public function getId(): Uuid
     {
         return $this->id;
     }
 
     /**
-     * @param \Ramsey\Uuid\Uuid $id
+     * @param Uuid $id
      */
-    public function setId(\Ramsey\Uuid\Uuid $id)
+    public function setId(Uuid $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreate(): \DateTime
+    public function getCreate(): DateTime
     {
         return $this->create;
     }
 
     /**
-     * @param \DateTime $create
+     * @param DateTime $create
      */
-    public function setCreate(\DateTime $create)
+    public function setCreate(DateTime $create)
     {
         $this->create = $create;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getModification(): \DateTime
+    public function getModification(): DateTime
     {
         return $this->modification;
     }
 
     /**
-     * @param \DateTime $modification
+     * @param DateTime $modification
      */
-    public function setModification(\DateTime $modification)
+    public function setModification(DateTime $modification)
     {
         $this->modification = $modification;
     }
