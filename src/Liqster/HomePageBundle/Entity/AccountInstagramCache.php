@@ -49,7 +49,7 @@ class AccountInstagramCache
     private $value;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="accountInstagramCache")
+     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="accountInstagramCache")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      */
     private $account;

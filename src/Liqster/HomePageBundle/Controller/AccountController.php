@@ -234,6 +234,7 @@ class AccountController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $em->remove($account->getCronJob());
             $em->remove($account);
             $em->flush();
         }
