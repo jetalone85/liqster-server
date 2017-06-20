@@ -1,0 +1,45 @@
+{% extends '@Admin/base.html.twig' %}
+
+{% block body %}
+    <h1>Products list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Create</th>
+            <th>Modification</th>
+            <th>Period</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td><a href="{{ path('admin_product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td>{% if product.create %}{{ product.create|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if product.modification %}{{ product.modification|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ product.period }}</td>
+                <td>{{ product.type }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_product_show', { 'id': product.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_product_edit', { 'id': product.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_product_new') }}">Create a new product</a>
+        </li>
+    </ul>
+{% endblock %}

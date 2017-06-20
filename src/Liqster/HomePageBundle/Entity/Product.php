@@ -92,7 +92,7 @@ class Product
     /**
      * @return DateTime
      */
-    public function getCreate(): DateTime
+    public function getCreate()
     {
         return $this->create;
     }
@@ -110,7 +110,7 @@ class Product
     /**
      * @return DateTime
      */
-    public function getModification(): DateTime
+    public function getModification()
     {
         return $this->modification;
     }
@@ -128,7 +128,7 @@ class Product
     /**
      * @return int
      */
-    public function getPeriod(): int
+    public function getPeriod()
     {
         return $this->period;
     }
@@ -146,7 +146,7 @@ class Product
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType()
     {
         return $this->type;
     }

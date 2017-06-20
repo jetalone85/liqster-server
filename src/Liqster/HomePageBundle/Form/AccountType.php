@@ -32,7 +32,7 @@ class AccountType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('Zapisz', SubmitType::class, [
+            ->add('Dalej', SubmitType::class, [
                 'attr' => [
                     'class' => 'form-control btn waves-effect waves-light rigth']
             ]);

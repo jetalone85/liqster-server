@@ -18,9 +18,26 @@
                                 {% else %}
                                     <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
                                 {% endif %}
-                                <a href="{{ path('account_show', { 'id': account.id }) }}"
-                                   class="btn-floating halfway-fab btn-large waves-effect waves-light red"><i
-                                            class="material-icons">settings</i></a>
+                                {##}
+                                {#<a href="{{ path('account_show', { 'id': account.id }) }}"#}
+                                {#class="btn-floating halfway-fab btn-large waves-effect waves-light red"><i#}
+                                {#class="material-icons">settings</i></a>#}
+                                {#</div>#}
+
+                                <div class="fixed-action-btn horizontal halfway-fab click-to-toggle">
+                                    <a class="btn-floating btn-large red">
+                                        <i class="large material-icons">mode_edit</i>
+                                    </a>
+                                    <ul>
+                                        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a>
+                                        </li>
+                                        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a>
+                                        </li>
+                                        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+                                        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="card-content">
                                 <div class="card-title">

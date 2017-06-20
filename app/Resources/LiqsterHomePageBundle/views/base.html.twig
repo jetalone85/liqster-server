@@ -155,6 +155,10 @@
                     draggable: true // Choose whether you can drag to open on touch screens
                 }
             );
+            $('.fixed-action-btn').openFAB();
+            $('.fixed-action-btn').closeFAB();
+            $('.fixed-action-btn.toolbar').openToolbar();
+            $('.fixed-action-btn.toolbar').closeToolbar();
             $('img.shelf-img').each(function (i, item) {
                 var img_height = $(item).height();
                 var div_height = $(item).parent().height();

@@ -2,12 +2,22 @@
 
 namespace Liqster\AdminBundle\Form;
 
-use Liqster\HomePageBundle\Entity\User;
+use Liqster\HomePageBundle\Entity\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class ProductType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('period')
+            ->add('type');
+    }
 
     /**
      * {@inheritdoc}
@@ -16,7 +26,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => User::class
+            'data_class' => Product::class
         ));
     }
 
@@ -25,6 +35,6 @@ class UserType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'liqster_homepagebundle_user';
+        return 'liqster_homepagebundle_product';
     }
 }
