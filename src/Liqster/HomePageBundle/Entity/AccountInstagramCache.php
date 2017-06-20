@@ -5,12 +5,12 @@ namespace Liqster\HomePageBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Purchase
+ * AccountInstagramCache
  *
- * @ORM\Table(name="purchase")
- * @ORM\Entity(repositoryClass="Liqster\HomePageBundle\Repository\PurchaseRepository")
+ * @ORM\Table(name="account_instagram_cache")
+ * @ORM\Entity(repositoryClass="Liqster\HomePageBundle\Repository\AccountInstagramCacheRepository")
  */
-class Purchase
+class AccountInstagramCache
 {
     /**
      * @var \Ramsey\Uuid\Uuid
@@ -36,23 +36,18 @@ class Purchase
 
     /**
      * @var string
-     * @ORM\Column(name="status", type="string", unique=false, nullable=true)
+     * @ORM\Column(name="name", type="string", unique=false, nullable=true)
      */
-    private $status;
+    private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="purchase")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     * @var string
+     * @ORM\Column(name="value", type="string", unique=false, nullable=true)
      */
-    private $product;
+    private $value;
 
     /**
-     * @ORM\OneToOne(targetEntity="Liqster\PaymentBundle\Entity\Payment", mappedBy="purchase")
-     */
-    private $payment;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="purchase")
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="accountInstagramCache")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      */
     private $account;
@@ -90,17 +85,17 @@ class Purchase
     }
 
     /**
-     * @return \DateTime
+     * @return mixed
      */
-    public function getModification(): \DateTime
+    public function getModification()
     {
         return $this->modification;
     }
 
     /**
-     * @param \DateTime $modification
+     * @param mixed $modification
      */
-    public function setModification(\DateTime $modification)
+    public function setModification($modification)
     {
         $this->modification = $modification;
     }
@@ -108,49 +103,33 @@ class Purchase
     /**
      * @return string
      */
-    public function getStatus(): string
+    public function getName(): string
     {
-        return $this->status;
+        return $this->name;
     }
 
     /**
-     * @param string $status
+     * @param string $name
      */
-    public function setStatus(string $status)
+    public function setName(string $name)
     {
-        $this->status = $status;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * @param mixed $product
-     */
-    public function setProduct($product)
-    {
-        $this->product = $product;
+        $this->name = $name;
     }
 
     /**
      * @return mixed
      */
-    public function getPayment()
+    public function getValue()
     {
-        return $this->payment;
+        return $this->value;
     }
 
     /**
-     * @param mixed $payment
+     * @param mixed $value
      */
-    public function setPayment($payment)
+    public function setValue($value)
     {
-        $this->payment = $payment;
+        $this->value = $value;
     }
 
     /**

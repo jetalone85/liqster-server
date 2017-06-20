@@ -90,6 +90,11 @@ class Account implements TaggableInterface
     private $cronJob;
 
     /**
+     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\AccountInstagramCache", mappedBy="account")
+     */
+    private $accountInstagramCache;
+
+    /**
      * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="account")
      */
     private $purchase;
@@ -335,5 +340,21 @@ class Account implements TaggableInterface
     public function setPurchase($purchase)
     {
         $this->purchase = $purchase;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAccountInstagramCache()
+    {
+        return $this->accountInstagramCache;
+    }
+
+    /**
+     * @param mixed $accountInstagramCache
+     */
+    public function setAccountInstagramCache($accountInstagramCache)
+    {
+        $this->accountInstagramCache = $accountInstagramCache;
     }
 }
