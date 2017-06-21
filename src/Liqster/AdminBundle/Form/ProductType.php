@@ -16,6 +16,7 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('period')
+            ->add('price')
             ->add('type');
     }
 
