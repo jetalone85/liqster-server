@@ -97,6 +97,24 @@ class AccountController extends Controller
                 ]);
             }
 
+            $em = $this->getDoctrine()->getManager();
+            $account->setUser($this->getUser());
+            $account->setCreated(new \DateTime('now'));
+            $account->setModif(new \DateTime('now'));
+            $em->persist($account);
+
+            $cronJob = new CronJob();
+            $cronJob->setName($account->getId());
+            $cronJob->setAccount($account);
+            $cronJob->setCommand('instaxer:run ' . $account->getId());
+            $cronJob->setDescription(' ');
+            $cronJob->setSchedule('*/30 * * * *');
+            $cronJob->setEnabled(false);
+            $em->persist($cronJob);
+
+            $em->flush();
+
+
             try {
 
                 $id = md5((new \DateTime('now'))->format('Y-m-d H:i:s'));
@@ -115,31 +133,14 @@ class AccountController extends Controller
                 $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
-                $RET = $P24->trnRegister(false);
+                $RET = $P24->trnRegister(true);
 
-                return $this->redirect($RET['redirect']);
-
+                var_dump($RET);
+                die();
 
             } catch (Exception $exception) {
                 echo $exception->getMessage() . "\n";
             }
-
-            $em = $this->getDoctrine()->getManager();
-            $account->setUser($this->getUser());
-            $account->setCreated(new \DateTime('now'));
-            $account->setModif(new \DateTime('now'));
-            $em->persist($account);
-
-            $cronJob = new CronJob();
-            $cronJob->setName($account->getId());
-            $cronJob->setAccount($account);
-            $cronJob->setCommand('instaxer:run ' . $account->getId());
-            $cronJob->setDescription(' ');
-            $cronJob->setSchedule('*/30 * * * *');
-            $cronJob->setEnabled(false);
-            $em->persist($cronJob);
-
-            $em->flush();
 
             return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
 
