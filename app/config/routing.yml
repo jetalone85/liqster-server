@@ -4,7 +4,7 @@ liqster_admin:
     prefix:   /
 
 liqster_payment_default:
-    resource: "@LiqsterPaymentBundle/Controller/P.php"
+    resource: "@LiqsterPaymentBundle/Controller/DefaultController.php"
     type:     annotation
     prefix:   /
 
