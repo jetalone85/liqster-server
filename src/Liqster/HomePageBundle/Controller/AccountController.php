@@ -117,6 +117,9 @@ class AccountController extends Controller
 
                 $RET = $P24->trnRegister(false);
 
+                return $this->redirect($RET['redirect']);
+
+
             } catch (Exception $exception) {
                 echo $exception->getMessage() . "\n";
             }
