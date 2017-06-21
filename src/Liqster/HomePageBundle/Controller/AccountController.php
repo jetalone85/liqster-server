@@ -112,13 +112,10 @@ class AccountController extends Controller
                 $P24->addValue('p24_language', 'pl');
                 $P24->addValue('p24_method', '1');
                 $P24->addValue('p24_url_return', 'http://liqster.pl/account/');
-                $P24->addValue('p24_url_status', 'http://liqster.pl/');
+                $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
                 $RET = $P24->trnRegister(false);
-
-                var_dump($RET);
-                die();
 
             } catch (Exception $exception) {
                 echo $exception->getMessage() . "\n";
