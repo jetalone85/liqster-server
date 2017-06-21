@@ -180,8 +180,6 @@ class Przelewy24
                     $RES = array();
                     $X = explode('&', $result);
 
-                    var_dump($result);
-
                     foreach ($X as $val) {
 
                         $Y = explode('=', $val);
@@ -231,12 +229,9 @@ class Przelewy24
             return $RES;
 
         }
-        if ($redirect) {
-            $this->trnRequest($token);
+        $redirectAddress = $this->trnRequest($token);
 
-        }
-
-        return array('error' => 0, 'token' => $token);
+        return array('error' => 0, 'token' => $token, 'redirect' => $redirectAddress);
 
 
     }

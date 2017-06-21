@@ -3,6 +3,8 @@
 namespace Liqster\HomePageBundle\Form;
 
 use Liqster\HomePageBundle\Entity\Account;
+use Liqster\HomePageBundle\Entity\Product;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,6 +20,16 @@ class AccountType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('product', EntityType::class, [
+                'class' => Product::class,
+                'required' => true,
+                'label' => 'Produkt',
+                'choice_label' => 'type',
+                'expanded' => true,
+                'attr' => [
+                    'class' => 'input-field'
+                ]
+            ])
             ->add('name', TextType::class, [
                 'required' => true,
                 'label' => 'name',

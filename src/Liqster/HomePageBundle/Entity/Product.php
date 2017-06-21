@@ -30,6 +30,11 @@ class Product
     private $purchase;
 
     /**
+     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", mappedBy="product")
+     */
+    private $account;
+
+    /**
      * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
@@ -52,6 +57,12 @@ class Product
      * @ORM\Column(name="type", type="string", unique=false, nullable=true)
      */
     private $type;
+
+    /**
+     * @var integer
+     * @ORM\Column(name="price", type="integer", unique=false, nullable=true)
+     */
+    private $price;
 
     /**
      * @return Uuid
@@ -159,5 +170,45 @@ class Product
     {
         $this->type = $type;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * @param mixed $account
+     */
+    public function setAccount($account)
+    {
+        $this->account = $account;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param int $price
+     */
+    public function setPrice(int $price)
+    {
+        $this->price = $price;
     }
 }

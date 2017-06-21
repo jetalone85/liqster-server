@@ -3,10 +3,13 @@
 namespace Liqster\HomePageBundle\Controller;
 
 use Cron\CronBundle\Entity\CronJob;
+use Exception;
 use Instagram\API\Framework\InstagramException;
 use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
+use Liqster\HomePageBundle\Entity\Purchase;
 use Liqster\HomePageBundle\Form\AccountType;
+use Liqster\PaymentBundle\Domain\Przelewy24;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -69,12 +72,13 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @return RedirectResponse|Response
-     * @throws \Exception
+     * @throws Exception
      * @throws \LogicException
      */
     public function newAction(Request $request)
     {
         $account = new Account();
+        $purchase = new Purchase();
 
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
@@ -91,6 +95,33 @@ class AccountController extends Controller
                 return $this->redirectToRoute('account_new', [
                     'status' => $exception->getMessage()
                 ]);
+            }
+
+            try {
+
+                $id = md5((new \DateTime('now'))->format('Y-m-d H:i:s'));
+
+                $P24 = new Przelewy24(61791, 61791, 'c751931d7ae41926', true);
+
+                $P24->addValue('p24_session_id', $id);
+                $P24->addValue('p24_amount', $account->getProduct()->getPrice());
+                $P24->addValue('p24_currency', 'PLN');
+                $P24->addValue('p24_email', $this->getUser()->getEmail());
+                $P24->addValue('p24_country', 'PL');
+                $P24->addValue('p24_phone', '+48500600700');
+                $P24->addValue('p24_language', 'pl');
+                $P24->addValue('p24_method', '1');
+                $P24->addValue('p24_url_return', 'http://liqster.pl/account/');
+                $P24->addValue('p24_url_status', 'http://liqster.pl/');
+                $P24->addValue('p24_time_limit', 0);
+
+                $RET = $P24->trnRegister(false);
+
+                var_dump($RET);
+                die();
+
+            } catch (Exception $exception) {
+                echo $exception->getMessage() . "\n";
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -128,7 +159,7 @@ class AccountController extends Controller
      * @param Request $request
      * @param Account $account
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function showAction(Request $request, Account $account): Response
     {
@@ -250,7 +281,7 @@ class AccountController extends Controller
      * @throws \InvalidArgumentException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
      * @throws \LogicException
-     * @throws \Exception
+     * @throws Exception
      */
     public function checkAction(Account $account): Response
     {

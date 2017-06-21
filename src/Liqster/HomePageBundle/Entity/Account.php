@@ -101,6 +101,12 @@ class Account implements TaggableInterface
     private $purchase;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="account")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
+     */
+    private $product;
+
+    /**
      * Account constructor.
      */
     public function __construct()
@@ -357,5 +363,21 @@ class Account implements TaggableInterface
     public function setAccountInstagramCache($accountInstagramCache)
     {
         $this->accountInstagramCache = $accountInstagramCache;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param mixed $product
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
     }
 }
