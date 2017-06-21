@@ -21,6 +21,7 @@ class PaymentController extends Controller
     /**
      * @param Request $request
      * @return Response
+     * @throws \InvalidArgumentException
      * @Route("/payment")
      * @Method({"POST"})
      */
@@ -32,6 +33,8 @@ class PaymentController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonContent = $serializer->serialize($request, 'json');
-        file_put_contents('test.txt', $jsonContent);
+        file_put_contents(__DIR__ . '/../../../../var/cache/test.txt', $jsonContent);
+
+        return new Response('200');
     }
 }
