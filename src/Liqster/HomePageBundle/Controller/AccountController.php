@@ -287,6 +287,9 @@ class AccountController extends Controller
             $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
             $em->remove($purchase);
 
+            $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
+            $em->remove($payment);
+
             $em->remove($account);
             $em->flush();
         }
