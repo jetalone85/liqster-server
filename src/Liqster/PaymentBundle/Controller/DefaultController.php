@@ -7,6 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Class DefaultController
@@ -29,6 +33,14 @@ class DefaultController extends Controller
     {
         $params = $request->request->all();
 
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $jsonContent = $serializer->serialize($params, 'json');
+
+
 //        print_r($params);
 
 //        $em = $this->getDoctrine()->getManager();
@@ -44,6 +56,6 @@ class DefaultController extends Controller
 //        $em->persist($payment);
 //        $em->flush();
 
-        return new Response('200 OK');
+        return new Response($jsonContent);
     }
 }
