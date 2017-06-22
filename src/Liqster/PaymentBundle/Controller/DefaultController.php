@@ -29,7 +29,7 @@ class DefaultController extends Controller
     {
         $params = $request->request->all();
 
-        var_dump($params);
+        print_r($params);
 
 //        $em = $this->getDoctrine()->getManager();
 //
