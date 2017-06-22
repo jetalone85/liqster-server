@@ -125,6 +125,7 @@ class AccountController extends Controller
             $payment->setCreate(new \DateTime('now'));
             $payment->setSession(Uuid::uuid4());
             $payment->setPurchase($purchase);
+            $em->persist($payment);
 
             $em->flush();
 
@@ -278,6 +279,9 @@ class AccountController extends Controller
             $em->remove($cronJob);
 
             $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+            $em->remove($purchase);
+
+            $purchase = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
             $em->remove($purchase);
 
             $em->remove($account);
