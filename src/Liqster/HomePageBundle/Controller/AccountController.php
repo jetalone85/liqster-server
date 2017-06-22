@@ -274,8 +274,11 @@ class AccountController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $cronJob = $em->getRepository('CronCronBundle:CronJob')->find($account->getCronJob());
+            $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
             $em->remove($cronJob);
+
+            $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+            $em->remove($purchase);
 
             $em->remove($account);
             $em->flush();
