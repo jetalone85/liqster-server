@@ -29,28 +29,20 @@ class DefaultController extends Controller
     {
         $params = $request->request->all();
 
-//        print_r($params);
+        print_r($params);
 
-        $em = $this->getDoctrine()->getManager();
-
-        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
-            'session' => $params['p24_session_id']
-        ]);
-
-        $payment->setP24OrderId($params['p24_order_id']);
-        $payment->setP24Statement($params['p24_statement']);
-        $payment->setP24Sign($params['p24_sign']);
+//        $em = $this->getDoctrine()->getManager();
 //
 //        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
 //            'session' => $params['p24_session_id']
 //        ]);
 //
-//        $payment->setP24OrderId('a');
-//        $payment->setP24Statement('b');
-//        $payment->setP24Sign('c');
-//
-        $em->persist($payment);
-        $em->flush();
+//        $payment->setP24OrderId($params['p24_order_id']);
+//        $payment->setP24Statement($params['p24_statement']);
+//        $payment->setP24Sign($params['p24_sign']);
+
+//        $em->persist($payment);
+//        $em->flush();
 
         return new Response('200 OK');
     }
