@@ -130,14 +130,13 @@ class AccountController extends Controller
 
             try {
 
-                $id = md5((new \DateTime('now'))->format('Y-m-d H:i:s'));
-
                 $P24 = new Przelewy24(61791, 61791, 'c751931d7ae41926', true);
 
                 $P24->addValue('p24_session_id', $payment->getSession());
                 $P24->addValue('p24_amount', $account->getProduct()->getPrice());
                 $P24->addValue('p24_currency', 'PLN');
                 $P24->addValue('p24_email', $this->getUser()->getEmail());
+                $P24->addValue('p24_description', ' ');
                 $P24->addValue('p24_country', 'PL');
                 $P24->addValue('p24_phone', '+48500600700');
                 $P24->addValue('p24_language', 'pl');
@@ -274,7 +273,9 @@ class AccountController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($account->getCronJob());
+            $account->setCronJob(null);
+            $account->setPurchase(null);
+            $account->setAccountInstagramCache(null);
             $em->remove($account);
             $em->flush();
         }
