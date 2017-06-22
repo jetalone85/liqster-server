@@ -29,7 +29,7 @@ class DefaultController extends Controller
     {
         $params = $request->request->all();
 
-        print_r($params);
+//        print_r($params);
 
 //        $em = $this->getDoctrine()->getManager();
 //
@@ -44,6 +44,6 @@ class DefaultController extends Controller
 //        $em->persist($payment);
 //        $em->flush();
 
-//        return new Response('200 OK');
+        return new Response('200 OK');
     }
 }
