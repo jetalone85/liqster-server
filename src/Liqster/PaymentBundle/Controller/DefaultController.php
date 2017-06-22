@@ -7,10 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 /**
  * Class DefaultController
@@ -30,31 +26,35 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $params = $request->request->all();
+//        $params = $request->request->all();
 
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
+//        dump($request->query->get(234));
 
-        $serializer = new Serializer($normalizers, $encoders);
+//        $encoders = array(new XmlEncoder(), new JsonEncoder());
+//        $normalizers = array(new ObjectNormalizer());
+//
+//        $serializer = new Serializer($normalizers, $encoders);
 
-        $jsonContent = $serializer->serialize($params, 'json');
+///        $jsonContent = $serializer->serialize($params, 'json');
 
 
 //        print_r($params);
 
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
-//            'session' => $params['p24_session_id']
-//        ]);
-//
-//        $payment->setP24OrderId($params['p24_order_id']);
-//        $payment->setP24Statement($params['p24_statement']);
-//        $payment->setP24Sign($params['p24_sign']);
+        $em = $this->getDoctrine()->getManager();
 
-//        $em->persist($payment);
-//        $em->flush();
+        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
+            'session' => $request->query->get('p24_session_id')
+        ]);
 
-        return new Response($jsonContent);
+//        dump($payment);
+
+        $payment->setP24OrderId($request->query->get('p24_order_id'));
+        $payment->setP24Statement($request->query->get('p24_statement'));
+        $payment->setP24Sign($request->query->get('p24_sign'));
+
+        $em->merge($payment);
+        $em->flush();
+
+        return new Response(200);
     }
 }
