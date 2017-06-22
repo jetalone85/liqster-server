@@ -32,7 +32,6 @@ class DefaultController extends Controller
     {
         $params = $request->attributes->all();
 
-
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
 
