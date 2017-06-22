@@ -125,6 +125,7 @@ class AccountController extends Controller
             $payment->setCreate(new \DateTime('now'));
             $payment->setSession(Uuid::uuid4());
             $payment->setPurchase($purchase);
+            $em->persist($payment);
 
             $em->flush();
 
