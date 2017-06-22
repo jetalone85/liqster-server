@@ -50,7 +50,7 @@ class AccountInstagramCache
 
     /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="accountInstagramCache")
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false, onDelete="SET NULL")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      */
     private $account;
 
