@@ -27,7 +27,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $params = $request->request;
+        $params = $request;
 
         $em = $this->getDoctrine()->getManager();
 
