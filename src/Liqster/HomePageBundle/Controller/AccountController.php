@@ -127,7 +127,7 @@ class AccountController extends Controller
             $payment->setPurchase($purchase);
             $em->persist($payment);
 
-            $em->flush();
+//            $em->flush();
 
             try {
 
@@ -147,6 +147,12 @@ class AccountController extends Controller
                 $P24->addValue('p24_time_limit', 0);
 
                 $RET = $P24->trnRegister(true);
+
+                $payment->setToken($RET['token']);
+                $em->persist($payment);
+
+
+                $this->redirect($RET['redirect']);
                 die();
 
             } catch (Exception $exception) {
