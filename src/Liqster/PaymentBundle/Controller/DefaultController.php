@@ -39,6 +39,7 @@ class DefaultController extends Controller
         $payment->setP24Statement($params['p24_statement']);
         $payment->setP24Sign($params['p24_sign']);
 
+        $em->persist($payment);
         $em->flush();
 
         return new Response('200');
