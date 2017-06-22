@@ -50,6 +50,6 @@ class DefaultController extends Controller
 //        $em->persist($payment);
 //        $em->flush();
 
-        return new Response('200');
+        return new Response('200 OK');
     }
 }
