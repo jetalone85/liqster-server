@@ -41,14 +41,6 @@ class DefaultController extends Controller
 
         $em->flush();
 
-//        $encoders = array(new XmlEncoder(), new JsonEncoder());
-//        $normalizers = array(new ObjectNormalizer());
-//
-//        $serializer = new Serializer($normalizers, $encoders);
-//
-//        $jsonContent = $serializer->serialize($params, 'json');
-//        file_put_contents(__DIR__ . '/../../../../var/cache/test.txt', $jsonContent);
-
         return new Response('200');
     }
 }
