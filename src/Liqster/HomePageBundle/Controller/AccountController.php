@@ -80,8 +80,9 @@ class AccountController extends Controller
     public function newAction(Request $request)
     {
         $account = new Account();
-        $purchase = new Purchase();
+        $cronJob = new CronJob();
         $payment = new Payment();
+        $purchase = new Purchase();
 
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
@@ -106,7 +107,6 @@ class AccountController extends Controller
             $account->setModif(new \DateTime('now'));
             $em->persist($account);
 
-            $cronJob = new CronJob();
             $cronJob->setName($account->getId());
             $cronJob->setAccount($account);
             $cronJob->setCommand('instaxer:run ' . $account->getId());
