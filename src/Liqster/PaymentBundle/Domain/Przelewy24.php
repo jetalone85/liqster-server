@@ -239,11 +239,19 @@ class Przelewy24
     /**
      * Redirects or returns URL to a P24 payment screen
      * @param string $token Token
+     * @param bool $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
      * @return string URL to P24 payment screen
      */
-    public function trnRequest($token): string
+    public function trnRequest($token, $redirect = true)
     {
-        return $this->hostLive . 'trnRequest/' . $token;
+
+        if ($redirect) {
+            header('Location:' . $this->hostLive . 'trnRequest/' . $token);
+            return '';
+        } else {
+            return $this->hostLive . 'trnRequest/' . $token;
+        }
+
     }
 
     /**
@@ -251,8 +259,7 @@ class Przelewy24
      * Function verify received from P24 system transaction's result.
      * @return array
      */
-    public
-    function trnVerify()
+    public function trnVerify()
     {
 
 //        $crc = md5($this->postData['p24_session_id'] . '|' . $this->postData['p24_order_id'] . '|' . $this->postData['p24_amount'] . '|' . $this->salt);

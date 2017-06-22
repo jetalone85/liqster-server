@@ -125,9 +125,14 @@ class AccountController extends Controller
             $payment->setCreate(new \DateTime('now'));
             $payment->setSession(Uuid::uuid4());
             $payment->setPurchase($purchase);
+
+            $crc = md5($payment->getSession() . '|' . 61791 . '|' . 1 . '|' . 'PLN' . '|' . 'c751931d7ae41926');
+
+            $payment->setToken($crc);
+
             $em->persist($payment);
 
-//            $em->flush();
+            $em->flush();
 
             try {
 
@@ -148,11 +153,6 @@ class AccountController extends Controller
 
                 $RET = $P24->trnRegister(true);
 
-                $payment->setToken($RET['token']);
-                $em->persist($payment);
-
-
-                $this->redirect($RET['redirect']);
                 die();
 
             } catch (Exception $exception) {

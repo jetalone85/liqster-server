@@ -43,6 +43,24 @@ class Payment
     private $create;
 
     /**
+     * @var string
+     * @ORM\Column(name="p24order_id", type="string", unique=false, nullable=true)
+     */
+    private $P24OrderId;
+
+    /**
+     * @var string
+     * @ORM\Column(name="p24statement", type="string", unique=false, nullable=true)
+     */
+    private $P24Statement;
+
+    /**
+     * @var string
+     * @ORM\Column(name="p24sign", type="string", unique=false, nullable=true)
+     */
+    private $P24Sign;
+
+    /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Purchase", inversedBy="purchase")
      * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=true)
      */
@@ -127,4 +145,53 @@ class Payment
     {
         $this->session = $session;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getP24OrderId()
+    {
+        return $this->P24OrderId;
+    }
+
+    /**
+     * @param mixed $P24OrderId
+     */
+    public function setP24OrderId($P24OrderId)
+    {
+        $this->P24OrderId = $P24OrderId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getP24Statement(): string
+    {
+        return $this->P24Statement;
+    }
+
+    /**
+     * @param string $P24Statement
+     */
+    public function setP24Statement(string $P24Statement)
+    {
+        $this->P24Statement = $P24Statement;
+    }
+
+    /**
+     * @return string
+     */
+    public function getP24Sign(): string
+    {
+        return $this->P24Sign;
+    }
+
+    /**
+     * @param string $P24Sign
+     */
+    public function setP24Sign(string $P24Sign)
+    {
+        $this->P24Sign = $P24Sign;
+    }
+
 }
