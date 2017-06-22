@@ -273,9 +273,9 @@ class AccountController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $account->setCronJob(null);
-            $account->setPurchase(null);
-            $account->setAccountInstagramCache(null);
+//            $em->remove($em->find('LiqsterHomePageBundle:Purchase', ['account_id' => $account]));
+//            $account->setCronJob(null);
+//            $account->setAccountInstagramCache(null);
             $em->remove($account);
             $em->flush();
         }

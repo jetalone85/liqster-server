@@ -75,7 +75,7 @@ class Account implements TaggableInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, onDelete="SET NULL")
      */
     private $user;
 
@@ -102,7 +102,7 @@ class Account implements TaggableInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="account")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $product;
 
