@@ -27,9 +27,13 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $params = $request;
+        $params = $request->request();
 
         $em = $this->getDoctrine()->getManager();
+
+        foreach ($params as $param) {
+            var_dump($param);
+        }
 
 //        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
 //            'session' => $params['p24_session_id']
@@ -50,6 +54,6 @@ class DefaultController extends Controller
 //        $em->persist($payment);
 //        $em->flush();
 
-        return new Response(print_r($params));
+        return new Response();
     }
 }
