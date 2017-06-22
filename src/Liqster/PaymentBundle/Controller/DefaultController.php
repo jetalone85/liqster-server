@@ -30,7 +30,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $params = $request->request->get('data');
+        $params = $request;
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
