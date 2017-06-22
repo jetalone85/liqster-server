@@ -36,25 +36,6 @@ class Payment
      */
     private $session;
 
-
-    /**
-     * @var string
-     * @ORM\Column(name="p24order_id", type="string", unique=false, nullable=true)
-     */
-    private $P24OrderId;
-
-    /**
-     * @var string
-     * @ORM\Column(name="p24statement", type="string", unique=false, nullable=true)
-     */
-    private $P24Statement;
-
-    /**
-     * @var string
-     * @ORM\Column(name="p24sign", type="string", unique=false, nullable=true)
-     */
-    private $P24Sign;
-
     /**
      * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
@@ -145,53 +126,5 @@ class Payment
     public function setSession(string $session)
     {
         $this->session = $session;
-    }
-
-    /**
-     * @return string
-     */
-    public function getP24OrderId(): string
-    {
-        return $this->P24OrderId;
-    }
-
-    /**
-     * @param string $P24OrderId
-     */
-    public function setP24OrderId(string $P24OrderId)
-    {
-        $this->P24OrderId = $P24OrderId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getP24Statement()
-    {
-        return $this->P24Statement;
-    }
-
-    /**
-     * @param mixed $P24Statement
-     */
-    public function setP24Statement($P24Statement)
-    {
-        $this->P24Statement = $P24Statement;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getP24Sign()
-    {
-        return $this->P24Sign;
-    }
-
-    /**
-     * @param mixed $P24Sign
-     */
-    public function setP24Sign($P24Sign)
-    {
-        $this->P24Sign = $P24Sign;
     }
 }
