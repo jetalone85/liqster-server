@@ -10,6 +10,8 @@ use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\Purchase;
 use Liqster\HomePageBundle\Form\AccountType;
 use Liqster\PaymentBundle\Domain\Przelewy24;
+use Liqster\PaymentBundle\Entity\Payment;
+use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -79,6 +81,7 @@ class AccountController extends Controller
     {
         $account = new Account();
         $purchase = new Purchase();
+        $payment = new Payment();
 
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
@@ -112,8 +115,18 @@ class AccountController extends Controller
             $cronJob->setEnabled(false);
             $em->persist($cronJob);
 
-            $em->flush();
+            $purchase->setAccount($account);
+            $purchase->setCreate(new \DateTime('now'));
+            $purchase->setModification(new \DateTime('now'));
+            $purchase->setProduct($account->getProduct());
+            $purchase->setStatus('open');
+            $em->persist($purchase);
 
+            $payment->setCreate(new \DateTime('now'));
+            $payment->setSession(Uuid::uuid4());
+            $payment->setPurchase($purchase);
+
+            $em->flush();
 
             try {
 
@@ -121,7 +134,7 @@ class AccountController extends Controller
 
                 $P24 = new Przelewy24(61791, 61791, 'c751931d7ae41926', true);
 
-                $P24->addValue('p24_session_id', $id);
+                $P24->addValue('p24_session_id', $payment->getSession());
                 $P24->addValue('p24_amount', $account->getProduct()->getPrice());
                 $P24->addValue('p24_currency', 'PLN');
                 $P24->addValue('p24_email', $this->getUser()->getEmail());
@@ -139,9 +152,6 @@ class AccountController extends Controller
             } catch (Exception $exception) {
                 echo $exception->getMessage() . "\n";
             }
-
-            return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
-
         }
 
         return $this->render('LiqsterHomePageBundle:Account:new.html.twig', [

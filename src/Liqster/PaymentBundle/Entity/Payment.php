@@ -31,6 +31,12 @@ class Payment
     private $token;
 
     /**
+     * @var string
+     * @ORM\Column(name="session", type="string", unique=false, nullable=false)
+     */
+    private $session;
+
+    /**
      * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
@@ -104,5 +110,21 @@ class Payment
     public function setPurchase($purchase)
     {
         $this->purchase = $purchase;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSession(): string
+    {
+        return $this->session;
+    }
+
+    /**
+     * @param string $session
+     */
+    public function setSession(string $session)
+    {
+        $this->session = $session;
     }
 }
