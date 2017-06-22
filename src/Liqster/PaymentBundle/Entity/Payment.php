@@ -26,13 +26,13 @@ class Payment
 
     /**
      * @var string
-     * @ORM\Column(name="token", type="string", unique=false, nullable=false)
+     * @ORM\Column(name="token", type="string", unique=false, nullable=true)
      */
     private $token;
 
     /**
      * @var string
-     * @ORM\Column(name="session", type="string", unique=false, nullable=false)
+     * @ORM\Column(name="session", type="string", unique=false, nullable=true)
      */
     private $session;
 
@@ -44,7 +44,7 @@ class Payment
 
     /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Purchase", inversedBy="purchase")
-     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=true)
      */
     private $purchase;
 
