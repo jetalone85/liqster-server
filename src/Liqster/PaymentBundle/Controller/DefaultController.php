@@ -30,7 +30,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $params = $request;
+        $params = $request->request;
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
@@ -38,7 +38,7 @@ class DefaultController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonContent = $serializer->serialize($params, 'json');
-        file_put_contents(__DIR__ . '/../../../../var/cache/test.txt', $jsonContent);
+        file_put_contents(__DIR__ . '/../../../../var/cache/test.json.txt', $jsonContent);
 
         return new Response('200');
     }
