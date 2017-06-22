@@ -32,7 +32,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         foreach ($params as $param) {
-            var_dump($param);
+            print_r($param);
         }
 
 //        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
@@ -54,6 +54,6 @@ class DefaultController extends Controller
 //        $em->persist($payment);
 //        $em->flush();
 
-        return new Response();
+        return new Response('200 OK');
     }
 }
