@@ -27,14 +27,12 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $params = $request->request();
+        $params = $request->request->all();
 
-        $em = $this->getDoctrine()->getManager();
+        print_r($params);
 
-        foreach ($params as $param) {
-            print_r($param);
-        }
-
+//        $em = $this->getDoctrine()->getManager();
+//
 //        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
 //            'session' => $params['p24_session_id']
 //        ]);
@@ -42,7 +40,7 @@ class DefaultController extends Controller
 //        $payment->setP24OrderId($params['p24_order_id']);
 //        $payment->setP24Statement($params['p24_statement']);
 //        $payment->setP24Sign($params['p24_sign']);
-
+//
 //        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
 //            'session' => $params['p24_session_id']
 //        ]);
