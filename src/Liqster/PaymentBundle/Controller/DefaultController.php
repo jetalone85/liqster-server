@@ -21,13 +21,12 @@ use Symfony\Component\Serializer\Serializer;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
      * @param Request $request
      * @return Response
      * @throws \LogicException
      * @throws \InvalidArgumentException
      * @Route("/", name="payment_index")
-     * @Method({"POST"})
+     * @Method({"GET", "POST"})
      */
     public function indexAction(Request $request): Response
     {
