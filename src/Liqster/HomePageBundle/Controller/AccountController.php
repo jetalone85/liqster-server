@@ -275,8 +275,8 @@ class AccountController extends Controller
     /**
      * Deletes a Account entity.
      *
-     * @Route("/{id}", name="account_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="account_delete")
+     * @Method({"GET", "DELETE"})
      * @param Request $request
      * @param Account $account
      * @return RedirectResponse
@@ -287,21 +287,19 @@ class AccountController extends Controller
         $form = $this->createDeleteForm($account);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-            $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
-            $em->remove($cronJob);
+        $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
+        $em->remove($cronJob);
 
-            $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
-            $em->remove($purchase);
+        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+        $em->remove($purchase);
 
-            $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
-            $em->remove($payment);
+        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
+        $em->remove($payment);
 
-            $em->remove($account);
-            $em->flush();
-        }
+        $em->remove($account);
+        $em->flush();
 
         return $this->redirectToRoute('account_index');
     }
