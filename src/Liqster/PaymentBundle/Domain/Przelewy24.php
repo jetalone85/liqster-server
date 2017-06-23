@@ -37,7 +37,7 @@ class Przelewy24
      * Use Live (false) or Sandbox (true) enviroment
      * @var bool
      */
-    private $testMode = false;
+    private $testMode = true;
 
     /**
      * Merchant id

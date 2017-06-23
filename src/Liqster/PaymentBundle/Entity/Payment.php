@@ -61,6 +61,18 @@ class Payment
     private $P24Sign;
 
     /**
+     * @var string
+     * @ORM\Column(name="verify", type="string", unique=false, nullable=true)
+     */
+    private $verify;
+
+    /**
+     * @var DateTime
+     * @ORM\Column(name="verify_date", type="datetime", unique=false, nullable=true)
+     */
+    private $verifyDate;
+
+    /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Purchase", inversedBy="payment")
      * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=true)
      */
@@ -194,4 +206,35 @@ class Payment
         $this->P24Sign = $P24Sign;
     }
 
+    /**
+     * @return string
+     */
+    public function getVerify(): string
+    {
+        return $this->verify;
+    }
+
+    /**
+     * @param string $verify
+     */
+    public function setVerify(string $verify)
+    {
+        $this->verify = $verify;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVerifyDate()
+    {
+        return $this->verifyDate;
+    }
+
+    /**
+     * @param mixed $verifyDate
+     */
+    public function setVerifyDate($verifyDate)
+    {
+        $this->verifyDate = $verifyDate;
+    }
 }
