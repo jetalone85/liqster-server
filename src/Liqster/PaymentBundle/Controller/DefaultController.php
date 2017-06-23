@@ -29,14 +29,14 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
-            'session' => $request->query->get('p24_session_id')
+            'session' => $request->request->get('p24_session_id')
         ]);
 
         if ($payment) {
 
-            $payment->setP24OrderId($request->query->get('p24_order_id') ?: ' ');
-            $payment->setP24Statement($request->query->get('p24_statement') ?: ' ');
-            $payment->setP24Sign($request->query->get('p24_sign') ?: ' ');
+            $payment->setP24OrderId($request->request->get('p24_order_id') ?: ' ');
+            $payment->setP24Statement($request->request->get('p24_statement') ?: ' ');
+            $payment->setP24Sign($request->request->get('p24_sign') ?: ' ');
 
             $em->merge($payment);
             $em->flush();
