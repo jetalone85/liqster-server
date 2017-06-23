@@ -44,7 +44,7 @@ class Payment
 
     /**
      * @var string
-     * @ORM\Column(name="p24order_id", type="string", unique=false, nullable=true)
+     * @ORM\Column(name="p24orderid", type="string", unique=false, nullable=true)
      */
     private $P24OrderId;
 
