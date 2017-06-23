@@ -178,6 +178,8 @@ class AccountController extends Controller
      */
     public function showAction(Request $request, Account $account): Response
     {
+        $em = $this->getDoctrine()->getManager();
+
         $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
 
         $instaxer = new Instaxer($path);
@@ -189,6 +191,13 @@ class AccountController extends Controller
 
         $editForm = $this->createEditForm($account);
         $editForm->handleRequest($request);
+
+        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+
+        if ($purchase->getStatus() === 'verify') {
+            $account->setPayed(true);
+            $em->flush();
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();

@@ -6,7 +6,6 @@ use Liqster\PaymentBundle\Domain\Przelewy24;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
 {
@@ -23,8 +22,7 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
         $payments = $em->getRepository('LiqsterPaymentBundle:Payment')->findBy([
-            'verify' => null,
-            'verifyDate' => null
+            'verify' => null
         ]);
 
         foreach ($payments as $payment) {
@@ -44,7 +42,7 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
                     $payment->setVerifyDate(new \DateTime('now'));
 
                     $payment->getPurchase()->setStatus('verify');
-                    $payment->getPurchase()->setModification(new DateTime('now'));
+                    $payment->getPurchase()->setModification(new \DateTime('now'));
 
                     $em->flush();
                 }
