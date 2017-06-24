@@ -1,6 +1,6 @@
 <?php
 
-namespace Liqster\HomePageBundle\Repository;
+namespace Liqster\UserBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

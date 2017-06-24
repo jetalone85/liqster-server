@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta name="theme-color" content="">
+    <meta name="theme-color" content="#C2185B">
 
     <title>{% block title %}{{ 'apps.title'|trans({}, 'main') }}{% endblock %}</title>
 
@@ -58,11 +58,10 @@
             </li>
         {% endif %}
 
-
         <li><a class="" href="{{ path('homepage') }}">Start</a></li>
-        <li><a class="" href="{{ path('homepage') }}#about">O nas</a></li>
-        <li><a class="" href="{{ path('homepage') }}#price">Cennik</a></li>
         <li><a class="" href="{{ path('homepage') }}#services">Usługi</a></li>
+        <li><a class="" href="{{ path('homepage') }}#price">Cennik</a></li>
+        <li><a class="" href="{{ path('homepage') }}#about">O nas</a></li>
         <li><a class="" href="{{ path('homepage') }}#contact">Kontakt</a></li>
         <li>
             <div class="divider"></div>
@@ -94,10 +93,9 @@
                                 class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a class="nav-item nav-link" href="{{ path('homepage') }}">Start</a></li>
-                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a></li>
-                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a></li>
                         <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#services">Usługi</a>
-                        </li>
+                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a></li>
+                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a></li>
                         <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#contact">Kontakt</a>
                         </li>
                     </ul>
@@ -164,18 +162,12 @@
                 var img_height = $(item).height();
                 var div_height = $(item).parent().height();
                 if (img_height < div_height) {
-                    //INCREASE HEIGHT OF IMAGE TO MATCH CONTAINER
                     $(item).css({'width': 'auto', 'height': div_height});
-                    //GET THE NEW WIDTH AFTER RESIZE
                     var img_width = $(item).width();
-                    //GET THE PARENT WIDTH
                     var div_width = $(item).parent().width();
-                    //GET THE NEW HORIZONTAL MARGIN
                     var newMargin = (div_width - img_width) / 2 + 'px';
-                    //SET THE NEW HORIZONTAL MARGIN (EXCESS IMAGE WIDTH IS CROPPED)
                     $(item).css({'margin-left': newMargin});
                 } else {
-                    //CENTER IT VERTICALLY (EXCESS IMAGE HEIGHT IS CROPPED)
                     var newMargin = (div_height - img_height) / 2 + 'px';
                     $(item).css({'margin-top': newMargin});
                 }

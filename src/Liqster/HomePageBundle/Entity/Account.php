@@ -74,7 +74,7 @@ class Account implements TaggableInterface
     private $modif;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
+     * @ORM\ManyToOne(targetEntity="Liqster\UserBundle\Entity\User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;

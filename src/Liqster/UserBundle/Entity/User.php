@@ -1,6 +1,6 @@
 <?php
 
-namespace Liqster\HomePageBundle\Entity;
+namespace Liqster\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +10,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Liqster\HomePageBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Liqster\UserBundle\Repository\UserRepository")
  */
 class User extends BaseUser
 {
@@ -25,7 +25,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Account", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Account", mappedBy="user")
      */
     private $account;
 

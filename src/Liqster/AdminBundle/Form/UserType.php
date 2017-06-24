@@ -2,7 +2,7 @@
 
 namespace Liqster\AdminBundle\Form;
 
-use Liqster\HomePageBundle\Entity\User;
+use Liqster\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

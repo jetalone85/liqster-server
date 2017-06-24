@@ -2,8 +2,8 @@
 
 namespace Liqster\AdminBundle\Controller;
 
-use Liqster\HomePageBundle\Entity\User;
 use Liqster\HomePageBundle\Form\AccountType;
+use Liqster\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

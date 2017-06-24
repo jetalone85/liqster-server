@@ -2,9 +2,9 @@
 
 namespace Liqster\HomePageBundle\Controller;
 
-use Liqster\HomePageBundle\Entity\User;
 use Liqster\HomePageBundle\Form\ProfileProfileType;
 use Liqster\HomePageBundle\Form\ProfileSettingsType;
+use Liqster\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;

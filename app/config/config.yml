@@ -89,8 +89,10 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class:  Liqster\HomePageBundle\Entity\User
+    user_class:  Liqster\UserBundle\Entity\User
     registration:
+        form:
+            type: Liqster\UserBundle\Form\RegistrationType
         confirmation:
             enabled: true
     from_email:

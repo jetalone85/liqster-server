@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Beelab\TagBundle\BeelabTagBundle(),
             new Liqster\PaymentBundle\LiqsterPaymentBundle(),
             new Liqster\AdminBundle\AdminBundle(),
+            new Liqster\UserBundle\LiqsterUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'ModelTest'], true)) {
