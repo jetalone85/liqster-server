@@ -1,0 +1,18 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block subject %}
+{%- autoescape false -%}
+AKtywacja konta
+{%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+{% endblock %}
+
+{% block body_html %}
+
+    {% autoescape %}
+        <h2>Witaj, {{ user.username }}</h2>
+        <p>Aktywowaliśmy konto</p>
+    {% endautoescape %}
+
+{% endblock %}
