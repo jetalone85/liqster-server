@@ -25,7 +25,7 @@ class Product
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="purchase")
+     * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="product")
      */
     private $purchase;
 
