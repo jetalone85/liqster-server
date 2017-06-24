@@ -50,7 +50,7 @@ class AccountController extends Controller
         foreach ($accounts as $account) {
             $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
 
-            if ($purchase->getStatus() === 'verify') {
+            if ($account->isPayed() === false && $purchase->getStatus() === 'verify') {
                 $account->setPayed(true);
                 $em->flush();
             }
