@@ -30,7 +30,7 @@ class Product
     private $purchase;
 
     /**
-     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Account", mappedBy="product")
      */
     private $account;
 
