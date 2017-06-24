@@ -47,6 +47,15 @@ class AccountController extends Controller
 
         $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
 
+        foreach ($accounts as $account) {
+            $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+
+            if ($purchase->getStatus() === 'verify') {
+                $account->setPayed(true);
+                $em->flush();
+            }
+        }
+
         $query = $request->request->get('form');
 
         if ($query) {
