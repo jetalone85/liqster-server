@@ -53,6 +53,24 @@ class AccountController extends Controller
             if ($account->isPayed() === false && $purchase->getStatus() === 'verify') {
                 $account->setPayed(true);
                 $em->flush();
+
+                $mailer = $this->get('swiftmailer.mailer.default');
+
+                $message = $mailer->createMessage('message')
+                    ->setSubject('Aktywacja')
+                    ->setFrom('admin@liqster.pl')
+                    ->setTo($this->getUser()->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            '@LiqsterHomePage/Email/activate_account.txt.twig', [
+                            'user' => $this->getUser()
+                        ]),
+                        'text/html'
+                    );
+
+                $mailer->send($message);
+
+                dump($mailer);
             }
         }
 
