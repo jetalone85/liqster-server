@@ -6,26 +6,13 @@
 {% endblock %}
 
 {% block body_text %}
+
+{{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
+
 {% endblock %}
 
 {% block body_html %}
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body style="background-color: #EFEFEF;">
-<div style="border: 1px solid #DAE5F6; background-color: #FFFFFF; padding: 20px;">
 
-    <img style="text-aling: center;" alt="liqster" width="100" height="71" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABHCAMAAADGBBL+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpmMGQ1MDc4ZC03NTQ0LWQyNGMtOTZhNi0zNzVlMzVjMjAyMGUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTQ3NENGRUU1NDQxMTFFNzhERTVFN0VERTUzRDJCMzkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTQ3NENGRUQ1NDQxMTFFNzhERTVFN0VERTUzRDJCMzkiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjY3NGVlMTMtMjU2OC0xMzQ1LWFiOTQtZjcwMjYxNzk2ZWZlIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6OTEwMGEwMzctMDA1My0xMWU3LWIxMjYtYjcyN2FjY2E2ZmIzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+dRioKgAAAwBQTFRF/HSV2n2T7Cta5YWc/MXS/unu8IGb//z85URr/d7l+pSs7ERr+ixd7eDj5U1y/1uD8piu/Iij8m+O/VR85jJe8zRh2XSM4JSm7KK083OS+kNv9KG16m+M+jxq/KG36nuW42OC9sXR+9vi/fT29dbd6pWp8zhl/GSI3Utu21Jz35Kk9JWs67jE7MTO5lJ15Jqs8r7K/n6d8q+/9NHZ++7x5Tli8rvH5nOO1V579EBr+Stc1muF/uXr/4Wj+eHn101u+G6P/vn6+8nV3Txk/7rK5F196o2j+0132GJ+8z1p7a288uPm9bPD1VNy/yFW+rLD/87Z/vb4/fL1/ype82SG/0Fw8snT80tz2UVp/y9l+6W53WuG7Vp97TVh7Yqi7jtl7rPC57G+9Cpb4sPL8c7X+jBg5i1a+Zux+uXq+d/l9pyx9cvV/eLp/Cxe+b/N/vv8/uzw9Stc9y5e96i75EBn+R9T/dvj5aa1+jZl8i5d9qW49V2B+bzL/pqy4qGx8lV69VJ5/zBm+9Xe8au8/jFi/////vr7/Pv7/fn5/vL1/PDz/O/y22WB++nt+eLo1qiz8dXb89DZ8Cpa9rXE+K6/27O8/fH09/P0993k9s/Y+mCF7meH/5+2+kZx/jln/y5i/y5h/y1g/y5g/y1h/y1f/y5j/y9j/yxf/yxe/y1i/y9i//3+/Sxd/ixe99Pc9ert/7HE/vH0/0dz9Iih8LjF7mOE7b3I7j9o6ZOn8FB15GF//ytg8Yaf4L7G/Obs/dbf+sDO1KSv3MTJ7VZ6y0Fj/i5f+LnI7V6A9ay+/Ku//+7y/DZm/v399XyZ+Nng9snT+Ctc+vn5yVZx3oKY4I6h/lB5+Z6z1jJZ9Vh98ytc/ylb9Cxb8SZW1WeB6iZV7pes7tzg//j5/7jJ/y9g74+m4WmG/fP2/O3x6WmI/yxg+PDy+PT1/i1f+XqY+X2b56Gx8Iuj60hv8I6l/oyo9Y6m9oul92uM4nqS+ff4+LPD+NHa9UVv6GKC8efq7WGC////ZMU3IQAAAQB0Uk5T////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AFP3ByUAAAShSURBVHja7JdpVFVVFIAfCDH4ElBAxQgHRBQnxFcEKgpIoEZhTE9zTKDMJ5KIOIsQSQjmS00R3fvc6U1gLTOHtNGwNDMqLRpNK5JsMssitO29b7VWqx/47LVe9ePeP/ecPdzvrr332eccDf0Lj0aFqBAVokJUiApRIf8XyCM210N6+Z32dzXk0r2HDn3o4dD5eLKH85DERhYfATc58vUIQSHKacgKqRvtkHY4cC0pZUUQUeUk5B4z60Xdrb9f39O2Quy7lI/r7yQkGpaNo0zrLdf3XChot/uYnYVcyJKjZcuBlGl+gxI798wUvWklm3HcOcgrYA2jMXmmeMYwp9PlMiYPbqc3xeecTHxUo1BO7SzNTbTou3UK2Syw8qpSw14nIc9C3G/UXTxfOzgwd1injr1Re/I7S6rNOciJ/RC0dVEem000dcKfFfd0yV/NDlqDwqyDW51cjE9+DBepAIozKpPPZdglT2259T2z5Yh9vN5fM43I81J0BQqs6UrA2BeJJm95+X5FN3mj/Cp8fuNVx5CrS+C1syE4ggqYaYoiqM8qkwROTrN9wlvkgT8Ax6HVqpf4XuQbWlam1xSSZ1ZZC/n4lZXV2RxCPktvC1sMuq20Fhv6yWvuWwbNOoFrHKUoz3ZA0W6i25JmID6s0+mK41sDeNFYhKajtJjxKYtCeE7q6uUQ8ng69O1g35NnnmXZA0S+CIFzshvsY6J2gY9QYtg6qQ2uVFePHkAeZvDeNFuLP1DvNvPIy8AzyxXH4dqUzrQQOUHxvuhFC/KgaJ/8k9JweytZi5xps51msnS3mw8C7T7yMfBnKAciDojF0xFn0oKURx1CYG42UR8GcmP5iYcv5Xrl+BRFd7fAI5YqdfaECccrksd2wSzyrAPjyYxSsdhbO+91hr2T96R/7ShcHHtXfh9GdoZoDZr3UmEHGt6SRZ6h4ifegC1yZc9nWKdYbzPDHQFZ+qIhNEaLBn46RSHj2vTvv319yM1LoKsS9kyUi8srDZr7y9GAWTX1Y6NPi4FTs5tRaCePCsSQStmqtgERPkiYQ/RSI2LzdtrtLloNkfMc5OTCpxi6iAp9GSdMoQIB43zoZwbn+zDkoHko0UTgZ3q8AcgJx4iqNHKD2yB/svDYLlmvJC7bLXjpAIdtZaLITkf34EVkd45nEsc0q5DjBx5GLRh6rhvkF9LEpX2uj0wVuQpN9B5Enu2sP7eqB5OQ8QduuHdlGyVEyXCXFnhJyBXAAgJnGukvuqWeohbkEK1iW0JtjU4Pstlct0hRNgexKSFIanjoxjetSUnu7rmrvU4FGpN6trrlu8d6Q9yDyznl+PILk6Si3NgRcs8Kjw005svJqAlOMhoDE1ZXdnEfvP5v7PFTY8KV1NfGVCv1E/5VqCUoYzH3ozzJGLIheGjlH2a1Mdvsa7s6PGac3Em8wlv/wQmyRAv7aTn3hUuPqYmNloM0/xt/l0JWCnCEnmHlLoUcFeA+umzu51LIQjOuse386AWXQtbFYeiotuE2l0Iy9ltYEz/QxZegLiLodTUuhox+J//VYa6/zv16Qr2YqhAVokJUiAr5ryHXBBgAFR7FP+ikTXUAAAAASUVORK5CYII=">
+{% include '@FOSUser/Registration/email.content.html.twig' %}
 
-    <p>
-        {% autoescape false %}
-        {{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
-        {% endautoescape %}
-    </p>
-
-</div>
-</body>
-</html>
 {% endblock %}

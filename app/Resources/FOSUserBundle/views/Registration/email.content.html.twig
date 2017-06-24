@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="background-color: #EFEFEF;">
+<div style="border: 1px solid #C2185B; background-color: #FFFFFF; min-height: 80%;">
+
+    <div style="padding: 3em;">
+        {% autoescape %}
+            <h2>Witaj, {{ user.username }}</h2>
+            <p>Aby potwierdzić swoje konto - proszę kliknij w <a href="{{ confirmationUrl }}">link</a>. </p>
+            <p>Pozdrawiamy!</p>
+            <h4>Zespół liqster.pl</h4>
+        {% endautoescape %}
+    </div>
+</div>
+</body>
+</html>
