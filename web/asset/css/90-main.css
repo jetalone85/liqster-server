@@ -23,7 +23,7 @@ body {
 }
 
 .intro-section {
-    background-image: url(http://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg);
+    background-image: url("../../asset/img/bg-nz-1.jpg");
 }
 
 .intro-section .jumbotron {
