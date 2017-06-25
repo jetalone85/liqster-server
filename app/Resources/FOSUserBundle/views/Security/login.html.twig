@@ -2,40 +2,56 @@
 
 {% block fos_user_content %}
 
-    <div class="container input-field">
-        <div class="row">
+    <section id="intro" class="full-section login-section">
+        <div class="view container-fluid">
+            <div class="container input-field">
+                <div class="row">
 
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-
-            <div class="col l6 offset-l3">
-
-                <form action="{{ path("fos_user_security_check") }}" method="post">
-                    {% if csrf_token %}
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
 
-                    <div class="input-field">
-                        <label for="username">{{ 'security.login.username'|trans({}, 'main') }}</label>
-                        <input type="text" id="username" name="_username"
-                               value="{{ last_username }}"
-                        />
-                    </div>
 
-                    <div class="input-field">
-                        <label for="password">{{ 'security.login.password'|trans({}, 'main') }}</label>
-                        <input type="password" id="password" name="_password"
-                        />
-                    </div>
+                    <div class="col s12 m12 l8 xl8 offset-l2 offset-xl2 pink-text text-lighten-4">
 
-                    <div class="input-field">
-                        <input class="btn btn-primary" type="submit" id="_submit" name="_submit"
-                               value="{{ 'security.login.submit'|trans({}, 'main') }}"/>
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            {% if csrf_token %}
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                            {% endif %}
+
+                            <div class="input-field">
+                                <label for="username">{{ 'security.login.username'|trans({}, 'main') }}</label>
+                                <input type="text" id="username" name="_username"
+                                       value="{{ last_username }}"
+                                />
+                            </div>
+
+                            <div class="input-field">
+                                <label for="password">{{ 'security.login.password'|trans({}, 'main') }}</label>
+                                <input type="password" id="password" name="_password"
+                                />
+                            </div>
+
+                            <div class="input-field center-align">
+                                <input class="btn btn-large pink darken-3" type="submit" id="_submit"
+                                       name="_submit"
+                                       value="{{ 'security.login.submit'|trans({}, 'main') }}"/>
+                            </div>
+
+                        </form>
                     </div>
-                </form>
+                </div>
+
+                <div class="row center center-block center-align">
+                    <div class="col s12 pink-text text-lighten-4">
+                        <p>Nie masz konta? <a class="pink-text text-lighten-4"
+                                              href="{{ path('fos_user_registration_register') }}"><b>Zarejestruj
+                                    się</b></a></p>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+    </section>
 
 {% endblock fos_user_content %}
