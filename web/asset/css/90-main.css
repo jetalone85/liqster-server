@@ -26,6 +26,10 @@ body {
     background-image: url("../../asset/img/bg-nz-1.jpg");
 }
 
+.intro-logged-section {
+    background-image: url("../../asset/img/bg.z-1.jpg");
+}
+
 .intro-section .jumbotron {
     min-height: 35rem;
     background-color: rgba(0, 0, 0, 0.15) !important;
