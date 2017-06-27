@@ -23,7 +23,7 @@ body {
 }
 
 .intro-section {
-    background-image: url("../../asset/img/bg-nz-1.jpg");
+    background-image: url("../../asset/img/background-intro-section.jpg");
 }
 
 .login-section {
@@ -35,7 +35,7 @@ body {
 }
 
 .intro-logged-section {
-    background-image: url("../../asset/img/bg.z-1.jpg");
+    background-image: url("../../asset/img/background-intro-logged-section.png");
 }
 
 .intro-section .jumbotron {
