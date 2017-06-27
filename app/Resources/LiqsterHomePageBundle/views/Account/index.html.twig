@@ -106,6 +106,14 @@
 
                     {% endfor %}
 
+                    <div class="col s12 m6 l6 xl6">
+                        <div class="card same-size">
+                            <a class="className btn-floating btn-large waves-effect waves-light red"
+                               href="{{ path('account_new') }}" role="button"><i
+                                        class="material-icons">add</i></a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -145,6 +153,21 @@
     <script>
         $(document).ready(function () {
             $('.modal').modal();
+
+            $(function () {
+                $('.className').css({
+                    'position': 'absolute',
+                    'left': '50%',
+                    'top': '50%',
+                    'margin-left': function () {
+                        return -$(this).outerWidth() / 2
+                    },
+                    'margin-top': function () {
+                        return -$(this).outerHeight() / 2
+                    }
+                });
+            });
+
         });
     </script>
 
