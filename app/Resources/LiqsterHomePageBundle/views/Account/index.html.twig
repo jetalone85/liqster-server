@@ -4,136 +4,137 @@
 
     <div class="container-fluid">
 
-        <div class="container">
-            <div class="row">
+        {% if accounts %}
+            <div class="container">
+                <div class="row">
 
-                {% for account in accounts %}
+                    {% for account in accounts %}
 
-                    <div class="col s12 m6 l6 xl6">
+                        <div class="col s12 m6 l6 xl6">
 
-                        <div class="card same-size">
-                            <div class="card-image">
-                                {% if account.image %}
-                                    <img src="{{ account.image }}">
-                                {% else %}
-                                    <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
-                                {% endif %}
-                                {##}
-                                {#<a href="{{ path('account_show', { 'id': account.id }) }}"#}
-                                {#class="btn-floating halfway-fab btn-large waves-effect waves-light red"><i#}
-                                {#class="material-icons">settings</i></a>#}
-                                {#</div>#}
+                            <div class="card same-size">
+                                <div class="card-image">
+                                    {% if account.image %}
+                                        <img src="{{ account.image }}">
+                                    {% else %}
+                                        <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
+                                    {% endif %}
 
-                                <div class="fixed-action-btn horizontal halfway-fab click-to-toggle">
-                                    <a class="btn-floating btn-large green">
-                                        <i class="large material-icons">menu</i>
-                                    </a>
-                                    <ul>
-                                        <li><a href="{{ path('account_show', { 'id': account.id }) }}"
-                                               class="btn-floating blue darken-1"><i class="material-icons">settings</i></a>
-                                        </li>
-                                        <li><a href="{{ path('result_list', { 'id': account.id }) }}"
-                                               class="btn-floating yellow darken-1"><i class="material-icons">track_changes</i></a>
-                                        </li>
-                                        <li><a href="{{ path('account_show', { 'id': account.id }) }}"
-                                               class="btn-floating green darken-1"><i
-                                                        class="material-icons">edit</i></a></li>
-                                        <li><a href="#modal_{{ account.id }}" class="btn-floating red darken-1"><i
-                                                        class="material-icons">delete_forever</i></a>
-                                        </li>
-                                    </ul>
+                                    <div class="fixed-action-btn horizontal halfway-fab click-to-toggle">
+                                        <a class="btn-floating btn-large green">
+                                            <i class="large material-icons">menu</i>
+                                        </a>
+                                        <ul>
+                                            <li><a href="{{ path('account_show', { 'id': account.id }) }}"
+                                                   class="btn-floating blue darken-1"><i
+                                                            class="material-icons">settings</i></a>
+                                            </li>
+                                            <li><a href="{{ path('result_list', { 'id': account.id }) }}"
+                                                   class="btn-floating yellow darken-1"><i class="material-icons">track_changes</i></a>
+                                            </li>
+                                            <li><a href="{{ path('account_show', { 'id': account.id }) }}"
+                                                   class="btn-floating green darken-1"><i
+                                                            class="material-icons">edit</i></a></li>
+                                            <li><a href="#modal_{{ account.id }}" class="btn-floating red darken-1"><i
+                                                            class="material-icons">delete_forever</i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div id="modal_{{ account.id }}" class="modal">
-                                <div class="modal-content">
-                                    <h4>Czy na pewno usunąć {{ account.name }} ?</h4>
-                                    <p></p>
+                                <div id="modal_{{ account.id }}" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Czy na pewno usunąć {{ account.name }} ?</h4>
+                                        <p></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#"
+                                           class="modal-action modal-close waves-effect waves-light btn green darken-1">Odrzuć</a>
+                                        <a href="{{ path('account_delete', {'id': account.id }) }}"
+                                           class="modal-action waves-effect waves-light btn red darken-1">Potwierdź</a>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <a href="#"
-                                       class="modal-action modal-close waves-effect waves-light btn green darken-1">Odrzuć</a>
-                                    <a href="{{ path('account_delete', {'id': account.id }) }}"
-                                       class="modal-action waves-effect waves-light btn red darken-1">Potwierdź</a>
-                                </div>
-                            </div>
 
-                            <div class="card-content">
-                                <div class="card-title">
-                                    <h2 class="card-title center-block text-center">{{ account.name }}</h2>
+                                <div class="card-content">
+                                    <div class="card-title">
+                                        <h2 class="card-title center-block text-center">{{ account.name }}</h2>
+                                    </div>
+                                    <p>I am a very simple card. I am good at containing small bits of information. I am
+                                        convenient because I require little markup to use effectively.</p>
                                 </div>
-                                <p>I am a very simple card. I am good at containing small bits of information. I am
-                                    convenient because I require little markup to use effectively.</p>
-                            </div>
-                            <div class="card-content">
-                                <div class="card-title">
-                                    <h4 class="card-title center-block text-center">Ustawienia</h4>
-                                </div>
-                                <div class="card-block">
-                                    <form name="form" method="post">
-                                        <input
-                                                type="hidden"
-                                                name="form[id]"
-                                                value="{{ account.id }}"
-                                        />
-                                        <div class="row">
-                                            <div class="switch left">
-                                                <label>
-                                                    <input
-                                                            {% if account.payed == false %}disabled{% endif %}
-                                                            type="checkbox" name="form[enable]"
-                                                            id="form_enable_{{ account.id }}"
-                                                            {% if account.cronJob.enabled == true %}checked{% endif %}
-                                                            class="custom-control-input
-                                                            ">
-                                                    <span class="lever"></span>
-                                                    {% if account.payed == false %}
-                                                        Konto nieopłacone
-                                                    {% elseif account.payed == true and account.cronJob.enabled == true %}
-                                                        Konto aktywne
-                                                    {% else %}
-                                                        Konto nieaktywne
-                                                    {% endif %}
-                                                </label>
-                                            </div>
+                                <div class="card-content">
+                                    <div class="card-title">
+                                        <h4 class="card-title center-block text-center">Ustawienia</h4>
+                                    </div>
+                                    <div class="card-block">
+                                        <form name="form" method="post">
                                             <input
-                                                    class="btn btn-outline-primary btn-block right"
-                                                    type="submit"
-                                                    value="zapisz"/>
-                                        </div>
-                                    </form>
+                                                    type="hidden"
+                                                    name="form[id]"
+                                                    value="{{ account.id }}"
+                                            />
+                                            <div class="row">
+                                                <div class="switch left">
+                                                    <label>
+                                                        <input
+                                                                {% if account.payed == false %}disabled{% endif %}
+                                                                type="checkbox" name="form[enable]"
+                                                                id="form_enable_{{ account.id }}"
+                                                                {% if account.cronJob.enabled == true %}checked{% endif %}
+                                                                class="custom-control-input
+                                                            ">
+                                                        <span class="lever"></span>
+                                                        {% if account.payed == false %}
+                                                            Konto nieopłacone
+                                                        {% elseif account.payed == true and account.cronJob.enabled == true %}
+                                                            Konto aktywne
+                                                        {% else %}
+                                                            Konto nieaktywne
+                                                        {% endif %}
+                                                    </label>
+                                                </div>
+                                                <input
+                                                        class="btn btn-outline-primary btn-block right"
+                                                        type="submit"
+                                                        value="zapisz"/>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        {% else %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12 l12 xl12">
+                        <div class="card">
+                            <div class="card-content">
+                                <h1 class="card-title">Hello, world! :P</h1>
+
+                                <p>It uses utility classes for typography and spacing to space content out within the
+                                    larger
+                                    container.</p>
+
+                                <div class="row">
+                                    <a class="btn btn-outline-primary btn-large btn-block right"
+                                       href="{{ path('account_new') }}" role="button">Dodaj
+                                        nowe
+                                        konto</a></div>
                             </div>
                         </div>
                     </div>
 
-                {% endfor %}
-
-            </div>
-        </div>
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m12 l12 xl12">
-                    <div class="card">
-                        <div class="card-content">
-                            <h1 class="card-title">Hello, world! :P</h1>
-
-                            <p>It uses utility classes for typography and spacing to space content out within the larger
-                                container.</p>
-
-                            <div class="row">
-                                <a class="btn btn-outline-primary btn-large btn-block right"
-                                   href="{{ path('account_new') }}" role="button">Dodaj
-                                    nowe
-                                    konto</a></div>
-                        </div>
-                    </div>
                 </div>
-
             </div>
-        </div>
+
+        {% endif %}
 
     </div>
 
@@ -143,7 +144,6 @@
 
     <script>
         $(document).ready(function () {
-            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
             $('.modal').modal();
         });
     </script>
