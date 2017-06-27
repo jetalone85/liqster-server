@@ -29,6 +29,12 @@ class User extends BaseUser
      */
     private $account;
 
+    /**
+     * @var boolean
+     * @ORM\Column(name="confirmation", type="boolean", unique=false, nullable=false)
+     */
+    private $confirmation = false;
+
     public function __construct()
     {
         parent::__construct();
@@ -43,5 +49,21 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isConfirmation(): bool
+    {
+        return $this->confirmation;
+    }
+
+    /**
+     * @param bool $confirmation
+     */
+    public function setConfirmation(bool $confirmation)
+    {
+        $this->confirmation = $confirmation;
     }
 }
