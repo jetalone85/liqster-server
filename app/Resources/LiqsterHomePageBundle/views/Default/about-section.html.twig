@@ -1,35 +1,34 @@
-<section id="about" class="full-section about-section">
-    <div class="container">
-        <div class="row">
-            <div class="center col-lg-12">
-                <h1 class="header black-text">{{ 'default.about.header0'|trans({}, 'main') }}</h1>
+{% spaceless %}
+    <section id="about" class="full-section about-section">
+        <div class="container">
+            <div class="row">
+                <div class="center col-lg-12">
+                    <h1 class="header black-text">{{ 'default.about.header0'|trans({}, 'main') }}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-white-text"><i class="material-icons">trending_up</i></h2>
+                    </div>
+                    <h3 class="center">{{ 'default.about.header1'|trans({}, 'main') }}</h3>
+                    <p class="light">{{ 'default.about.parag1'|trans({}, 'main') }}</p>
+                </div>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-white-text"><i class="material-icons">group</i></h2>
+                    </div>
+                    <h3 class="center">{{ 'default.about.header2'|trans({}, 'main') }}</h3>
+                    <p class="light">{{ 'default.about.parag2'|trans({}, 'main') }}</p>
+                </div>
+                <div class="col s12 m4">
+                    <div class="icon-block">
+                        <h2 class="center light-white-text"><i class="material-icons">flash_on</i></h2>
+                    </div>
+                    <h3 class="center">{{ 'default.about.header3'|trans({}, 'main') }}</h3>
+                    <p class="light">{{ 'default.about.parag3'|trans({}, 'main') }}</p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-white-text"><i class="material-icons">trending_up</i></h2>
-                </div>
-                <h3 class="center">{{ 'default.about.header1'|trans({}, 'main') }}</h3>
-
-                <p class="light">{{ 'default.about.parag1'|trans({}, 'main') }}</p>
-            </div>
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-white-text"><i class="material-icons">group</i></h2>
-                </div>
-                <h3 class="center">{{ 'default.about.header2'|trans({}, 'main') }}</h3>
-
-                <p class="light">{{ 'default.about.parag2'|trans({}, 'main') }}</p>
-            </div>
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-white-text"><i class="material-icons">flash_on</i></h2>
-                </div>
-                <h3 class="center">{{ 'default.about.header3'|trans({}, 'main') }}</h3>
-
-                <p class="light">{{ 'default.about.parag3'|trans({}, 'main') }}</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+{% endspaceless %}
