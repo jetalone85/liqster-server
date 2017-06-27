@@ -60,7 +60,7 @@ layout:
     logout: 'Wyloguj'
     login: 'Zaloguj się'
     register: 'Dołącz do nas!'
-    logged_in_as: 'Zalogowano jako %username%'
+    logged_in_as: '%username%'
 form:
     group_name: 'Nazwa grupy'
     username: 'Nazwa użytkownika'
@@ -70,3 +70,21 @@ form:
     password_confirmation: 'Powtórz hasło'
     new_password: 'Nowe hasło'
     new_password_confirmation: 'Powtórz hasło'
+default:
+    about:
+        header0: 'Poznaj nas bliżej...'
+        header1: 'Co tak właściwie oferujemy?'
+        parag1: 'Oferujemy użytkownikom stworzony przez nas i poddany półrocznym testom system symulowania
+        aktywności na Instagramie. Pozostawiane przez nas polubienia i komentarze zachęcą innych
+        użytkowników do odwiedzin Twojego profilu, tym samym znacznie zwiększając jego zasięg.'
+        header2: 'Jesteśmy skupieni na użytkowniku!'
+        parag2: 'Dzięki nowoczesnemu użyciu zasad i elementów Material Desing,
+        stworzyliśmy dla użytkowników intuicyjny w obsłudze interfejs pozwalający korzystać z
+        aplikacji liqster. Możesz używać naszej strony na dowolnym urządzeniu, zarówno na komputerze
+        jak i na telefonie, czy tablecie. liqster zawsze pozostaje w pełni funkcjonalny!'
+        header3: 'Przede wszystkim rozwój!'
+        parag3: 'Od momentu powstania pierwszego zarysu programu po dziś dzień, cały czas się
+        rozwijamy. Jako nasz użytkownik niejednokrotnie poczujesz i zobaczysz zmiany na naszej
+        stronie, ponieważ nasza ciągła praca nad rozwojem liqster.pl jest właśnie dla Ciebie!
+        Zadowolenie naszych użytkowników jest naszym priorytetem, dlatego wciąż
+        szukamy nowych rozwiązań aby je maksymalizować!'

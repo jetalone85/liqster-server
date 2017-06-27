@@ -21,6 +21,11 @@ class DefaultController extends Controller
      */
     public function indexAction(): Response
     {
-        return $this->render('LiqsterHomePageBundle:Default:index.html.twig');
+        $em = $this->getDoctrine();
+        $products = $em->getRepository('LiqsterHomePageBundle:Product')->findAll();
+
+        return $this->render('LiqsterHomePageBundle:Default:index.html.twig', [
+            'products' => $products,
+        ]);
     }
 }

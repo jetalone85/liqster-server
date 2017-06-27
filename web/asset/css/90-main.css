@@ -44,24 +44,13 @@ h1, h2, h3, h4, h5 {
     background-image: url("../../asset/img/background-intro-logged-section.png");
 }
 
-.intro-section .jumbotron {
-    min-height: 35rem;
-    background-color: rgba(0, 0, 0, 0.15) !important;
-    color: #f7f7f7;
-}
-
 .price-section {
     background-image: url(http://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg);
 }
 
 .price-section .card {
-    min-height: 35rem;
+    min-height: 25rem;
     background-color: rgba(0, 0, 0, 0.15) !important;
-    color: #f7f7f7;
-}
-
-.price-section .card-footer {
-    background-color: rgba(0, 0, 0, 0.05) !important;
     color: #f7f7f7;
 }
 
