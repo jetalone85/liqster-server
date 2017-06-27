@@ -46,11 +46,8 @@ class RegistrationController extends BaseController
 
                 $userManager->updateUser($user);
 
-                /*****************************************************
-                 * Add new functionality (e.g. log the registration) *
-                 *****************************************************/
                 $this->container->get('logger')->info(
-                    sprintf("New user registration: %s", $user)
+                    sprintf('New user registration: %s', $user)
                 );
 
                 if (null === $response = $event->getResponse()) {

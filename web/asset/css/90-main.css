@@ -30,6 +30,10 @@ body {
     background: rgb(193, 81, 124);
 }
 
+.register-section {
+    background: rgb(193, 81, 124);
+}
+
 .intro-logged-section {
     background-image: url("../../asset/img/bg.z-1.jpg");
 }
