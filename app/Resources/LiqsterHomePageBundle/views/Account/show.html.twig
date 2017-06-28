@@ -28,6 +28,9 @@
                     <a href="{{ path('result_list', { 'id': account.id }) }}">Raporty z aktywności</a>
                 </li>
                 <li>
+                    <a href="{{ path('account_index') }}">Back to the list</a>
+                </li>
+                <li>
                     <a href="{{ path('account_check', { 'id': account.id }) }}">Sprawdź</a>
                 </li>
                 <li>
@@ -35,9 +38,6 @@
                 </li>
                 <li>
                     <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
-                </li>
-                <li>
-                    <a href="{{ path('account_index') }}">Back to the list</a>
                 </li>
                 <li>
                     {{ form_start(delete_form) }}
