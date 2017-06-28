@@ -147,16 +147,50 @@
                         <div class="card">
                             <div class="card-content">
                                 <h1 class="card-title">Przegląd i zarządzanie obecnymi kontami</h1>
+                                <table class="responsive-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>ilość czegoś</th>
+                                        <th>ilość innego czegoś</th>
+                                        <th>ilość jeszcze czegoś innego</th>
+                                        <th>aktywne y/n</th>
+                                        <th>Zaznacz</th>
+                                    </tr>
+                                    </thead>
 
+                                    <tbody>
+                                    <tr>
+                                        <td>Gość</td>
+                                        <td>9000</td>
+                                        <td>666</td>
+                                        <td>1234</td>
+                                        <td><i class="material-icons">not_interested</i></td>
+                                        <td><input type="checkbox" class="filled-in" id="filled-in-box"
+                                            />
+                                            <label for="filled-in-box"></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>inny gość</td>
+                                        <td>9001</td>
+                                        <td>667</td>
+                                        <td>12345</td>
+                                        <td><i class="material-icons">done</i></td>
+                                        <td><input type="checkbox" class="filled-in" id="filled-in-box"
+                                            />
+                                            <label for="filled-in-box"></label></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
 
                                 <div class="row">
                                     <a class="btn btn-outline-primary btn-large btn-block right"
-                                       href="" role="button">Usuń</a>
+                                       href="" role="button"><i class="material-icons right">delete</i>Usuń</a>
                                     <a class="btn btn-outline-primary btn-large btn-block right"
-                                       href="" role="button">Aktualizuj</a>
+                                       href="" role="button"><i class="material-icons right">replay</i>Aktualizuj</a>
 
                                     <a class="btn btn-outline-primary btn-large btn-block right"
-                                       href="{{ path('account_new') }}" role="button">Dodaj
+                                       href="{{ path('account_new') }}" role="button"><i class="material-icons right">add</i>Dodaj
                                         nowe
                                         konto</a></div>
                             </div>
