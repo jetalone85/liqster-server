@@ -7,8 +7,16 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class LiqsterProductAddCommand
+ * @package Liqster\AdminBundle\Command
+ */
 class LiqsterProductAddCommand extends ContainerAwareCommand
 {
+    /**
+     *
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
+     */
     protected function configure()
     {
         $this
@@ -16,6 +24,16 @@ class LiqsterProductAddCommand extends ContainerAwareCommand
             ->setDescription('...');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\ORMInvalidArgumentException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \LogicException
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 

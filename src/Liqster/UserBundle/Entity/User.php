@@ -35,6 +35,9 @@ class User extends BaseUser
      */
     private $confirmation = false;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         parent::__construct();

@@ -7,8 +7,16 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class LiqsterPaymentsConfirmCommand
+ * @package Liqster\PaymentBundle\Command
+ */
 class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
 {
+    /**
+     *
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
+     */
     protected function configure()
     {
         $this
@@ -16,9 +24,17 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
             ->setDescription('...');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     * @throws \LogicException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
         $payments = $em->getRepository('LiqsterPaymentBundle:Payment')->findBy([

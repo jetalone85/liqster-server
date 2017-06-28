@@ -13,8 +13,21 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class RegistrationController
+ * @package Liqster\UserBundle\Controller
+ */
 class RegistrationController extends BaseController
 {
+    /**
+     * @param Request $request
+     * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \InvalidArgumentException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     * @throws \Symfony\Component\Form\Exception\LogicException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
+     */
     public function registerAction(Request $request)
     {
         /** @var $formFactory FactoryInterface */

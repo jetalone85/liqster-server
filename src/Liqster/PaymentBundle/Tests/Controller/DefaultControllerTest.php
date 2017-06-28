@@ -4,8 +4,15 @@ namespace Liqster\PaymentBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class DefaultControllerTest
+ * @package Liqster\PaymentBundle\Tests\Controller
+ */
 class DefaultControllerTest extends WebTestCase
 {
+    /**
+     *
+     */
     public function testIndex()
     {
         $client = static::createClient();
