@@ -19,7 +19,7 @@ class InstaxerTest extends TestCase
         $path = __DIR__ . '/../../var/cache/instaxer/profiles/session.dat';
         $instaxer = new Instaxer($path);
 
-        $instaxer->login('lucy@lucyu.com', 'lucyu@');
+        $instaxer->login('lucyu1234', 'lucyu@');
         $this->assertEquals('Lucy', $instaxer->instagram->getLoggedInUser()->getFullName());
     }
 
@@ -29,7 +29,7 @@ class InstaxerTest extends TestCase
         $path = __DIR__ . '/../../var/cache/instaxer/profiles/session.dat';
         $instaxer = new Instaxer($path);
 
-        $instaxer->login('lucy@lucyu.com', 'lucyu@');
+        $instaxer->login('lucyu1234', 'lucyu@');
 
         $this->assertInstanceOf(Instagram::class, $instaxer->getInstagram());
     }
