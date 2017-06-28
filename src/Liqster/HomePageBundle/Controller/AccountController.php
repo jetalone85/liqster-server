@@ -50,6 +50,10 @@ class AccountController extends Controller
         foreach ($accounts as $account) {
             $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
 
+            /**
+             * @TODO
+             * do przeniesienia do domain
+             */
             if ($account->isPayed() === false && $purchase->getStatus() === 'verify') {
                 $account->setPayed(true);
                 $em->flush();
