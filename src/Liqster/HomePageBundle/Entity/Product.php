@@ -65,6 +65,24 @@ class Product
     private $price;
 
     /**
+     * @var string
+     * @ORM\Column(name="image", type="string", unique=false, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var string
+     * @ORM\Column(name="status", type="string", unique=false, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string
+     * @ORM\Column(name="description", type="string", unique=false, nullable=true)
+     */
+    private $description;
+
+    /**
      * @return Uuid
      */
     public function getId(): Uuid
@@ -210,5 +228,53 @@ class Product
     public function setPrice(int $price)
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
     }
 }

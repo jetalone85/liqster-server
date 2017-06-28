@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -44,7 +45,7 @@ class ProductController extends Controller
      * @Route("/new", name="admin_product_new")
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      * @throws \LogicException
      * @throws \InvalidArgumentException
      */
@@ -110,7 +111,7 @@ class ProductController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param Product $product
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      * @throws \LogicException
      * @throws \InvalidArgumentException
      */
@@ -140,11 +141,11 @@ class ProductController extends Controller
      * @Method("DELETE")
      * @param Request $request
      * @param Product $product
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      * @throws \LogicException
      * @throws \InvalidArgumentException
      */
-    public function deleteAction(Request $request, Product $product)
+    public function deleteAction(Request $request, Product $product): RedirectResponse
     {
         $form = $this->createDeleteForm($product);
         $form->handleRequest($request);
