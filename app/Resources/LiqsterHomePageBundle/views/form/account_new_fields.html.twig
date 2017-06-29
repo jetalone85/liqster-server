@@ -1,0 +1,10 @@
+{% block form_row %}
+    <div class="row">
+        <div class="container input-field col s12">
+            {{ form_errors(form) }}
+            {{ form_widget(form) }}
+            {{ form_label(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock form_row %}

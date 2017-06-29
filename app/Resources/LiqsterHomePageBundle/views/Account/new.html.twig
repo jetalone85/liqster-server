@@ -1,29 +1,53 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
-{% form_theme form '@LiqsterHomePage/form/fields.html.twig' %}
 
-{% block body %}
+{% form_theme form _self %}
 
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m12">
-                    <div class="card-panel">
-                        <h1>Dodaj nowe konto</h1>
+{% block choice_widget_expanded %}
+    <div class="integer_widget">
+        <div {{ block('widget_container_attributes') }}>
+            {%- for child in form %}
+                <div class="col s12 m6 l3 xl3">
+                    <div class="card">
+                        <div class="card-panel">
+                            <h2 class="pink-text darken-2 center-align">{{ form_label(child) }}</h2>
+                        </div>
+                        <div class="card-content">
+                            <h2>{{ 10 / 100 }} złotych</h2>
+                            {{- form_widget(child) -}}
+                            {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
+                        </div>
+                    </div>
+                </div>
+            {% endfor -%}
+        </div>
 
-                        {{ form_start(form) }}
-                        {{ form_widget(form) }}
-                        {{ form_end(form) }}
+    </div>
+{% endblock %}
 
-                        <div class="row">
-                            <p>Możesz powrócić do panelu zarządania Twoimi kontami.</p>
-                            <p><strong>Pamiętaj!</strong> Do póki nie dokonasz płatności, nie jesteś zobowiązany ...</p>
-                            <a class="waves-effect waves-light btn" href="{{ path('account_index') }}"
-                               role="button">Powrót do panelu</a>
+    {% block body %}
+
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card-panel">
+                            <h1>Dodaj nowe konto</h1>
+
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            {{ form_end(form) }}
+
+                            <div class="row">
+                                <p>Możesz powrócić do panelu zarządania Twoimi kontami.</p>
+                                <p><strong>Pamiętaj!</strong> Do póki nie dokonasz płatności, nie jesteś zobowiązany ...
+                                </p>
+                                <a class="waves-effect waves-light btn" href="{{ path('account_index') }}"
+                                   role="button">Powrót do panelu</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-{% endblock %}
+    {% endblock %}
