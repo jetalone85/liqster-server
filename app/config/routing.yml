@@ -1,3 +1,8 @@
+liqster_mq:
+    resource: "@LiqsterMQBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 liqster_payment_default:
     resource: "@LiqsterPaymentBundle/Controller/DefaultController.php"
     type:     annotation

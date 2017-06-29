@@ -1,0 +1,4 @@
+services:
+#    liqster_mq.example:
+#        class: Liqster\MQBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

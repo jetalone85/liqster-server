@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Liqster\PaymentBundle\LiqsterPaymentBundle(),
             new Liqster\AdminBundle\AdminBundle(),
             new Liqster\UserBundle\LiqsterUserBundle(),
+            new Liqster\MQBundle\LiqsterMQBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'ModelTest'], true)) {
