@@ -32,12 +32,8 @@ h1, h2, h3, h4, h5 {
     background-image: url("../../asset/img/background-intro-section.jpg");
 }
 
-.login-section {
-    background: rgb(193, 81, 124);
-}
-
-.register-section {
-    background: rgb(193, 81, 124);
+.flat-section {
+    background: #fce4ec;
 }
 
 .intro-logged-section {
@@ -84,3 +80,4 @@ header, main, footer {
 .navbar-fixed {
     z-index: 20;
 }
+
