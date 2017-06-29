@@ -48,6 +48,10 @@ class AccountController extends Controller
 
         $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
 
+        if ($accounts === []) {
+            return $this->redirectToRoute('account_new');
+        }
+
         foreach ($accounts as $account) {
             $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
 
