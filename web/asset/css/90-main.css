@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .flat-section {
-    background: #fce4ec;
+    background: rgb(193, 81, 124);
 }
 
 .intro-logged-section {
@@ -80,4 +80,3 @@ header, main, footer {
 .navbar-fixed {
     z-index: 20;
 }
-
