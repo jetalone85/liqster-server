@@ -48,6 +48,7 @@
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         {% if app.user %}ga('set', 'userId', {{ app.user.id }});{% endif %}
         ga('create', 'UA-91236554-2', 'auto');
+        ga('require', 'GTM-T76SNMT');
         ga('send', 'pageview');
 
     </script>
