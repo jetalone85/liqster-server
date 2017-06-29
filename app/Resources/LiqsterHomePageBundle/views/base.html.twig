@@ -78,7 +78,7 @@
                 </div>
             </li>
             <li>
-                <a href="{{ path('account_index') }}">Panel</a>
+                <a href="{{ path('account_index') }}">Lista kont</a>
             </li>
         {% endif %}
 
@@ -127,7 +127,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <li>
-                                <a href="{{ path('account_index') }}">Panel</a>
+                                <a href="{{ path('account_index') }}">Lista kont</a>
                             </li>
                             <li>
                                 <a href="{{ path('profile_index') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
