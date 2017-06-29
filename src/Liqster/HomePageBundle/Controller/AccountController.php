@@ -9,6 +9,7 @@ use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\Purchase;
 use Liqster\HomePageBundle\Form\AccountType;
+use Liqster\MQBundle\Domain\MQ;
 use Liqster\PaymentBundle\Domain\Przelewy24;
 use Liqster\PaymentBundle\Entity\Payment;
 use Ramsey\Uuid\Uuid;
@@ -103,6 +104,7 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @return RedirectResponse|Response
+     * @throws \RuntimeException
      * @throws Exception
      * @throws \LogicException
      */
@@ -119,10 +121,13 @@ class AccountController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             try {
-                $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
+//                $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
+//
+//                $instaxer = new Instaxer($path);
+//                $instaxer->login($account->getName(), $account->getPassword());
 
-                $instaxer = new Instaxer($path);
-                $instaxer->login($account->getName(), $account->getPassword());
+                $mq = new MQ();
+                $instaxer = $mq->query('instaxers?username=' . $account->getName() . '&password=' . $account->getPassword())->getBody()->getContents();
 
             } catch (InstagramException $exception) {
                 return $this->redirectToRoute('account_new', [
