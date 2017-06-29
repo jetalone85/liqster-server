@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .price-section {
-    background-image: url(http://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg);
+    background-image: url("../../asset/img/background-intro-section.jpg");
 }
 
 .price-section .card {
