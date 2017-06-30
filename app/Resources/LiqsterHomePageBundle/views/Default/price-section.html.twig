@@ -16,7 +16,7 @@
 
                         </div>
                         <div class="card-content">
-                            <h2>{{ product.price / 100 }} złotych</h2>
+                            <h2>{{ (product.price / 100)|number_format(2) }} złotych</h2>
                             <a class="btn-floating halfway-fab waves-effect waves-light red"><i
                                         class="material-icons">add</i></a>
                         </div>
