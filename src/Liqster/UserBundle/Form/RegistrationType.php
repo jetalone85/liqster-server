@@ -12,12 +12,11 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class RegistrationType
- * @package Liqster\UserBundle\Form
- */
 class RegistrationType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -52,6 +51,10 @@ class RegistrationType extends AbstractType
             ]);
     }
 
+    /**
+     * {@inheritdoc}
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -62,13 +65,8 @@ class RegistrationType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
     public function getBlockPrefix()
     {
-        return 'liqster_user_registration';
+        return 'liqster_homepagebundle_account';
     }
 }

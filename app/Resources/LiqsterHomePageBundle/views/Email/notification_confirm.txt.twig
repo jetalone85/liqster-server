@@ -1,3 +1,4 @@
+{% extends '@LiqsterHomePage/Email/base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 {% block subject %}
 {%- autoescape false -%}
@@ -5,14 +6,7 @@ Aktywacja konta
 {%- endautoescape -%}
 {% endblock %}
 
-{% block body_text %}
-{% endblock %}
-
-{% block body_html %}
-
-    {% autoescape %}
+{% block content %}
         <h2>Witaj, {{ user.username }}</h2>
         <p>Aktywowaliśmy konto</p>
-    {% endautoescape %}
-
 {% endblock %}

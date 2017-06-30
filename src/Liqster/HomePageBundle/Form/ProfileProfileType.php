@@ -11,7 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProfileProfileType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */

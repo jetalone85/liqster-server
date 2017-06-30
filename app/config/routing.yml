@@ -3,6 +3,11 @@ liqster_mq:
     type:     annotation
     prefix:   /
 
+liqster_home_page_notification:
+    resource: "@LiqsterHomePageBundle/Controller/NotificationController.php"
+    type:     annotation
+    prefix:   /
+
 liqster_payment_default:
     resource: "@LiqsterPaymentBundle/Controller/DefaultController.php"
     type:     annotation
