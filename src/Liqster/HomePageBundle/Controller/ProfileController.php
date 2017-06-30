@@ -2,9 +2,9 @@
 
 namespace Liqster\HomePageBundle\Controller;
 
+use Liqster\HomePageBundle\Entity\User;
 use Liqster\HomePageBundle\Form\ProfileProfileType;
 use Liqster\HomePageBundle\Form\ProfileSettingsType;
-use Liqster\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
@@ -46,19 +46,6 @@ class ProfileController extends Controller
     }
 
     /**
-     *
-     * @param User $user
-     * @return Form The form
-     */
-    private function createDeleteForm(User $user): Form
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
-    }
-
-    /**
      * @param Request $request
      * @return Response
      * @throws \LogicException
@@ -85,6 +72,19 @@ class ProfileController extends Controller
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
         ]);
+    }
+
+    /**
+     *
+     * @param User $user
+     * @return Form The form
+     */
+    private function createDeleteForm(User $user): Form
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 
     /**

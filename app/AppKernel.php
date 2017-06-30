@@ -29,7 +29,6 @@ class AppKernel extends Kernel
             new Beelab\TagBundle\BeelabTagBundle(),
             new Liqster\PaymentBundle\LiqsterPaymentBundle(),
             new Liqster\AdminBundle\AdminBundle(),
-            new Liqster\UserBundle\LiqsterUserBundle(),
             new Liqster\MQBundle\LiqsterMQBundle(),
         ];
 

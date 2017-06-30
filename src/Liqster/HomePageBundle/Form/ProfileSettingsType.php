@@ -2,7 +2,7 @@
 
 namespace Liqster\HomePageBundle\Form;
 
-use Liqster\UserBundle\Entity\User;
+use Liqster\HomePageBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
