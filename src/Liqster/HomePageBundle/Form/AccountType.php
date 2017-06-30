@@ -29,9 +29,6 @@ class AccountType extends AbstractType
                 'expanded' => true,
                 'attr' => [
                     'class' => 'input-field',
-                ],
-                'label_attr' => [
-                    'note' => 'jakaś cośka'
                 ]
             ])
             ->add('name', TextType::class, [
