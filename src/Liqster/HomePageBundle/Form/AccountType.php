@@ -22,12 +22,16 @@ class AccountType extends AbstractType
         $builder
             ->add('product', EntityType::class, [
                 'class' => Product::class,
+                'data_class' => Product::class,
                 'required' => true,
                 'label' => 'Produkt',
                 'choice_label' => 'type',
                 'expanded' => true,
                 'attr' => [
                     'class' => 'input-field',
+                ],
+                'label_attr' => [
+                    'note' => 'jakaś cośka'
                 ]
             ])
             ->add('name', TextType::class, [

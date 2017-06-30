@@ -51,6 +51,10 @@ DirectoryIndex app.php
     RewriteCond %{ENV:REDIRECT_STATUS} ^$
     RewriteRule ^app\.php(?:/(.*)|$) %{ENV:BASE}/$1 [R=301,L]
 
+    RewriteCond %{HTTP_HOST} ^sub\.domain\.(?:lc|nl)$ [NC]
+    RewriteCond %{REQUEST_URI} !\.(png|woff|tff)$
+    RewriteRule $(.*) app_dev.php$1 [NC,L,QSA]
+
     # If the requested filename exists, simply serve it.
     # We only want to let Apache serve files and not directories.
     RewriteCond %{REQUEST_FILENAME} -f
@@ -68,4 +72,14 @@ DirectoryIndex app.php
         RedirectMatch 302 ^/$ /app.php/
         # RedirectTemp cannot be used instead
     </IfModule>
+</IfModule>
+
+<IfModule mime_module>
+    AddType application/vnd.ms-fontobject eot
+    AddType application/font-woff         woff
+    AddType application/x-font-ttf        ttf
+</IfModule>
+
+<IfModule deflate_module>
+    AddOutputFilter DEFLATE eot ttf
 </IfModule>

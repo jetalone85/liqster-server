@@ -211,7 +211,7 @@
             "support": {
                 "source": "https://github.com/pyrkamarcin/Symfony-Bundle/tree/master"
             },
-            "time": "2017-06-12T09:25:12+00:00"
+          "time": "2017-06-12 09:25:12"
         },
         {
             "name": "doctrine/annotations",
