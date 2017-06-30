@@ -6,9 +6,6 @@
     <title>Simple Transactional Email</title>
     <style>
 
-
-        @import url('https://fonts.googleapis.com/css?family=Roboto');
-
         /* -------------------------------------
             GLOBAL RESETS
         ------------------------------------- */
@@ -20,10 +17,10 @@
 
         body {
             background-color: #f6f6f6;
-            font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
-            font-size: 14px;
-            line-height: 1.4;
+            font-size: 12px;
+            line-height: 1.1;
             margin: 0;
             padding: 0;
             -ms-text-size-adjust: 100%;
@@ -35,11 +32,12 @@
             mso-table-lspace: 0pt;
             mso-table-rspace: 0pt;
             width: 100%;
+            margin-bottom: 2em;
         }
 
         table td {
-            font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 14px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 12px;
             vertical-align: top;
         }
 
@@ -85,22 +83,6 @@
             padding: 20px;
         }
 
-        .footer {
-            clear: both;
-            padding-top: 10px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .footer td,
-        .footer p,
-        .footer span,
-        .footer a {
-            color: #999999;
-            font-size: 12px;
-            text-align: center;
-        }
-
         /* -------------------------------------
             TYPOGRAPHY
         ------------------------------------- */
@@ -109,16 +91,15 @@
         h3,
         h4 {
             color: #000000;
-            font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: 400;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 200;
             line-height: 1.4;
             margin: 0;
             Margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 35px;
-            font-weight: 300;
+            font-size: 32px;
             text-align: center;
             text-transform: capitalize;
         }
@@ -126,8 +107,8 @@
         p,
         ul,
         ol {
-            font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 14px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 12px;
             font-weight: normal;
             margin: 0;
             Margin-bottom: 15px;
@@ -175,7 +156,7 @@
             color: #3498db;
             cursor: pointer;
             display: inline-block;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
             margin: 0;
             padding: 12px 25px;
@@ -356,17 +337,10 @@
 
                 {% block main %}
                     <table class="main">
-
                         <!-- START MAIN CONTENT AREA -->
                         <tr>
                             <td class="wrapper">
                                 <table border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td>
-                                            <img src="http://liqster.pl/asset/img/logo.black.white.80x40.png" width="80"
-                                                 height="40" alt="liqster Logo">
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td>
                                             {% block content %}
@@ -378,21 +352,25 @@
                         </tr>
                     </table>
 
+                    <table class="main">
+                        <!-- START MAIN CONTENT AREA -->
+                        <tr>
+                            <td class="wrapper">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            <p>liqster.pl @ 2017 mtype.pl Marcin Pyrka</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
                 {% endblock %}
 
 
                 {% block footer %}
-
-                    <div class="footer">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td class="content-block">
-                                    <span class="apple-link">liqster.pl @ mtype.pl Marcin Pyrka</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
                 {% endblock %}
 
             </div>
