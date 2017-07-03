@@ -143,7 +143,7 @@ class ProfileController extends Controller
      * @Route("/{id}",   name="user_delete")
      * @Method("DELETE")
      * @param            Request $request
-     * @param            User $user
+     * @param            User    $user
      * @return           RedirectResponse
      * @throws           \LogicException
      * @throws           \InvalidArgumentException

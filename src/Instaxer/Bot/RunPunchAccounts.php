@@ -14,7 +14,7 @@ class RunPunchAccounts
      * RunLikeRepository constructor.
      *
      * @param ItemRepository $repository
-     * @param Instaxer $instaxer
+     * @param Instaxer       $instaxer
      */
     public function __construct(ItemRepository $repository, Instaxer $instaxer)
     {

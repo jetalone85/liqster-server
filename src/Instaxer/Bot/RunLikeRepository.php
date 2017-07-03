@@ -16,9 +16,9 @@ class RunLikeRepository
      * RunLikeRepository constructor.
      *
      * @param ItemRepository $repository
-     * @param Instaxer $instaxer
-     * @param int $counter
-     * @param int $long
+     * @param Instaxer       $instaxer
+     * @param int            $counter
+     * @param int            $long
      */
     public function __construct(ItemRepository $repository, Instaxer $instaxer, int $counter = 1, int $long = 1)
     {
