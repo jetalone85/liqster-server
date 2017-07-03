@@ -93,6 +93,8 @@ fos_user:
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
+        form:
+            type: Liqster\UserBundle\Form\RegistrationType
         confirmation:
             enabled: true
             template:   '@FOSUser/Registration/email.txt.twig'

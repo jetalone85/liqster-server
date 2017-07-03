@@ -2,20 +2,68 @@
 
 {% block fos_user_content %}
 
-    <div class="container input-field">
-        <div class="row">
+    <section id="intro" class="full-section flat-section">
+        <div class="view container-fluid">
+            <div class="container input-field">
+                <div class="row">
 
-            <div class="col l6 offset-l3">
+                    <div class="col l8 offset-l2">
 
-                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-                {{ form_widget(form) }}
-                <div>
-                    <input class="btn btn-primary" type="submit"
-                           value="{{ 'registration.submit'|trans({}, 'main') }}"/>
+                        <div class="card">
+                            <div class="card-content">
+
+                                {#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}#}
+                                {#{{ form_widget(form) }}#}
+                                {#{{ form_label(form) }}#}
+                                {#<div>#}
+                                {#<input class="btn btn-primary" type="submit"#}
+                                {#value="{{ 'registration.submit'|trans({}, 'main') }}"/>#}
+                                {#</div>#}
+                                {#{{ form_end(form) }}#}
+
+
+                                <form action="{{ path('fos_user_registration_register') }}" method="post">
+                                    <div id="fos_user_registration_form">
+
+                                        <div class="input-field">
+                                            {{ form_widget(form.email, { 'attr': {'class': '' } }) }}
+                                            {{ form_label(form.email) }}
+                                            {{ form_errors(form.email) }}
+                                        </div>
+
+                                        <div class="input-field">
+                                            {{ form_widget(form.username, { 'attr': {'class': ''} }) }}
+                                            {{ form_label(form.username) }}
+                                            {{ form_errors(form.username) }}
+                                        </div>
+
+                                        <div class="input-field">
+                                            {{ form_widget(form.plainPassword.first, { 'attr': {'class': ''} }) }}
+                                            {{ form_label(form.plainPassword.first) }}
+                                            {{ form_errors(form.plainPassword.first) }}
+                                        </div>
+
+                                        <div class="input-field">
+                                            {{ form_widget(form.plainPassword.second, { 'attr': {'class': '' } }) }}
+                                            {{ form_label(form.plainPassword.second) }}
+                                            {{ form_errors(form.plainPassword.second) }}
+                                        </div>
+
+                                        {{ form_rest(form) }}
+
+                                    </div>
+                                    <div>
+                                        <input class="btn btn-lg btn-primary btn-block" type="submit"
+                                               value="Zatwierdź">
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {{ form_end(form) }}
-
             </div>
         </div>
-    </div>
+    </section>
 {% endblock fos_user_content %}

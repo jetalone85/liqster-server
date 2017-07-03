@@ -25,7 +25,6 @@ h1, h2, h3, h4, h5 {
     min-height: 105%;
     padding-top: 5rem;
     padding-bottom: 5rem;
-    /*min-height: 55rem;*/
 }
 
 .intro-section {
@@ -33,7 +32,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .flat-section {
-    background: rgb(193, 81, 124);
+    background: rgba(193, 81, 124, 0.2);
 }
 
 .intro-logged-section {

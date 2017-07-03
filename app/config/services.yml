@@ -24,3 +24,7 @@ services:
         public: false
         tags:
             - { name: serializer.normalizer }
+    liqster.form.registration:
+          class: Liqster\UserBundle\Form\RegistrationType
+          tags:
+              - { name: form.type, alias: liqster_user_registration }
