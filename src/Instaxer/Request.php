@@ -11,6 +11,7 @@ class Request
 
     /**
      * Request constructor.
+     *
      * @param Instaxer $instaxer
      */
     public function __construct(Instaxer $instaxer)

@@ -15,11 +15,11 @@ class ResultController extends Controller
      *
      * @Route("/account/{id}/reports", name="result_list")
      * @Method({"GET"})
-     * @param Account $account
-     * @return Response
-     * @throws \InvalidArgumentException
-     * @throws \UnexpectedValueException
-     * @throws \LogicException
+     * @param                          Account $account
+     * @return                         Response
+     * @throws                         \InvalidArgumentException
+     * @throws                         \UnexpectedValueException
+     * @throws                         \LogicException
      */
     public function listAction(Account $account): Response
     {
@@ -27,8 +27,10 @@ class ResultController extends Controller
 
         $reports = $em->getRepository('CronCronBundle:CronReport')->findBy(['job' => $account->getCronJob()], ['runAt' => 'DESC'], 10);
 
-        return $this->render('LiqsterHomePageBundle:Result:list.html.twig', array(
+        return $this->render(
+            'LiqsterHomePageBundle:Result:list.html.twig', array(
             'reports' => $reports,
-        ));
+            )
+        );
     }
 }

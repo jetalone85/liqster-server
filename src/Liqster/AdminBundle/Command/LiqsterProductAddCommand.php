@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class LiqsterProductAddCommand
+ *
  * @package Liqster\AdminBundle\Command
  */
 class LiqsterProductAddCommand extends ContainerAwareCommand

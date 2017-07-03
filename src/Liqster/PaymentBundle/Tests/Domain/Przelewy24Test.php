@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class Przelewy24Test
+ *
  * @package Liqster\PaymentBundle\Tests\Domain
  */
 class Przelewy24Test extends TestCase

@@ -4,6 +4,7 @@ namespace Instaxer\Domain;
 
 /**
  * Class Border
+ *
  * @package Instaxer\Domain
  */
 class Border
@@ -20,6 +21,7 @@ class Border
 
     /**
      * Border constructor.
+     *
      * @param $listFile
      */
     public function __construct($listFile)

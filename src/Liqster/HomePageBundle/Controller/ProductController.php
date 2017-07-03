@@ -13,8 +13,10 @@ class ProductController extends Controller
         $em = $this->getDoctrine();
         $product = $em->getRepository('LiqsterHomePageBundle:Product')->findOneBy(['id' => $request->attributes->get('id')]);
 
-        return $this->render('LiqsterHomePageBundle:Product:field.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Product:field.html.twig', [
             'product' => $product
-        ]);
+            ]
+        );
     }
 }

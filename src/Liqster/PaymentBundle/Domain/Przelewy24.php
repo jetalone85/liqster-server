@@ -5,15 +5,15 @@ namespace Liqster\PaymentBundle\Domain;
 /**
  * Przelewy24 comunication class
  *
- * @author DialCom24 Sp. z o.o.
+ * @author    DialCom24 Sp. z o.o.
  * @copyright DialCom24 Sp. z o.o.
- * @version 1.1
- * @since 2014-04-29
+ * @version   1.1
+ * @since     2014-04-29
  */
 
 /**
- *
  * Communication protol version
+ *
  * @var double
  */
 define('P24_VERSION', '3.2');
@@ -22,50 +22,57 @@ class Przelewy24
 {
     /**
      * Live system URL address
+     *
      * @var string
      */
-//    private $hostLive = 'https://secure.przelewy24.pl/';
+    //    private $hostLive = 'https://secure.przelewy24.pl/';
     private $hostLive = 'https://sandbox.przelewy24.pl/';
 
     /**
      * Sandbox system URL address
+     *
      * @var string
      */
     private $hostSandbox = 'https://sandbox.przelewy24.pl/';
 
     /**
      * Use Live (false) or Sandbox (true) enviroment
+     *
      * @var bool
      */
     private $testMode = true;
 
     /**
      * Merchant id
+     *
      * @var int
      */
     private $merchantId = 0;
 
     /**
      * Merchant posId
+     *
      * @var int
      */
     private $posId = 0;
 
     /**
      * Salt to create a control sum (from P24 panel)
+     *
      * @var string
      */
     private $salt = '';
 
     /**
      * Array of POST data
+     *
      * @var array
      */
     private $postData = array();
 
     /**
-     *
      * Obcject constructor. Set initial parameters
+     *
      * @param int $merchantId
      * @param int $posId
      * @param string $salt
@@ -78,8 +85,9 @@ class Przelewy24
         $this->posId = (int)$posId;
         $this->salt = $salt;
 
-        if ($this->merchantId === 0)
+        if ($this->merchantId === 0) {
             $this->merchantId = $this->posId;
+        }
 
         if ($testMode) {
             $this->hostLive = $this->hostSandbox;
@@ -91,11 +99,11 @@ class Przelewy24
     }
 
     /**
-     *
      * Add value do post request
+     *
      * @param string $name Argument name
      * @param mixed $value Argument value
-     * @todo Add postData validation
+     * @todo  Add postData validation
      */
     public function addValue($name, $value)
     {
@@ -105,7 +113,6 @@ class Przelewy24
     }
 
     /**
-     *
      * Returns host URL
      */
     public function getHost()
@@ -114,8 +121,8 @@ class Przelewy24
     }
 
     /**
-     *
      * Function is testing a connection with P24 server
+     *
      * @return array Array(INT Error, Array Data), where data
      */
     public function testConnection()
@@ -134,10 +141,10 @@ class Przelewy24
     }
 
     /**
-     *
      * Function contect to P24 system
-     * @param string $function Method name
-     * @param array $ARG POST parameters
+     *
+     * @param  string $function Method name
+     * @param  array $ARG POST parameters
      * @return array array(INT Error code, ARRAY Result)
      */
     private function callUrl($function, $ARG)
@@ -151,7 +158,9 @@ class Przelewy24
 
         $REQ = array();
 
-        foreach ($ARG as $k => $v) $REQ[] = $k . "=" . urlencode($v);
+        foreach ($ARG as $k => $v) {
+            $REQ[] = $k . "=" . urlencode($v);
+        }
 
         $url = $this->hostLive . $function;
         $user_agent = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)';
@@ -166,7 +175,7 @@ class Przelewy24
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
             curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             if ($result = curl_exec($ch)) {
                 $INFO = curl_getinfo($ch);
                 curl_close($ch);
@@ -185,7 +194,9 @@ class Przelewy24
                         $Y = explode('=', $val);
                         $RES[trim($Y[0])] = urldecode(trim($Y[1]));
                     }
-                    if (!isset($RES['error'])) return array('error' => 999, 'errorMessage' => 'call:Unknown error');
+                    if (!isset($RES['error'])) {
+                        return array('error' => 999, 'errorMessage' => 'call:Unknown error');
+                    }
                     return $RES;
 
                 }
@@ -207,9 +218,9 @@ class Przelewy24
     }
 
     /**
-     *
      * Prepare a transaction request
-     * @param bool $redirect Set true to redirect to Przelewy24 after transaction registration
+     *
+     * @param  bool $redirect Set true to redirect to Przelewy24 after transaction registration
      * @return array array(INT Error code, STRING Token)
      */
     public function trnRegister($redirect = false)
@@ -238,8 +249,9 @@ class Przelewy24
 
     /**
      * Redirects or returns URL to a P24 payment screen
-     * @param string $token Token
-     * @param bool $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
+     *
+     * @param  string $token Token
+     * @param  bool $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
      * @return string URL to P24 payment screen
      */
     public function trnRequest($token, $redirect = true)
@@ -255,14 +267,14 @@ class Przelewy24
     }
 
     /**
-     *
      * Function verify received from P24 system transaction's result.
+     *
      * @return array
      */
     public function trnVerify()
     {
 
-//        $crc = md5($this->postData['p24_session_id'] . '|' . $this->postData['p24_order_id'] . '|' . $this->postData['p24_amount'] . '|' . $this->salt);
+        //        $crc = md5($this->postData['p24_session_id'] . '|' . $this->postData['p24_order_id'] . '|' . $this->postData['p24_amount'] . '|' . $this->salt);
         $crc = md5($this->postData['p24_session_id'] . '|' . $this->postData['p24_order_id'] . '|' . $this->postData['p24_amount'] . '|' . $this->postData['p24_currency'] . '|' . $this->salt);
 
         $this->addValue('p24_sign', $crc);

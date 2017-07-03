@@ -6,6 +6,7 @@ use Instaxer\Domain\Model;
 
 /**
  * Class Item
+ *
  * @package Instaxer\Domain\Model
  */
 class Item extends Model
@@ -17,6 +18,7 @@ class Item extends Model
 
     /**
      * Item constructor.
+     *
      * @param $item
      */
     public function __construct($item)

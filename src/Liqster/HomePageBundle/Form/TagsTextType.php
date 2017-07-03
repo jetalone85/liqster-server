@@ -24,6 +24,7 @@ class TagsTextType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      * @throws \Symfony\Component\Routing\Exception\InvalidParameterException
      * @throws \Symfony\Component\Routing\Exception\MissingMandatoryParametersException
@@ -31,14 +32,16 @@ class TagsTextType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'required' => false,
             'label' => 'Tags',
             'attr' => [
                 'placeholder' => 'separate tags with comma',
                 'data-ajax' => $this->router->generate('tags'),
             ],
-        ]);
+            ]
+        );
     }
 
     /**

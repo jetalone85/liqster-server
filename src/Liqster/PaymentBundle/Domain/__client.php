@@ -1,5 +1,5 @@
 <?php
-include 'Przelewy24.php';
+require 'Przelewy24.php';
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -42,7 +42,9 @@ if ($_GET["ok"] == 2) {
 
         $P24 = new Przelewy24($_POST["p24_merchant_id"], $_POST["p24_pos_id"], $FIL['p24_crc'], $FIL['env']);
 
-        foreach ($_POST as $k => $v) $P24->addValue($k, $v);
+        foreach ($_POST as $k => $v) {
+            $P24->addValue($k, $v);
+        }
 
         $P24->addValue('p24_currency', $FIL['p24_currency']);
         $P24->addValue('p24_amount', $FIL['p24_amount']);
@@ -65,7 +67,8 @@ if (isset($_POST["submit_test"])) {
     echo '<h2>Wynik:</h2>';
     $test = ($_POST["env"] == 1 ? true : false);
     $salt = $_POST["salt"];
-    $P24 = new Przelewy24($_POST["p24_merchant_id"],
+    $P24 = new Przelewy24(
+        $_POST["p24_merchant_id"],
         $_POST["p24_pos_id"],
         $salt,
         $test
@@ -79,12 +82,16 @@ if (isset($_POST["submit_test"])) {
     $test = ($_POST["env"] == 1 ? "1" : "0");
     $salt = $_POST["salt"];
 
-    $P24 = new Przelewy24($_POST["p24_merchant_id"],
+    $P24 = new Przelewy24(
+        $_POST["p24_merchant_id"],
         $_POST["p24_pos_id"],
         $salt,
-        $test);
+        $test
+    );
 
-    foreach ($_POST as $k => $v) $P24->addValue($k, $v);
+    foreach ($_POST as $k => $v) {
+        $P24->addValue($k, $v);
+    }
 
     file_put_contents("parametry.txt", "p24_crc=" . $_POST['salt'] . "&p24_amount=" . $_POST['p24_amount'] . "&p24_currency=" . $_POST['p24_currency'] . "&env=" . $test);
 

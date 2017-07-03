@@ -26,20 +26,23 @@ class CronType extends AbstractType
 
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Cron::class
-        ]);
+            ]
+        );
     }
 
-//    /**
-//     * {@inheritdoc}
-//     */
-//    public function getBlockPrefix()
-//    {
-//        return 'liqster_homepagebundle_account';
-//    }
+    //    /**
+    //     * {@inheritdoc}
+    //     */
+    //    public function getBlockPrefix()
+    //    {
+    //        return 'liqster_homepagebundle_account';
+    //    }
 }

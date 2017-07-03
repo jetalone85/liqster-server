@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * Class DefaultControllerTest
+ *
  * @package Liqster\MQBundle\Tests\Controller
  */
 class DefaultControllerTest extends WebTestCase

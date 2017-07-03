@@ -6,6 +6,7 @@ use Instaxer\Domain\Repository;
 
 /**
  * Class ItemRepository
+ *
  * @package Instaxer\Domain\Model
  */
 class ItemRepository extends Repository
@@ -17,6 +18,7 @@ class ItemRepository extends Repository
 
     /**
      * ItemRepository constructor.
+     *
      * @param array $arrayOfTags
      */
     public function __construct(array $arrayOfTags)

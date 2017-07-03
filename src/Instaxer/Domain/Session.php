@@ -6,6 +6,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Class Session
+ *
  * @package Instaxer\Domain
  */
 final class Session
@@ -22,6 +23,7 @@ final class Session
 
     /**
      * Session constructor.
+     *
      * @param $sessionFile
      */
     public function __construct($sessionFile)

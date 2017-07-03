@@ -14,6 +14,7 @@ class RunLikeRepository
 
     /**
      * RunLikeRepository constructor.
+     *
      * @param ItemRepository $repository
      * @param Instaxer $instaxer
      * @param int $counter

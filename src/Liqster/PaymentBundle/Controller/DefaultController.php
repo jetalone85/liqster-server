@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class DefaultController
+ *
  * @package Liqster\PaymentBundle\Controller
  *
  * @Route("/payment")
@@ -28,9 +29,11 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy([
+        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(
+            [
             'session' => $request->request->get('p24_session_id')
-        ]);
+            ]
+        );
 
         if ($payment) {
 

@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DefaultController
+ *
  * @package Liqster\HomePageBundle\Controller
  */
 class ApiController extends Controller

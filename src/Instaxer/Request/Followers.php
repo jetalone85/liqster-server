@@ -4,6 +4,7 @@ namespace Instaxer\Request;
 
 /**
  * Class Followers
+ *
  * @package Instaxer\Request
  */
 class Followers
@@ -15,6 +16,7 @@ class Followers
 
     /**
      * Followers constructor.
+     *
      * @param $instaxer
      */
     public function __construct($instaxer)

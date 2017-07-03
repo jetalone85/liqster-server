@@ -34,13 +34,13 @@ class AccountController extends Controller
     /**
      * Lists all Account entities.
      *
-     * @Route("/", name="account_index")
+     * @Route("/",     name="account_index")
      * @Method({"GET", "POST"})
-     * @param Request $request
-     * @return Response
-     * @throws \InvalidArgumentException
-     * @throws \UnexpectedValueException
-     * @throws \LogicException
+     * @param          Request $request
+     * @return         Response
+     * @throws         \InvalidArgumentException
+     * @throws         \UnexpectedValueException
+     * @throws         \LogicException
      */
     public function indexAction(Request $request): Response
     {
@@ -73,7 +73,8 @@ class AccountController extends Controller
                         $this->renderView(
                             '@LiqsterHomePage/Email/activate_account.txt.twig', [
                             'user' => $this->getUser()
-                        ]),
+                            ]
+                        ),
                         'text/html'
                     );
 
@@ -96,21 +97,23 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_index');
         }
 
-        return $this->render('LiqsterHomePageBundle:Account:index.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Account:index.html.twig', [
             'accounts' => $accounts,
-        ]);
+            ]
+        );
     }
 
     /**
      * Creates a new Account entity.
      *
-     * @Route("/new", name="account_new")
+     * @Route("/new",  name="account_new")
      * @Method({"GET", "POST"})
-     * @param Request $request
-     * @return RedirectResponse|Response
-     * @throws \RuntimeException
-     * @throws Exception
-     * @throws \LogicException
+     * @param          Request $request
+     * @return         RedirectResponse|Response
+     * @throws         \RuntimeException
+     * @throws         Exception
+     * @throws         \LogicException
      */
     public function newAction(Request $request)
     {
@@ -125,18 +128,20 @@ class AccountController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             try {
-//                $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
-//
-//                $instaxer = new Instaxer($path);
-//                $instaxer->login($account->getName(), $account->getPassword());
+                //                $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
+                //
+                //                $instaxer = new Instaxer($path);
+                //                $instaxer->login($account->getName(), $account->getPassword());
 
                 $mq = new MQ();
                 $instaxer = $mq->query('instaxers?username=' . $account->getName() . '&password=' . $account->getPassword())->getBody()->getContents();
 
             } catch (InstagramException $exception) {
-                return $this->redirectToRoute('account_new', [
+                return $this->redirectToRoute(
+                    'account_new', [
                     'status' => $exception->getMessage()
-                ]);
+                    ]
+                );
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -198,10 +203,12 @@ class AccountController extends Controller
             }
         }
 
-        return $this->render('LiqsterHomePageBundle:Account:new.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Account:new.html.twig', [
             'Account' => $account,
             'form' => $form->createView(),
-        ]);
+            ]
+        );
     }
 
     /**
@@ -209,10 +216,10 @@ class AccountController extends Controller
      *
      * @Route("/{id}", name="account_show")
      * @Method({"GET", "POST"})
-     * @param Request $request
-     * @param Account $account
-     * @return Response
-     * @throws Exception
+     * @param          Request $request
+     * @param          Account $account
+     * @return         Response
+     * @throws         Exception
      */
     public function showAction(Request $request, Account $account): Response
     {
@@ -243,12 +250,14 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
         }
 
-        return $this->render('LiqsterHomePageBundle:Account:show.html.twig', array(
+        return $this->render(
+            'LiqsterHomePageBundle:Account:show.html.twig', array(
             'account' => $account,
             'instagram' => $instagram,
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
-        ));
+            )
+        );
     }
 
     /**
@@ -273,10 +282,12 @@ class AccountController extends Controller
     private function createEditForm(Account $account): Form
     {
         return $this->createFormBuilder($account)
-            ->add('name', TextType::class, array(
+            ->add(
+                'name', TextType::class, array(
                 'label' => 'Name',
                 'required' => false
-            ))
+                )
+            )
             ->add('save', SubmitType::class)
             ->getForm();
     }
@@ -285,11 +296,11 @@ class AccountController extends Controller
      * Displays a form to edit an existing Account entity.
      *
      * @Route("/{id}/edit", name="account_edit")
-     * @Method({"GET", "POST"})
-     * @param Request $request
-     * @param Account $account
-     * @return RedirectResponse|Response
-     * @throws \LogicException
+     * @Method({"GET",      "POST"})
+     * @param               Request $request
+     * @param               Account $account
+     * @return              RedirectResponse|Response
+     * @throws              \LogicException
      */
     public function editAction(Request $request, Account $account)
     {
@@ -303,22 +314,24 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_edit', array('id' => $account->getId()));
         }
 
-        return $this->render('LiqsterHomePageBundle:Account:edit.html.twig', array(
+        return $this->render(
+            'LiqsterHomePageBundle:Account:edit.html.twig', array(
             'Account' => $account,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+            )
+        );
     }
 
     /**
      * Deletes a Account entity.
      *
      * @Route("/{id}/delete", name="account_delete")
-     * @Method({"GET", "DELETE"})
-     * @param Request $request
-     * @param Account $account
-     * @return RedirectResponse
-     * @throws \LogicException
+     * @Method({"GET",        "DELETE"})
+     * @param                 Request $request
+     * @param                 Account $account
+     * @return                RedirectResponse
+     * @throws                \LogicException
      */
     public function deleteAction(Request $request, Account $account): RedirectResponse
     {
@@ -386,9 +399,11 @@ class AccountController extends Controller
         $em = $this->getDoctrine()->getManager();
         $cron = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
 
-        return $this->render('LiqsterHomePageBundle:Account:activate.html.twig', array(
+        return $this->render(
+            'LiqsterHomePageBundle:Account:activate.html.twig', array(
             'account' => $account,
             'cron' => $cron,
-        ));
+            )
+        );
     }
 }

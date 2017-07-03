@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class ProfileController
+ *
  * @package Liqster\HomePageBundle\Controller
  *
  * @Route("/profile")
@@ -39,10 +40,12 @@ class ProfileController extends Controller
             return $this->redirectToRoute('profile_index');
         }
 
-        return $this->render('LiqsterHomePageBundle:Profile:index.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Profile:index.html.twig', [
             'user' => $this->getUser(),
             'edit_form' => $editForm->createView(),
-        ]);
+            ]
+        );
     }
 
     /**
@@ -67,11 +70,13 @@ class ProfileController extends Controller
             return $this->redirectToRoute('profile_setting');
         }
 
-        return $this->render('LiqsterHomePageBundle:Profile:setting.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Profile:setting.html.twig', [
             'user' => $this->getUser(),
             'delete_form' => $deleteForm->createView(),
             'edit_form' => $editForm->createView(),
-        ]);
+            ]
+        );
     }
 
     /**
@@ -95,9 +100,11 @@ class ProfileController extends Controller
      */
     public function notificationsAction(): Response
     {
-        return $this->render('LiqsterHomePageBundle:Profile:notifications.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Profile:notifications.html.twig', [
             'user' => $this->getUser(),
-        ]);
+            ]
+        );
     }
 
     /**
@@ -108,9 +115,11 @@ class ProfileController extends Controller
      */
     public function billingAction(): Response
     {
-        return $this->render('LiqsterHomePageBundle:Profile:billing.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Profile:billing.html.twig', [
             'user' => $this->getUser(),
-        ]);
+            ]
+        );
     }
 
     /**
@@ -121,21 +130,23 @@ class ProfileController extends Controller
      */
     public function securityAction(): Response
     {
-        return $this->render('LiqsterHomePageBundle:Profile:security.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Profile:security.html.twig', [
             'user' => $this->getUser(),
-        ]);
+            ]
+        );
     }
 
     /**
      * Deletes a User entity.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("/{id}",   name="user_delete")
      * @Method("DELETE")
-     * @param Request $request
-     * @param User $user
-     * @return RedirectResponse
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
+     * @param            Request $request
+     * @param            User $user
+     * @return           RedirectResponse
+     * @throws           \LogicException
+     * @throws           \InvalidArgumentException
      */
     public function deleteAction(Request $request, User $user): RedirectResponse
     {

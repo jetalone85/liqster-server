@@ -20,7 +20,8 @@ class AccountType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('product', EntityType::class, [
+            ->add(
+                'product', EntityType::class, [
                 'class' => Product::class,
                 'data_class' => Product::class,
                 'required' => true,
@@ -30,36 +31,46 @@ class AccountType extends AbstractType
                 'attr' => [
                     'class' => 'input-field',
                 ]
-            ])
-            ->add('name', TextType::class, [
+                ]
+            )
+            ->add(
+                'name', TextType::class, [
                 'required' => true,
                 'label' => 'name',
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ])
-            ->add('password', PasswordType::class, [
+                ]
+            )
+            ->add(
+                'password', PasswordType::class, [
                 'required' => true,
                 'label' => 'password',
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ])
-            ->add('Dalej', SubmitType::class, [
+                ]
+            )
+            ->add(
+                'Dalej', SubmitType::class, [
                 'attr' => [
                     'class' => 'form-control btn waves-effect waves-light rigth']
-            ]);
+                ]
+            );
     }
 
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Account::class
-        ]);
+            ]
+        );
     }
 
     /**

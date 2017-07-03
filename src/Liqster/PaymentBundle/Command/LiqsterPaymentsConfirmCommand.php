@@ -9,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class LiqsterPaymentsConfirmCommand
+ *
  * @package Liqster\PaymentBundle\Command
  */
 class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
@@ -37,9 +38,11 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
     {
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-        $payments = $em->getRepository('LiqsterPaymentBundle:Payment')->findBy([
+        $payments = $em->getRepository('LiqsterPaymentBundle:Payment')->findBy(
+            [
             'verify' => null
-        ]);
+            ]
+        );
 
         foreach ($payments as $payment) {
 

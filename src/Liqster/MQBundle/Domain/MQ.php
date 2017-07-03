@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class MQ
+ *
  * @package Liqster\MQBundle\Domain
  */
 class MQ

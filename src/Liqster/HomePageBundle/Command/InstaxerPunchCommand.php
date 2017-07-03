@@ -14,6 +14,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Class InstaxerPunchCommand
+ *
  * @package Liqster\HomePageBundle\Command
  */
 class InstaxerPunchCommand extends ContainerAwareCommand

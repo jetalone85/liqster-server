@@ -17,35 +17,44 @@ class ProfileProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class, [
+            ->add(
+                'username', TextType::class, [
                 'required' => false,
                 'label' => 'Nazwa (login) użytkownika',
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ])
-            ->add('email', TextType::class, [
+                ]
+            )
+            ->add(
+                'email', TextType::class, [
                 'required' => false,
                 'label' => 'Email',
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ])
-            ->add('Zapisz', SubmitType::class, [
+                ]
+            )
+            ->add(
+                'Zapisz', SubmitType::class, [
                 'attr' => [
                     'class' => 'form-control btn btn-success']
-            ]);
+                ]
+            );
     }
 
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => User::class
-        ]);
+            ]
+        );
     }
 
     /**

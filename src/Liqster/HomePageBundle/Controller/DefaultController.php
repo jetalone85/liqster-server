@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DefaultController
+ *
  * @package Liqster\HomePageBundle\Controller
  */
 class DefaultController extends Controller
@@ -26,9 +27,11 @@ class DefaultController extends Controller
         $em = $this->getDoctrine();
         $products = $em->getRepository('LiqsterHomePageBundle:Product')->findAll();
 
-        return $this->render('LiqsterHomePageBundle:Default:index.html.twig', [
+        return $this->render(
+            'LiqsterHomePageBundle:Default:index.html.twig', [
             'products' => $products,
-        ]);
+            ]
+        );
     }
 
 

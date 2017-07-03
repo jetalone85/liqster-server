@@ -19,7 +19,8 @@ class ProfileSettingsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('plainPassword', RepeatedType::class, array(
+            ->add(
+                'plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'options' => array('translation_domain' => 'FOSUserBundle'),
                 'first_options' => array('label' => 'form.password'),
@@ -29,22 +30,28 @@ class ProfileSettingsType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ]
-            ))
-            ->add('Zapisz', SubmitType::class, [
+                )
+            )
+            ->add(
+                'Zapisz', SubmitType::class, [
                 'attr' => [
                     'class' => 'form-control btn btn-success']
-            ]);
+                ]
+            );
     }
 
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => User::class
-        ]);
+            ]
+        );
     }
 
     /**

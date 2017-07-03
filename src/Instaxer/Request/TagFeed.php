@@ -7,6 +7,7 @@ use Instaxer\Request;
 
 /**
  * Class TagFeed
+ *
  * @package Instaxer\Request
  */
 class TagFeed extends Request

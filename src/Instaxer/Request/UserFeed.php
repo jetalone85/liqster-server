@@ -8,6 +8,7 @@ use Instaxer\Request;
 
 /**
  * Class UserFeed
+ *
  * @package Instaxer\Request
  */
 class UserFeed extends Request

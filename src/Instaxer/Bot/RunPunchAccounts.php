@@ -12,6 +12,7 @@ class RunPunchAccounts
 
     /**
      * RunLikeRepository constructor.
+     *
      * @param ItemRepository $repository
      * @param Instaxer $instaxer
      */

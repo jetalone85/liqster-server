@@ -8,6 +8,7 @@ use Instaxer\Request;
 
 /**
  * Class RepostPhoto
+ *
  * @package Instaxer\Bot
  */
 class RepostPhoto extends Request
@@ -32,8 +33,10 @@ class RepostPhoto extends Request
 
         $requestPublishPhoto = new Request\PublishPhoto($this->instaxer);
 
-        return $requestPublishPhoto->pull(__DIR__ . '/../../../app/storage/test.jpg',
+        return $requestPublishPhoto->pull(
+            __DIR__ . '/../../../app/storage/test.jpg',
             'Repost from: @' . $userName . '. ' . "\r\n" .
-            $lastFeedItem->getCaption()->getText());
+            $lastFeedItem->getCaption()->getText()
+        );
     }
 }
