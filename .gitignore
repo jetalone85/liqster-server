@@ -35,3 +35,4 @@ web/instaxer/
 /package-lock.json
 /web/css
 /web/js
+/tests/coverage/

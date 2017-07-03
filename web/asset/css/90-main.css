@@ -79,3 +79,8 @@ header, main, footer {
 .navbar-fixed {
     z-index: 20;
 }
+
+.liqster {
+    font-family: Pacifico, sans-serif;
+    font-size: 200%;
+}
