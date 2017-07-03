@@ -84,3 +84,7 @@ header, main, footer {
     font-family: Pacifico, sans-serif;
     font-size: 200%;
 }
+
+.intro-section .card {
+    background: rgba(255, 255, 255, 0.90);
+}
