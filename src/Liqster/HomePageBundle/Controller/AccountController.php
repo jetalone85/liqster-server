@@ -8,6 +8,7 @@ use Instagram\API\Framework\InstagramException;
 use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\Purchase;
+use Liqster\HomePageBundle\Form\AccountPaymentType;
 use Liqster\HomePageBundle\Form\AccountType;
 use Liqster\MQBundle\Domain\MQ;
 use Liqster\PaymentBundle\Domain\Przelewy24;
@@ -72,7 +73,7 @@ class AccountController extends Controller
                     ->setBody(
                         $this->renderView(
                             '@LiqsterHomePage/Email/activate_account.txt.twig', [
-                            'user' => $this->getUser()
+                                'user' => $this->getUser()
                             ]
                         ),
                         'text/html'
@@ -99,7 +100,7 @@ class AccountController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Account:index.html.twig', [
-            'accounts' => $accounts,
+                'accounts' => $accounts,
             ]
         );
     }
@@ -111,6 +112,7 @@ class AccountController extends Controller
      * @Method({"GET", "POST"})
      * @param          Request $request
      * @return         RedirectResponse|Response
+     * @throws         \InvalidArgumentException
      * @throws         \RuntimeException
      * @throws         Exception
      * @throws         \LogicException
@@ -119,8 +121,6 @@ class AccountController extends Controller
     {
         $account = new Account();
         $cronJob = new CronJob();
-        $payment = new Payment();
-        $purchase = new Purchase();
 
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
@@ -139,7 +139,7 @@ class AccountController extends Controller
             } catch (InstagramException $exception) {
                 return $this->redirectToRoute(
                     'account_new', [
-                    'status' => $exception->getMessage()
+                        'status' => $exception->getMessage()
                     ]
                 );
             }
@@ -158,6 +158,39 @@ class AccountController extends Controller
             $cronJob->setEnabled(false);
             $em->persist($cronJob);
 
+            $em->flush();
+
+            return $this->redirectToRoute('account_new_payment', array('id' => $account->getId()));
+        }
+
+        return $this->render(
+            'LiqsterHomePageBundle:Account:new.html.twig', [
+                'Account' => $account,
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     *
+     * @Route("/{id}/new_payment",  name="account_new_payment")
+     * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Account $account
+     * @return Response
+     * @throws \LogicException
+     */
+    public function newPaymentAction(Request $request, Account $account): Response
+    {
+        $payment = new Payment();
+        $purchase = new Purchase();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(AccountPaymentType::class, $account);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             $purchase->setAccount($account);
             $purchase->setCreate(new \DateTime('now'));
             $purchase->setModification(new \DateTime('now'));
@@ -204,11 +237,12 @@ class AccountController extends Controller
         }
 
         return $this->render(
-            'LiqsterHomePageBundle:Account:new.html.twig', [
-            'Account' => $account,
-            'form' => $form->createView(),
+            'LiqsterHomePageBundle:Account:newPayment.html.twig', [
+                'Account' => $account,
+                'form' => $form->createView(),
             ]
         );
+
     }
 
     /**
@@ -252,10 +286,10 @@ class AccountController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Account:show.html.twig', array(
-            'account' => $account,
-            'instagram' => $instagram,
-            'delete_form' => $deleteForm->createView(),
-            'edit_form' => $editForm->createView(),
+                'account' => $account,
+                'instagram' => $instagram,
+                'delete_form' => $deleteForm->createView(),
+                'edit_form' => $editForm->createView(),
             )
         );
     }
@@ -284,8 +318,8 @@ class AccountController extends Controller
         return $this->createFormBuilder($account)
             ->add(
                 'name', TextType::class, array(
-                'label' => 'Name',
-                'required' => false
+                    'label' => 'Name',
+                    'required' => false
                 )
             )
             ->add('save', SubmitType::class)
@@ -316,9 +350,9 @@ class AccountController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Account:edit.html.twig', array(
-            'Account' => $account,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'Account' => $account,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }
@@ -401,8 +435,8 @@ class AccountController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Account:activate.html.twig', array(
-            'account' => $account,
-            'cron' => $cron,
+                'account' => $account,
+                'cron' => $cron,
             )
         );
     }

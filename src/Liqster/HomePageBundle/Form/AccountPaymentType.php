@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AccountType extends AbstractType
+class AccountPaymentType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -21,20 +21,15 @@ class AccountType extends AbstractType
     {
         $builder
             ->add(
-                'name', TextType::class, [
+                'product', EntityType::class, [
+                'class' => Product::class,
+                'data_class' => Product::class,
                 'required' => true,
-                'label' => 'name',
+                'label' => 'Produkt',
+                'choice_label' => 'type',
+                'expanded' => true,
                 'attr' => [
-                    'class' => 'form-control'
-                ]
-                ]
-            )
-            ->add(
-                'password', PasswordType::class, [
-                'required' => true,
-                'label' => 'password',
-                'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'input-field',
                 ]
                 ]
             )
