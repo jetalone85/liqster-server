@@ -38,7 +38,9 @@ class ChangePasswordController extends BaseController
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        /** @var $dispatcher EventDispatcherInterface */
+        /**
+ * @var $dispatcher EventDispatcherInterface 
+*/
         $dispatcher = $this->get('event_dispatcher');
 
         $event = new GetResponseUserEvent($user, $request);
@@ -48,7 +50,9 @@ class ChangePasswordController extends BaseController
             return $event->getResponse();
         }
 
-        /** @var $formFactory FactoryInterface */
+        /**
+ * @var $formFactory FactoryInterface 
+*/
         $formFactory = $this->get('fos_user.change_password.form.factory');
 
         $form = $formFactory->createForm();
@@ -57,7 +61,9 @@ class ChangePasswordController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var $userManager UserManagerInterface */
+            /**
+ * @var $userManager UserManagerInterface 
+*/
             $userManager = $this->get('fos_user.user_manager');
 
             $event = new FormEvent($form, $request);
@@ -75,8 +81,10 @@ class ChangePasswordController extends BaseController
             return $response;
         }
 
-        return $this->render('@FOSUser/ChangePassword/change_password.html.twig', array(
+        return $this->render(
+            '@FOSUser/ChangePassword/change_password.html.twig', array(
             'form' => $form->createView(),
-        ));
+            )
+        );
     }
 }
