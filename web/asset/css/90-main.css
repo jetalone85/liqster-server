@@ -11,80 +11,12 @@ body {
     font-size: 1rem;
     background-color: #f4f4f4;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 2rem;
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 300;
-}
-
-.full-section {
-    background: no-repeat center;
-    background-size: cover;
-    width: 100%;
-    min-height: 105%;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
-
-.intro-section {
-    background-image: url("../../asset/img/background-intro-section.jpg");
-}
-
-.flat-section {
-    background: rgba(193, 81, 124, 0.2);
-}
-
-.intro-logged-section {
-    background-image: url("../../asset/img/background-intro-logged-section.png");
-}
-
-.price-section {
-    background-image: url("../../asset/img/background-intro-section.jpg");
-}
-
-.price-section .card {
-    min-height: 25rem;
-    background-color: rgba(0, 0, 0, 0.15) !important;
-    color: #f7f7f7;
-}
-
-.navbar-toggleable-md {
-    min-height: 5rem;
-}
-
-.valign-center {
-    height: 100%;
-    vertical-align: middle;
-}
-
-header, main, footer {
-    padding-left: 300px;
-}
-
-@media only screen and (max-width: 992px) {
-    header, main, footer {
-        padding-left: 0;
-    }
-}
-
-.fixed-action-btn {
-    float: right;
-    position: relative;
-    left: -1.25rem;
-    bottom: 2rem;
-    z-index: 0;
-}
-
-.navbar-fixed {
-    z-index: 20;
-}
-
-.liqster {
-    font-family: Pacifico, sans-serif;
-    font-size: 200%;
-}
-
-.intro-section .card {
-    background: rgba(255, 255, 255, 0.90);
+.nav {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
 }

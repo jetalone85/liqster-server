@@ -31,13 +31,13 @@
         {% endstylesheets %}
 
     {% endblock %}
-    
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
             a = s.createElement(o),
                 m = s.getElementsByTagName(o)[0];
             a.async = 1;
@@ -54,91 +54,45 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body data-spy="scroll" data-target=".navbar-fixed-top">
 
 {% block navigation %}
-    <ul id="slide-out" class="side-nav">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <li>
-                <div class="userView">
-                    <div class="background">
-                        <img class="shelf-img"
-                             src="https://static1.squarespace.com/static/50305c7684ae7fae2e65756a/t/563f570ce4b04f0e6ef9c643/1446991630181/">
-                    </div>
-                    <a href="{{ path('profile_index') }}"><img class="circle"
-                                                               src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png"></a>
-                    <a href="{{ path('profile_index') }}"><span
-                                class="white-text name">{{ app.user.username }}</span></a>
-                    <a href="{{ path('profile_index') }}"><span class="white-text email">{{ app.user.email }}</span></a>
-                </div>
-            </li>
-            <li>
-                <a href="{{ path('account_index') }}">Lista kont</a>
-            </li>
-        {% endif %}
 
-        <li><a class="" href="{{ path('homepage') }}">Start</a></li>
-        <li><a class="" href="{{ path('homepage') }}#services">Usługi</a></li>
-        <li><a class="" href="{{ path('homepage') }}#price">Cennik</a></li>
-        <li><a class="" href="{{ path('homepage') }}#about">O nas</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
 
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <li>
-                <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
-            </li>
-        {% else %}
-            <li>
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
-            </li>
-            <li>
-                <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
-            </li>
-        {% endif %}
-    </ul>
-
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper pink darken-2">
-                <div class="container">
-                    <a href="#" class="brand-logo center valign-wrapper">
-                        <img src="{{ asset('asset/img/30x30lq.png') }}" width="30"
-                             height="30" alt="Logo"></a>
-                    <a href="#" data-activates="slide-out" class="button-collapse"><i
-                                class="material-icons">menu</i></a>
-                    <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a class="nav-item nav-link" href="{{ path('homepage') }}">Start</a></li>
-                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#services">Usługi</a>
-                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#price">Cennik</a></li>
-                        <li><a class="nav-item nav-link page-scroll" href="{{ path('homepage') }}#about">O nas</a></li>
-                    </ul>
-
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <li>
-                                <a href="{{ path('account_index') }}">Lista kont</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('profile_index') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'main') }}</a>
-                            </li>
-                        {% else %}
-                            <li>
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'main') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'main') }}</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
+    <nav class="nav has-shadow">
+        <div class="container">
+            <span class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+            <div class="nav-left">
+                <a href="{{ path('homepage') }}" class="nav-item">
+                    <img src="{{ asset('asset/img/logo.black.white.80x40.png') }}" alt="Bulma logo">
+                </a>
+                <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-mobile">Usługi</a>
+                <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-mobile">Cennik</a>
+                <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-mobile">O nas</a>
             </div>
-        </nav>
-    </div>
+            <div class="nav-right nav-menu">
+                <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-tablet">Usługi</a>
+                <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-tablet">Cennik</a>
+                <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-tablet">O nas</a>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="{{ path('account_index') }}" class="nav-item is-tab">Lista kont</a>
+                    <a href="{{ path('profile_index') }}"
+                       class="nav-item is-tab">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+                    <a href="{{ path('fos_user_security_logout') }}"
+                       class="nav-item is-tab">{{ 'layout.logout'|trans({}, 'main') }}</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}"
+                       class="nav-item is-tab">{{ 'layout.login'|trans({}, 'main') }}</a>
+                    <a href="{{ path('fos_user_registration_register') }}"
+                       class="nav-item is-tab">{{ 'layout.register'|trans({}, 'main') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
 
 {% endblock %}
 
@@ -156,38 +110,6 @@
     'asset/js/*' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script>
-        $(document).ready(function () {
-            $('select').material_select();
-            Materialize.updateTextFields();
-            $('.same-size').matchHeight();
-            $('.button-collapse').sideNav({
-                    menuWidth: 300, // Default is 300
-                    edge: 'left', // Choose the horizontal origin
-                    closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                    draggable: true // Choose whether you can drag to open on touch screens
-                }
-            );
-            $('.fixed-action-btn').openFAB();
-            $('.fixed-action-btn').closeFAB();
-            $('.fixed-action-btn.toolbar').openToolbar();
-            $('.fixed-action-btn.toolbar').closeToolbar();
-            $('img.shelf-img').each(function (i, item) {
-                var img_height = $(item).height();
-                var div_height = $(item).parent().height();
-                if (img_height < div_height) {
-                    $(item).css({'width': 'auto', 'height': div_height});
-                    var img_width = $(item).width();
-                    var div_width = $(item).parent().width();
-                    var newMargin = (div_width - img_width) / 2 + 'px';
-                    $(item).css({'margin-left': newMargin});
-                } else {
-                    var newMargin = (div_height - img_height) / 2 + 'px';
-                    $(item).css({'margin-top': newMargin});
-                }
-            });
-        })
-    </script>
 
 {% endblock %}
 
