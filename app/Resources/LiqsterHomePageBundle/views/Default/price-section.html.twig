@@ -1,33 +1,34 @@
-<section id="price" class="full-section price-section">
-    <div class="container">
-        <div class="row">
-            <div class="col s12 white-text">
-                <h3>Ceny poszczególnych abonamentów:</h3>
+<section id="price" class="hero is-fullheight is-info is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <h3 class="title">Ceny poszczególnych abonamentów:</h3>
+                </div>
             </div>
-        </div>
-        <div class="row">
 
-            {% for product in products %}
+            <div class="columns">
 
-                <div class="col s12 m6 l3 xl3">
-                    <div class="card">
-                        <div class="card-panel">
-                            <h2 class="pink-text darken-2 center-align">{{ product.type }}</h2>
+                {% for product in products %}
 
-                        </div>
-                        <div class="card-content">
-                            <h2>{{ (product.price / 100)|number_format(2) }} złotych</h2>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
-                                        class="material-icons">add</i></a>
+                    <div class="column is-one-quarter">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
+                                    <h1>{{ product.type }}</h1>
+                                    <h2> {{ (product.price / 100)|number_format(2) }} zł</h2>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a class="card-footer-item">Dodaj</a>
+                            </footer>
                         </div>
                     </div>
-                </div>
 
-            {% endfor %}
+                {% endfor %}
+            </div>
 
-        </div>
-        <div class="row">
-            <div class="col s12 text-center white-text">
+            <div class="columns">
                 <ul>
                     <li><h5>Każdy abonament obejmuje:</h5></li>
                     <li>Program liqster dla jednego konta, działający 24 godzin na dobę, przez określoną abonamentem
@@ -36,7 +37,8 @@
                     <li>Aktywność pozostawianą przez program w cyklach co 30 minut.</li>
                     <li>Cykle obejmujące do 40 polubień oraz do 5 komentarzy.</li>
                     <li>Możliwość wglądu w pozostawione aktywności, w panelu Raporty.</li>
-                    <li>Możliwość zatrzymania oraz aktywowania pracy programu. (czas trawania abonamentu jest niezależny
+                    <li>Możliwość zatrzymania oraz aktywowania pracy programu. (czas trawania abonamentu jest
+                        niezależny
                         od tego czy konto jest aktywne czy zostalo zatrzymane).
                     </li>
                 </ul>
