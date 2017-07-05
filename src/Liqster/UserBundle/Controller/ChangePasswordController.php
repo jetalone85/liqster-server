@@ -2,6 +2,7 @@
 
 namespace Liqster\UserBundle\Controller;
 
+use FOS\UserBundle\Controller\ChangePasswordController as BaseController;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -9,7 +10,6 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
-use FOS\UserBundle\Controller\ChangePasswordController as BaseController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +39,7 @@ class ChangePasswordController extends BaseController
         }
 
         /**
- * @var $dispatcher EventDispatcherInterface 
+         * @var $dispatcher EventDispatcherInterface
 */
         $dispatcher = $this->get('event_dispatcher');
 
@@ -51,7 +51,7 @@ class ChangePasswordController extends BaseController
         }
 
         /**
- * @var $formFactory FactoryInterface 
+         * @var $formFactory FactoryInterface
 */
         $formFactory = $this->get('fos_user.change_password.form.factory');
 
@@ -62,7 +62,7 @@ class ChangePasswordController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             /**
- * @var $userManager UserManagerInterface 
+             * @var $userManager UserManagerInterface
 */
             $userManager = $this->get('fos_user.user_manager');
 
@@ -83,7 +83,7 @@ class ChangePasswordController extends BaseController
 
         return $this->render(
             '@FOSUser/ChangePassword/change_password.html.twig', array(
-            'form' => $form->createView(),
+                'form' => $form->createView(),
             )
         );
     }
