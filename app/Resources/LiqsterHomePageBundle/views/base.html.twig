@@ -1,119 +1,123 @@
-<!DOCTYPE html>
-<html lang="pl">
+{% spaceless %}
 
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="google-site-verification" content="lrzH0Cw7Vp0VwPNh6UzOBjLCUvNvC4ti4fXbVBXAp_0"/>
-    <meta name="theme-color" content="#C2185B">
+    <!DOCTYPE html>
+    <html lang="pl">
 
-    <title>{% block title %}{{ 'apps.title'|trans({}, 'main') }}{% endblock %}</title>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="google-site-verification" content="lrzH0Cw7Vp0VwPNh6UzOBjLCUvNvC4ti4fXbVBXAp_0"/>
+        <meta name="theme-color" content="#C2185B">
 
-    {% block headers %}
+        <title>{% block title %}{{ 'apps.title'|trans({}, 'main') }}{% endblock %}</title>
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600" rel="stylesheet">
+        {% block headers %}
 
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+            <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600" rel="stylesheet">
 
-    {% endblock %}
+            <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
 
-    {% block stylesheets %}
+        {% endblock %}
 
-        {% stylesheets
-        'asset/css/*'
-        filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}"/>
-        {% endstylesheets %}
+        {% block stylesheets %}
 
-    {% endblock %}
+            {% stylesheets
+            'asset/css/*'
+            filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}"/>
+            {% endstylesheets %}
 
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
+        {% endblock %}
+
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
                     (i[r].q = i[r].q || []).push(arguments)
                 }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-        {% if app.user %}ga('set', 'userId', {{ app.user.id }});{% endif %}
-        ga('create', 'UA-91236554-2', 'auto');
-        ga('send', 'pageview');
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            {% if app.user %}ga('set', 'userId', {{ app.user.id }});{% endif %}
+            ga('create', 'UA-91236554-2', 'auto');
+            ga('send', 'pageview');
 
-    </script>
+        </script>
 
-    {{ render(controller('LiqsterHomePageBundle:Default:cookieInfo')) }}
+        {{ render(controller('LiqsterHomePageBundle:Default:cookieInfo')) }}
 
-</head>
+    </head>
 
-<body data-spy="scroll" data-target=".navbar-fixed-top">
+    <body data-spy="scroll" data-target=".navbar-fixed-top">
 
-{% block navigation %}
+    {% block navigation %}
 
 
-    <nav class="nav has-shadow">
-        <div class="container">
+        <nav class="nav has-shadow">
+            <div class="container">
             <span class="nav-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </span>
-            <div class="nav-left">
-                <a href="{{ path('homepage') }}" class="nav-item">
-                    <img src="{{ asset('asset/img/logo.black.white.80x40.png') }}" alt="Bulma logo">
-                </a>
-                <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-mobile">Usługi</a>
-                <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-mobile">Cennik</a>
-                <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-mobile">O nas</a>
+                <div class="nav-left">
+                    <a href="{{ path('homepage') }}" class="nav-item">
+                        <img src="{{ asset('asset/img/logo.black.white.80x40.png') }}" alt="Bulma logo">
+                    </a>
+                    <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-mobile">Usługi</a>
+                    <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-mobile">Cennik</a>
+                    <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-mobile">O nas</a>
+                </div>
+                <div class="nav-right nav-menu">
+                    <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-tablet">Usługi</a>
+                    <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-tablet">Cennik</a>
+                    <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-tablet">O nas</a>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <a href="{{ path('account_index') }}" class="nav-item is-tab">Lista kont</a>
+                        <a href="{{ path('profile_index') }}"
+                           class="nav-item is-tab">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+                        <a href="{{ path('fos_user_security_logout') }}"
+                           class="nav-item is-tab">{{ 'layout.logout'|trans({}, 'main') }}</a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}"
+                           class="nav-item is-tab">{{ 'layout.login'|trans({}, 'main') }}</a>
+                        <a href="{{ path('fos_user_registration_register') }}"
+                           class="nav-item is-tab">{{ 'layout.register'|trans({}, 'main') }}</a>
+                    {% endif %}
+                </div>
             </div>
-            <div class="nav-right nav-menu">
-                <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-tablet">Usługi</a>
-                <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-tablet">Cennik</a>
-                <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-tablet">O nas</a>
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <a href="{{ path('account_index') }}" class="nav-item is-tab">Lista kont</a>
-                    <a href="{{ path('profile_index') }}"
-                       class="nav-item is-tab">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
-                    <a href="{{ path('fos_user_security_logout') }}"
-                       class="nav-item is-tab">{{ 'layout.logout'|trans({}, 'main') }}</a>
-                {% else %}
-                    <a href="{{ path('fos_user_security_login') }}"
-                       class="nav-item is-tab">{{ 'layout.login'|trans({}, 'main') }}</a>
-                    <a href="{{ path('fos_user_registration_register') }}"
-                       class="nav-item is-tab">{{ 'layout.register'|trans({}, 'main') }}</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
+        </nav>
 
-{% endblock %}
+    {% endblock %}
 
-{% block header %}{% endblock %}
+    {% block header %}{% endblock %}
 
-{% block fos_user_content %}{% endblock %}
+    {% block fos_user_content %}{% endblock %}
 
-{% block body %}{% endblock %}
+    {% block body %}{% endblock %}
 
-{% block footer %}{% endblock %}
+    {% block footer %}{% endblock %}
 
-{% block javascripts %}
+    {% block javascripts %}
 
-    {% javascripts
-    'asset/js/*' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+        {% javascripts
+        'asset/js/*' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
 
-{% endblock %}
+    {% endblock %}
 
-{% block javascripts_on_single_page %}
-{% endblock %}
+    {% block javascripts_on_single_page %}
+    {% endblock %}
 
-</body>
-</html>
+    </body>
+    </html>
+
+{% endspaceless %}

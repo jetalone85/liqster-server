@@ -64,6 +64,59 @@
                 </div>
             </div>
 
+            <div class="card">
+
+                <div class="card-content">
+
+                    <form name="form" method="post">
+                        <input
+                                type="hidden"
+                                name="form[id]"
+                                value="{{ account.id }}"
+                        />
+
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label"
+                                       for="username">
+                                    {% if account.payed == false %}
+                                        Konto nieopłacone
+                                    {% elseif account.payed == true and account.cronJob.enabled == true %}
+                                        Konto aktywne
+                                    {% else %}
+                                        Konto nieaktywne
+                                    {% endif %}
+                                </label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input
+                                                {% if account.payed == false %}disabled{% endif %}
+                                                type="checkbox" name="form[enable]"
+                                                id="form_enable_{{ account.id }}"
+                                                {% if account.cronJob.enabled == true %}checked{% endif %}
+                                                class="">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="field is-grouped is-pulled-right">
+                                <p class="control">
+                                    <input class="button is-primary is-centered"
+                                           type="submit"
+                                           id="_submit"
+                                           name="_submit"
+                                           value="Zapisz"/>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+
+            </div>
+
         </div>
     </section>
 

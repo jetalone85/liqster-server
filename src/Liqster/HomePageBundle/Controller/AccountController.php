@@ -83,20 +83,6 @@ class AccountController extends Controller
             }
         }
 
-        $query = $request->request->get('form');
-
-        if ($query) {
-            $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $query['id']]);
-
-            $newStatus = false;
-            if (count($query) === 2) {
-                $newStatus = $query['enable'] === 'on';
-            }
-            $cronJob->setEnabled($newStatus);
-            $em->flush();
-
-            return $this->redirectToRoute('account_index');
-        }
 
         return $this->render(
             'LiqsterHomePageBundle:Account:index.html.twig', [
@@ -266,20 +252,20 @@ class AccountController extends Controller
 
         $deleteForm = $this->createDeleteForm($account);
 
-        $editForm = $this->createEditForm($account);
-        $editForm->handleRequest($request);
 
-        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+        $query = $request->request->get('form');
 
-        if ($purchase->getStatus() === 'verify') {
-            $account->setPayed(true);
+        if ($query) {
+            $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $query['id']]);
+
+            $newStatus = false;
+            if (count($query) === 2) {
+                $newStatus = $query['enable'] === 'on';
+            }
+            $cronJob->setEnabled($newStatus);
             $em->flush();
-        }
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_show', array('id' => $query['id']));
         }
 
         return $this->render(
@@ -287,7 +273,6 @@ class AccountController extends Controller
                 'account' => $account,
                 'instagram' => $instagram,
                 'delete_form' => $deleteForm->createView(),
-                'edit_form' => $editForm->createView(),
             )
         );
     }
