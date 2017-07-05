@@ -1,50 +1,70 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block body %}
+    <section class="hero is-fullheight is-light is-bold">
 
-    <div class="container-fluid">
-        <div class="container">
-            <h1>Account</h1>
+        <div class="container profile">
+            <div class="card">
+                <div class="card-content">
+                    <div class="columns is-vcentered">
+                        <div class="column is-2">
+                            <div class="image is-128x128 avatar">
+                                <img src="{{ account.image }}">
+                            </div>
+                        </div>
+                        <div class="column is-4 name">
+                        <span class="button is-primary is-outlined follow"><a
+                                    href="{{ path('account_check', { 'id': account.id }) }}">Odśwież</a></span>
+                            <p class="title is-bold">{{ account.name }}</p>
+                            <p class="subtitle">{{ instagram.user.fullName }}</p>
+                            <p class="tagline">{{ instagram.user.biography }}</p>
+                        </div>
+                        <div class="column is-2 followers has-text-centered">
+                            <p class="stat-val">{{ instagram.user.followerCount }}</p>
+                            <p class="stat-key">Obserwujący</p>
+                        </div>
+                        <div class="column is-2 following has-text-centered">
+                            <p class="stat-val">{{ instagram.user.followingCount }}</p>
+                            <p class="stat-key">Obserwowane</p>
+                        </div>
+                        <div class="column is-2 likes has-text-centered">
+                            <p class="stat-val">{{ instagram.user.mediaCount }}</p>
+                            <p class="stat-key">Posty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <ul>
-                <li>Login: {{ account.name }}</li>
-                <li>Pełna nazwa: {{ instagram.user.fullName }}</li>
-                <li>Opis: {{ instagram.user.biography }}</li>
-                <li>Posty: {{ instagram.user.mediaCount }}</li>
-                <li>Obserwujący: {{ instagram.user.followerCount }}</li>
-                <li>Obserwowane: {{ instagram.user.followingCount }}</li>
-            </ul>
+            <div class="card">
+                <div class="card-content">
 
-            <h1>Account edit</h1>
+                    <ul>
+                        <li>
+                            <a href="{{ path('result_list', { 'id': account.id }) }}">Raporty z aktywności</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('account_index') }}">Back to the list</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('account_check', { 'id': account.id }) }}">Sprawdź</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('account_activate', { 'id': account.id }) }}">Aktywuj (lub wyłącz? )</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
+                        </li>
+                        <li>
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    </ul>
 
-            {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
-            {{ form_label(edit_form) }}
-            <input type="submit" value="Edit"/>
-            {{ form_end(edit_form) }}
+                </div>
+            </div>
 
-            <ul>
-                <li>
-                    <a href="{{ path('result_list', { 'id': account.id }) }}">Raporty z aktywności</a>
-                </li>
-                <li>
-                    <a href="{{ path('account_index') }}">Back to the list</a>
-                </li>
-                <li>
-                    <a href="{{ path('account_check', { 'id': account.id }) }}">Sprawdź</a>
-                </li>
-                <li>
-                    <a href="{{ path('account_activate', { 'id': account.id }) }}">Aktywuj (lub wyłącz? )</a>
-                </li>
-                <li>
-                    <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
-                </li>
-                <li>
-                    {{ form_start(delete_form) }}
-                    <input type="submit" value="Delete">
-                    {{ form_end(delete_form) }}
-                </li>
-            </ul>
         </div>
-    </div>
+    </section>
+
 {% endblock %}

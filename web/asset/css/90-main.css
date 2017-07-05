@@ -17,3 +17,76 @@ body {
 .field-label .label {
     font-weight: 400;
 }
+
+.profile .card {
+    margin: 20px 0;
+}
+
+.profile .name {
+    border-right: 1px solid #f1f1f1;
+    margin: -30px 0;
+    padding: 40px 30px 0 30px;
+}
+
+.profile .followers, .profile-heading .following {
+    border-right: 1px solid #f1f1f1;
+    margin: -30px 0;
+    padding: 70px 30px;
+}
+
+.profile .likes {
+    margin: -30px 0;
+    padding: 70px 30px;
+}
+
+.profile .stat-key {
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.profile .stat-val {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.profile-options {
+    background-color: #f1f1f1;
+    margin: -20px 0 20px 0;
+}
+
+.profile-options .link a {
+    padding: 18px;
+    font-size: 18px;
+}
+
+.profile-options .link .icon {
+    font-size: 16px;
+    padding-top: 2px;
+}
+
+.tagline {
+    padding: 20px 0;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.avatar {
+    float: right;
+}
+
+.follow {
+    float: right;
+}
+
+.avatar img {
+    border-radius: 200px;
+}
+
+p.title.is-bold {
+    font-weight: bold;
+}
+
+.card .timestamp {
+    float: right;
+    color: #bbb;
+}
