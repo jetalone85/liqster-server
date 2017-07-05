@@ -9,6 +9,8 @@ use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
+use Liqster\HomePageBundle\Form\AccountEditTagsType;
+use Liqster\HomePageBundle\Form\AccountEditType;
 use Liqster\HomePageBundle\Form\AccountPaymentType;
 use Liqster\HomePageBundle\Form\AccountType;
 use Liqster\MQBundle\Domain\MQ;
@@ -246,6 +248,30 @@ class AccountController extends Controller
         $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
         $instagram = json_decode($accountInstagramCache->getValue(), true);
 
+        $editForm = $this->createForm(AccountEditType::class, $account);
+        $editForm->handleRequest($request);
+
+        $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
+        $editTagsForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $account->setModif(new \DateTime('now'));
+            $em->persist($account);
+            $em->flush();
+
+            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+        }
+
+        if ($editTagsForm->isSubmitted() && $editTagsForm->isValid()) {
+            $account->setName($account->getName());
+            $account->setPassword($account->getPassword());
+            $account->setModif(new \DateTime('now'));
+            $em->persist($account);
+            $em->flush();
+
+            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+        }
+
         $deleteForm = $this->createDeleteForm($account);
 
         $query = $request->request->get('form');
@@ -267,6 +293,8 @@ class AccountController extends Controller
             'LiqsterHomePageBundle:Account:show.html.twig', array(
                 'account' => $account,
                 'instagram' => $instagram,
+                'edit_form' => $editForm->createView(),
+                'edit_tags_form' => $editTagsForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             )
         );
