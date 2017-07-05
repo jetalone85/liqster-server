@@ -18,8 +18,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,13 +35,12 @@ class AccountController extends Controller
      *
      * @Route("/",     name="account_index")
      * @Method({"GET", "POST"})
-     * @param          Request $request
      * @return         Response
      * @throws         \InvalidArgumentException
      * @throws         \UnexpectedValueException
      * @throws         \LogicException
      */
-    public function indexAction(Request $request): Response
+    public function indexAction(): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -66,7 +63,7 @@ class AccountController extends Controller
 
                 $mailer = $this->get('swiftmailer.mailer.default');
 
-                $message = $mailer->createMessage('message')
+                $message = $mailer->createMessage()
                     ->setSubject('Aktywacja')
                     ->setFrom('admin@liqster.pl')
                     ->setTo($this->getUser()->getEmail())
@@ -215,7 +212,7 @@ class AccountController extends Controller
                 $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
-                $RET = $P24->trnRegister(true);
+                $P24->trnRegister(true);
 
                 die();
 
@@ -292,23 +289,6 @@ class AccountController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('account_delete', array('id' => $account->getId())))
             ->setMethod('DELETE')
-            ->getForm();
-    }
-
-    /**
-     * @param Account $account
-     * @return Form The form
-     */
-    private function createEditForm(Account $account): Form
-    {
-        return $this->createFormBuilder($account)
-            ->add(
-                'name', TextType::class, array(
-                    'label' => 'Name',
-                    'required' => false
-                )
-            )
-            ->add('save', SubmitType::class)
             ->getForm();
     }
 
