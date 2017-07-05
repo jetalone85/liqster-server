@@ -7,6 +7,7 @@ use Exception;
 use Instagram\API\Framework\InstagramException;
 use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
+use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
 use Liqster\HomePageBundle\Form\AccountPaymentType;
 use Liqster\HomePageBundle\Form\AccountType;
@@ -17,7 +18,6 @@ use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -361,21 +361,35 @@ class AccountController extends Controller
      * @param Account $account
      * @return Response
      * @throws \InvalidArgumentException
-     * @throws \Symfony\Component\Filesystem\Exception\IOException
      * @throws \LogicException
-     * @throws Exception
+     * @throws \RuntimeException
      */
     public function checkAction(Account $account): Response
     {
-        $fs = new Filesystem();
-        $fs->mkdir('./instaxer/profiles/' . $account->getUser());
+        $mq = new MQ();
+        $instaxer_json = $mq->query(
+            'instaxers/users?username=' .
+            $account->getName() .
+            '&password=' .
+            $account->getPassword())->getBody()->getContents();
 
-        $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
 
-        $instaxer = new Instaxer($path);
-        $instaxer->login($account->getName(), $account->getPassword());
+        $em = $this->getDoctrine()->getManager();
+        $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+        if (!$accountInstagramCache) {
+            $accountInstagramCache = new AccountInstagramCache();
+            $accountInstagramCache->setAccount($account);
+            $accountInstagramCache->setCreate(new \DateTime('now'));
+        }
+        $accountInstagramCache->setName('user');
+        $accountInstagramCache->setValue($instaxer_json);
+        $accountInstagramCache->setModification(new \DateTime('now'));
 
-        $image = $instaxer->instagram->getCurrentUserAccount()->getUser()->getHdProfilePicUrlInfo()->getUrl();
+        $em->persist($accountInstagramCache);
+        $em->flush();
+
+        $instagram_user = json_decode($instaxer_json, true);
+        $image = $instagram_user['user']['profile_pic_url'];
 
         $em = $this->getDoctrine()->getManager();
         $account->setImage($image);
