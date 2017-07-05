@@ -243,15 +243,10 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
-
-        $instaxer = new Instaxer($path);
-        $instaxer->login($account->getName(), $account->getPassword());
-
-        $instagram = $instaxer->instagram->getUserInfo($instaxer->instagram->getCurrentUserAccount()->getUser());
+        $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+        $instagram = json_decode($accountInstagramCache->getValue(), true);
 
         $deleteForm = $this->createDeleteForm($account);
-
 
         $query = $request->request->get('form');
 
@@ -368,11 +363,10 @@ class AccountController extends Controller
     {
         $mq = new MQ();
         $instaxer_json = $mq->query(
-            'instaxers/users?username=' .
+            'instaxers/infos?username=' .
             $account->getName() .
             '&password=' .
             $account->getPassword())->getBody()->getContents();
-
 
         $em = $this->getDoctrine()->getManager();
         $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
@@ -381,7 +375,7 @@ class AccountController extends Controller
             $accountInstagramCache->setAccount($account);
             $accountInstagramCache->setCreate(new \DateTime('now'));
         }
-        $accountInstagramCache->setName('user');
+        $accountInstagramCache->setName('info');
         $accountInstagramCache->setValue($instaxer_json);
         $accountInstagramCache->setModification(new \DateTime('now'));
 
