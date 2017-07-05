@@ -112,15 +112,18 @@ class AccountController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             try {
-                //                $path = './instaxer/profiles/' . $this->getUser() . DIRECTORY_SEPARATOR . $account->getName() . '.dat';
-                //
-                //                $instaxer = new Instaxer($path);
-                //                $instaxer->login($account->getName(), $account->getPassword());
-
                 $mq = new MQ();
-                $instaxer = $mq->query('instaxers?username=' . $account->getName() . '&password=' . $account->getPassword())->getBody()->getContents();
+                $instaxer = $mq->query(
+                    'instaxers?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword())->getBody()->getContents();
+
+                /**
+                 * @TODO:
+                 * Dodać Account Instagram Cache
+                 */
 
             } catch (InstagramException $exception) {
                 return $this->redirectToRoute(
