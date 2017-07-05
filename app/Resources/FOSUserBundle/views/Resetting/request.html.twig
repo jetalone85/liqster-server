@@ -1,4 +1,4 @@
-{% extends "@LiqsterHomePage/Default/index.html.twig" %}
+{% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block fos_user_content %}
     <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
