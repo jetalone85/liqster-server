@@ -401,7 +401,7 @@ class Account implements TaggableInterface
     /**
      * @param string $comments
      */
-    public function setComments(string $comments)
+    public function setComments($comments)
     {
         $this->comments = $comments;
     }
