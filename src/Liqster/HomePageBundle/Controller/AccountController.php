@@ -253,12 +253,6 @@ class AccountController extends Controller
         $editForm = $this->createForm(AccountEditType::class, $account);
         $editForm->handleRequest($request);
 
-        $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
-        $editTagsForm->handleRequest($request);
-
-        $editCommentsForm = $this->createForm(AccountEditCommentsType::class, $account);
-        $editCommentsForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $account->setTagsText($account->getTagsText());
             $account->setComments($account->getComments());
@@ -268,6 +262,9 @@ class AccountController extends Controller
 
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
         }
+
+        $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
+        $editTagsForm->handleRequest($request);
 
         if ($editTagsForm->isSubmitted() && $editTagsForm->isValid()) {
             $account->setName($account->getName());
@@ -279,6 +276,9 @@ class AccountController extends Controller
 
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
         }
+
+        $editCommentsForm = $this->createForm(AccountEditCommentsType::class, $account);
+        $editCommentsForm->handleRequest($request);
 
         if ($editCommentsForm->isSubmitted() && $editCommentsForm->isValid()) {
             $account->setName($account->getName());
