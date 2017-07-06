@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AccountEditTagsType extends AbstractType
+class AccountEditCommentsType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -36,7 +36,7 @@ class AccountEditTagsType extends AbstractType
                     ]
                 ]
             )
-            ->add('tagsText', TextareaType::class, [
+            ->add('commentsText', TextareaType::class, [
                 'required' => false
             ])
             ->add(

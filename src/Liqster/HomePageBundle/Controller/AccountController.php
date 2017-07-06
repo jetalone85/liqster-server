@@ -8,6 +8,7 @@ use Instagram\API\Framework\InstagramException;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
+use Liqster\HomePageBundle\Form\AccountEditCommentsType;
 use Liqster\HomePageBundle\Form\AccountEditTagsType;
 use Liqster\HomePageBundle\Form\AccountEditType;
 use Liqster\HomePageBundle\Form\AccountPaymentType;
@@ -255,9 +256,14 @@ class AccountController extends Controller
         $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
         $editTagsForm->handleRequest($request);
 
+        $editCommentsForm = $this->createForm(AccountEditCommentsType::class, $account);
+        $editCommentsForm->handleRequest($request);
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $account->setTagsText($account->getTagsText());
+            $account->setCommentsText($account->getCommentsText());
             $account->setModif(new \DateTime('now'));
-            $em->persist($account);
+
             $em->flush();
 
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
@@ -266,8 +272,20 @@ class AccountController extends Controller
         if ($editTagsForm->isSubmitted() && $editTagsForm->isValid()) {
             $account->setName($account->getName());
             $account->setPassword($account->getPassword());
+            $account->setCommentsText($account->getCommentsText());
             $account->setModif(new \DateTime('now'));
-            $em->persist($account);
+
+            $em->flush();
+
+            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+        }
+
+        if ($editCommentsForm->isSubmitted() && $editCommentsForm->isValid()) {
+            $account->setName($account->getName());
+            $account->setPassword($account->getPassword());
+            $account->setTagsText($account->getTagsText());
+            $account->setModif(new \DateTime('now'));
+
             $em->flush();
 
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
@@ -296,6 +314,7 @@ class AccountController extends Controller
                 'instagram' => $instagram,
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),
+                'edit_comments_form' => $editCommentsForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             )
         );

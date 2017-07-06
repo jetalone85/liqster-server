@@ -7,6 +7,7 @@ use Beelab\TagBundle\Tag\TagInterface;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Account
@@ -19,11 +20,20 @@ class Account implements TaggableInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Liqster\HomePageBundle\Entity\Tag")
      */
     protected $tags;
 
     protected $tagsText;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Liqster\HomePageBundle\Entity\Comment")
+     */
+    protected $comments;
+
+    protected $commentsText;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -31,7 +41,7 @@ class Account implements TaggableInterface
     protected $updated;
 
     /**
-     * @var \Ramsey\Uuid\Uuid
+     * @var Uuid
      *
      * @ORM\Id
      * @ORM\Column(type="uuid")
@@ -112,12 +122,13 @@ class Account implements TaggableInterface
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
-     * @return int
+     * @return Uuid
      */
-    public function getId()
+    public function getId(): Uuid
     {
         return $this->id;
     }
@@ -298,6 +309,65 @@ class Account implements TaggableInterface
     public function setTagsText($tagsText)
     {
         $this->tagsText = $tagsText;
+        $this->updated = new DateTime();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addComment(TagInterface $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeComment(TagInterface $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasComment(TagInterface $comment)
+    {
+        return $this->comments->contains($comment);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCommentNames()
+    {
+        return empty($this->commentsText) ? [] : array_map('trim', explode(',', $this->commentsText));
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommentsText()
+    {
+        $this->commentsText = implode(', ', $this->comments->toArray());
+
+        return $this->commentsText;
+    }
+
+    /**
+     * @param string
+     */
+    public function setCommentsText($commentsText)
+    {
+        $this->commentsText = $commentsText;
         $this->updated = new DateTime();
     }
 
