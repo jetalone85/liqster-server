@@ -5,6 +5,7 @@ namespace Liqster\HomePageBundle\Controller;
 use Cron\CronBundle\Entity\CronJob;
 use Exception;
 use Instagram\API\Framework\InstagramException;
+use Liqster\Domain\Cron\Composer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
@@ -12,6 +13,7 @@ use Liqster\HomePageBundle\Form\AccountEditCommentsType;
 use Liqster\HomePageBundle\Form\AccountEditTagsType;
 use Liqster\HomePageBundle\Form\AccountEditType;
 use Liqster\HomePageBundle\Form\AccountPaymentType;
+use Liqster\HomePageBundle\Form\AccountProgramType;
 use Liqster\HomePageBundle\Form\AccountType;
 use Liqster\MQBundle\Domain\MQ;
 use Liqster\PaymentBundle\Domain\Przelewy24;
@@ -291,6 +293,21 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
         }
 
+        $editProgramForm = $this->createForm(AccountProgramType::class, $account->getCronJob());
+        $editProgramForm->handleRequest($request);
+        if ($editProgramForm->isSubmitted() && $editProgramForm->isValid()) {
+            $account_program = $request->get('account_program');
+            $schedule = $account_program['schedule'];
+
+            $cronJob = $account->getCronJob();
+            $cronJob->setSchedule(Composer::compose($schedule));
+
+            $em->merge($cronJob);
+            $em->flush();
+
+            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+        }
+
         $deleteForm = $this->createDeleteForm($account);
 
         $query = $request->request->get('form');
@@ -315,6 +332,7 @@ class AccountController extends Controller
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),
                 'edit_comments_form' => $editCommentsForm->createView(),
+                'edit_program_form' => $editProgramForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             )
         );

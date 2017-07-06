@@ -37,12 +37,4 @@ class CronType extends AbstractType
             ]
         );
     }
-
-    //    /**
-    //     * {@inheritdoc}
-    //     */
-    //    public function getBlockPrefix()
-    //    {
-    //        return 'liqster_homepagebundle_account';
-    //    }
 }
