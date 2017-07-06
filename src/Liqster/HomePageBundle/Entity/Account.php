@@ -27,15 +27,6 @@ class Account implements TaggableInterface
     protected $tagsText;
 
     /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Liqster\HomePageBundle\Entity\Comment")
-     */
-    protected $comments;
-
-    protected $commentsText;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
@@ -309,65 +300,6 @@ class Account implements TaggableInterface
     public function setTagsText($tagsText)
     {
         $this->tagsText = $tagsText;
-        $this->updated = new DateTime();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addComment(TagInterface $comment)
-    {
-        $this->comments[] = $comment;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeComment(TagInterface $comment)
-    {
-        $this->comments->removeElement($comment);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasComment(TagInterface $comment)
-    {
-        return $this->comments->contains($comment);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCommentNames()
-    {
-        return empty($this->commentsText) ? [] : array_map('trim', explode(',', $this->commentsText));
-    }
-
-    /**
-     * @return string
-     */
-    public function getCommentsText()
-    {
-        $this->commentsText = implode(', ', $this->comments->toArray());
-
-        return $this->commentsText;
-    }
-
-    /**
-     * @param string
-     */
-    public function setCommentsText($commentsText)
-    {
-        $this->commentsText = $commentsText;
         $this->updated = new DateTime();
     }
 

@@ -256,9 +256,6 @@ class AccountController extends Controller
         $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
         $editTagsForm->handleRequest($request);
 
-        $editCommentsForm = $this->createForm(AccountEditCommentsType::class, $account);
-        $editCommentsForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $account->setTagsText($account->getTagsText());
             $account->setCommentsText($account->getCommentsText());
@@ -273,17 +270,6 @@ class AccountController extends Controller
             $account->setName($account->getName());
             $account->setPassword($account->getPassword());
             $account->setCommentsText($account->getCommentsText());
-            $account->setModif(new \DateTime('now'));
-
-            $em->flush();
-
-            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
-        }
-
-        if ($editCommentsForm->isSubmitted() && $editCommentsForm->isValid()) {
-            $account->setName($account->getName());
-            $account->setPassword($account->getPassword());
-            $account->setTagsText($account->getTagsText());
             $account->setModif(new \DateTime('now'));
 
             $em->flush();
@@ -314,7 +300,6 @@ class AccountController extends Controller
                 'instagram' => $instagram,
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),
-                'edit_comments_form' => $editCommentsForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             )
         );
