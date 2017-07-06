@@ -28,8 +28,8 @@
                                         </div>
                                         <div class="column name">
                                             <p class="title is-bold">{{ account.name }}</p>
-                                            <p class="subtitle">sample subtitle</p>
-                                            <p class="tagline">sample bio</p>
+                                            <p class="subtitle">{{ account.accountInstagramCache.valueAsArray.user.full_name }}</p>
+                                            <p class="tagline">{{ account.accountInstagramCache.valueAsArray.user.biography }}</p>
                                         </div>
                                     </div>
                                 </div>
