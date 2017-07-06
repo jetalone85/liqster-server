@@ -18,15 +18,6 @@ use Ramsey\Uuid\Uuid;
 class Account implements TaggableInterface
 {
     /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Liqster\HomePageBundle\Entity\Tag")
-     */
-    protected $tags;
-
-    protected $tagsText;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
@@ -106,6 +97,22 @@ class Account implements TaggableInterface
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
     private $product;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Liqster\HomePageBundle\Entity\Tag")
+     */
+    protected $tags;
+
+    protected $tagsText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comments", type="string", length=4096, unique=false, nullable=true)
+     */
+    private $comments;
 
     /**
      * Account constructor.
@@ -381,5 +388,21 @@ class Account implements TaggableInterface
     public function setProduct($product)
     {
         $this->product = $product;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param string $comments
+     */
+    public function setComments(string $comments)
+    {
+        $this->comments = $comments;
     }
 }
