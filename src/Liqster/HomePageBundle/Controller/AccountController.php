@@ -5,7 +5,6 @@ namespace Liqster\HomePageBundle\Controller;
 use Cron\CronBundle\Entity\CronJob;
 use Exception;
 use Instagram\API\Framework\InstagramException;
-use Instaxer\Instaxer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
@@ -245,7 +244,9 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+        $accountInstagramCache = $em
+            ->getRepository('LiqsterHomePageBundle:AccountInstagramCache')
+            ->findOneBy(['account' => $account]);
         $instagram = json_decode($accountInstagramCache->getValue(), true);
 
         $editForm = $this->createForm(AccountEditType::class, $account);

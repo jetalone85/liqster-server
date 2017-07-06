@@ -34,12 +34,12 @@ class TagsTextType extends AbstractType
     {
         $resolver->setDefaults(
             [
-            'required' => false,
-            'label' => 'Tags',
-            'attr' => [
-                'placeholder' => 'separate tags with comma',
-                'data-ajax' => $this->router->generate('tags'),
-            ],
+                'required' => false,
+                'label' => 'Tags',
+                'attr' => [
+                    'placeholder' => 'separate tags with comma',
+                    'data-ajax' => $this->router->generate('tags'),
+                ],
             ]
         );
     }
