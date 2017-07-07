@@ -88,6 +88,11 @@ class Account implements TaggableInterface
     private $accountInstagramCache;
 
     /**
+     * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Schedule", mappedBy="account")
+     */
+    private $schedule;
+
+    /**
      * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="account")
      */
     private $purchase;
@@ -405,4 +410,21 @@ class Account implements TaggableInterface
     {
         $this->comments = $comments;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
+    }
+
+    /**
+     * @param mixed $schedule
+     */
+    public function setSchedule($schedule)
+    {
+        $this->schedule = $schedule;
+    }
+
 }
