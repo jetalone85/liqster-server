@@ -9,6 +9,7 @@ use Liqster\Domain\Cron\Composer;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
+use Liqster\HomePageBundle\Entity\Schedule;
 use Liqster\HomePageBundle\Form\AccountEditCommentsType;
 use Liqster\HomePageBundle\Form\AccountEditTagsType;
 use Liqster\HomePageBundle\Form\AccountEditType;
@@ -107,6 +108,7 @@ class AccountController extends Controller
     public function newAction(Request $request)
     {
         $account = new Account();
+        $schedule = new Schedule();
         $cronJob = new CronJob();
 
         $form = $this->createForm(AccountType::class, $account);
@@ -139,6 +141,11 @@ class AccountController extends Controller
             $account->setCreated(new \DateTime('now'));
             $account->setModif(new \DateTime('now'));
             $em->persist($account);
+
+            $schedule->setAccount($account);
+            $schedule->setCreate(new \DateTime('now'));
+            $schedule->setModification(new \DateTime('now'));
+            $em->persist($schedule);
 
             $cronJob->setName($account->getId());
             $cronJob->setAccount($account);
