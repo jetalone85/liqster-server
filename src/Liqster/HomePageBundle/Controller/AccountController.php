@@ -420,6 +420,9 @@ class AccountController extends Controller
         $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
         $em->remove($payment);
 
+        $schedule = $em->getRepository('LiqsterHomePageBundle:Schedule')->findOneBy(['account' => $account]);
+        $em->remove($schedule);
+
         $em->remove($account);
         $em->flush();
 
