@@ -37,34 +37,34 @@ class Schedule
     private $modification;
 
     /**
-     * @var string
-     * @ORM\Column(name="morning", type="boolean", unique=false)
+     * @var integer
+     * @ORM\Column(name="morning", type="integer", unique=false)
      */
-    private $morning = true;
+    private $morning = 1;
 
     /**
-     * @var string
-     * @ORM\Column(name="noon", type="boolean", unique=false)
+     * @var integer
+     * @ORM\Column(name="noon", type="integer", unique=false)
      */
-    private $noon = true;
+    private $noon = 1;
 
     /**
-     * @var string
-     * @ORM\Column(name="afternoon", type="boolean", unique=false)
+     * @var integer
+     * @ORM\Column(name="afternoon", type="integer", unique=false)
      */
-    private $afternoon = true;
+    private $afternoon = 1;
 
     /**
-     * @var string
-     * @ORM\Column(name="evening", type="boolean", unique=false)
+     * @var integer
+     * @ORM\Column(name="evening", type="integer", unique=false)
      */
-    private $evening = true;
+    private $evening = 1;
 
     /**
-     * @var string
-     * @ORM\Column(name="night", type="boolean", unique=false)
+     * @var integer
+     * @ORM\Column(name="night", type="integer", unique=false)
      */
-    private $night = true;
+    private $night = 1;
 
     /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="schedule")

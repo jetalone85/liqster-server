@@ -1,6 +1,7 @@
 <?php
 
 namespace Liqster\Domain\Cron;
+use Liqster\HomePageBundle\Entity\Schedule;
 
 /**
  * Class Composer
@@ -8,29 +9,30 @@ namespace Liqster\Domain\Cron;
  */
 class Composer
 {
-    public static function compose($period): string
+    public static function compose(Schedule $schedule): string
     {
-        return '0/30 ' . self::switchDaily($period) . ' * * *';
+        return '*/30 ' . self::switchDaily($schedule) . ' * * *';
     }
 
-    public static function switchDaily($period)
+    public static function switchDaily(Schedule $schedule)
     {
-        switch ($period) {
-            case 'morning':
-                return '6-11';
-                break;
-            case 'work':
-                return '9-14';
-                break;
-            case 'afternoon':
-                return '14-19';
-                break;
-            case 'evening':
-                return '18-23';
-                break;
-            case 'morningAndEvening':
-                return '7-11,18-21';
-                break;
+        $array = [];
+        $text = '';
+
+        if ($schedule->getMorning() === 1) {
+            $array[] = '6-9';
+        }
+        if ($schedule->getNoon() === 1) {
+            $array[] ='10-12';
+        }
+        if ($schedule->getAfternoon() === 1) {
+            $array[] ='13-16';
+        }
+        if ($schedule->getEvening() === 1) {
+            $array[] ='17-20';
+        }
+        if ($schedule->getNoon() === 1) {
+            $array[] = '10-12';
         }
     }
 }

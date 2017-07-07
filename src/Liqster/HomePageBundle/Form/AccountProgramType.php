@@ -3,6 +3,7 @@
 namespace Liqster\HomePageBundle\Form;
 
 use Cron\CronBundle\Entity\CronJob;
+use Liqster\HomePageBundle\Entity\Schedule;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,14 +18,25 @@ class AccountProgramType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('schedule', ChoiceType::class, [
-                'choices' => [
-                    'Rano' => 'morning',
-                    'W pracy' => 'work',
-                    'Po południu' => 'afternoon',
-                    'Wieczorem' => 'evening',
-                    'Rano i po południu' => 'morningAndEvening',
-                ],
+            ->add('morning', ChoiceType::class, [
+                'mapped' => true,
+                'choices' => ['On' => true, 'Off' => false],
+            ])
+            ->add('noon', ChoiceType::class, [
+                'mapped' => true,
+                'choices' => ['On' => true, 'Off' => false],
+            ])
+            ->add('afternoon', ChoiceType::class, [
+                'mapped' => true,
+                'choices' => ['On' => true, 'Off' => false],
+            ])
+            ->add('evening', ChoiceType::class, [
+                'mapped' => true,
+                'choices' => ['On' => true, 'Off' => false],
+            ])
+            ->add('night', ChoiceType::class, [
+                'mapped' => true,
+                'choices' => ['On' => true, 'Off' => false],
             ])
             ->add(
                 'Zapisz', SubmitType::class, [
@@ -43,7 +55,7 @@ class AccountProgramType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => CronJob::class
+                'data_class' => Schedule::class
             ]
         );
     }

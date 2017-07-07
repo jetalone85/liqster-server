@@ -300,15 +300,16 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_show', array('id' => $account->getId()));
         }
 
-        $editProgramForm = $this->createForm(AccountProgramType::class, $account->getCronJob());
+        $editProgramForm = $this->createForm(AccountProgramType::class, $account->getSchedule());
         $editProgramForm->handleRequest($request);
+
         if ($editProgramForm->isSubmitted() && $editProgramForm->isValid()) {
-            $account_program = $request->get('account_program');
-            $schedule = $account_program['schedule'];
+            $schedule = $account->getSchedule();
+            $schedule->setModification(new \DateTime('now'));
+            $em->merge($schedule);
 
             $cronJob = $account->getCronJob();
             $cronJob->setSchedule(Composer::compose($schedule));
-
             $em->merge($cronJob);
             $em->flush();
 
