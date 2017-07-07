@@ -307,9 +307,11 @@ class AccountController extends Controller
             $schedule = $account->getSchedule();
             $schedule->setModification(new \DateTime('now'));
             $em->merge($schedule);
+            $em->flush();
 
             $cronJob = $account->getCronJob();
             $cronJob->setSchedule(Composer::compose($schedule));
+
             $em->merge($cronJob);
             $em->flush();
 
