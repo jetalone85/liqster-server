@@ -2,13 +2,8 @@
 
 namespace Liqster\HomePageBundle\Form;
 
-use Doctrine\DBAL\Types\TextType;
-use Liqster\HomePageBundle\Controller\AccountController;
-use Liqster\HomePageBundle\Controller\ApiController;
 use Liqster\HomePageBundle\Entity\Account;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -41,13 +36,10 @@ class AccountEditTagsType extends AbstractType
                     ]
                 ]
             )
-            ->add('tagsText', ChoiceType::class, [
-                'choice_loader' => new CallbackChoiceLoader(function () {
-                    return ApiController::list();
-                }),
+            ->add('tagsText', TextareaType::class, [
                 'required' => false,
                 'attr' => [
-                    'class' => 'js-example-tokenizer',
+                    'class' => '',
                 ]
             ])
             ->add(
