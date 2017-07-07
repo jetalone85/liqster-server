@@ -94,3 +94,7 @@ p.title.is-bold {
 .columns .account {
     margin-top: 2rem;
 }
+
+.opacity-30 {
+    background-color: rgba(255, 255, 255, 0.3);
+}

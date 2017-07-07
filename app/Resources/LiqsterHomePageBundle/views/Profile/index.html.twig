@@ -1,62 +1,72 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block header %}
-
-<div class="container">
-
-    <div class="row">
-        <div class="col s12 m5 l5 xl4">
-
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://news.usc.edu/files/2016/03/Sample_Steven-1-824x549.jpg">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">{{ user.username }}<i
-                                class="material-icons right">more_vert</i></span>
-                    <p><a href="{{ path('account_index') }}">Dashboard</a></p>
-                </div>
-                <div class="card-action">
-                    <ul class="">
-                        <li><a class="collection-item" href="{{ path('profile_index') }}">Profil</a></li>
-                        <li><a class="collection-item" href="{{ path('profile_setting') }}">Ustawienia konta</a></li>
-                        <li><a class="collection-item" href="{{ path('profile_notifications') }}">Powiadomienia
-                                email</a></li>
-                        <li><a class="collection-item" href="{{ path('profile_billing') }}">Rozlicznia</a></li>
-                        <li><a class="collection-item" href="{{ path('profile_security') }}">Bezpieczeństwo</a></li>
-                    </ul>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Informacje<i class="material-icons right">close</i></span>
-                    <p>Przykładowa informacja o przyszłych możliwościach</p>
-                    <p>Może zawierać <a href="#">linki</a></p>
+<section class="hero is-liqht is-medium">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns">
+                <div class="card-header-title">
+                    <h2 class="title">Witaj, masz przed sobą panel Twojego profilu.</h2>
                 </div>
             </div>
+            <div class="columns">
+                <h3 class="subtitle">Tutaj możesz edytować swoje dane, oraz skontrolować swoje płatności i
+                    bezpieczeństwo! </h3>
+            </div>
+            <div class="columns">
+                <div class="column is-one-quarter">
+                    <div class="card">
+                        <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ user.username }}<i
+                                class="material-icons right"></i></span>
+                            <p><a href="{{ path('account_index') }}"><h2>Lista kont</h2></a></p>
+                            <ul class="">
+                                <li><a class="collection-item" href="{{ path('profile_index') }}"><h2>Edytuj dane</h2>
+                                    </a>
+                                </li>
+                                <li><a class="collection-item" href="{{ path('profile_setting') }}"><h2>Zmień hasło</h2>
+                                    </a>
+                                </li>
+                                <li><a class="collection-item" href="{{ path('profile_notifications') }}"><h2>
+                                            Powiadomienia
+                                            email</h2></a></li>
+                                <li><a class="collection-item" href="{{ path('profile_billing') }}"><h2>Płatności</h2>
+                                    </a>
+                                </li>
+                                <li><a class="collection-item" href="{{ path('profile_security') }}"><h2>
+                                            Bezpieczeństwo</h2>
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
 
+                </div>
+                {% endblock %}
+
+                {% block body %}
+
+                <div class="column">
+                    <div class="card">
+                        <div class="card-content">
+                            {% block body_on_single_page %}
+
+                                <h4>Edycja danych</h4>
+
+                                {{ form_start(edit_form) }}
+                                {{ form_widget(edit_form) }}
+                                {{ form_end(edit_form) }}
+
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
         {% endblock %}
 
-        {% block body %}
+        {% block javascripts_on_single_page %}
 
-        <div class="col s12 m7 l7 xl8">
-            {% block body_on_single_page %}
+            <script>
+            </script>
 
-                <h4>Edycja danych</h4>
-
-                {{ form_start(edit_form) }}
-                {{ form_widget(edit_form) }}
-                {{ form_end(edit_form) }}
-
-            {% endblock %}
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block javascripts_on_single_page %}
-
-    <script>
-    </script>
-
-{% endblock %}
+        {% endblock %}
