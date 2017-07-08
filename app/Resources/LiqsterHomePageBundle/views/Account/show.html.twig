@@ -66,32 +66,62 @@
 
             <div class="card">
                 <div class="card-content">
-                    {{ form_start(edit_form) }}
-                    {{ form_end(edit_form) }}
+                    <div class="columns">
+                        <div class="column">
+                            {{ form_start(edit_form) }}
+                            {{ form_end(edit_form) }}
+                        </div>
+                        <div class="column">
+                            <p>Krok 1: Uzupełnij nazwę oraz hasło swojego konta na Instagramie.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="columns">
+                        <div class="column">
+                            {{ form_start(edit_tags_form) }}
+                            {{ form_end(edit_tags_form) }}
+                        </div>
+                        <div class="column">
+                            <p>Krok 2: Wypisz #tagi, po których ma poruszać się liqster. Wymieniaj je po przecinkach,
+                                bez odstępów. Wybierz od 10 do 30 #tagów.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-content">
-                    {{ form_start(edit_tags_form) }}
-                    {{ form_end(edit_tags_form) }}
+                    <div class="columns">
+                        <div class="column">
+                            {{ form_start(edit_comments_form) }}
+                            {{ form_end(edit_comments_form) }}
+                        </div>
+                        <div class="column">
+                            <p>Krok 3: Napisz teksty trzech komentarzy, które losowo pozostawi w Twoim imieniu liqster.
+                                Oddziel je między sobą przecinkami, nie używając odstępów.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-content">
-                    {{ form_start(edit_comments_form) }}
-                    {{ form_end(edit_comments_form) }}
+                    <div class="columns">
+                        <div class="column">
+                            {{ form_start(edit_program_form) }}
+                            {{ form_end(edit_program_form) }}
+                        </div>
+                        <div class="column">
+                            <p>Krok 4: Wybierz pory, w których liqster będzie dla Ciebie pracował. Możesz pozostawić
+                                wszystkie godziny aktywne.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-content">
-                    {{ form_start(edit_program_form) }}
-                    {{ form_end(edit_program_form) }}
-                </div>
-            </div>
-
             <div class="card">
 
                 <div class="card-content">
