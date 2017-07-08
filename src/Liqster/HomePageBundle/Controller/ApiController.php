@@ -25,9 +25,4 @@ class ApiController extends Controller
 
         return $this->render('LiqsterHomePageBundle:Api:tags.json.twig', ['tags' => $tags]);
     }
-
-    public static function list()
-    {
-        return ['1' => 'a', '2' => 'b'];
-    }
 }

@@ -29,7 +29,7 @@ class ResultController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Result:list.html.twig', array(
-            'reports' => $reports,
+                'reports' => $reports,
             )
         );
     }
