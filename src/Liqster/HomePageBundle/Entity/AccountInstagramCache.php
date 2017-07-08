@@ -126,17 +126,17 @@ class AccountInstagramCache
         return $this->value;
     }
 
-    public function getValueAsArray()
-    {
-        return json_decode($this->value, true);
-    }
-
     /**
      * @param mixed $value
      */
     public function setValue($value)
     {
         $this->value = $value;
+    }
+
+    public function getValueAsArray()
+    {
+        return json_decode($this->value, true);
     }
 
     /**

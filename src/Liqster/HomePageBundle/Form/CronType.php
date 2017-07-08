@@ -33,7 +33,7 @@ class CronType extends AbstractType
     {
         $resolver->setDefaults(
             [
-            'data_class' => Cron::class
+                'data_class' => Cron::class
             ]
         );
     }

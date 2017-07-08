@@ -20,26 +20,26 @@ class AccountType extends AbstractType
         $builder
             ->add(
                 'name', TextType::class, [
-                'required' => true,
-                'label' => 'name',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'required' => true,
+                    'label' => 'name',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
                 ]
             )
             ->add(
                 'password', PasswordType::class, [
-                'required' => true,
-                'label' => 'password',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'required' => true,
+                    'label' => 'password',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
                 ]
             )
             ->add(
                 'Dalej', SubmitType::class, [
-                'attr' => [
-                    'class' => 'form-control btn waves-effect waves-light rigth']
+                    'attr' => [
+                        'class' => 'form-control btn waves-effect waves-light rigth']
                 ]
             );
     }
@@ -53,7 +53,7 @@ class AccountType extends AbstractType
     {
         $resolver->setDefaults(
             [
-            'data_class' => Account::class
+                'data_class' => Account::class
             ]
         );
     }

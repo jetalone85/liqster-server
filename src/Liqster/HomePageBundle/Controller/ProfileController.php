@@ -42,8 +42,8 @@ class ProfileController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Profile:index.html.twig', [
-            'user' => $this->getUser(),
-            'edit_form' => $editForm->createView(),
+                'user' => $this->getUser(),
+                'edit_form' => $editForm->createView(),
             ]
         );
     }
@@ -72,9 +72,9 @@ class ProfileController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Profile:setting.html.twig', [
-            'user' => $this->getUser(),
-            'delete_form' => $deleteForm->createView(),
-            'edit_form' => $editForm->createView(),
+                'user' => $this->getUser(),
+                'delete_form' => $deleteForm->createView(),
+                'edit_form' => $editForm->createView(),
             ]
         );
     }
@@ -102,7 +102,7 @@ class ProfileController extends Controller
     {
         return $this->render(
             'LiqsterHomePageBundle:Profile:notifications.html.twig', [
-            'user' => $this->getUser(),
+                'user' => $this->getUser(),
             ]
         );
     }
@@ -117,7 +117,7 @@ class ProfileController extends Controller
     {
         return $this->render(
             'LiqsterHomePageBundle:Profile:billing.html.twig', [
-            'user' => $this->getUser(),
+                'user' => $this->getUser(),
             ]
         );
     }
@@ -132,7 +132,7 @@ class ProfileController extends Controller
     {
         return $this->render(
             'LiqsterHomePageBundle:Profile:security.html.twig', [
-            'user' => $this->getUser(),
+                'user' => $this->getUser(),
             ]
         );
     }
@@ -143,7 +143,7 @@ class ProfileController extends Controller
      * @Route("/{id}",   name="user_delete")
      * @Method("DELETE")
      * @param            Request $request
-     * @param            User    $user
+     * @param            User $user
      * @return           RedirectResponse
      * @throws           \LogicException
      * @throws           \InvalidArgumentException

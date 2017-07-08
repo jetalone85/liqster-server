@@ -15,7 +15,7 @@ class ProductController extends Controller
 
         return $this->render(
             'LiqsterHomePageBundle:Product:field.html.twig', [
-            'product' => $product
+                'product' => $product
             ]
         );
     }

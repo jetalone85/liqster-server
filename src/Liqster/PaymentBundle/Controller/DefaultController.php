@@ -31,7 +31,7 @@ class DefaultController extends Controller
 
         $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(
             [
-            'session' => $request->request->get('p24_session_id')
+                'session' => $request->request->get('p24_session_id')
             ]
         );
 

@@ -19,26 +19,26 @@ class ProfileProfileType extends AbstractType
         $builder
             ->add(
                 'username', TextType::class, [
-                'required' => false,
-                'label' => 'Nazwa (login) użytkownika',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'required' => false,
+                    'label' => 'Nazwa (login) użytkownika',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
                 ]
             )
             ->add(
                 'email', TextType::class, [
-                'required' => false,
-                'label' => 'Email',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'required' => false,
+                    'label' => 'Email',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
                 ]
             )
             ->add(
                 'Zapisz', SubmitType::class, [
-                'attr' => [
-                    'class' => 'form-control btn btn-success']
+                    'attr' => [
+                        'class' => 'form-control btn btn-success']
                 ]
             );
     }
@@ -52,7 +52,7 @@ class ProfileProfileType extends AbstractType
     {
         $resolver->setDefaults(
             [
-            'data_class' => User::class
+                'data_class' => User::class
             ]
         );
     }

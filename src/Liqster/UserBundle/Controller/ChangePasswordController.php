@@ -40,7 +40,7 @@ class ChangePasswordController extends BaseController
 
         /**
          * @var $dispatcher EventDispatcherInterface
-*/
+         */
         $dispatcher = $this->get('event_dispatcher');
 
         $event = new GetResponseUserEvent($user, $request);
@@ -52,7 +52,7 @@ class ChangePasswordController extends BaseController
 
         /**
          * @var $formFactory FactoryInterface
-*/
+         */
         $formFactory = $this->get('fos_user.change_password.form.factory');
 
         $form = $formFactory->createForm();
@@ -63,7 +63,7 @@ class ChangePasswordController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             /**
              * @var $userManager UserManagerInterface
-*/
+             */
             $userManager = $this->get('fos_user.user_manager');
 
             $event = new FormEvent($form, $request);

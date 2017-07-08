@@ -73,10 +73,10 @@ class Przelewy24
     /**
      * Obcject constructor. Set initial parameters
      *
-     * @param int    $merchantId
-     * @param int    $posId
+     * @param int $merchantId
+     * @param int $posId
      * @param string $salt
-     * @param bool   $testMode
+     * @param bool $testMode
      */
     public function __construct($merchantId, $posId, $salt, $testMode = false)
     {
@@ -101,8 +101,8 @@ class Przelewy24
     /**
      * Add value do post request
      *
-     * @param string $name  Argument name
-     * @param mixed  $value Argument value
+     * @param string $name Argument name
+     * @param mixed $value Argument value
      * @todo  Add postData validation
      */
     public function addValue($name, $value)
@@ -144,7 +144,7 @@ class Przelewy24
      * Function contect to P24 system
      *
      * @param  string $function Method name
-     * @param  array  $ARG      POST parameters
+     * @param  array $ARG POST parameters
      * @return array array(INT Error code, ARRAY Result)
      */
     private function callUrl($function, $ARG)
@@ -250,8 +250,8 @@ class Przelewy24
     /**
      * Redirects or returns URL to a P24 payment screen
      *
-     * @param  string $token    Token
-     * @param  bool   $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
+     * @param  string $token Token
+     * @param  bool $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
      * @return string URL to P24 payment screen
      */
     public function trnRequest($token, $redirect = true)

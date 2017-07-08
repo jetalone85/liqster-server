@@ -21,7 +21,13 @@ class Account implements TaggableInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
-
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Liqster\HomePageBundle\Entity\Tag")
+     */
+    protected $tags;
+    protected $tagsText;
     /**
      * @var Uuid
      *
@@ -31,87 +37,65 @@ class Account implements TaggableInterface
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
-
     /**
      * @var string
      *
      * @ORM\Column(name="instagram_image", type="string", length=255, unique=false, nullable=true)
      */
     private $image;
-
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, unique=false)
      */
     private $password;
-
     /**
      * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $created;
-
     /**
      * @var DateTime
      * @ORM\Column(name="date_modif", type="datetime", unique=false, nullable=true)
      */
     private $modif;
-
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
-
     /**
      * @var boolean
      * @ORM\Column(name="payed", type="boolean", unique=false)
      */
     private $payed = false;
-
     /**
      * @ORM\OneToOne(targetEntity="Cron\CronBundle\Entity\CronJob", mappedBy="account")
      */
     private $cronJob;
-
     /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\AccountInstagramCache", mappedBy="account")
      */
     private $accountInstagramCache;
-
     /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Schedule", mappedBy="account")
      */
     private $schedule;
-
     /**
      * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="account")
      */
     private $purchase;
-
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="account")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
     private $product;
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Liqster\HomePageBundle\Entity\Tag")
-     */
-    protected $tags;
-
-    protected $tagsText;
-
     /**
      * @var string
      *

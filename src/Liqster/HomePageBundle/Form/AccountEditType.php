@@ -20,26 +20,26 @@ class AccountEditType extends AbstractType
         $builder
             ->add(
                 'name', TextType::class, [
-                'required' => true,
-                'label' => 'name',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'required' => true,
+                    'label' => 'name',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
                 ]
             )
             ->add(
                 'password', PasswordType::class, [
-                'required' => true,
-                'label' => 'password',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
+                    'required' => true,
+                    'label' => 'password',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
                 ]
             )
             ->add(
                 'Zapisz', SubmitType::class, [
-                'attr' => [
-                    'class' => '']
+                    'attr' => [
+                        'class' => '']
                 ]
             );
     }
@@ -53,7 +53,7 @@ class AccountEditType extends AbstractType
     {
         $resolver->setDefaults(
             [
-            'data_class' => Account::class
+                'data_class' => Account::class
             ]
         );
     }

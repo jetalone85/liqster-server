@@ -28,7 +28,7 @@ class NotificationController extends Controller
             ->setBody(
                 $this->renderView(
                     'LiqsterHomePageBundle:Email:notification_confirm.txt.twig', [
-                    'user' => $this->getUser()
+                        'user' => $this->getUser()
                     ]
                 ),
                 'text/html'

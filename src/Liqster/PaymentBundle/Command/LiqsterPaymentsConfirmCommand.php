@@ -26,7 +26,7 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param InputInterface  $input
+     * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|null|void
      * @throws \LogicException
@@ -40,7 +40,7 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
 
         $payments = $em->getRepository('LiqsterPaymentBundle:Payment')->findBy(
             [
-            'verify' => null
+                'verify' => null
             ]
         );
 

@@ -20,21 +20,21 @@ class AccountPaymentType extends AbstractType
         $builder
             ->add(
                 'product', EntityType::class, [
-                'class' => Product::class,
-                'data_class' => Product::class,
-                'required' => true,
-                'label' => 'Produkt',
-                'choice_label' => 'type',
-                'expanded' => true,
-                'attr' => [
-                    'class' => 'input-field',
-                ]
+                    'class' => Product::class,
+                    'data_class' => Product::class,
+                    'required' => true,
+                    'label' => 'Produkt',
+                    'choice_label' => 'type',
+                    'expanded' => true,
+                    'attr' => [
+                        'class' => 'input-field',
+                    ]
                 ]
             )
             ->add(
                 'Dalej', SubmitType::class, [
-                'attr' => [
-                    'class' => 'form-control btn waves-effect waves-light rigth']
+                    'attr' => [
+                        'class' => 'form-control btn waves-effect waves-light rigth']
                 ]
             );
     }
@@ -48,7 +48,7 @@ class AccountPaymentType extends AbstractType
     {
         $resolver->setDefaults(
             [
-            'data_class' => Account::class
+                'data_class' => Account::class
             ]
         );
     }

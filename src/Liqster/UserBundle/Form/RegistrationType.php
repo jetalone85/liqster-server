@@ -15,7 +15,7 @@ class RegistrationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -42,16 +42,16 @@ class RegistrationType extends AbstractType
     /**
      * @return string
      */
-    public function getBlockPrefix(): string
+    public function getName(): string
     {
-        return 'liqster_user_registration';
+        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getName(): string
+    public function getBlockPrefix(): string
     {
-        return $this->getBlockPrefix();
+        return 'liqster_user_registration';
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Liqster\HomePageBundle\Form;
 
-use Cron\CronBundle\Entity\CronJob;
 use Liqster\HomePageBundle\Entity\Schedule;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
