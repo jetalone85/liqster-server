@@ -57,11 +57,16 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
                 $RES = $P24->trnVerify();
 
                 if ($RES['error'] === '0') {
+
+                    $now = new \DateTime('now');
+                    $period = $payment->getPurchase()->getProduct()->getPeriod();
+
                     $payment->setVerify('ok');
-                    $payment->setVerifyDate(new \DateTime('now'));
+                    $payment->setVerifyDate($now);
 
                     $payment->getPurchase()->setStatus('verify');
-                    $payment->getPurchase()->setModification(new \DateTime('now'));
+                    $payment->getPurchase()->setModification($now);
+                    $payment->getPurchase()->setPaid($now->modify('+' . $period . ' day'));
 
                     $em->flush();
                 }

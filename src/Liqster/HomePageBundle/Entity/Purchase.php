@@ -37,27 +37,45 @@ class Purchase
     private $modification;
 
     /**
+     * @var DateTime
+     * @ORM\Column(name="date_paid", type="datetime", unique=false, nullable=true)
+     */
+    private $paid;
+    /**
      * @var string
      * @ORM\Column(name="status", type="string", unique=false, nullable=true)
      */
     private $status;
-
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="purchase")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
      */
     private $product;
-
     /**
      * @ORM\OneToOne(targetEntity="Liqster\PaymentBundle\Entity\Payment", mappedBy="purchase")
      */
     private $payment;
-
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Account", inversedBy="purchase")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      */
     private $account;
+
+    /**
+     * @return DateTime
+     */
+    public function getPaid(): DateTime
+    {
+        return $this->paid;
+    }
+
+    /**
+     * @param DateTime $paid
+     */
+    public function setPaid(DateTime $paid)
+    {
+        $this->paid = $paid;
+    }
 
     /**
      * @return Uuid
