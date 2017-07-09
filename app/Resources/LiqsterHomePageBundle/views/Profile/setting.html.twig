@@ -2,17 +2,67 @@
 
 {% block body_on_single_page %}
 
-    <h4>Edycja hasła</h4>
+    <div class="columns">
+        <div class="column">
+            <h4>Edycja hasła</h4>
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    {{ form_end(edit_form) }}
+            {{ form_start(edit_form) }}
 
-    <h4>Kasowanie konta użytkownika</h4>
-    <p>Usunięcie ma nieodwracalne skutki. Nie będziesz mógł się już zalogować, ponieważ wszystkie Twoje
-        ustawienia zostaną skasowane.</p>
-    {{ form_start(delete_form) }}
-    <input class="waves-effect waves-light btn red" type="submit" value="Usuń moje konto">
-    {{ form_end(delete_form) }}
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    {{ form_label(edit_form.plainPassword.first, null, {'label_attr': {'class': 'label'}}) }}
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            {{ form_widget(edit_form.plainPassword.first, { 'attr': {'class': 'input' } }) }}
+                            <span class="icon is-small is-left"><i
+                                        class="fa fa-key"></i></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    {{ form_label(edit_form.plainPassword.second, null, {'label_attr': {'class': 'label'}}) }}
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded has-icons-left">
+                            {{ form_widget(edit_form.plainPassword.second, { 'attr': {'class': 'input' } }) }}
+                            <span class="icon is-small is-left"><i
+                                        class="fa fa-key"></i></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped is-pulled-right">
+                <p class="control">
+                    <input class="button is-primary is-centered" type="submit" id="_submit"
+                           name="_submit"
+                           value="Zapisz"/>
+                </p>
+            </div>
+
+            {{ form_end(edit_form) }}
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <h4>Kasowanie konta użytkownika</h4>
+            <p>Usunięcie ma nieodwracalne skutki. Nie będziesz mógł się już zalogować, ponieważ wszystkie Twoje
+                ustawienia zostaną skasowane.</p>
+            {{ form_start(delete_form) }}
+            <div class="field is-grouped is-pulled-right">
+                <p class="control">
+                    <input class="button is-danger is-centered" type="submit" value="Usuń moje konto">
+                </p></div>
+            {{ form_end(delete_form) }}
+
+        </div>
+    </div>
 
 {% endblock %}

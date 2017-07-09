@@ -14,7 +14,6 @@
                         <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">{{ user.username }}<i
                                 class="material-icons right"></i></span>
-                            <p><a href="{{ path('account_index') }}"><h2>Lista kont</h2></a></p>
                             <ul class="">
                                 <li><a class="collection-item" href="{{ path('profile_index') }}"><h2>Edytuj dane</h2>
                                     </a>
@@ -45,11 +44,54 @@
                         <div class="card-content">
                             {% block body_on_single_page %}
 
-                                <h4>Edycja danych</h4>
+                                <div class="columns">
+                                    <div class="column">
+                                        <h4>Edycja danych</h4>
 
-                                {{ form_start(edit_form) }}
-                                {{ form_widget(edit_form) }}
-                                {{ form_end(edit_form) }}
+                                        {{ form_start(edit_form) }}
+
+                                        <div class="field is-horizontal">
+                                            <div class="field-label is-normal">
+                                                {{ form_label(edit_form.username, null, {'label_attr': {'class': 'label'}}) }}
+                                            </div>
+                                            <div class="field-body">
+                                                <div class="field">
+                                                    <p class="control is-expanded has-icons-left">
+                                                        {{ form_widget(edit_form.username, { 'attr': {'class': 'input' } }) }}
+                                                        <span class="icon is-small is-left"><i
+                                                                    class="fa fa-user"></i></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field is-horizontal">
+                                            <div class="field-label is-normal">
+                                                {{ form_label(edit_form.email, null, {'label_attr': {'class': 'label'}}) }}
+                                            </div>
+                                            <div class="field-body">
+                                                <div class="field">
+                                                    <p class="control is-expanded has-icons-left">
+                                                        {{ form_widget(edit_form.email, { 'attr': {'class': 'input' } }) }}
+                                                        <span class="icon is-small is-left"><i
+                                                                    class="fa fa-envelope"></i></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field is-grouped is-pulled-right">
+                                            <p class="control">
+                                                <input class="button is-primary is-centered" type="submit" id="_submit"
+                                                       name="_submit"
+                                                       value="Zapisz"/>
+                                            </p>
+                                        </div>
+
+                                        {{ form_widget(edit_form) }}
+                                        {{ form_end(edit_form) }}
+                                    </div>
+                                </div>
 
                             {% endblock %}
                         </div>
