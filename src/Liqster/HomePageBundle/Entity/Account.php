@@ -109,7 +109,6 @@ class Account implements TaggableInterface
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-        $this->comments = new ArrayCollection();
     }
 
     /**

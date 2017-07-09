@@ -13,8 +13,14 @@ use Psr\Http\Message\ResponseInterface;
  */
 class MQ
 {
+    /**
+     * @var Client
+     */
     private $client;
 
+    /**
+     * @var string
+     */
     private $url;
 
     /**
@@ -23,15 +29,24 @@ class MQ
     public function __construct()
     {
         $this->client = new Client();
-        $this->url = 'https://nameless-taiga-58917.herokuapp.com';
+        $this->url = 'http://localhost:8001';
+//        $this->url = 'https://nameless-taiga-58917.herokuapp.com';
     }
 
+    /**
+     * @param string $path
+     * @return ResponseInterface
+     */
     public function query(string $path): ResponseInterface
     {
         $request = new Request('POST', $this->composeURL($path));
         return $this->client->send($request);
     }
 
+    /**
+     * @param $path
+     * @return string
+     */
     private function composeURL($path): string
     {
         return $this->url . '/' . $path;

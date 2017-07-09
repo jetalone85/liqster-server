@@ -60,4 +60,32 @@ class DefaultController extends Controller
 
         return $response;
     }
+
+    /**
+     * @return Response
+     * @throws \LogicException
+     * @Route("/termsOfService", name="homepage_termsOfService")
+     * @Method({"GET"})
+     */
+    public function termsOfServiceAction(): Response
+    {
+        return $this->render(
+            'LiqsterHomePageBundle:Default:termsOfService.html.twig', [
+            ]
+        );
+    }
+
+    /**
+     * @return Response
+     * @throws \LogicException
+     * @Route("/privacyPolicy", name="homepage_privacyPolicy")
+     * @Method({"GET"})
+     */
+    public function privacyPolicyAction(): Response
+    {
+        return $this->render(
+            'LiqsterHomePageBundle:Default:privacyPolicy.html.twig', [
+            ]
+        );
+    }
 }
