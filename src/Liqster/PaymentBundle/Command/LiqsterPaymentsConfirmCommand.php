@@ -70,8 +70,6 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
 
                     $em->flush();
                 }
-
-                dump($payment);
             }
         }
     }

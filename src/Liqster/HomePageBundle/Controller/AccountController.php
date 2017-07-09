@@ -214,13 +214,13 @@ class AccountController extends Controller
                 $P24->addValue('p24_amount', $account->getProduct()->getPrice());
                 $P24->addValue('p24_currency', 'PLN');
                 $P24->addValue('p24_email', $this->getUser()->getEmail());
-                $P24->addValue('p24_description', ' ');
+                $P24->addValue('p24_description', $account->getId());
                 $P24->addValue('p24_country', 'PL');
                 $P24->addValue('p24_phone', '+48500600700');
                 $P24->addValue('p24_language', 'pl');
                 $P24->addValue('p24_method', '1');
-                $P24->addValue('p24_url_return', 'http://liqster.pl/account/');
-                $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
+                $P24->addValue('p24_url_return', 'http://10.166.112.131/account/' . $account->getId() . '/check');
+                $P24->addValue('p24_url_status', 'http://10.166.112.131/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
                 $P24->trnRegister(true);
@@ -413,15 +413,6 @@ class AccountController extends Controller
 
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
         $em->remove($cronJob);
-
-        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
-        $em->remove($purchase);
-
-        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
-        $em->remove($payment);
-
-        $schedule = $em->getRepository('LiqsterHomePageBundle:Schedule')->findOneBy(['account' => $account]);
-        $em->remove($schedule);
 
         $em->remove($account);
         $em->flush();
