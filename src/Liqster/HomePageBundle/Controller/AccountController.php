@@ -219,8 +219,8 @@ class AccountController extends Controller
                 $P24->addValue('p24_phone', '+48500600700');
                 $P24->addValue('p24_language', 'pl');
                 $P24->addValue('p24_method', '1');
-                $P24->addValue('p24_url_return', 'http://10.77.233.13/account/' . $account->getId() . '/check');
-                $P24->addValue('p24_url_status', 'http://10.77.233.13/payment/');
+                $P24->addValue('p24_url_return', 'http://liqster.pl/account/' . $account->getId() . '/check');
+                $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
                 $P24->trnRegister(true);
