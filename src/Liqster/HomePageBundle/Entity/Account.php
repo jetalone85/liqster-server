@@ -65,6 +65,13 @@ class Account implements TaggableInterface
      * @ORM\Column(name="date_modif", type="datetime", unique=false, nullable=true)
      */
     private $modif;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="disabled", type="boolean", unique=false, nullable=true)
+     */
+    private $disabled = false;
+
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
@@ -409,5 +416,22 @@ class Account implements TaggableInterface
     {
         $this->schedule = $schedule;
     }
+
+    /**
+     * @return bool
+     */
+    public function isDisabled(): bool
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * @param bool $disabled
+     */
+    public function setDisabled(bool $disabled)
+    {
+        $this->disabled = $disabled;
+    }
+    
 
 }
