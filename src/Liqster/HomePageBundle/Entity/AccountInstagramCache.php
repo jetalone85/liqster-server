@@ -44,7 +44,7 @@ class AccountInstagramCache
 
     /**
      * @var string
-     * @ORM\Column(name="value", type="string", unique=false, nullable=true)
+     * @ORM\Column(name="value", type="text", unique=false, nullable=true)
      */
     private $value;
 
