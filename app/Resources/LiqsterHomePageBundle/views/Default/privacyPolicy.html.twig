@@ -8,7 +8,21 @@
         <div class="hero-body terms">
             <div class="container">
                 <div class="columns">
-                    <div class="column is-two-thirds is-offset-one-third">
+                    <div class="column is-one-third">
+                        <aside class="menu">
+                            <p class="menu-label">
+                                Przejdź do:
+                            </p>
+                            <ul class="menu-list">
+                                <li><a href="{{ path('homepage_termsOfService') }}">Regulaminu świadczenia usług</a>
+                                </li>
+                                <li><a class="is-active" href="{{ path('homepage_privacyPolicy') }}">Polityki
+                                        prywatności</a>
+                                <li><a href="{{ path('homepage_cookiesPolicy') }}">Polityki plików cookies</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="column">
                         <h1 class="title">Polityka prywatności serwisu liqster.pl</h1>
                         <ol>
                             <li>

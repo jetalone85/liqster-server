@@ -1,0 +1,40 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+    <section class="hero">
+        <div class="hero-body terms">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-one-third">
+                        <aside class="menu">
+                            <p class="menu-label">
+                                Przejdź do:
+                            </p>
+                            <ul class="menu-list">
+                                <li><a href="{{ path('homepage_termsOfService') }}">Regulaminu świadczenia usług</a>
+                                </li>
+                                <li><a href="{{ path('homepage_privacyPolicy') }}">Polityki prywatności</a></li>
+                                <li><a class="is-active" href="{{ path('homepage_cookiesPolicy') }}">Polityki plików
+                                        cookies</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="column">
+                        <h1 class="title">Polityka plików cookies serwisu liqster.pl</h1>
+                        <p>Informujemy, iż w celu optymalizacji treści dostępnych w naszym serwisie, dostosowania ich do
+                            Waszych indywidualnych potrzeb korzystamy z informacji zapisanych za pomocą plików cookies
+                            na urządzeniach końcowych użytkowników. Pliki cookies użytkownik może kontrolować za pomocą
+                            ustawień swojej przeglądarki internetowej. Dalsze korzystanie z naszego serwisu
+                            internetowego, bez zmiany ustawień przeglądarki internetowej oznacza, iż użytkownik
+                            akceptuje stosowanie plików cookies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

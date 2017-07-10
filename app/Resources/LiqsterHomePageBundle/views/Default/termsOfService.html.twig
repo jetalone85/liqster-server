@@ -12,6 +12,15 @@
                     <div class="column is-one-third">
                         <aside class="menu">
                             <p class="menu-label">
+                                Przejdź do:
+                            </p>
+                            <ul class="menu-list">
+                                <li><a class="is-active" href="{{ path('homepage_termsOfService') }}">Regulaminu
+                                        świadczenia usług</a></li>
+                                <li><a href="{{ path('homepage_privacyPolicy') }}">Polityki prywatności</a>
+                                <li><a href="{{ path('homepage_cookiesPolicy') }}">Polityki plików cookies</a></li>
+                            </ul>
+                            <p class="menu-label">
                                 Spis treści:
                             </p>
                             <ul class="menu-list">
@@ -27,7 +36,6 @@
                                 <li><a href="#service information">Informację o usługach</a></li>
                                 <li><a href="#payment">Płatności</a></li>
                                 <li><a href="#final provisions">Postanowienia końcowe</a></li>
-                                <li><a href="{{ path('homepage_privacyPolicy') }}">Przejdź do polityki prywatności</a>
                                 </li>
                             </ul>
                         </aside>
