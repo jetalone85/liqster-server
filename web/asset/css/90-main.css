@@ -104,3 +104,8 @@ p.title.is-bold {
     margin-bottom: 0.3rem;
     line-height: 2.0;
 }
+
+.intro-logged-list li {
+    margin-top: 1.0rem;
+
+}
