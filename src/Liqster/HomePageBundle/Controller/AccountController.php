@@ -414,6 +414,9 @@ class AccountController extends Controller
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
         $em->remove($cronJob);
 
+        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $account->getPurchase()]);
+        $em->remove($payment);
+
         $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
         $em->remove($purchase);
 
