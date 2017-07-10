@@ -82,9 +82,9 @@ class ChangePasswordController extends BaseController
         }
 
         return $this->render(
-            '@FOSUser/ChangePassword/change_password.html.twig', array(
+            '@FOSUser/ChangePassword/change_password.html.twig', [
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 }

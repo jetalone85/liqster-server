@@ -25,12 +25,14 @@ class ResultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $reports = $em->getRepository('CronCronBundle:CronReport')->findBy(['job' => $account->getCronJob()], ['runAt' => 'DESC'], 10);
+        $reports = $em
+            ->getRepository('CronCronBundle:CronReport')
+            ->findBy(['job' => $account->getCronJob()], ['runAt' => 'DESC'], 10);
 
         return $this->render(
-            'LiqsterHomePageBundle:Result:list.html.twig', array(
+            'LiqsterHomePageBundle:Result:list.html.twig', [
                 'reports' => $reports,
-            )
+            ]
         );
     }
 }

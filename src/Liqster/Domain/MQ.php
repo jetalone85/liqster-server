@@ -1,6 +1,6 @@
 <?php
 
-namespace Liqster\MQBundle\Domain;
+namespace Liqster\Domain;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;

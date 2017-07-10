@@ -6,6 +6,7 @@ use Cron\CronBundle\Entity\CronJob;
 use Exception;
 use Instagram\API\Framework\InstagramException;
 use Liqster\Domain\Cron\Composer;
+use Liqster\Domain\MQ;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
@@ -16,7 +17,6 @@ use Liqster\HomePageBundle\Form\AccountEditType;
 use Liqster\HomePageBundle\Form\AccountPaymentType;
 use Liqster\HomePageBundle\Form\AccountProgramType;
 use Liqster\HomePageBundle\Form\AccountType;
-use Liqster\MQBundle\Domain\MQ;
 use Liqster\PaymentBundle\Domain\Przelewy24;
 use Liqster\PaymentBundle\Entity\Payment;
 use Ramsey\Uuid\Uuid;
@@ -157,7 +157,7 @@ class AccountController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('account_new_payment', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_new_payment', ['id' => $account->getId()]);
         }
 
         return $this->render(
@@ -269,7 +269,7 @@ class AccountController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
         }
 
         $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
@@ -283,7 +283,7 @@ class AccountController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
         }
 
         $editCommentsForm = $this->createForm(AccountEditCommentsType::class, $account);
@@ -297,7 +297,7 @@ class AccountController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
         }
 
         $editProgramForm = $this->createForm(AccountProgramType::class, $account->getSchedule());
@@ -315,7 +315,7 @@ class AccountController extends Controller
             $em->merge($cronJob);
             $em->flush();
 
-            return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
         }
 
         $deleteForm = $this->createDeleteForm($account);
@@ -332,11 +332,11 @@ class AccountController extends Controller
             $cronJob->setEnabled($newStatus);
             $em->flush();
 
-            return $this->redirectToRoute('account_show', array('id' => $query['id']));
+            return $this->redirectToRoute('account_show', ['id' => $query['id']]);
         }
 
         return $this->render(
-            'LiqsterHomePageBundle:Account:show.html.twig', array(
+            'LiqsterHomePageBundle:Account:show.html.twig', [
                 'account' => $account,
                 'instagram' => $instagram,
                 'edit_form' => $editForm->createView(),
@@ -344,7 +344,7 @@ class AccountController extends Controller
                 'edit_comments_form' => $editCommentsForm->createView(),
                 'edit_program_form' => $editProgramForm->createView(),
                 'delete_form' => $deleteForm->createView(),
-            )
+            ]
         );
     }
 
@@ -358,7 +358,7 @@ class AccountController extends Controller
     private function createDeleteForm(Account $account): Form
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('account_delete', array('id' => $account->getId())))
+            ->setAction($this->generateUrl('account_delete', ['id' => $account->getId()]))
             ->setMethod('DELETE')
             ->getForm();
     }
@@ -382,7 +382,7 @@ class AccountController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('account_edit', array('id' => $account->getId()));
+            return $this->redirectToRoute('account_edit', ['id' => $account->getId()]);
         }
 
         return $this->render(
@@ -459,7 +459,7 @@ class AccountController extends Controller
         $account->setImage($image);
         $em->flush();
 
-        return $this->redirectToRoute('account_show', array('id' => $account->getId()));
+        return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
     }
 
     /**
@@ -478,10 +478,10 @@ class AccountController extends Controller
         $cron = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
 
         return $this->render(
-            'LiqsterHomePageBundle:Account:activate.html.twig', array(
+            'LiqsterHomePageBundle:Account:activate.html.twig', [
                 'account' => $account,
                 'cron' => $cron,
-            )
+            ]
         );
     }
 }

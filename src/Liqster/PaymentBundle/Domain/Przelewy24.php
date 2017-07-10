@@ -68,7 +68,7 @@ class Przelewy24
      *
      * @var array
      */
-    private $postData = array();
+    private $postData = [];
 
     /**
      * Obcject constructor. Set initial parameters
@@ -156,7 +156,7 @@ class Przelewy24
 
         }
 
-        $REQ = array();
+        $REQ = [];
 
         foreach ($ARG as $k => $v) {
             $REQ[] = $k . "=" . urlencode($v);
@@ -186,7 +186,7 @@ class Przelewy24
 
                 } else {
 
-                    $RES = array();
+                    $RES = [];
                     $X = explode('&', $result);
 
                     foreach ($X as $val) {
@@ -195,7 +195,7 @@ class Przelewy24
                         $RES[trim($Y[0])] = urldecode(trim($Y[1]));
                     }
                     if (!isset($RES['error'])) {
-                        return array('error' => 999, 'errorMessage' => 'call:Unknown error');
+                        return ['error' => 999, 'errorMessage' => 'call:Unknown error'];
                     }
                     return $RES;
 
@@ -204,13 +204,14 @@ class Przelewy24
 
             } else {
                 curl_close($ch);
-                return array('error' => 203, 'errorMessage' => 'call:Curl exec error');
+                return ['error' => 203, 'errorMessage' => 'call:Curl exec error'];
 
             }
 
         } else {
 
-            return array('error' => 202, 'errorMessage' => 'call:Curl init error');
+            return
+                ['error' => 202, 'errorMessage' => 'call:Curl init error'];
 
         }
 
@@ -242,7 +243,7 @@ class Przelewy24
         }
         $redirectAddress = $this->trnRequest($token);
 
-        return array('error' => 0, 'token' => $token, 'redirect' => $redirectAddress);
+        return ['error' => 0, 'token' => $token, 'redirect' => $redirectAddress];
 
 
     }
