@@ -412,21 +412,19 @@ class AccountController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
-        $em->remove($cronJob);
-
-        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $account->getPurchase()->getId()]);
-        $em->remove($payment);
-
         $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
-        $em->remove($purchase);
-
+        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
         $schedule = $em->getRepository('LiqsterHomePageBundle:Schedule')->findOneBy(['account' => $account]);
-        $em->remove($schedule);
-
         $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+
+        $em->remove($cronJob);
+        $em->remove($payment);
+        $em->remove($purchase);
+        $em->remove($schedule);
         $em->remove($accountInstagramCache);
 
         $em->remove($account);
+
         $em->flush();
 
         return $this->redirectToRoute('account_index');
