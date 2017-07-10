@@ -138,6 +138,28 @@ class ProfileController extends Controller
     }
 
     /**
+     * @return Response
+     * @throws \LogicException
+     * @Route("/deactivatedAccounts", name="profile_deactivatedAccounts")
+     * @Method({"GET"})
+     */
+    public function deactivatedAccountsAction(): Response
+    {
+        $em = $this->getDoctrine();
+        $accounts = $em
+            ->getRepository('LiqsterHomePageBundle:Account')
+            ->findBy(['user' => $this->getUser(), 'disabled' => true]);
+
+
+        return $this->render(
+            'LiqsterHomePageBundle:Profile:deactivatedAccounts.html.twig', [
+                'user' => $this->getUser(),
+                'deactivatedAccounts' => $accounts,
+            ]
+        );
+    }
+
+    /**
      * Deletes a User entity.
      *
      * @Route("/{id}",   name="user_delete")
