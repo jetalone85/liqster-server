@@ -88,4 +88,18 @@ class DefaultController extends Controller
             ]
         );
     }
+
+    /**
+     * @return Response
+     * @throws \LogicException
+     * @Route("/cookiesPolicy", name="homepage_cookiesPolicy")
+     * @Method({"GET"})
+     */
+    public function cookiesPolicyAction(): Response
+    {
+        return $this->render(
+            'LiqsterHomePageBundle:Default:cookiesPolicy.html.twig', [
+            ]
+        );
+    }
 }
