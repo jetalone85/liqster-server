@@ -414,14 +414,14 @@ class AccountController extends Controller
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
         $em->remove($cronJob);
 
+        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+        $em->remove($purchase);
+
         $schedule = $em->getRepository('LiqsterHomePageBundle:Schedule')->findOneBy(['account' => $account]);
         $em->remove($schedule);
 
         $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
         $em->remove($accountInstagramCache);
-
-        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
-        $em->remove($purchase);
 
         $em->remove($account);
         $em->flush();
