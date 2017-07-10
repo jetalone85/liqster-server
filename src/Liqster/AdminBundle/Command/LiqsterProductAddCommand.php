@@ -22,7 +22,7 @@ class LiqsterProductAddCommand extends ContainerAwareCommand
     {
         $this
             ->setName('liqster:product:add')
-            ->setDescription('...');
+            ->setDescription('Add first sample product to database');
     }
 
     /**

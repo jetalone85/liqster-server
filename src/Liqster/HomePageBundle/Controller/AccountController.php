@@ -6,7 +6,7 @@ use Cron\CronBundle\Entity\CronJob;
 use Exception;
 use Instagram\API\Framework\InstagramException;
 use Liqster\Domain\Cron\Composer;
-use Liqster\Domain\MQ;
+use Liqster\Domain\MQ\MQ;
 use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\AccountInstagramCache;
 use Liqster\HomePageBundle\Entity\Purchase;
