@@ -417,6 +417,9 @@ class AccountController extends Controller
         $schedule = $em->getRepository('LiqsterHomePageBundle:Schedule')->findOneBy(['account' => $account]);
         $em->remove($schedule);
 
+        $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+        $em->remove($accountInstagramCache);
+
         $em->remove($account);
         $em->flush();
 
