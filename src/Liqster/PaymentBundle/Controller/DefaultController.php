@@ -43,8 +43,10 @@ class DefaultController extends Controller
 
             $em->merge($payment);
             $em->flush();
+
+            return $this->json($payment);
         }
 
-        return new Response(200);
+        return new Response('not ok');
     }
 }
