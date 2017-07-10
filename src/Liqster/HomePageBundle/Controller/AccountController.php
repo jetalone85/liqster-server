@@ -420,6 +420,9 @@ class AccountController extends Controller
         $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
         $em->remove($accountInstagramCache);
 
+        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+        $em->remove($purchase);
+
         $em->remove($account);
         $em->flush();
 
