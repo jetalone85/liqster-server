@@ -29,8 +29,8 @@ class MQ
     public function __construct()
     {
         $this->client = new Client();
-        $this->url = 'http://localhost:8001';
-//        $this->url = 'https://nameless-taiga-58917.herokuapp.com';
+//        $this->url = 'http://localhost:8001';
+        $this->url = 'https://nameless-taiga-58917.herokuapp.com';
     }
 
     /**

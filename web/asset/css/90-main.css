@@ -102,4 +102,5 @@ p.title.is-bold {
 .terms p {
     margin-top: 1rem;
     margin-bottom: 0.3rem;
+    line-height: 2.0;
 }
