@@ -49,7 +49,7 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
+        $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser(), 'disabled' => false]);
 
         if ($accounts === []) {
             return $this->redirectToRoute('account_new');
@@ -414,6 +414,8 @@ class AccountController extends Controller
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
         $em->remove($cronJob);
 
+        $account->setDisabled(true);
+        $em->merge($account);
 
         $em->flush();
 

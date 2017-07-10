@@ -432,6 +432,4 @@ class Account implements TaggableInterface
     {
         $this->disabled = $disabled;
     }
-    
-
 }
