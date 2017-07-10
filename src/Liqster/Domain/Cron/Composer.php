@@ -41,7 +41,7 @@ class Composer
             $array[] = '17-20';
         }
         if ($schedule->getNight() === '1') {
-            $array[] = '21-23';
+            $array[] = '21-3';
         }
 
         $numItems = count($array);
