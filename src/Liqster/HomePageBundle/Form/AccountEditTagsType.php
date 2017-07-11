@@ -39,7 +39,7 @@ class AccountEditTagsType extends AbstractType
             ->add('tagsText', TextareaType::class, [
                 'required' => false,
                 'attr' => [
-                    'class' => '',
+                    'class' => 'select_tags',
                 ]
             ])
             ->add(
