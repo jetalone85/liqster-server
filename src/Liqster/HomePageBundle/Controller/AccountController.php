@@ -49,9 +49,11 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser(), 'disabled' => false]);
-
-        if ($accounts === []) {
+        try {
+            $accounts = $em
+                ->getRepository('LiqsterHomePageBundle:Account')
+                ->findBy(['user' => $this->getUser(), 'disabled' => false]);
+        } catch (Exception $exception) {
             return $this->redirectToRoute('account_new');
         }
 
