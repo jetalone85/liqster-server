@@ -62,9 +62,8 @@ class Purchase
     private $account;
 
     /**
-     * @return DateTime
      */
-    public function getPaid(): DateTime
+    public function getPaid()
     {
         return $this->paid;
     }
