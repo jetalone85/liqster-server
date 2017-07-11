@@ -5,40 +5,28 @@
     <div class="hero-body">
         <div class="container">
             <div class="columns">
-                <h2 class="title">Tutaj możesz edytować swoje dane, oraz skontrolować swoje płatności i
-                    bezpieczeństwo! </h2>
+                <h2 class="title">W panelu użytkownika znajdziesz informację na temat, oraz możliwości edycji Twojego
+                    profilu użytkownika.</h2>
             </div>
             <div class="columns">
                 <div class="column is-one-quarter">
-                    <div class="card">
-                        <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">{{ user.username }}<i
-                                class="material-icons right"></i></span>
-                            <ul class="">
-                                <li><a class="collection-item" href="{{ path('profile_index') }}"><h2>Edytuj dane</h2>
-                                    </a>
-                                </li>
-                                <li><a class="collection-item" href="{{ path('profile_setting') }}"><h2>Zmień hasło</h2>
-                                    </a>
-                                </li>
-                                <li><a class="collection-item" href="{{ path('profile_notifications') }}"><h2>
-                                            Powiadomienia
-                                            email</h2></a></li>
-                                <li><a class="collection-item" href="{{ path('profile_billing') }}"><h2>Płatności</h2>
-                                    </a>
-                                </li>
-                                <li><a class="collection-item" href="{{ path('profile_deactivatedAccounts') }}"><h2>
-                                            Dezaktywowane konta</h2>
-                                    </a>
-                                </li>
-                                <li><a class="collection-item" href="{{ path('profile_security') }}"><h2>
-                                            Bezpieczeństwo</h2>
-                                    </a></li>
-                            </ul>
-                        </div>
+                    <div class="menu">
+                        <div class="menu-label">{{ user.username }}</div>
+                        <ul class="menu-list">
+                            <li><a class="collection-item" href="{{ path('profile_index') }}">Edytuj dane</a></li>
+                            <li><a class="collection-item" href="{{ path('profile_setting') }}">Zmień hasło</a></li>
+                            <li><a class="collection-item" href="{{ path('profile_notifications') }}">Powiadomienia
+                                    email</a></li>
+                            <li><a class="collection-item" href="{{ path('profile_billing') }}">Płatności</a></li>
+                            <li><a class="collection-item" href="{{ path('profile_deactivatedAccounts') }}">Dezaktywowane
+                                    konta</a>
+                            </li>
+                            <li><a class="collection-item" href="{{ path('profile_security') }}">Bezpieczeństwo</a></li>
+                        </ul>
                     </div>
-
                 </div>
+
+
                 {% endblock %}
 
                 {% block body %}
