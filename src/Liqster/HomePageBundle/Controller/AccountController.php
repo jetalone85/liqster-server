@@ -221,7 +221,7 @@ class AccountController extends Controller
                 $P24->addValue('p24_phone', '+48500600700');
                 $P24->addValue('p24_language', 'pl');
                 $P24->addValue('p24_method', '1');
-                $P24->addValue('p24_url_return', 'http://liqster.pl/account/' . $account->getId() . '/check');
+                $P24->addValue('p24_url_return', 'http://liqster.pl/account/' . $account->getId() . '/new_profiling_tags');
                 $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
@@ -238,6 +238,118 @@ class AccountController extends Controller
             'LiqsterHomePageBundle:Account:newPayment.html.twig', [
                 'Account' => $account,
                 'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     *
+     * @Route("/{id}/new_profiling_tags",  name="account_new_profiling_tags")
+     * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Account $account
+     * @return Response
+     * @throws \LogicException
+     */
+    public function newProfilingTagsAction(Request $request, Account $account): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
+        $editTagsForm->handleRequest($request);
+
+        if ($editTagsForm->isSubmitted() && $editTagsForm->isValid()) {
+            $account->setName($account->getName());
+            $account->setPassword($account->getPassword());
+            $account->setComments($account->getComments());
+            $account->setModif(new \DateTime('now'));
+
+            $em->flush();
+
+            return $this->redirectToRoute('account_new_profiling_comments', ['id' => $account->getId()]);
+        }
+
+        return $this->render(
+            'LiqsterHomePageBundle:Account:newProfilingTags.html.twig', [
+                'Account' => $account,
+                'edit_tags_form' => $editTagsForm->createView(),
+            ]
+        );
+    }
+
+    /**
+     *
+     * @Route("/{id}/new_profiling_comments",  name="account_new_profiling_comments")
+     * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Account $account
+     * @return Response
+     * @throws \LogicException
+     */
+    public function newProfilingCommentsAction(Request $request, Account $account): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $editCommentsForm = $this->createForm(AccountEditCommentsType::class, $account);
+        $editCommentsForm->handleRequest($request);
+
+        if ($editCommentsForm->isSubmitted() && $editCommentsForm->isValid()) {
+            $account->setName($account->getName());
+            $account->setPassword($account->getPassword());
+            $account->setTagsText($account->getTagsText());
+            $account->setModif(new \DateTime('now'));
+
+            $em->flush();
+
+            return $this->redirectToRoute('account_new_profiling_program', ['id' => $account->getId()]);
+        }
+
+
+        return $this->render(
+            'LiqsterHomePageBundle:Account:newProfilingComments.html.twig', [
+                'Account' => $account,
+                'edit_comments_form' => $editCommentsForm->createView(),
+            ]
+        );
+    }
+
+    /**
+     *
+     * @Route("/{id}/new_profiling_program",  name="account_new_profiling_program")
+     * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Account $account
+     * @return Response
+     * @throws \LogicException
+     */
+    public function newProfilingProgramAction(Request $request, Account $account): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $editProgramForm = $this->createForm(AccountProgramType::class, $account->getSchedule());
+        $editProgramForm->handleRequest($request);
+
+        if ($editProgramForm->isSubmitted() && $editProgramForm->isValid()) {
+            $schedule = $account->getSchedule();
+            $schedule->setModification(new \DateTime('now'));
+            $em->merge($schedule);
+            $em->flush();
+
+            $cronJob = $account->getCronJob();
+            $cronJob->setSchedule(Composer::compose($schedule));
+
+            $em->merge($cronJob);
+            $em->flush();
+
+            return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
+        }
+
+        return $this->render(
+            'LiqsterHomePageBundle:Account:newProfilingProgram.html.twig', [
+                'Account' => $account,
+                'edit_program_form' => $editProgramForm->createView(),
             ]
         );
     }

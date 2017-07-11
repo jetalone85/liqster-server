@@ -1,0 +1,44 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block body %}
+    <section id="price" class="hero is-fullheight is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="columns">
+                                    <div class="column">
+                                        {{ form_start(edit_comments_form) }}
+                                        {{ form_end(edit_comments_form) }}
+                                    </div>
+                                    <div class="column">
+                                        <p>Krok 2: Napisz teksty trzech komentarzy, które losowo pozostawi w Twoim
+                                            imieniu liqster.
+                                            Oddziel je między sobą przecinkami, nie używając odstępów.</p>
+                                        <p>Nice photo! 🙂</p>
+                                        <p>Nice! Check my profile!</p>
+                                        <p>Love it! ❤️</p>
+                                        <p>Wow! Follow me pls!!! 🙂</p>
+                                        <p>😊😊😊</p>
+                                        <p>Greate! Visit my page 😍</p>
+                                        <p>Love your page ❤️</p>
+                                        <p>Świetne zdjęcie! 😊</p>
+                                        <p>Uwielbiam Twoją galerię! Zajrzyj do mnie! 😃</p>
+                                        <p>łał! 👌</p>
+                                        <p>👆👌😍</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts_on_single_page %}
+{% endblock %}

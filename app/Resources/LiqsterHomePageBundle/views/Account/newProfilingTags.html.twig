@@ -1,0 +1,37 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block body %}
+    <section id="price" class="hero is-fullheight is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="columns">
+                                    <div class="column">
+                                        {{ form_start(edit_tags_form) }}
+                                        {{ form_end(edit_tags_form) }}
+                                    </div>
+                                    <div class="column">
+                                        <p>
+                                            Krok 1: Wypisz #tagi, po których ma poruszać się liqster. Wymieniaj je po
+                                            przecinkach,
+                                            bez odstępów. Wybierz od 10 do 30 #tagów.
+                                        </p>
+                                        <h3>Polecane #tagi:</h3>
+                                        <a id="kapusta11">dupeczka</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts_on_single_page %}
+{% endblock %}

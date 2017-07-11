@@ -1,0 +1,33 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block body %}
+    <section id="price" class="hero is-fullheight is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="columns">
+                                    <div class="column">
+                                        {{ form_start(edit_program_form) }}
+                                        {{ form_end(edit_program_form) }}
+                                    </div>
+                                    <div class="column">
+                                        <p>Krok 3: Wybierz pory, w których liqster będzie dla Ciebie pracował. Możesz
+                                            pozostawić
+                                            wszystkie godziny aktywne.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts_on_single_page %}
+{% endblock %}
