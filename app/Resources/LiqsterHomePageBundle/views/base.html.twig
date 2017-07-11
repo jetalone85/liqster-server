@@ -7,7 +7,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="google-site-verification" content="lrzH0Cw7Vp0VwPNh6UzOBjLCUvNvC4ti4fXbVBXAp_0"/>
-        <meta name="theme-color" content="#C2185B">
+        <meta name="theme-color" content="#00d1b2">
 
         <title>{% block title %}{{ 'apps.title'|trans({}, 'main') }}{% endblock %}</title>
 
@@ -58,42 +58,9 @@
     <body data-spy="scroll" data-target=".navbar-fixed-top">
 
     {% block navigation %}
-
-
-        <nav class="nav has-shadow">
-            <div class="container">
-            <span class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-                <div class="nav-left">
-                    <a href="{{ path('homepage') }}" class="nav-item">
-                        <img src="{{ asset('asset/img/logo.black.white.80x40.png') }}" alt="Bulma logo">
-                    </a>
-                    <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-mobile">Usługi</a>
-                    <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-mobile">Cennik</a>
-                    <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-mobile">O nas</a>
-                </div>
-                <div class="nav-right nav-menu">
-                    <a href="{{ path('homepage') }}#services" class="nav-item is-tab is-hidden-tablet">Usługi</a>
-                    <a href="{{ path('homepage') }}#price" class="nav-item is-tab is-hidden-tablet">Cennik</a>
-                    <a href="{{ path('homepage') }}#about" class="nav-item is-tab is-hidden-tablet">O nas</a>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <a href="{{ path('account_index') }}" class="nav-item is-tab">Lista kont</a>
-                        <a href="{{ path('profile_index') }}"
-                           class="nav-item is-tab">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
-                        <a href="{{ path('fos_user_security_logout') }}"
-                           class="nav-item is-tab">{{ 'layout.logout'|trans({}, 'main') }}</a>
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}"
-                           class="nav-item is-tab">{{ 'layout.login'|trans({}, 'main') }}</a>
-                        <a href="{{ path('fos_user_registration_register') }}"
-                           class="nav-item is-tab">{{ 'layout.register'|trans({}, 'main') }}</a>
-                    {% endif %}
-                </div>
-            </div>
-        </nav>
+        <div class="container">
+            {% include '@LiqsterHomePage/navbar.html.twig' %}
+        </div>
 
     {% endblock %}
 
@@ -177,6 +144,72 @@
         'asset/js/*' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+        <script>
+            'use strict';
+
+            document.addEventListener('DOMContentLoaded', function () {
+
+                // Toggles
+
+                var $burgers = getAll('.burger');
+                var $fries = getAll('.fries');
+
+                if ($burgers.length > 0) {
+                    $burgers.forEach(function ($el) {
+                        $el.addEventListener('click', function () {
+                            var target = $el.dataset.target;
+                            var $target = document.getElementById(target);
+                            $el.classList.toggle('is-active');
+                            $target.classList.toggle('is-active');
+                        });
+                    });
+                }
+
+                // Modals
+
+                var $html = document.documentElement;
+                var $modals = getAll('.modal');
+                var $modalButtons = getAll('.modal-button');
+                var $modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button');
+
+                if ($modalButtons.length > 0) {
+                    $modalButtons.forEach(function ($el) {
+                        $el.addEventListener('click', function () {
+                            var target = $el.dataset.target;
+                            var $target = document.getElementById(target);
+                            $html.classList.add('is-clipped');
+                            $target.classList.add('is-active');
+                        });
+                    });
+                }
+
+                if ($modalCloses.length > 0) {
+                    $modalCloses.forEach(function ($el) {
+                        $el.addEventListener('click', function () {
+                            $html.classList.remove('is-clipped');
+                            closeModals();
+                        });
+                    });
+                }
+
+                document.addEventListener('keydown', function (e) {
+                    if (e.keyCode === 27) {
+                        $html.classList.remove('is-clipped');
+                        closeModals();
+                    }
+                });
+
+                function closeModals() {
+                    $modals.forEach(function ($el) {
+                        $el.classList.remove('is-active');
+                    });
+                }
+
+                function getAll(selector) {
+                    return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+                }
+            });
+        </script>
 
     {% endblock %}
 

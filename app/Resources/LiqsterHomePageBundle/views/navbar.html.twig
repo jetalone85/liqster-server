@@ -1,0 +1,44 @@
+<nav class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="http://liqster.pl">
+            <img src="{{ asset('asset/img/logo.black.white.80x40.png') }}" width="56" height="28" alt="liqster.pl">
+        </a>
+
+        <a class="navbar-item is-hidden-desktop" href="{{ path('account_index') }}">
+            <span class="icon"><i class="fa fa-address-card"></i></span>
+        </a>
+
+        <div class="navbar-burger burger" data-target="navMenuDocumentation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div id="navMenuDocumentation" class="navbar-menu">
+        <div class="navbar-start">
+
+            <a href="{{ path('homepage') }}#services" class="nav-item">Usługi</a>
+            <a href="{{ path('homepage') }}#price" class="nav-item">Cennik</a>
+            <a href="{{ path('homepage') }}#about" class="nav-item">O nas</a>
+
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="{{ path('account_index') }}" class="nav-item is-tab">Lista kont</a>
+                    <a href="{{ path('profile_index') }}"
+                       class="nav-item is-tab">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
+                    <a href="{{ path('fos_user_security_logout') }}"
+                       class="nav-item is-tab">{{ 'layout.logout'|trans({}, 'main') }}</a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}"
+                       class="nav-item is-tab">{{ 'layout.login'|trans({}, 'main') }}</a>
+                    <a href="{{ path('fos_user_registration_register') }}"
+                       class="nav-item is-tab">{{ 'layout.register'|trans({}, 'main') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
