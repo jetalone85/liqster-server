@@ -7,20 +7,39 @@
                 <div class="columns">
                     <div class="column">
                         <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">#tagi</div>
+                            </div>
                             <div class="card-content">
                                 <div class="columns">
-                                    <div class="column">
+                                    <div class="column is-7">
                                         {{ form_start(edit_tags_form) }}
+
+                                        {{ form_widget(edit_tags_form.tagsText, { 'attr': {'class': 'select_tags'} }) }}
+
+                                        <div class="field is-grouped is-pulled-right">
+                                            <p class="control">
+                                                <input class="button is-primary is-centered" type="submit"
+                                                       value="Zapisz dane">
+                                            </p>
+                                        </div>
+
                                         {{ form_end(edit_tags_form) }}
                                     </div>
-                                    <div class="column">
+                                    <div class="column is-5">
                                         <p>
-                                            Krok 1: Wypisz #tagi, po których ma poruszać się liqster. Wymieniaj je po
-                                            przecinkach,
-                                            bez odstępów. Wybierz od 10 do 30 #tagów.
+                                            Wypisz #tagi, po których ma poruszać się liqster. Wymieniaj je po
+                                            przecinkach. Ustal od 10 do 30 #tagów.
                                         </p>
+                                        <hr>
                                         <h3>Polecane #tagi:</h3>
-                                        <a id="kapusta11">dupeczka</a>
+                                        <a class="tag is-light is-medium tag_to_add">polishgirl</a>
+                                        <a class="tag is-light is-medium tag_to_add">poland</a>
+                                        <a class="tag is-light is-medium tag_to_add">polishboy</a>
+                                        <a class="tag is-light is-medium tag_to_add">najlepsze</a>
+                                        <a class="tag is-light is-medium tag_to_add">kocham</a>
+                                        <a class="tag is-light is-medium tag_to_add">moja</a>
+                                        <a class="tag is-light is-medium tag_to_add">bardzo</a>
                                     </div>
                                 </div>
                             </div>

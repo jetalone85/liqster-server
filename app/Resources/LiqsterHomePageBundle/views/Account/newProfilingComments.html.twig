@@ -6,29 +6,42 @@
             <div class="container">
                 <div class="columns">
                     <div class="column">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="columns">
-                                    <div class="column">
-                                        {{ form_start(edit_comments_form) }}
-                                        {{ form_end(edit_comments_form) }}
+                        <div class="card-content">
+                            <div class="columns">
+                                <div class="column is-7">
+                                    {{ form_start(edit_comments_form) }}
+
+                                    {{ form_widget(edit_comments_form.comments, { 'attr': {'class': 'select_comments'} }) }}
+
+                                    <div class="field is-grouped is-pulled-right">
+                                        <p class="control">
+                                            <input class="button is-primary is-centered" type="submit"
+                                                   value="Zapisz dane">
+                                        </p>
                                     </div>
-                                    <div class="column">
-                                        <p>Krok 2: Napisz teksty trzech komentarzy, które losowo pozostawi w Twoim
-                                            imieniu liqster.
-                                            Oddziel je między sobą przecinkami, nie używając odstępów.</p>
-                                        <p>Nice photo! 🙂</p>
-                                        <p>Nice! Check my profile!</p>
-                                        <p>Love it! ❤️</p>
-                                        <p>Wow! Follow me pls!!! 🙂</p>
-                                        <p>😊😊😊</p>
-                                        <p>Greate! Visit my page 😍</p>
-                                        <p>Love your page ❤️</p>
-                                        <p>Świetne zdjęcie! 😊</p>
-                                        <p>Uwielbiam Twoją galerię! Zajrzyj do mnie! 😃</p>
-                                        <p>łał! 👌</p>
-                                        <p>👆👌😍</p>
-                                    </div>
+
+                                    {{ form_end(edit_comments_form) }}
+                                </div>
+                                <div class="column is-5">
+                                    <p>
+                                        Napisz teksty kilku komentarzy, które losowo pozostawi w Twoim imieniu
+                                        liqster.
+                                        Oddziel je między sobą przecinkami lub enterami.
+                                    </p>
+                                    <hr>
+                                    <h3>Nie masz pomysłu? Nie szkodzi, dodaj komentarz z poniższych:</h3>
+                                    <a class="tag is-light is-medium comment_to_add">Nice photo! 🙂</a>
+                                    <a class="tag is-light is-medium comment_to_add">>Nice! Check my profile!</a>
+                                    <a class="tag is-light is-medium comment_to_add">Love it! ❤️</a>
+                                    <a class="tag is-light is-medium comment_to_add">Wow! Follow me pls!!! 🙂</a>
+                                    <a class="tag is-light is-medium comment_to_add">😊😊😊</a>
+                                    <a class="tag is-light is-medium comment_to_add">Greate! Visit my page 😍</a>
+                                    <a class="tag is-light is-medium comment_to_add">Love your page ❤</a>
+                                    <a class="tag is-light is-medium comment_to_add">Świetne zdjęcie! 😊</a>
+                                    <a class="tag is-light is-medium comment_to_add">Uwielbiam Twoją galerię! Zajrzyj do
+                                        mnie! 😃</a>
+                                    <a class="tag is-light is-medium comment_to_add">łał! 👌</a>
+                                    <a class="tag is-light is-medium comment_to_add">👆👌😍</a>
                                 </div>
                             </div>
                         </div>
