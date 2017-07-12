@@ -10,8 +10,8 @@
                     {% for account in accounts %}
 
                         <div class="column account
-                            {% if accounts|length == 1 %}is-half is-offset-one-quarter{% endif %}
-                            {% if accounts|length == 2 %}is-half{% endif %}
+                            {% if accounts|length == 1 %}is-half-tablet is-offset-one-quarter-tablet{% endif %}
+                            {% if accounts|length == 2 %}is-half-tablet{% endif %}
             ">
 
                             <div class="card">
@@ -60,13 +60,14 @@
                 {% endif %}
             </div>
 
+            {% if accounts|length <= 1 %}
+
             <div class="columns is-full is-fullwidth">
-                <div class="column  is-fullwidth">
+                <div class="column is-half-tablet is-offset-one-quarter-tablet">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-header-title">Dziękujemy za Twoje zaufanie! Możesz korzystać z naszych
-                                usług dla dowolnej ilości
-                                kont!
+                            <div class="card-header-title">Dziękujemy za Twoje zaufanie! Możesz jeszcze dodać dodatkowe
+                                konto.
                             </div>
                         </div>
 
@@ -79,6 +80,7 @@
             </div>
         </div>
 
+        {% endif %}
 
     </section>
 
