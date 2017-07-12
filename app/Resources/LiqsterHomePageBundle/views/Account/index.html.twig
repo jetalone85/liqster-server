@@ -19,15 +19,19 @@
                                     <div class="columns is-vcentered">
                                         <div class="column is-one-third">
                                             <div class="image is-128x128 avatar">
-                                                {% if account.image %}
-                                                    <img src="{{ account.image }}">
-                                                {% else %}
-                                                    <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
-                                                {% endif %}
+                                                <a href="{{ path('account_check', { 'id': account.id }) }}">
+                                                    {% if account.image %}
+                                                        <img src="{{ account.image }}">
+                                                    {% else %}
+                                                        <img src="http://images-eds.xboxlive.com/image?url=z951ykn43p4FqWbbFvR2Ec.8vbDhj8G2Xe7JngaTToBrrCmIEEXHC9UNrdJ6P7KIoIeJ1sl4QgwrJRGcdRHOCmsobfL9hBP8frB3waE_21t4XQhz7nbuJVLk9U7_AtXf&format=png">
+                                                    {% endif %}
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="column name">
-                                            <p class="title is-bold">{{ account.name }}</p>
+                                            <p class="title is-bold"><a
+                                                        href="{{ path('account_check', { 'id': account.id }) }}">{{ account.name }}</a>
+                                            </p>
                                             <p class="subtitle">{{ account.accountInstagramCache.valueAsArray.user.full_name }}</p>
                                             <p class="tagline">{{ account.accountInstagramCache.valueAsArray.user.biography }}</p>
                                         </div>
