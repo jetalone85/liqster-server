@@ -9,30 +9,37 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="columns is-vcentered">
-                                <div class="column is-2">
-                                    <div class="image is-128x128 avatar">
-                                        <img src="{{ account.image }}">
+                                <div class="column is-6">
+                                    <div class="columns">
+                                        <div class="column is-5-widescreen is-hidden-tablet-only">
+                                            <div class="image is-128x128 avatar">
+                                                <img src="{{ account.image }}">
+                                            </div>
+                                        </div>
+                                        <div class="column is-7-widescreen">
+                                            <p class="title is-bold">{{ account.name }}</p>
+                                            <p class="subtitle">{{ instagram.user.full_name }}</p>
+                                            <p class="tagline">{{ instagram.user.biography }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="column is-4 name">
-                                    <span class="button is-primary is-outlined follow">
-                                        <a href="{{ path('account_check', { 'id': account.id }) }}">Odśwież</a>
-                                    </span>
-                                    <p class="title is-bold">{{ account.name }}</p>
-                                    <p class="subtitle">{{ instagram.user.full_name }}</p>
-                                    <p class="tagline">{{ instagram.user.biography }}</p>
-                                </div>
-                                <div class="column is-2 followers has-text-centered">
-                                    <p class="stat-val">{{ instagram.user.follower_count }}</p>
-                                    <p class="stat-key">Obserwujący</p>
-                                </div>
-                                <div class="column is-2 following has-text-centered">
-                                    <p class="stat-val">{{ instagram.user.following_count }}</p>
-                                    <p class="stat-key">Obserwowane</p>
-                                </div>
-                                <div class="column is-2 likes has-text-centered">
-                                    <p class="stat-val">{{ instagram.user.media_count }}</p>
-                                    <p class="stat-key">Posty</p>
+
+                                <div class="column is-6">
+                                    <div class="columns is-hidden-mobile">
+                                        <div class="column has-text-centered">
+                                            <p class="title is-bold">{{ instagram.user.follower_count }}</p>
+                                            <p class="">Obserwujący</p>
+                                        </div>
+                                        <div class="column has-text-centered">
+                                            <p class="title is-bold">{{ instagram.user.following_count }}</p>
+                                            <p class="">Obserwowane</p>
+                                        </div>
+                                        <div class="column has-text-centered">
+                                            <p class="title is-bold">{{ instagram.user.media_count }}</p>
+                                            <p class="">Posty</p>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +47,27 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-header-title">Status konta</div>
+                            <div class="card-header-title">Status konta (trzeba jeszcze zrobić)</div>
+                        </div>
+                        <div class="card-content">
+
+                            <div class="columns">
+                                <div class="column is-4-mobile is-block">
+                                    <a class="button is-primary is-outlined"
+                                       href="{{ path('account_check', { 'id': account.id }) }}">Odśwież</a>
+                                </div>
+                                <div class="column is-4-mobile">
+                                    <a class="button is-primary is-outlined"
+                                       href="{{ path('result_list', { 'id': account.id }) }}">Aktywność</a>
+                                </div>
+                                <div class="column is-4-mobile">
+                                    {{ form_start(delete_form) }}
+                                    <input class="button is-danger is-outlined" type="submit" value="Usuń konto"
+                                           disabled>
+                                    {{ form_end(delete_form) }}
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card-content">
                             <form name="form" method="post">
@@ -90,38 +117,6 @@
 
                         </div>
 
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-header-title">Szybkie linki</div>
-                        </div>
-                        <div class="card-content">
-
-                            <ul>
-                                <li>
-                                    <a href="{{ path('result_list', { 'id': account.id }) }}">Raporty z aktywności</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('account_index') }}">Back to the list</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('account_check', { 'id': account.id }) }}">Sprawdź</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('account_activate', { 'id': account.id }) }}">Aktywuj (lub wyłącz?
-                                        )</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
-                                </li>
-                                <li>
-                                    {{ form_start(delete_form) }}
-                                    <input type="submit" value="Delete">
-                                    {{ form_end(delete_form) }}
-                                </li>
-                            </ul>
-
-                        </div>
                     </div>
 
                     <div class="card">
@@ -176,7 +171,8 @@
 
                                 </div>
                                 <div class="column is-5 is-12-mobile">
-                                    <p>Możesz zmienić nazwę oraz hasło swojego konta na Instagramie, jeśli zaistniała
+                                    <p>Możesz zmienić nazwę oraz hasło swojego konta na Instagramie, jeśli
+                                        zaistniała
                                         taka
                                         potrzeba.</p>
                                 </div>
@@ -259,7 +255,8 @@
                                     <a class="tag is-light is-medium comment_to_add">Greate! Visit my page 😍</a>
                                     <a class="tag is-light is-medium comment_to_add">Love your page ❤</a>
                                     <a class="tag is-light is-medium comment_to_add">Świetne zdjęcie! 😊</a>
-                                    <a class="tag is-light is-medium comment_to_add">Uwielbiam Twoją galerię! Zajrzyj do
+                                    <a class="tag is-light is-medium comment_to_add">Uwielbiam Twoją galerię!
+                                        Zajrzyj do
                                         mnie! 😃</a>
                                     <a class="tag is-light is-medium comment_to_add">łał! 👌</a>
                                     <a class="tag is-light is-medium comment_to_add">👆👌😍</a>
