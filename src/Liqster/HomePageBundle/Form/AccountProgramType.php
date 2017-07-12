@@ -5,7 +5,6 @@ namespace Liqster\HomePageBundle\Form;
 use Liqster\HomePageBundle\Entity\Schedule;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -36,13 +35,7 @@ class AccountProgramType extends AbstractType
             ->add('night', ChoiceType::class, [
                 'mapped' => true,
                 'choices' => ['On' => true, 'Off' => false],
-            ])
-            ->add(
-                'Zapisz', SubmitType::class, [
-                    'attr' => [
-                        'class' => '']
-                ]
-            );
+            ]);
     }
 
     /**

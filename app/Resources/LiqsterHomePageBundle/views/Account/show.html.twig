@@ -4,193 +4,396 @@
     <section class="hero is-fullheight is-light is-bold">
 
         <div class="container profile">
-            <div class="card">
-                <div class="card-content">
-                    <div class="columns is-vcentered">
-                        <div class="column is-2">
-                            <div class="image is-128x128 avatar">
-                                <img src="{{ account.image }}">
-                            </div>
-                        </div>
-                        <div class="column is-4 name">
-                        <span class="button is-primary is-outlined follow"><a
-                                    href="{{ path('account_check', { 'id': account.id }) }}">Odśwież</a></span>
-                            <p class="title is-bold">{{ account.name }}</p>
-                            <p class="subtitle">{{ instagram.user.full_name }}</p>
-                            <p class="tagline">{{ instagram.user.biography }}</p>
-                        </div>
-                        <div class="column is-2 followers has-text-centered">
-                            <p class="stat-val">{{ instagram.user.follower_count }}</p>
-                            <p class="stat-key">Obserwujący</p>
-                        </div>
-                        <div class="column is-2 following has-text-centered">
-                            <p class="stat-val">{{ instagram.user.following_count }}</p>
-                            <p class="stat-key">Obserwowane</p>
-                        </div>
-                        <div class="column is-2 likes has-text-centered">
-                            <p class="stat-val">{{ instagram.user.media_count }}</p>
-                            <p class="stat-key">Posty</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-
-                    <ul>
-                        <li>
-                            <a href="{{ path('result_list', { 'id': account.id }) }}">Raporty z aktywności</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('account_index') }}">Back to the list</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('account_check', { 'id': account.id }) }}">Sprawdź</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('account_activate', { 'id': account.id }) }}">Aktywuj (lub wyłącz? )</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
-                        </li>
-                        <li>
-                            {{ form_start(delete_form) }}
-                            <input type="submit" value="Delete">
-                            {{ form_end(delete_form) }}
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                    <div class="columns">
-                        <div class="column">
-                            {{ form_start(edit_form) }}
-                            {{ form_end(edit_form) }}
-                        </div>
-                        <div class="column">
-                            <p>Możesz zmienić nazwę oraz hasło swojego konta na Instagramie, jeśli zaistniała taka
-                                potrzeba.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div class="card-content">
-                    <div class="columns">
-                        <div class="column">
-                            {{ form_start(edit_tags_form) }}
-                            {{ form_end(edit_tags_form) }}
-                        </div>
-                        <div class="column">
-                            <p>
-                                Krok 1: Wypisz #tagi, po których ma poruszać się liqster. Wymieniaj je po przecinkach,
-                                bez odstępów. Wybierz od 10 do 30 #tagów.
-                            </p>
-                            <h3>Polecane #tagi:</h3>
-                            <a id="kapusta11">dupeczka</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                    <div class="columns">
-                        <div class="column">
-                            {{ form_start(edit_comments_form) }}
-                            {{ form_end(edit_comments_form) }}
-                        </div>
-                        <div class="column">
-                            <p>Krok 2: Napisz teksty trzech komentarzy, które losowo pozostawi w Twoim imieniu liqster.
-                                Oddziel je między sobą przecinkami, nie używając odstępów.</p>
-                            <p>Nice photo! 🙂</p>
-                            <p>Nice! Check my profile!</p>
-                            <p>Love it! ❤️</p>
-                            <p>Wow! Follow me pls!!! 🙂</p>
-                            <p>😊😊😊</p>
-                            <p>Greate! Visit my page 😍</p>
-                            <p>Love your page ❤️</p>
-                            <p>Świetne zdjęcie! 😊</p>
-                            <p>Uwielbiam Twoją galerię! Zajrzyj do mnie! 😃</p>
-                            <p>łał! 👌</p>
-                            <p>👆👌😍</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <div class="columns">
-                        <div class="column">
-                            {{ form_start(edit_program_form) }}
-                            {{ form_end(edit_program_form) }}
-                        </div>
-                        <div class="column">
-                            <p>Krok 3: Wybierz pory, w których liqster będzie dla Ciebie pracował. Możesz pozostawić
-                                wszystkie godziny aktywne.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-
-                <div class="card-content">
-
-                    <form name="form" method="post">
-                        <input
-                                type="hidden"
-                                name="form[id]"
-                                value="{{ account.id }}"
-                        />
-
-                        <div class="field is-horizontal">
-                            <div class="field-label is-normal">
-                                <label class="label"
-                                       for="username">
-                                    {% if account.payed == false %}
-                                        Konto nieopłacone
-                                    {% elseif account.payed == true and account.cronJob.enabled == true %}
-                                        Konto aktywne
-                                    {% else %}
-                                        Konto nieaktywne
-                                    {% endif %}
-                                </label>
-                            </div>
-                            <div class="field-body">
-                                <div class="field">
-                                    <p class="control is-expanded has-icons-left">
-                                        <input
-                                                {% if account.payed == false %}disabled{% endif %}
-                                                type="checkbox" name="form[enable]"
-                                                id="form_enable_{{ account.id }}"
-                                                {% if account.cronJob.enabled == true %}checked{% endif %}
-                                                class="">
-                                    </p>
+            <div class="columns">
+                <div class="column is-8-desktop is-offset-2-desktop is-12-mobile">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="columns is-vcentered">
+                                <div class="column is-2">
+                                    <div class="image is-128x128 avatar">
+                                        <img src="{{ account.image }}">
+                                    </div>
+                                </div>
+                                <div class="column is-4 name">
+                                    <span class="button is-primary is-outlined follow">
+                                        <a href="{{ path('account_check', { 'id': account.id }) }}">Odśwież</a>
+                                    </span>
+                                    <p class="title is-bold">{{ account.name }}</p>
+                                    <p class="subtitle">{{ instagram.user.full_name }}</p>
+                                    <p class="tagline">{{ instagram.user.biography }}</p>
+                                </div>
+                                <div class="column is-2 followers has-text-centered">
+                                    <p class="stat-val">{{ instagram.user.follower_count }}</p>
+                                    <p class="stat-key">Obserwujący</p>
+                                </div>
+                                <div class="column is-2 following has-text-centered">
+                                    <p class="stat-val">{{ instagram.user.following_count }}</p>
+                                    <p class="stat-key">Obserwowane</p>
+                                </div>
+                                <div class="column is-2 likes has-text-centered">
+                                    <p class="stat-val">{{ instagram.user.media_count }}</p>
+                                    <p class="stat-key">Posty</p>
                                 </div>
                             </div>
-                            <div class="field is-grouped is-pulled-right">
-                                <p class="control">
-                                    <input class="button is-primary is-centered"
-                                           type="submit"
-                                           id="_submit"
-                                           name="_submit"
-                                           value="Zapisz"/>
-                                </p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-title">Status konta</div>
+                        </div>
+                        <div class="card-content">
+                            <form name="form" method="post">
+                                <input
+                                        type="hidden"
+                                        name="form[id]"
+                                        value="{{ account.id }}"
+                                />
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label"
+                                               for="username">
+                                            {% if account.payed == false %}
+                                                Konto nieopłacone
+                                            {% elseif account.payed == true and account.cronJob.enabled == true %}
+                                                Konto aktywne
+                                            {% else %}
+                                                Konto nieaktywne
+                                            {% endif %}
+                                        </label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded has-icons-left">
+                                                <input
+                                                        {% if account.payed == false %}disabled{% endif %}
+                                                        type="checkbox" name="form[enable]"
+                                                        id="form_enable_{{ account.id }}"
+                                                        {% if account.cronJob.enabled == true %}checked{% endif %}
+                                                        class="">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="field is-grouped is-pulled-right">
+                                        <p class="control">
+                                            <input class="button is-primary is-centered"
+                                                   type="submit"
+                                                   id="_submit"
+                                                   name="_submit"
+                                                   value="Zapisz"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-title">Szybkie linki</div>
+                        </div>
+                        <div class="card-content">
+
+                            <ul>
+                                <li>
+                                    <a href="{{ path('result_list', { 'id': account.id }) }}">Raporty z aktywności</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('account_index') }}">Back to the list</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('account_check', { 'id': account.id }) }}">Sprawdź</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('account_activate', { 'id': account.id }) }}">Aktywuj (lub wyłącz?
+                                        )</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('account_edit', { 'id': account.id }) }}">Edit</a>
+                                </li>
+                                <li>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" value="Delete">
+                                    {{ form_end(delete_form) }}
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-title">Edycja danych podstawowych</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="columns">
+                                <div class="column is-6 is-12-mobile">
+
+                                    {{ form_start(edit_form) }}
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            {{ form_label(edit_form.name, 'Login', {'label_attr': {'class': 'label'}}) }}
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    {{ form_widget(edit_form.name, { 'attr': {'class': 'input'} }) }}
+                                                    <span class="icon is-small is-left"><i
+                                                                class="fa fa-user"></i></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            {{ form_label(edit_form.password, 'Hasło', {'label_attr': {'class': 'label'}}) }}
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    {{ form_widget(edit_form.password, { 'attr': {'class': 'input'} }) }}
+                                                    <span class="icon is-small is-left"><i
+                                                                class="fa fa-key"></i></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-grouped is-pulled-right">
+                                        <p class="control">
+                                            <input class="button is-primary is-centered" type="submit"
+                                                   value="Zapisz dane">
+                                        </p>
+                                    </div>
+
+                                    {{ form_end(edit_form) }}
+
+
+                                </div>
+                                <div class="column is-6 is-12-mobile">
+                                    <p>Możesz zmienić nazwę oraz hasło swojego konta na Instagramie, jeśli zaistniała
+                                        taka
+                                        potrzeba.</p>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
 
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-title">#tagi</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="columns">
+                                <div class="column is-7">
+                                    {{ form_start(edit_tags_form) }}
+
+                                    {{ form_widget(edit_tags_form.tagsText, { 'attr': {'class': 'select_tags'} }) }}
+
+                                    <div class="field is-grouped is-pulled-right">
+                                        <p class="control">
+                                            <input class="button is-primary is-centered" type="submit"
+                                                   value="Zapisz dane">
+                                        </p>
+                                    </div>
+
+                                    {{ form_end(edit_tags_form) }}
+                                </div>
+                                <div class="column is-5">
+                                    <p>
+                                        Wypisz #tagi, po których ma poruszać się liqster. Wymieniaj je po
+                                        przecinkach. Ustal od 10 do 30 #tagów.
+                                    </p>
+                                    <hr>
+                                    <h3>Polecane #tagi:</h3>
+                                    <a class="tag is-light is-medium tag_to_add">polishgirl</a>
+                                    <a class="tag is-light is-medium tag_to_add">poland</a>
+                                    <a class="tag is-light is-medium tag_to_add">polishboy</a>
+                                    <a class="tag is-light is-medium tag_to_add">najlepsze</a>
+                                    <a class="tag is-light is-medium tag_to_add">kocham</a>
+                                    <a class="tag is-light is-medium tag_to_add">moja</a>
+                                    <a class="tag is-light is-medium tag_to_add">bardzo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-title">Komentrarze</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="columns">
+                                <div class="column is-7">
+                                    {{ form_start(edit_comments_form) }}
+
+                                    {{ form_widget(edit_comments_form.comments, { 'attr': {'class': 'select_comments'} }) }}
+
+                                    <div class="field is-grouped is-pulled-right">
+                                        <p class="control">
+                                            <input class="button is-primary is-centered" type="submit"
+                                                   value="Zapisz dane">
+                                        </p>
+                                    </div>
+
+                                    {{ form_end(edit_comments_form) }}
+                                </div>
+                                <div class="column is-5">
+                                    <p>
+                                        Napisz teksty trzech komentarzy, które losowo pozostawi w Twoim imieniu
+                                        liqster.
+                                        Oddziel je między sobą przecinkami, nie używając odstępów.
+                                    </p>
+                                    <hr>
+                                    <h3>Nie masz pomysłu? Nie szkodzi, dodaj komentarz z poniższych:</h3>
+                                    <a class="tag is-light is-medium comment_to_add">Nice photo! 🙂</a>
+                                    <a class="tag is-light is-medium comment_to_add">>Nice! Check my profile!</a>
+                                    <a class="tag is-light is-medium comment_to_add">Love it! ❤️</a>
+                                    <a class="tag is-light is-medium comment_to_add">Wow! Follow me pls!!! 🙂</a>
+                                    <a class="tag is-light is-medium comment_to_add">😊😊😊</a>
+                                    <a class="tag is-light is-medium comment_to_add">Greate! Visit my page 😍</a>
+                                    <a class="tag is-light is-medium comment_to_add">Love your page ❤</a>
+                                    <a class="tag is-light is-medium comment_to_add">Świetne zdjęcie! 😊</a>
+                                    <a class="tag is-light is-medium comment_to_add">Uwielbiam Twoją galerię! Zajrzyj do
+                                        mnie! 😃</a>
+                                    <a class="tag is-light is-medium comment_to_add">łał! 👌</a>
+                                    <a class="tag is-light is-medium comment_to_add">👆👌😍</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-title">Czas pracy:</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="columns">
+                                <div class="column is-6 is-12-mobile">
+                                    {{ form_start(edit_program_form) }}
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            {{ form_label(edit_program_form.morning, null, {
+                                                'label_attr': {
+                                                    'class': 'label'
+                                                },
+                                                'label': 'Rano'
+                                            }) }}
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    {{ form_widget(edit_program_form.morning, { 'attr': {'class': 'select'} }) }}
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            {{ form_label(edit_program_form.noon, null, {
+                                                'label_attr': {
+                                                    'class': 'label'
+                                                },
+                                                'label': 'Dzień'
+                                            }) }}
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    {{ form_widget(edit_program_form.noon, { 'attr': {'class': 'select'} }) }}
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            {{ form_label(edit_program_form.afternoon, null, {
+                                                'label_attr': {
+                                                    'class': 'label'
+                                                },
+                                                'label': 'Południe'
+                                            }) }}
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    {{ form_widget(edit_program_form.afternoon, { 'attr': {'class': 'select'} }) }}
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            {{ form_label(edit_program_form.evening, null, {
+                                                'label_attr': {
+                                                    'class': 'label'
+                                                },
+                                                'label': 'Wieczór'
+                                            }) }}
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    {{ form_widget(edit_program_form.evening, { 'attr': {'class': 'select'} }) }}
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            {{ form_label(edit_program_form.night, null, {
+                                                'label_attr': {
+                                                    'class': 'label'
+                                                },
+                                                'label': 'Noc'
+                                            }) }}
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    {{ form_widget(edit_program_form.night, { 'attr': {'class': 'select'} }) }}
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-grouped is-pulled-right">
+                                        <p class="control">
+                                            <input class="button is-primary is-centered"
+                                                   type="submit"
+                                                   value="Zapisz dane">
+                                        </p>
+                                    </div>
+
+                                    {{ form_end(edit_program_form) }}
+
+                                </div>
+                                <div class="column is-6 is-12-mobile">
+                                    <p>Krok 3: Wybierz pory, w których liqster będzie dla Ciebie
+                                        pracował. Możesz
+                                        pozostawić
+                                        wszystkie godziny aktywne.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
         </div>
     </section>
 
