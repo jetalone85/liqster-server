@@ -129,5 +129,9 @@ easy_admin:
             class: Liqster\HomePageBundle\Entity\Schedule
         User:
             class: Liqster\HomePageBundle\Entity\User
+        Tag:
+            class: Liqster\HomePageBundle\Entity\Tag
+        AccountInstagramCache:
+            class: Liqster\HomePageBundle\Entity\AccountInstagramCache
         Payment:
             class: Liqster\PaymentBundle\Entity\Payment
