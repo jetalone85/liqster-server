@@ -75,33 +75,11 @@
             </div>
         </div>
 
-        </div>
 
     </section>
 
 {% endblock %}
 
 {% block javascripts_on_single_page %}
-
-    <script>
-        $(document).ready(function () {
-            $('.modal').modal();
-
-            $(function () {
-                $('.className').css({
-                    'position': 'absolute',
-                    'left': '50%',
-                    'top': '50%',
-                    'margin-left': function () {
-                        return -$(this).outerWidth() / 2
-                    },
-                    'margin-top': function () {
-                        return -$(this).outerHeight() / 2
-                    }
-                });
-            });
-
-        });
-    </script>
 
 {% endblock %}
