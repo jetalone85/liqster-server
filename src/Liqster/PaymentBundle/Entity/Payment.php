@@ -175,9 +175,8 @@ class Payment
     }
 
     /**
-     * @return string
      */
-    public function getP24Statement(): string
+    public function getP24Statement()
     {
         return $this->P24Statement;
     }
@@ -193,7 +192,7 @@ class Payment
     /**
      * @return string
      */
-    public function getP24Sign(): string
+    public function getP24Sign()
     {
         return $this->P24Sign;
     }
@@ -209,7 +208,7 @@ class Payment
     /**
      * @return string
      */
-    public function getVerify(): string
+    public function getVerify()
     {
         return $this->verify;
     }

@@ -69,4 +69,20 @@ class User extends BaseUser
     {
         $this->confirmation = $confirmation;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * @param mixed $account
+     */
+    public function setAccount($account)
+    {
+        $this->account = $account;
+    }
 }

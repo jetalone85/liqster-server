@@ -113,3 +113,21 @@ parameters:
 beelab_tag:
     tag_class: Liqster\HomePageBundle\Entity\Tag
     purge:     true
+
+easy_admin:
+    design:
+        brand_color: '#00d1b2'
+    site_name: 'liqster.pl Admin Panel'
+    entities:
+        Account:
+            class: Liqster\HomePageBundle\Entity\Account
+        Product:
+            class: Liqster\HomePageBundle\Entity\Product
+        Purchase:
+            class: Liqster\HomePageBundle\Entity\Purchase
+        Schedule:
+            class: Liqster\HomePageBundle\Entity\Schedule
+        User:
+            class: Liqster\HomePageBundle\Entity\User
+        Payment:
+            class: Liqster\PaymentBundle\Entity\Payment
