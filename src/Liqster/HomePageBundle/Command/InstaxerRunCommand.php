@@ -43,6 +43,18 @@ class InstaxerRunCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
+        /**
+         * @TODO
+         * Trzeba w pełni przebudować Commandy.
+         * Mają wysyłać request do MQ. I tyle.
+         * A okno w API będzie sobie spokojnie czekać na odpowiedzi w postaci raportów dla konkretnych userów.
+         * Dużo pracy ale nikłe obciążenie serwera w zamian.
+         * Nie wiem na teraz tylko co się stanie, jak serwer MQ nie wykona poprawnie swojego zadania?
+         * Chyba będzie musiał dumpować wynik sztuka w sztukę, a to oznacza duży ruch w API.
+         *
+         * Poza tym, założenie było takie, aby w Liqsterze nie było klasy Instaxer.
+         */
         $cacheDir = $this->getContainer()->get('kernel')->getCacheDir();
 
         $repository = $this->getContainer()->get('doctrine')->getRepository('LiqsterHomePageBundle:Account');
