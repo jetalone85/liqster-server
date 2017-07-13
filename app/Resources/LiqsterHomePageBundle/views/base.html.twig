@@ -150,6 +150,10 @@
 
             document.addEventListener('DOMContentLoaded', function () {
 
+                $(document).on('click', '.error-close', function () {
+                    $(this).parents('.error').fadeOut();
+                });
+
                 $('.select_tags').tagsInput({});
                 $('.select_comments').tagsInput({});
 

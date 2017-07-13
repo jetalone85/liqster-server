@@ -46,6 +46,19 @@
                 <div class="columns">
                     <div class="column is-half-desktop is-offset-one-quarter-desktop is-full-tablet is-full-mobile">
 
+                        {% if error %}
+                            <div class="notification is-danger error error500">
+                                <button class="delete error-close"></button>
+                                <h1 class="">
+                                    Serwer zwrócił błąd.
+                                </h1>
+                                <p>
+                                    Jeśli dane logowania, które zostały wprowadzone są poprawne, sprawdź prośbę o
+                                    autozyzację w swojej aplikacji Instagram na smartfonie lub komputerze.
+                                </p>
+                            </div>
+                        {% endif %}
+
                         <div class="card">
                             <div class="card-content">
 

@@ -4,7 +4,6 @@ namespace Liqster\HomePageBundle\Controller;
 
 use Cron\CronBundle\Entity\CronJob;
 use Exception;
-use Instagram\API\Framework\InstagramException;
 use Liqster\Domain\Cron\Composer;
 use Liqster\Domain\MQ\MQ;
 use Liqster\HomePageBundle\Entity\Account;
@@ -113,8 +112,14 @@ class AccountController extends Controller
         $schedule = new Schedule();
         $cronJob = new CronJob();
 
+        $error = null;
+
         $form = $this->createForm(AccountType::class, $account);
         $form->handleRequest($request);
+
+        if ($request->query->get('status') === '500') {
+            $error = '500';
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
@@ -130,10 +135,10 @@ class AccountController extends Controller
                  * Dodać Account Instagram Cache
                  */
 
-            } catch (InstagramException $exception) {
+            } catch (\Exception $exception) {
                 return $this->redirectToRoute(
                     'account_new', [
-                        'status' => $exception->getMessage()
+                        'status' => $exception->getCode()
                     ]
                 );
             }
@@ -165,6 +170,7 @@ class AccountController extends Controller
         return $this->render(
             'LiqsterHomePageBundle:Account:new.html.twig', [
                 'Account' => $account,
+                'error' => $error,
                 'form' => $form->createView(),
             ]
         );
