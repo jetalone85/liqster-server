@@ -42,7 +42,7 @@ class ApiController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $test = new ApiDump();
-        $test->setName(Uuid::uuid1());
+        $test->setData(Uuid::uuid1());
         $em->persist($test);
         $em->flush();
 

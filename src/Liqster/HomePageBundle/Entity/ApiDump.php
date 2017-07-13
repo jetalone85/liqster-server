@@ -25,8 +25,9 @@ class ApiDump
      * @var string
      *
      * @ORM\Column()
+     * @ORM\Column(name="data", type="text", unique=false, nullable=true)
      */
-    protected $name;
+    protected $data;
 
     /**
      * @return int
@@ -47,16 +48,16 @@ class ApiDump
     /**
      * @return string
      */
-    public function getName(): string
+    public function getData(): string
     {
-        return $this->name;
+        return $this->data;
     }
 
     /**
-     * @param string $name
+     * @param string $data
      */
-    public function setName(string $name)
+    public function setData(string $data)
     {
-        $this->name = $name;
+        $this->data = $data;
     }
 }
