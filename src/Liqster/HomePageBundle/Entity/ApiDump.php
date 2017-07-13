@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Purchase
  *
  * @ORM\Table(name="api_dump")
+ * @ORM\Entity(repositoryClass="Liqster\HomePageBundle\Repository\ApiDumpRepository")
  */
 class ApiDump
 {
