@@ -103,13 +103,10 @@ class Przelewy24
      *
      * @param string $name Argument name
      * @param mixed $value Argument value
-     * @todo  Add postData validation
      */
     public function addValue($name, $value)
     {
-
         $this->postData[$name] = $value;
-
     }
 
     /**
