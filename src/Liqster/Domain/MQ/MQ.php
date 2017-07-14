@@ -29,17 +29,20 @@ class MQ
     public function __construct()
     {
         $this->client = new Client();
+//        $this->url = 'http://localhost:8001';
         $this->url = 'https://nameless-taiga-58917.herokuapp.com';
     }
 
     /**
+     * @param string $type
      * @param string $path
+     * @param array|null $data
      * @return ResponseInterface
      */
-    public function query(string $path): ResponseInterface
+    public function query(string $type, string $path, array $data = []): ResponseInterface
     {
-        $request = new Request('POST', $this->composeURL($path));
-        return $this->client->send($request);
+        $request = new Request($type, $this->composeURL($path));
+        return $this->client->send($request, $data);
     }
 
     /**

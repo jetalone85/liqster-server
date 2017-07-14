@@ -125,6 +125,7 @@ class AccountController extends Controller
             try {
                 $mq = new MQ();
                 $instaxer = $mq->query(
+                    'POST',
                     'instaxers?username=' .
                     $account->getName() .
                     '&password=' .
@@ -555,13 +556,17 @@ class AccountController extends Controller
     {
         $mq = new MQ();
         $instaxer_json = $mq->query(
+            'POST',
             'instaxers/infos?username=' .
             $account->getName() .
             '&password=' .
             $account->getPassword())->getBody()->getContents();
 
         $em = $this->getDoctrine()->getManager();
-        $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+        $accountInstagramCache = $em
+            ->getRepository('LiqsterHomePageBundle:AccountInstagramCache')
+            ->findOneBy(['account' => $account]);
+
         if (!$accountInstagramCache) {
             $accountInstagramCache = new AccountInstagramCache();
             $accountInstagramCache->setAccount($account);
