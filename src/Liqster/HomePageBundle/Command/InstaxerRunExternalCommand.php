@@ -6,9 +6,7 @@ use Liqster\Domain\MQ\MQ;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Class InstaxerRunExternalCommand
@@ -25,8 +23,7 @@ class InstaxerRunExternalCommand extends ContainerAwareCommand
     {
         $this
             ->setName('instaxer:run:ext')
-            ->addArgument('account', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option', null, InputOption::VALUE_NONE, 'Option description');
+            ->addArgument('account', InputArgument::OPTIONAL, 'Argument description');
     }
 
     /**
@@ -41,9 +38,6 @@ class InstaxerRunExternalCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $cd = $this->getContainer()->get('kernel')->getCacheDir();
-        $em = $this->getContainer()->get('doctrine');
-        $fs = new Filesystem();
         $mq = new MQ();
 
         $test = $mq->query(
