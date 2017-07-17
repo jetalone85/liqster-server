@@ -76,7 +76,9 @@ class InstaxerRunCommand extends ContainerAwareCommand
             sleep(random_int(10, 30));
         }
 
-        foreach ($tag_feed['items'] as $item) {
+        $items = array_slice($tag_feed['items'], 0, 9);
+
+        foreach ($items as $item) {
             $response = $mq->query(
                 'POST',
                 'instaxers/likes?username=' .
