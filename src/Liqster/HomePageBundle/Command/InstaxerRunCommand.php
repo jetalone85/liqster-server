@@ -88,7 +88,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
             $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-            sleep(random_int(5, 20));
+            sleep(random_int(10, 20));
         }
     }
 }
