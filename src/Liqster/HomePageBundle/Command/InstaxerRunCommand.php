@@ -76,7 +76,5 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
             sleep(random_int(10, 30));
         }
-
-        $output->writeln('Command result.');
     }
 }
