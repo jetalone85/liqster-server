@@ -3,7 +3,6 @@
 namespace Liqster\HomePageBundle\Controller;
 
 use Liqster\HomePageBundle\Entity\ApiDump;
-use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +41,7 @@ class ApiController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $test = new ApiDump();
-        $test->setData(Uuid::uuid1());
+        $test->setData($request->query->get('data'));
         $em->persist($test);
         $em->flush();
 

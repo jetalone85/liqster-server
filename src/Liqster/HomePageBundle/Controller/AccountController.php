@@ -312,7 +312,6 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_new_profiling_program', ['id' => $account->getId()]);
         }
 
-
         return $this->render(
             'LiqsterHomePageBundle:Account:newProfilingComments.html.twig', [
                 'Account' => $account,
