@@ -46,51 +46,54 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
         $tags = explode(', ', $account->getTagsText());
 
-        $tag = $tags[random_int(0, count($tags) - 1)];
+        for ($i = 0; $i <= 6; $i++) {
 
-        $mq = new MQ();
-        $instaxer_json = $mq->query(
-            'POST',
-            'instaxers/tags?username=' .
-            $account->getName() .
-            '&password=' .
-            $account->getPassword() .
-            '&tag=' .
-            $tag
-        );
+            $tag = $tags[random_int(0, count($tags) - 1)];
 
-        $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
-
-        foreach ($tag_feed['ranked_items'] as $item) {
-            $response = $mq->query(
+            $mq = new MQ();
+            $instaxer_json = $mq->query(
                 'POST',
-                'instaxers/likes?username=' .
+                'instaxers/tags?username=' .
                 $account->getName() .
                 '&password=' .
                 $account->getPassword() .
-                '&id=' .
-                $item['id']);
+                '&tag=' .
+                $tag
+            );
 
-            $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+            $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
 
-            sleep(random_int(10, 30));
-        }
+            foreach ($tag_feed['ranked_items'] as $item) {
+                $response = $mq->query(
+                    'POST',
+                    'instaxers/likes?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&id=' .
+                    $item['id']);
 
-        $items = array_slice($tag_feed['items'], 0, 9);
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-        foreach ($items as $item) {
-            $response = $mq->query(
-                'POST',
-                'instaxers/likes?username=' .
-                $account->getName() .
-                '&password=' .
-                $account->getPassword() .
-                '&id=' .
-                $item['id']);
+                sleep(random_int(10, 30));
+            }
 
-            $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+            $items = array_slice($tag_feed['items'], 0, 3);
 
-            sleep(random_int(10, 20));
+            foreach ($items as $item) {
+                $response = $mq->query(
+                    'POST',
+                    'instaxers/likes?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&id=' .
+                    $item['id']);
+
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+
+                sleep(random_int(10, 20));
+            }
         }
     }
 }
