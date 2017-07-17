@@ -71,10 +71,24 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 '&id=' .
                 $item['id']);
 
-
             $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
             sleep(random_int(10, 30));
+        }
+
+        foreach ($tag_feed['items'] as $item) {
+            $response = $mq->query(
+                'POST',
+                'instaxers/likes?username=' .
+                $account->getName() .
+                '&password=' .
+                $account->getPassword() .
+                '&id=' .
+                $item['id']);
+
+            $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+
+            sleep(random_int(5, 20));
         }
     }
 }
