@@ -30,6 +30,4 @@ services:
               - { name: form.type, alias: liqster_user_registration }
     my.oauth_aware.user_provider.service:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
-        arguments:
-            - '@fos_user.user_manager'
-            - ['pass properties as array']
+        arguments: [fos_user.user_manager,{google: google_id}]

@@ -32,6 +32,11 @@ class User extends BaseUser
     private $googleID;
 
     /**
+     * @ORM\Column(name="google_access_token", type="string", length=255, nullable=true)
+     * */
+    protected $google_access_token;
+
+    /**
      * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Account", mappedBy="user")
      */
     private $account;
@@ -108,4 +113,21 @@ class User extends BaseUser
     {
         $this->googleID = $googleID;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->google_access_token;
+    }
+
+    /**
+     * @param mixed $google_access_token
+     */
+    public function setGoogleAccessToken($google_access_token)
+    {
+        $this->google_access_token = $google_access_token;
+    }
+
 }
