@@ -25,13 +25,6 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="google_id", type="string", nullable=true)
-     */
-    private $googleID;
-
-    /**
      * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Account", mappedBy="user")
      */
     private $account;
@@ -91,21 +84,5 @@ class User extends BaseUser
     public function setAccount($account)
     {
         $this->account = $account;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGoogleID()
-    {
-        return $this->googleID;
-    }
-
-    /**
-     * @param mixed $googleID
-     */
-    public function setGoogleID($googleID)
-    {
-        $this->googleID = $googleID;
     }
 }

@@ -135,25 +135,3 @@ easy_admin:
             class: Liqster\HomePageBundle\Entity\AccountInstagramCache
         Payment:
             class: Liqster\PaymentBundle\Entity\Payment
-
-hwi_oauth:
-    # list of names of the firewalls in which this bundle is active, this setting MUST be set
-    firewall_names: [secured_area]
-    resource_owners:
-#        facebook:
-#            type:                facebook
-#            client_id:           %facebook_client_id%
-#            client_secret:       %facebook_client_secret%
-#            scope:               "email, public_profile"
-#            infos_url:           "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)"
-#            paths:
-#                email: email
-#            options:
-#                display: page
-        google:
-            type:                google
-            client_id:           "%google_client_id%"
-            client_secret:       "%google_client_secret%"
-            scope:              "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
-            paths:
-                email: email

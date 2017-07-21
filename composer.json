@@ -49,8 +49,7 @@
     "beelab/tag-bundle": "=1.2.0",
     "cron/cron-bundle": "dev-master",
     "guzzlehttp/guzzle": "=6.3.0",
-    "javiereguiluz/easyadmin-bundle": "=1.16.10",
-    "hwi/oauth-bundle": "^0.5.3"
+    "javiereguiluz/easyadmin-bundle": "=1.16.10"
 
   },
   "require-dev": {

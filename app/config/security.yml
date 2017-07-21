@@ -13,20 +13,17 @@ security:
             id: fos_user.user_provider.username_email
 
     firewalls:
-        secured_area:
-            anonymous: ~
-            oauth:
-                resource_owners:
-                    facebook:           "/login/check-facebook"
-                    google:             "/login/check-google"
-                    my_custom_provider: "/login/check-custom"
-                    my_github:          "/login/check-github"
-                login_path:        /login
-                use_forward:       false
-                failure_path:      /login
-
-                oauth_user_provider:
-                    service: my.oauth_aware.user_provider.service
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+            logout:       true
+            anonymous:    true
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/account, role: ROLE_USER }
+        - { path: ^/admin, role: ROLE_ADMIN }

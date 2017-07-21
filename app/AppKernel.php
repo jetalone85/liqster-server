@@ -32,7 +32,6 @@ class AppKernel extends Kernel
             new Liqster\MQBundle\LiqsterMQBundle(),
             new Liqster\UserBundle\LiqsterUserBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
-            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'ModelTest'], true)) {
