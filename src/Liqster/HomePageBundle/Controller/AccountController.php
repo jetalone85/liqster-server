@@ -159,7 +159,7 @@ class AccountController extends Controller
             $cronJob->setAccount($account);
             $cronJob->setCommand('instaxer:run ' . $account->getId());
             $cronJob->setDescription(' ');
-            $cronJob->setSchedule('*/15 * * * *');
+            $cronJob->setSchedule('*/30 * * * *');
             $cronJob->setEnabled(false);
             $em->persist($cronJob);
 
