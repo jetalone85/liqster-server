@@ -135,3 +135,7 @@ easy_admin:
             class: Liqster\HomePageBundle\Entity\AccountInstagramCache
         Payment:
             class: Liqster\PaymentBundle\Entity\Payment
+        CronJob:
+            class: Cron\CronBundle\Entity\CronJob
+        CronReport:
+            class: Cron\CronBundle\Entity\CronReport
