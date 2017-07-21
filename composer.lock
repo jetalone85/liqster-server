@@ -168,12 +168,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pyrkamarcin/Symfony-Bundle.git",
-              "reference": "684a7f4f3b9d02e143e0740e241a45ecf4b0fd0d"
+              "reference": "d9880d828593f5b2df410fcd7578a743b6a8e5b4"
             },
             "dist": {
                 "type": "zip",
-              "url": "https://api.github.com/repos/pyrkamarcin/Symfony-Bundle/zipball/684a7f4f3b9d02e143e0740e241a45ecf4b0fd0d",
-              "reference": "684a7f4f3b9d02e143e0740e241a45ecf4b0fd0d",
+              "url": "https://api.github.com/repos/pyrkamarcin/Symfony-Bundle/zipball/d9880d828593f5b2df410fcd7578a743b6a8e5b4",
+              "reference": "d9880d828593f5b2df410fcd7578a743b6a8e5b4",
                 "shasum": ""
             },
             "require": {
@@ -211,7 +211,7 @@
             "support": {
                 "source": "https://github.com/pyrkamarcin/Symfony-Bundle/tree/master"
             },
-          "time": "2017-07-12 20:10:40"
+          "time": "2017-07-21 16:42:09"
         },
         {
             "name": "doctrine/annotations",
