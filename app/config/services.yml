@@ -29,5 +29,5 @@ services:
           tags:
               - { name: form.type, alias: liqster_user_registration }
     my.oauth_aware.user_provider.service:
-        class: Liqster\Security\Core\User\OAuthUserProvider
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
         arguments: [fos_user.user_manager,{google: google_id}]
