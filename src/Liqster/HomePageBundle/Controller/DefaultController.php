@@ -28,6 +28,8 @@ class DefaultController extends Controller
         $em = $this->getDoctrine();
         $products = $em->getRepository('LiqsterHomePageBundle:Product')->findAll();
 
+        $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
+
         /**
          * @var $formFactory FactoryInterface
          */
@@ -37,6 +39,7 @@ class DefaultController extends Controller
         return $this->render(
             'LiqsterHomePageBundle:Default:index.html.twig', [
                 'products' => $products,
+                'accounts' => $accounts,
                 'form' => $form->createView(),
             ]
         );
