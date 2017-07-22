@@ -558,6 +558,50 @@ class AccountController extends Controller
     }
 
     /**
+     * @Route("/{id}/delete_force", name="account_delete_force")
+     * @Method({"GET"})
+     * @param Account $account
+     * @return RedirectResponse
+     * @throws \LogicException
+     */
+    public function deleteForceAction(Account $account): RedirectResponse
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
+        if ($cronJob) {
+            $em->remove($cronJob);
+        }
+
+        $schedule = $em->getRepository('LiqsterHomePageBundle:Schedule')->findOneBy(['account' => $account]);
+        if ($schedule) {
+            $em->remove($schedule);
+        }
+
+        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
+        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
+
+        if ($payment) {
+            $em->remove($payment);
+        }
+
+        if ($purchase) {
+            $em->remove($purchase);
+        }
+
+        $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+        if ($accountInstagramCache) {
+            $em->remove($accountInstagramCache);
+        }
+
+        $em->remove($account);
+
+        $em->flush();
+
+        return $this->redirectToRoute('account_index');
+    }
+
+    /**
      * @Route("/{id}/check", name="account_check")
      * @Method({"GET", "PUT"})
      * @param Account $account

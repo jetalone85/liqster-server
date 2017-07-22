@@ -8,4 +8,16 @@
         </div>
     </div>
 
+    {% for deactivatedAccount in deactivatedAccounts %}
+
+        <div class="columns">
+            <div class="column">
+                <p>{{ deactivatedAccount.name }} - <a
+                            href="{{ path('account_delete_force', { 'id': deactivatedAccount.id }) }}">Bajubaj
+                        na stałe...</a></p>
+            </div>
+        </div>
+
+    {% endfor %}
+
 {% endblock %}

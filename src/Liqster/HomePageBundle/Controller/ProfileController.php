@@ -150,7 +150,6 @@ class ProfileController extends Controller
             ->getRepository('LiqsterHomePageBundle:Account')
             ->findBy(['user' => $this->getUser(), 'disabled' => true]);
 
-
         return $this->render(
             'LiqsterHomePageBundle:Profile:deactivatedAccounts.html.twig', [
                 'user' => $this->getUser(),
