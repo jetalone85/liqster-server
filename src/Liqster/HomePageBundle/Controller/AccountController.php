@@ -285,6 +285,7 @@ class AccountController extends Controller
             $account->setPassword($account->getPassword());
             $account->setComments($account->getComments());
             $account->setModif(new \DateTime('now'));
+            $em->merge($account);
 
             $em->flush();
 
@@ -321,6 +322,7 @@ class AccountController extends Controller
             $account->setPassword($account->getPassword());
             $account->setTagsText($account->getTagsText());
             $account->setModif(new \DateTime('now'));
+            $em->merge($account);
 
             $em->flush();
 
