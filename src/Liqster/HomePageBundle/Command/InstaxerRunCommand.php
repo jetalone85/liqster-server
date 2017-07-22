@@ -23,7 +23,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
     {
         $this
             ->setName('instaxer:run')
-            ->addArgument('account', InputArgument::REQUIRED, 'Argument description');
+            ->addArgument('account', InputArgument::REQUIRED, '');
     }
 
     /**
@@ -85,12 +85,55 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 $account->getName() .
                 '&password=' .
                 $account->getPassword() .
+<<<<<<< HEAD
                 '&id=' .
                 $item['id']);
 
             $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
             sleep(random_int(10, 20));
+=======
+                '&tag=' .
+                $tag
+            );
+
+            $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
+
+
+            $items = array_slice($tag_feed['ranked_items'], 0, 6);
+
+            foreach ($items as $item) {
+                $response = $mq->query(
+                    'POST',
+                    'instaxers/likes?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&id=' .
+                    $item['id']);
+
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+
+                sleep(random_int(10, 30));
+            }
+
+            $items = array_slice($tag_feed['items'], 0, 6);
+
+            foreach ($items as $item) {
+                $response = $mq->query(
+                    'POST',
+                    'instaxers/likes?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&id=' .
+                    $item['id']);
+
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+
+                sleep(random_int(10, 30));
+            }
+>>>>>>> 3a85e6b77dd184ebea63208a2595ff67a4745c1f
         }
     }
 }
