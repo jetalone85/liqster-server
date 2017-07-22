@@ -6,42 +6,48 @@
             <div class="container">
                 <div class="columns">
                     <div class="column">
-                        <div class="card-content">
-                            <div class="columns">
-                                <div class="column is-7">
-                                    {{ form_start(edit_comments_form) }}
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-title">Komentarze</div>
+                            </div>
+                            <div class="card-content">
+                                <div class="columns">
+                                    <div class="column is-7">
+                                        {{ form_start(edit_comments_form) }}
 
-                                    {{ form_widget(edit_comments_form.comments, { 'attr': {'class': 'select_comments'} }) }}
+                                        {{ form_widget(edit_comments_form.comments, { 'attr': {'class': 'select_comments'} }) }}
 
-                                    <div class="field is-grouped is-pulled-right">
-                                        <p class="control">
-                                            <input class="button is-primary is-centered" type="submit"
-                                                   value="Zapisz dane">
-                                        </p>
+                                        <div class="field is-grouped is-pulled-right">
+                                            <p class="control">
+                                                <input class="button is-primary is-centered" type="submit"
+                                                       value="Zapisz dane">
+                                            </p>
+                                        </div>
+
+                                        {{ form_end(edit_comments_form) }}
                                     </div>
-
-                                    {{ form_end(edit_comments_form) }}
-                                </div>
-                                <div class="column is-5">
-                                    <p>
-                                        Napisz teksty kilku komentarzy, które losowo pozostawi w Twoim imieniu
-                                        liqster.
-                                        Oddziel je między sobą przecinkami lub enterami.
-                                    </p>
-                                    <hr>
-                                    <h3>Nie masz pomysłu? Nie szkodzi, dodaj komentarz z poniższych:</h3>
-                                    <a class="tag is-light is-medium comment_to_add">Nice photo! 🙂</a>
-                                    <a class="tag is-light is-medium comment_to_add">Nice! Check my profile!</a>
-                                    <a class="tag is-light is-medium comment_to_add">Love it! ❤️</a>
-                                    <a class="tag is-light is-medium comment_to_add">Wow! Follow me pls!!! 🙂</a>
-                                    <a class="tag is-light is-medium comment_to_add">😊😊😊</a>
-                                    <a class="tag is-light is-medium comment_to_add">Greate! Visit my page 😍</a>
-                                    <a class="tag is-light is-medium comment_to_add">Love your page ❤</a>
-                                    <a class="tag is-light is-medium comment_to_add">Świetne zdjęcie! 😊</a>
-                                    <a class="tag is-light is-medium comment_to_add">Uwielbiam Twoją galerię! Zajrzyj do
-                                        mnie! 😃</a>
-                                    <a class="tag is-light is-medium comment_to_add">łał! 👌</a>
-                                    <a class="tag is-light is-medium comment_to_add">👆👌😍</a>
+                                    <div class="column is-5">
+                                        <p>
+                                            Napisz teksty kilku komentarzy, które losowo pozostawi w Twoim imieniu
+                                            liqster.
+                                            Oddziel je między sobą przecinkami lub enterami.
+                                        </p>
+                                        <hr>
+                                        <h3>Nie masz pomysłu? Nie szkodzi, dodaj komentarz z poniższych:</h3>
+                                        <a class="tag is-light is-medium comment_to_add">Nice photo! 🙂</a>
+                                        <a class="tag is-light is-medium comment_to_add">Nice! Check my profile!</a>
+                                        <a class="tag is-light is-medium comment_to_add">Love it! ❤️</a>
+                                        <a class="tag is-light is-medium comment_to_add">Wow! Follow me pls!!! 🙂</a>
+                                        <a class="tag is-light is-medium comment_to_add">😊😊😊</a>
+                                        <a class="tag is-light is-medium comment_to_add">Greate! Visit my page 😍</a>
+                                        <a class="tag is-light is-medium comment_to_add">Love your page ❤</a>
+                                        <a class="tag is-light is-medium comment_to_add">Świetne zdjęcie! 😊</a>
+                                        <a class="tag is-light is-medium comment_to_add">Uwielbiam Twoją galerię!
+                                            Zajrzyj do
+                                            mnie! 😃</a>
+                                        <a class="tag is-light is-medium comment_to_add">łał! 👌</a>
+                                        <a class="tag is-light is-medium comment_to_add">👆👌😍</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
