@@ -2,6 +2,7 @@
 
 namespace Liqster\HomePageBundle\Command;
 
+use Liqster\Domain\Mess\MessMinutes;
 use Liqster\Domain\MQ\MQ;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,8 +42,14 @@ class InstaxerRunCommand extends ContainerAwareCommand
     {
         $cacheDir = $this->getContainer()->get('kernel')->getCacheDir();
 
-        $repository = $this->getContainer()->get('doctrine')->getRepository('LiqsterHomePageBundle:Account');
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $repository = $em->getRepository('LiqsterHomePageBundle:Account');
         $account = $repository->find($input->getArgument('account'));
+
+        $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['name' => $account]);
+        $cronJob->setSchedule(MessMinutes::messEntry($cronJob->getSchedule()));
+        $em->merge($cronJob);
+        $em->flush();
 
         $tags = explode(', ', $account->getTagsText());
 
