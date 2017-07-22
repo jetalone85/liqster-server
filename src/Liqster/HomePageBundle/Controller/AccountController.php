@@ -78,6 +78,10 @@ class AccountController extends Controller
                 $account->setPayed(true);
                 $em->flush();
 
+                $cronJob = $account->getCronJob();
+                $cronJob->setEnabled(true);
+                $em->flush();
+
                 $mailer = $this->get('swiftmailer.mailer.default');
 
                 $message = $mailer->createMessage()
