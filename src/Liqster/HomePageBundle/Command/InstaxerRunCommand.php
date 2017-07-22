@@ -23,7 +23,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
     {
         $this
             ->setName('instaxer:run')
-            ->addArgument('account', InputArgument::REQUIRED, 'Argument description');
+            ->addArgument('account', InputArgument::REQUIRED, '');
     }
 
     /**
