@@ -46,7 +46,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $repository = $em->getRepository('LiqsterHomePageBundle:Account');
         $account = $repository->find($input->getArgument('account'));
 
-        $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['name' => $account]);
+        $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['name' => $account->getId()]);
         $cronJob->setSchedule(MessMinutes::messEntry($cronJob->getSchedule()));
 
         $em->merge($cronJob);
