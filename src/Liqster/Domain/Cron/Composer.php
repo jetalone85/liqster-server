@@ -16,7 +16,7 @@ class Composer
      */
     public static function compose(Schedule $schedule): string
     {
-        return '*/5 ' . self::switchDaily($schedule) . ' * * *';
+        return '*/2 ' . self::switchDaily($schedule) . ' * * *';
     }
 
     /**

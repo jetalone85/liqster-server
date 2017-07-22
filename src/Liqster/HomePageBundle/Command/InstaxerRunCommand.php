@@ -40,8 +40,6 @@ class InstaxerRunCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $cacheDir = $this->getContainer()->get('kernel')->getCacheDir();
-
         $em = $this->getContainer()->get('doctrine')->getManager();
         $repository = $em->getRepository('LiqsterHomePageBundle:Account');
         $account = $repository->find($input->getArgument('account'));
