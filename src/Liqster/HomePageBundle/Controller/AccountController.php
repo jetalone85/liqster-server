@@ -56,6 +56,17 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_new');
         }
 
+        /**
+         * Jeśli nie ma gdzieś AccountInstagramCache, przenosi do podstrony pobrania.
+         * @TODO
+         * Wymienić to na serwis aktualizujący cache.
+         */
+        foreach ($accounts as $account) {
+            if (!$account->getAccountInstagramCache()) {
+                return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
+            }
+        }
+
         foreach ($accounts as $account) {
             $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
 
@@ -65,6 +76,10 @@ class AccountController extends Controller
              */
             if ($account->isPayed() === false && $purchase->getStatus() === 'verify') {
                 $account->setPayed(true);
+                $em->flush();
+
+                $cronJob = $account->getCronJob();
+                $cronJob->setEnabled(true);
                 $em->flush();
 
                 $mailer = $this->get('swiftmailer.mailer.default');

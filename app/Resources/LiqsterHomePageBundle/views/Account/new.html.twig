@@ -62,7 +62,9 @@
                         <div class="card">
                             <div class="card-content">
 
-                                <h1>Dodaj nowe konto</h1>
+                                <h1 class="title">Dodaj nowe konto</h1>
+
+                                <p class="subtitle">Podaj dane logowania dla konta Instagram</p>
 
                                 <div class="columns">
                                     <div class="column">
@@ -72,7 +74,7 @@
 
                                         <div class="field is-horizontal">
                                             <div class="field-label is-normal">
-                                                {{ form_label(form.name, null, {'label_attr': {'class': 'label'}}) }}
+                                                {{ form_label(form.name, 'Login', {'label_attr': {'class': 'label'}}) }}
                                             </div>
                                             <div class="field-body">
                                                 <div class="field">
@@ -87,7 +89,7 @@
 
                                         <div class="field is-horizontal">
                                             <div class="field-label is-normal">
-                                                {{ form_label(form.password, null, {'label_attr': {'class': 'label'}}) }}
+                                                {{ form_label(form.password, 'Hasło', {'label_attr': {'class': 'label'}}) }}
                                             </div>
                                             <div class="field-body">
                                                 <div class="field">
