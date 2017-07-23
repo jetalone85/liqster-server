@@ -115,9 +115,21 @@ class ProfileController extends Controller
      */
     public function billingAction(): Response
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $accounts = $em
+            ->getRepository('LiqsterHomePageBundle:Account')
+            ->findBy(['user' => $this->getUser()]);
+
+        $purchase = $em
+            ->getRepository('LiqsterHomePageBundle:Purchase')
+            ->findBy(['account' => $accounts]);
+
         return $this->render(
             'LiqsterHomePageBundle:Profile:billing.html.twig', [
                 'user' => $this->getUser(),
+                'accounts' => $accounts,
+                'purchases' => $purchase,
             ]
         );
     }

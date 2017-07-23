@@ -2,6 +2,35 @@
 
 {% block body_on_single_page %}
 
-    <h1>billing</h1>
+    <div class="columns">
+        <div class="column">
+            <p class="title is-3">Płatności</p>
+
+            <p class="title is-5">Nadchodzące</p>
+
+            <hr>
+
+            <p class="title is-5">Dokonane</p>
+
+            {% for purchase in purchases %}
+                <p>Konto: {{ purchase.account.name }}</p>
+                <p>Płatność: {{ purchase.payment.P24OrderId }}</p>
+                {% if not loop.last %}
+                    <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+
+            {{ dump(user) }}
+            {{ dump(accounts) }}
+            {{ dump(purchases) }}
+
+        </div>
+    </div>
+
 
 {% endblock %}
