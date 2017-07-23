@@ -3,8 +3,30 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
+
+    <section class="hero is-fullheight is-light is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-half is-offset-one-quarter is-vcentered is-centered">
+
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="has-text-centered title is-4">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+                                {% if targetUrl %}
+                                    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="card-content is-centered has-text-centered">
+                                <p>Rozpocznij dodająć nowe konto Instagram</p>
+                                <a class="button is-large is-primary" href="{{ path('account_new') }}">Dodaj
+                                    konto
+                                    Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
 {% endblock fos_user_content %}
