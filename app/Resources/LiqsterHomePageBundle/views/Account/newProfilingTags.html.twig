@@ -12,7 +12,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="columns">
-                                    <div class="column is-7">
+                                    <div class="column is-fullwidth">
                                         {{ form_start(edit_tags_form) }}
 
                                         {{ form_widget(edit_tags_form.tagsText, { 'attr': {'class': 'select_tags'} }) }}
@@ -26,8 +26,11 @@
 
                                         {{ form_end(edit_tags_form) }}
                                     </div>
-                                    <div class="column is-5">
-                                        {% include '@LiqsterHomePage/Account/tags.html.twig' %}
+                                </div>
+
+                                <div class="colums">
+                                    <div class="column">
+                                        {% include '@LiqsterHomePage/Account/tagsFull.html.twig' %}
                                     </div>
                                 </div>
                             </div>
