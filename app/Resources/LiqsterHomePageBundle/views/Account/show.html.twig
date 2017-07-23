@@ -193,14 +193,7 @@
                                     <div class="field is-grouped is-pulled-right">
                                         <p class="control">
                                             <input class="button is-primary is-centered" type="submit"
-                                                   value="Zapisz ustawienia">
-                                        </p>
-                                    </div>
-
-                                    {{ form_end(edit_tags_form) }}
-                                </div>
-                                <div class="column is-5">
-                                    <p>
+                                        <p>
                                         Wypisz #tagi, po których ma poruszać się liqster. Wymieniaj je po
                                         przecinkach. Ustal od 10 do 30 #tagów.
                                     </p>
@@ -212,7 +205,15 @@
                                     <a class="tag is-light is-medium tag_to_add">najlepsze</a>
                                     <a class="tag is-light is-medium tag_to_add">kocham</a>
                                     <a class="tag is-light is-medium tag_to_add">moja</a>
-                                    <a class="tag is-light is-medium tag_to_add">bardzo</a>
+                                        <a class="tag is-light is-medium tag_to_add">bardzo</a> value="Zapisz
+                                        ustawienia">
+                                        </p>
+                                    </div>
+
+                                    {{ form_end(edit_tags_form) }}
+                                </div>
+                                <div class="column is-5">
+                                    {% include '@LiqsterHomePage/Account/tags.html.twig' %}
                                 </div>
                             </div>
                         </div>
