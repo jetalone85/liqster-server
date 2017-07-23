@@ -10,9 +10,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ComposerTest extends TestCase
 {
-    /**
-     *
-     */
     public function testSwitchDaily()
     {
         $period = 'afternoon';
@@ -21,9 +18,6 @@ class ComposerTest extends TestCase
         $this->assertEquals('14-19', $range);
     }
 
-    /**
-     *
-     */
     public function testCompose()
     {
         $period = 'morning';
