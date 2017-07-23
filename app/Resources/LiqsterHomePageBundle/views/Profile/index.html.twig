@@ -2,31 +2,57 @@
 
 {% block header %}
 
-<section class="hero is-fullheight is-light is-bold">
+<section class="hero is-light is-bold">
     <div class="hero-body">
         <div class="container">
             <div class="columns">
-                <h2 class="title">W panelu użytkownika znajdziesz informację na temat, oraz możliwości edycji, Twojego
-                    profilu użytkownika.</h2>
-            </div>
-            <div class="columns">
                 <div class="column is-one-quarter">
-                    <div class="menu">
-                        <div class="menu-label">{{ user.username }}</div>
-                        <ul class="menu-list">
-                            <li><a class="collection-item" href="{{ path('profile_index') }}">Edytuj dane</a></li>
-                            <li><a class="collection-item" href="{{ path('profile_setting') }}">Zmień hasło</a></li>
-                            <li><a class="collection-item" href="{{ path('profile_notifications') }}">Powiadomienia
-                                    email</a></li>
-                            <li><a class="collection-item" href="{{ path('profile_billing') }}">Płatności</a></li>
-                            <li><a class="collection-item" href="{{ path('profile_deactivatedAccounts') }}">Dezaktywowane
-                                    konta</a>
-                            </li>
-                            <li><a class="collection-item" href="{{ path('profile_security') }}">Bezpieczeństwo</a></li>
-                        </ul>
-                    </div>
-                </div>
+                    <nav class="panel">
+                        <p class="panel-heading">{{ user.username }}</p>
 
+                        <a class="panel-block" href="{{ path('profile_index') }}">
+                        <span class="panel-icon">
+                            <i class="fa fa-book"></i>
+                        </span>
+                            <span>Edytuj dane</span>
+                        </a>
+
+                        <a class="panel-block" href="{{ path('profile_setting') }}">
+                        <span class="panel-icon">
+                            <i class="fa fa-book"></i>
+                        </span>
+                            <span>Ustawienia profilu</span>
+                        </a>
+
+                        <a class="panel-block" href="{{ path('profile_notifications') }}">
+                        <span class="panel-icon">
+                            <i class="fa fa-book"></i>
+                        </span>
+                            <span>Powiadomienia</span>
+                        </a>
+
+                        <a class="panel-block" href="{{ path('profile_billing') }}">
+                        <span class="panel-icon">
+                            <i class="fa fa-book"></i>
+                        </span>
+                            <span>Płatności</span>
+                        </a>
+
+                        <a class="panel-block" href="{{ path('profile_deactivatedAccounts') }}">
+                        <span class="panel-icon">
+                            <i class="fa fa-book"></i>
+                        </span>
+                            <span>Dezaktywowane konta</span>
+                        </a>
+
+                        <a class="panel-block" href="{{ path('profile_security') }}">
+                        <span class="panel-icon">
+                            <i class="fa fa-book"></i>
+                        </span>
+                            <span>Bezpieczeństwo</span>
+                        </a>
+                    </nav>
+                </div>
 
                 {% endblock %}
 
@@ -40,7 +66,7 @@
 
                                 <div class="columns">
                                     <div class="column">
-                                        <h4>Edycja danych</h4>
+                                        <h4 class="title">Edycja danych podstawowych</h4>
 
                                         {{ form_start(edit_form) }}
 
