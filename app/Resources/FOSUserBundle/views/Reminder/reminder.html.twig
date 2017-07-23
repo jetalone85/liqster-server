@@ -1,0 +1,34 @@
+{% extends '@LiqsterHomePage/base.html.twig' %}
+
+{% block fos_user_content %}
+
+    <section class="hero is-fullheight is-light is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-half is-offset-one-quarter is-vcentered is-centered">
+
+                        <div class="card">
+                            <div class="card-content">
+
+                                <p>wyślij jeszcze raz!</p>
+
+                                {{ form_start(reminder_form) }}
+
+                                <div class="field is-grouped is-pulled-right">
+                                    <p class="control">
+                                        <input class="button is-primary is-centered" type="submit"
+                                               value="Zapisz dane">
+                                    </p>
+                                </div>
+                                {{ form_end(reminder_form) }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock fos_user_content %}

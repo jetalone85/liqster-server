@@ -36,6 +36,11 @@ liqster_api:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+liqster_uset:
+    resource: "@LiqsterUserBundle/Controller"
+    type:     annotation
+    prefix:   /
+
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation

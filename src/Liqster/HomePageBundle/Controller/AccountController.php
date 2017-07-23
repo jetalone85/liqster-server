@@ -88,6 +88,7 @@ class AccountController extends Controller
                     ->setSubject('Aktywacja')
                     ->setFrom('admin@liqster.pl')
                     ->setTo($this->getUser()->getEmail())
+                    ->setContentType('text/html')
                     ->setBody(
                         $this->renderView(
                             '@LiqsterHomePage/Email/activate_account.txt.twig', [
