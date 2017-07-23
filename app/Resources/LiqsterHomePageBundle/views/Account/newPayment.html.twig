@@ -20,11 +20,11 @@
 {% endblock form_label %}
 
 {% block choice_widget_expanded %}
-    <div class="integer_widget">
+    <div class="columns">
 
         <div {{ block('widget_container_attributes') }}>
             {%- for child in form %}
-                <div class="col s12 m6 l3 xl3">
+                <div class="column is-fullwidth">
 
                     {{- form_widget(child) -}}
 
@@ -49,24 +49,35 @@
                         <div class="card">
                             <div class="card-content">
 
-                                <h1>Dodaj nową płatność</h1>
-
                                 <div class="columns">
                                     <div class="column">
+                                        <h1 class="title">Dodaj nową płatność</h1>
+
                                         {{ form_start(form) }}
                                         {{ form_widget(form) }}
-                                        {{ form_label(form) }}
+
+                                        <div class="field is-grouped is-pulled-right">
+                                            <p class="control">
+                                                <input class="button is-primary is-centered" type="submit" id="_submit"
+                                                       name="_submit"
+                                                       value="Przejdź do płatności"/>
+                                            </p>
+                                        </div>
+
                                         {{ form_end(form) }}
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <p>Możesz powrócić do panelu zarządania Twoimi kontami.</p>
-                                    <p><strong>Pamiętaj!</strong> Do póki nie dokonasz płatności, nie jesteś zobowiązany
-                                        ...
-                                    </p>
-                                    <a class="waves-effect waves-light btn" href="{{ path('account_index') }}">Powrót do
-                                        panelu</a>
+                                <hr>
+
+                                <div class="columns">
+                                    <div class="column">
+                                        <p>Możesz powrócić do panelu zarządania Twoimi kontami.</p>
+                                        <p>Do póki nie dokonasz płatności, Twoje konto pozostanie nieaktywne</p>
+                                        <a class="button is-primary is-outlined is-centered is-fullwidth"
+                                           href="{{ path('account_index') }}">Powrót do
+                                            panelu</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

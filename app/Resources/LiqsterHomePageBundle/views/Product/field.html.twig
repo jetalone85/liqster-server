@@ -1,5 +1,10 @@
-<div class="card">
-    <div class="card-content">
-        <h2 class="title">{{ product.type }}</h2>
-        <h5 class="subtitle">{{ (product.price / 100)|number_format(2) }} zł</h5></div>
+<div class="box is-fullwidth">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p class="title">{{ product.type }}</p>
+                <p class="subtitle">{{ (product.price / 100)|number_format(2) }} zł</p>
+            </div>
+        </div>
+    </article>
 </div>

@@ -6,7 +6,6 @@ use Liqster\HomePageBundle\Entity\Account;
 use Liqster\HomePageBundle\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,18 +22,12 @@ class AccountPaymentType extends AbstractType
                     'class' => Product::class,
                     'data_class' => Product::class,
                     'required' => true,
-                    'label' => 'Produkt',
+                    'label' => '',
                     'choice_label' => 'type',
                     'expanded' => true,
                     'attr' => [
-                        'class' => 'input-field',
+                        'class' => '',
                     ]
-                ]
-            )
-            ->add(
-                'Dalej', SubmitType::class, [
-                    'attr' => [
-                        'class' => 'form-control btn waves-effect waves-light rigth']
                 ]
             );
     }
