@@ -1,7 +1,7 @@
 {% extends '@LiqsterHomePage/base.html.twig' %}
 
 {% block body %}
-    <section id="price" class="hero is-fullheight is-primary is-bold">
+    <section id="price" class="hero is-fullheight is-light is-bold">
         <div class="hero-body">
             <div class="container">
                 <div class="columns">
@@ -27,12 +27,9 @@
                                         {{ form_end(edit_tags_form) }}
                                     </div>
                                 </div>
-
-                                <div class="colums">
-                                    <div class="column">
-                                        {% include '@LiqsterHomePage/Account/tagsFull.html.twig' %}
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="card-content">
+                                {% include '@LiqsterHomePage/Account/tagsFull.html.twig' %}
                             </div>
                         </div>
                     </div>
