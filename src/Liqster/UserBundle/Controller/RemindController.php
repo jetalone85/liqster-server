@@ -8,13 +8,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/remind")
- *
+ * Class RemindController
+ * @package Liqster\UserBundle\Controller
  */
 class RemindController extends BaseController
 {
     /**
-     * @Route("/", name="fos_reminder")
+     * @Route("/registration/remind", name="fos_reminder")
      * @throws \LogicException
      */
     public function remindAction(Request $request)
