@@ -2,51 +2,101 @@
 
 {% block fos_user_content %}
 
-    <section id="intro" class="full-section flat-section">
-        <div class="view container-fluid">
-            <div class="container input-field">
-                <div class="row">
-
-                    <div class="col l8 offset-l2">
-
+    <section class="hero is-fullheight is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-half is-offset-one-quarter is-vcentered is-centered">
                         <div class="card">
                             <div class="card-content">
-
                                 <form action="{{ path('fos_user_registration_register') }}" method="post">
                                     <div id="fos_user_registration_form">
 
-                                        <div class="input-field">
-                                            {{ form_widget(form.email, { 'attr': {'class': '' } }) }}
-                                            {{ form_label(form.email) }}
-                                            {{ form_errors(form.email) }}
+                                        <div class="field is-horizontal">
+                                            <div class="field-label is-normal">
+                                                {{ form_label(form.username, 'Login', {'label_attr': {'class': 'label'}}) }}
+                                            </div>
+                                            <div class="field-body">
+                                                <div class="field">
+                                                    <p class="control is-expanded has-icons-left">
+                                                        {{ form_widget(form.username, { 'attr': {'class': 'input'} }) }}
+                                                        <span class="icon is-small is-left"><i
+                                                                    class="fa fa-user"></i></span>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="input-field">
-                                            {{ form_widget(form.username, { 'attr': {'class': ''} }) }}
-                                            {{ form_label(form.username) }}
-                                            {{ form_errors(form.username) }}
+                                        <div class="field is-horizontal">
+                                            <div class="field-label is-normal">
+                                                {{ form_label(form.email, null, {'label_attr': {'class': 'label'}}) }}
+                                            </div>
+                                            <div class="field-body">
+                                                <div class="field">
+                                                    <p class="control is-expanded has-icons-left">
+                                                        {{ form_widget(form.email, { 'attr': {'class': 'input'} }) }}
+                                                        <span class="icon is-small is-left"><i
+                                                                    class="fa fa-envelope"></i></span>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="input-field">
-                                            {{ form_widget(form.plainPassword.first, { 'attr': {'class': ''} }) }}
-                                            {{ form_label(form.plainPassword.first) }}
-                                            {{ form_errors(form.plainPassword.first) }}
+                                        <div class="field is-horizontal">
+                                            <div class="field-label is-normal">
+                                                {{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'label'}}) }}
+                                            </div>
+                                            <div class="field-body">
+                                                <div class="field">
+                                                    <p class="control is-expanded has-icons-left">
+                                                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input'} }) }}
+                                                        <span class="icon is-small is-left"><i
+                                                                    class="fa fa-key"></i></span>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="input-field">
-                                            {{ form_widget(form.plainPassword.second, { 'attr': {'class': '' } }) }}
-                                            {{ form_label(form.plainPassword.second) }}
-                                            {{ form_errors(form.plainPassword.second) }}
+                                        <div class="field is-horizontal">
+                                            <div class="field-label is-normal">
+                                                {{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'label'}}) }}
+                                            </div>
+                                            <div class="field-body">
+                                                <div class="field">
+                                                    <p class="control is-expanded has-icons-left">
+                                                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input'} }) }}
+                                                        <span class="icon is-small is-left"><i
+                                                                    class="fa fa-key"></i></span>
+
+                                                    </p></div>
+                                            </div>
                                         </div>
 
                                         {{ form_rest(form) }}
 
-                                    </div>
-                                    <div class="">
-                                        <input class="btn btn-lg btn-primary" type="submit"
-                                               value="Zatwierdź">
+                                        <div class="field is-grouped is-pulled-right">
+                                            <p class="control">
+                                                <input class="button is-primary is-centered" type="submit"
+                                                       value="Zarejestruj się">
+                                            </p>
+                                        </div>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="card-content">
+                                <div class="center-align">
+                                    <p>Rejestrując się w liqster.pl akceptujesz <a href="#">Regulamin Serwisu</a> oraz
+                                        <a
+                                                href="#">Zasady Ochrony Danych
+                                            Osobowych</a> (@TODO)</p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-footer-item">
+                                    <div class="center-align">
+                                        <span>Jeśli masz już konto, <a href="{{ path('fos_user_security_login') }}">zaloguj się</a></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,4 +104,5 @@
             </div>
         </div>
     </section>
+
 {% endblock fos_user_content %}
