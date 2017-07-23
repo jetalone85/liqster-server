@@ -105,4 +105,18 @@ class DefaultController extends Controller
             ]
         );
     }
+
+    /**
+     * @return Response
+     * @throws \LogicException
+     * @Route("/helpDesk", name="homepage_helpDesk")
+     * @Method({"GET"})
+     */
+    public function helpDeskAction(): Response
+    {
+        return $this->render(
+            'LiqsterHomePageBundle:Default:helpDesk.html.twig', [
+            ]
+        );
+    }
 }
