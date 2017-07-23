@@ -6,6 +6,7 @@ use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Liqster\UserBundle\Form\ReminderType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class RemindController
@@ -15,26 +16,23 @@ class RemindController extends BaseController
 {
     /**
      * @Route("/registration/remind", name="fos_reminder")
+     * @param Request $request
+     * @return Response
      * @throws \LogicException
+     * @throws \OutOfBoundsException
      */
-    public function remindAction(Request $request)
+    public function remindAction(Request $request): Response
     {
 
         $reminderForm = $this->createForm(ReminderType::class);
         $reminderForm->handleRequest($request);
 
-
         if ($reminderForm->isSubmitted() && $reminderForm->isValid()) {
-
 
             $email = $reminderForm->get('email')->getData();
             $user = $this->get('fos_user.user_manager')->findUserByEmail($email);
 
-            dump($user);
             $url = $this->generateUrl('fos_user_registration_confirm', array('token' => $user->getConfirmationToken()), true);
-
-            dump($url);
-
 
             $mailer = $this->get('swiftmailer.mailer.default');
 
