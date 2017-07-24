@@ -18,6 +18,14 @@ class Sleep
     }
 
     /**
+     * @param $int
+     */
+    public static function hard($int)
+    {
+        sleep($int);
+    }
+
+    /**
      * @param int $base
      * @param int $range
      * @return int
@@ -35,13 +43,5 @@ class Sleep
     private static function calculateRangeUp(int $base, int $range)
     {
         return (int)($base + ($base * $range));
-    }
-
-    /**
-     * @param $int
-     */
-    public static function hard($int)
-    {
-        sleep($int);
     }
 }
