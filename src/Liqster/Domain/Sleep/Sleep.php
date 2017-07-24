@@ -27,20 +27,20 @@ class Sleep
 
     /**
      * @param int $base
-     * @param int $range
+     * @param float $range
      * @return int
      */
-    private static function calculateRangeDown(int $base, int $range)
+    public static function calculateRangeDown(int $base, float $range)
     {
         return (int)($base - ($base * $range));
     }
 
     /**
      * @param int $base
-     * @param int $range
+     * @param float $range
      * @return int
      */
-    private static function calculateRangeUp(int $base, int $range)
+    public static function calculateRangeUp(int $base, float $range)
     {
         return (int)($base + ($base * $range));
     }

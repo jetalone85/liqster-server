@@ -5,12 +5,17 @@ namespace Liqster\Domain\Sleep;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class MessMinutesTest
+ * Class SleepTest
  * @package Liqster\Domain\Sleep
  */
-class MessMinutesTest extends TestCase
+class SleepTest extends TestCase
 {
     public function testCalculateRangeUp()
     {
+        $base = 10;
+        $range = 0.4;
+
+        $result = Sleep::calculateRangeUp($base, $range);
+        $this->assertGreaterThan($base, $result);
     }
 }
