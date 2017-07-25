@@ -68,18 +68,24 @@
                                                 <li>Opłacono: {{ purchase.paid|date("m/d/Y H:i:s") }}</li>
                                                 <li>Status: {{ purchase.status }}</li>
                                             </ul>
+                                            <hr>
                                             <p class="subtitle">Płatość:</p>
                                             <ul>
                                                 <li>Identyfikator: {{ purchase.payment.id }}</li>
                                                 <li>Token: {{ purchase.payment.token }}</li>
                                             </ul>
-                                            <p class="subtitle">Produkt:</>
+                                            <hr>
+                                            <p class="subtitle">Produkt:</p>
                                             <ul>
                                                 <li>Identyfikator: {{ purchase.product.id }}</li>
                                                 <li>Typ: {{ purchase.product.type }}</li>
                                                 <li>Okres: {{ purchase.product.period }}</li>
                                                 <li>Cena: {{ (purchase.product.price / 100)|number_format(2) }} zł</li>
                                             </ul>
+                                            <hr>
+                                            <p class="subtitle">Opłać kolejny okres:</p>
+                                            <hr>
+                                            <p class="subtitle">Historia płatności:</p>
                                         {% endif %}
                                     {% endfor %}
 
