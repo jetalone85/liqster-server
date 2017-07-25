@@ -409,6 +409,8 @@ class AccountController extends Controller
          * koniecznie!!!!!!
          */
 
+        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findBy(['account' => $account]);
+
         $editForm = $this->createForm(AccountEditType::class, $account);
         $editForm->handleRequest($request);
 
@@ -488,6 +490,8 @@ class AccountController extends Controller
         return $this->render(
             'LiqsterHomePageBundle:Account:show.html.twig', [
                 'account' => $account,
+                'purchases' => $purchase,
+                'date.now' => new \DateTime('now'),
                 'instagram' => $instagram,
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),
