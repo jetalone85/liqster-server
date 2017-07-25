@@ -4,20 +4,50 @@
 
     <div class="columns">
         <div class="column">
-            <h1>deactivatedAccounts</h1>
+            <p class="title is-4">Dezaktywowane konta</p>
+
+            {% if not deactivatedAccounts %}
+
+                <p class="is-danger">Nie dezaktywowałeś żadnego konta. Przejdź do <a href="{{ path('account_index') }}">listy
+                        kont</a>.</p>
+
+            {% else %}
+
+                {% for deactivatedAccount in deactivatedAccounts %}
+
+                    <article class="media">
+                        <figure class="media-left">
+                            <p class="image is-64x64">
+                                <img src="{{ deactivatedAccount.image }}">
+                            </p>
+                        </figure>
+                        <div class="media-content">
+                            <div class="content is-vcentered">
+                                <p class="subtitle is-5">{{ deactivatedAccount.name }}</p>
+
+                                <div class="field is-grouped">
+                                    <p class="control">
+                                        <a class="button is-primary"
+                                           href="{{ path('account_recovery', { 'id': deactivatedAccount.id }) }}">
+                                            Przywróć konto
+                                        </a>
+                                    </p>
+                                    <p class="control">
+                                        <a class="button is-danger"
+                                           href="{{ path('account_delete_force', { 'id': deactivatedAccount.id }) }}">
+                                            Kasuj konto
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                {% endfor %}
+
+            {% endif %}
+
         </div>
     </div>
-
-    {% for deactivatedAccount in deactivatedAccounts %}
-
-        <div class="columns">
-            <div class="column">
-                <p>{{ deactivatedAccount.name }} - <a
-                            href="{{ path('account_delete_force', { 'id': deactivatedAccount.id }) }}">Bajubaj
-                        na stałe...</a></p>
-            </div>
-        </div>
-
-    {% endfor %}
 
 {% endblock %}

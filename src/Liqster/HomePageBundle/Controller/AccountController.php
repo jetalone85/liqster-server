@@ -562,7 +562,8 @@ class AccountController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
-        $em->remove($cronJob);
+        $cronJob->setEnabled(false);
+        $em->merge($cronJob);
 
         $account->setDisabled(true);
         $em->merge($account);
@@ -604,7 +605,10 @@ class AccountController extends Controller
             $em->remove($purchase);
         }
 
-        $accountInstagramCache = $em->getRepository('LiqsterHomePageBundle:AccountInstagramCache')->findOneBy(['account' => $account]);
+        $accountInstagramCache = $em
+            ->getRepository('LiqsterHomePageBundle:AccountInstagramCache')
+            ->findOneBy(['account' => $account]);
+
         if ($accountInstagramCache) {
             $em->remove($accountInstagramCache);
         }
@@ -683,5 +687,30 @@ class AccountController extends Controller
                 'cron' => $cron,
             ]
         );
+    }
+
+    /**
+     * @Route("/{id}/recovery", name="account_recovery")
+     * @Method("GET")
+     * @param Account $account
+     * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     */
+    public function recoveryAction(Account $account): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $account->setDisabled(false);
+        $em->merge($account);
+
+        $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
+        $cronJob->setEnabled(true);
+        $em->merge($cronJob);
+
+        $em->flush();
+
+        return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
     }
 }
