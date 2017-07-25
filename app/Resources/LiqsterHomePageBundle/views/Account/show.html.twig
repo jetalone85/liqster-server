@@ -60,7 +60,8 @@
 
                                     {% for purchase in purchases %}
                                         {% if  purchase.paid >= date.now %}
-                                            <p class="subtitle is-5">purchase.product.type</p>
+                                            <p class="subtitle is-5">{{ purchase.product.type }}</p>
+                                            <p>{{ purchase.product.price / 100)|number_format(2) }} zł</p>
                                         {% endif %}
                                     {% endfor %}
 
