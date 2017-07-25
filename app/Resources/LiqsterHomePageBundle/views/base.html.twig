@@ -45,7 +45,6 @@
                 a.src = g;
                 m.parentNode.insertBefore(a, m)
             })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-            {% if app.user %}ga('set', 'userId', {{ app.user.id }});{% endif %}
             ga('create', 'UA-91236554-2', 'auto');
             ga('send', 'pageview');
 
@@ -161,7 +160,13 @@
                 $('.select_comments').tagsInput({});
 
                 $(".tag_to_add").click(function () {
-                    $('.select_tags').addTag(this.textContent);
+                    var table = this.getAttribute('data-content').split(',');
+                    table.forEach(
+                        function (entry) {
+                            $('.select_tags').addTag(entry);
+                        }
+                    );
+
                 });
 
                 $(".comment_to_add").click(function () {
