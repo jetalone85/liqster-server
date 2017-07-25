@@ -188,8 +188,30 @@ class ProfileController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
-            $em->flush($user);
+            $em->flush();
         }
         return $this->redirectToRoute('homepage');
+    }
+
+    /**
+     * @return Response
+     * @throws \LogicException
+     * @Route("/deactivatedAccountsCounter", name="profile_deactivatedAccountsCounter")
+     * @Method({"GET"})
+     */
+    public function deactivatedAccountsCounterAction(): Response
+    {
+        $em = $this->getDoctrine();
+        $accounts = $em
+            ->getRepository('LiqsterHomePageBundle:Account')
+            ->findBy(['user' => $this->getUser(), 'disabled' => true]);
+        $counter = count($accounts);
+
+        return $this->render(
+            'LiqsterHomePageBundle:Profile:deactivatedAccountsCounter.html.twig', [
+                'user' => $this->getUser(),
+                'counter' => $counter,
+            ]
+        );
     }
 }

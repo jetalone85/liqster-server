@@ -42,7 +42,14 @@
                         <span class="panel-icon">
                             <i class="fa fa-book"></i>
                         </span>
-                            <span>Dezaktywowane konta</span>
+                            <div class="columns">
+                                <div class="column is-10">
+                                    <span>Dezaktywowane konta</span>
+                                </div>
+                                <div class="column is-2">
+                                    {{ render(controller('LiqsterHomePageBundle:Profile:deactivatedAccountsCounter')) }}
+                                </div>
+                            </div>
                         </a>
 
                         <a class="panel-block" href="{{ path('profile_security') }}">
