@@ -63,9 +63,9 @@
                                             <p>Zamówienie:</p>
                                             <ul>
                                                 <li>Identyfikator: {{ purchase.id }}</li>
-                                                <li>Utworzono: {{ purchase.create|date("m/d/Y") }}</li>
-                                                <li>Aktualizacja: {{ purchase.modification|date("m/d/Y") }}</li>
-                                                <li>Opłacono: {{ purchase.paid|date("m/d/Y") }}</li>
+                                                <li>Utworzono: {{ purchase.create|date("m/d/Y H:i:s") }}</li>
+                                                <li>Aktualizacja: {{ purchase.modification|date("m/d/Y H:i:s") }}</li>
+                                                <li>Opłacono: {{ purchase.paid|date("m/d/Y H:i:s") }}</li>
                                                 <li>Status: {{ purchase.status }}</li>
                                             </ul>
                                             <p>Płatość:</p>
