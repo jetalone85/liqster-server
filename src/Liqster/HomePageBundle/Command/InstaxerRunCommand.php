@@ -25,19 +25,20 @@ class InstaxerRunCommand extends ContainerAwareCommand
     {
         $this
             ->setName('instaxer:run')
-            ->addArgument('account', InputArgument::REQUIRED, '');
+            ->addArgument('account', InputArgument::REQUIRED);
     }
 
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|null|void
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      * @throws \RuntimeException
      * @throws \Symfony\Component\Filesystem\Exception\IOException
-     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \LogicException
+     * @throws \InvalidArgumentException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
