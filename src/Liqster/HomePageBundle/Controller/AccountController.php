@@ -102,7 +102,6 @@ class AccountController extends Controller
             }
         }
 
-
         return $this->render(
             'LiqsterHomePageBundle:Account:index.html.twig', [
                 'accounts' => $accounts,
@@ -140,7 +139,7 @@ class AccountController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $mq = new MQ();
-                $instaxer = $mq->query(
+                $response = $mq->query(
                     'POST',
                     'instaxers?username=' .
                     $account->getName() .
@@ -164,6 +163,8 @@ class AccountController extends Controller
             $account->setUser($this->getUser());
             $account->setCreated(new \DateTime('now'));
             $account->setModif(new \DateTime('now'));
+            $account->setCommentsRun(true);
+            $account->setLikesRun(true);
             $em->persist($account);
 
             $schedule->setAccount($account);
@@ -396,6 +397,17 @@ class AccountController extends Controller
             ->getRepository('LiqsterHomePageBundle:AccountInstagramCache')
             ->findOneBy(['account' => $account]);
         $instagram = json_decode($accountInstagramCache->getValue(), true);
+
+        /**
+         * @TODO
+         * Wywalić i dodać ustawienia
+         */
+        $account->setLikesRun(true);
+        $account->setCommentsRun(true);
+        $em->flush();
+        /**
+         * koniecznie!!!!!!
+         */
 
         $editForm = $this->createForm(AccountEditType::class, $account);
         $editForm->handleRequest($request);
