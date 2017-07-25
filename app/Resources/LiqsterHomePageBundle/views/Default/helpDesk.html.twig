@@ -18,6 +18,8 @@
                                 <li><a href="#howToAddAcount">Dodawanie i aktywacja kont</a></li>
                                 <li><a href="#howToProfile">Profil użytkownika</a></li>
                                 <li><a href="#howToPayment">Płatności</a></li>
+                                <li><a href="#howToWorks">Funkcjonowanie programu liqster</a></li>
+                                <li><a href="#howToDanger">Krótkotrwała blokada konta</a></li>
                                 <li><a href="#howToContact">Kontakt</a></li>
                             </ul>
                         </aside>
@@ -29,7 +31,7 @@
                             nazwy użytkowika. Aby ukończyć rejestrację należy wejsć w link, który znajduje się w mailu
                             aktywacyjnym wysłanym na podany przez Ciebie adres email. Ustawienia dotyczące stworzonego
                             przez Ciebie profilu znajdziesz w zakładce z jego nazwą po zalogowaniu. Instagramowe konto
-                            przechodząc do "listy kont".</p>
+                            przechodząc do <a href="{{ path('account_index') }}"> listy kont</a>.</p>
                         <p>Jeżeli podczas procesu rejestracji nie został wysłany do Ciebie mail aktywacyjny możesz
                             wywowłać jego wysłanie podczas procesu logowania.</p>
                         <hr>
@@ -80,17 +82,21 @@
                         <p>Profil użytkownika można znaleźć w zakładce z jego nazwą, dostępną na pasku głównym, po
                             zalogowaniu. W panelu użytkownika znaleźć można:</p>
                         <ol>
-                            <li>Edycja danych: w tym miejscu możesz zmienić nazwę profilu oraz adres email, na który
+                            <li><a href="{{ path('profile_index') }}">Edycja danych</a>: w tym miejscu możesz zmienić
+                                nazwę profilu oraz adres email, na który
                                 zarejestrowany jest profil.
                             </li>
-                            <li>Ustawienia profilu: znajdziesz tutaj opcję zmiany hasła dostępu oraz możliwość
+                            <li><a href="{{ path('profile_setting') }}">Ustawienia profilu</a> : znajdziesz tutaj opcję
+                                zmiany hasła dostępu oraz możliwość
                                 całkowitego usunięcia profilu.
                             </li>
-                            <li>Płatności: w tym miejscu możesz zobaczyć spis swoich dokonanych płatności dla każdego z
+                            <li><a href="{{ path('profile_billing') }}">Płatności</a> : w tym miejscu możesz zobaczyć
+                                spis swoich dokonanych płatności dla każdego z
                                 kont, znajdziesz tu również możliwość dokonania płatności na kolejny okres abonamentu
                                 dla abonamentów zbliżających się do końca terminu.
                             </li>
-                            <li>Dezaktywowane konta: w spisie dezaktywowanych kont możesz konto przywrócić albo
+                            <li><a href="{{ path('profile_deactivatedAccounts') }}"> Dezaktywowane konta</a>: w spisie
+                                dezaktywowanych kont możesz konto przywrócić albo
                                 ostatecznie usunąć.
                             </li>
                         </ol>
@@ -110,6 +116,34 @@
                             zobaczyć biling swoich płatności. Poza płatnościami dokonanymi w przeszłości znajdziesz tam
                             również płatności nadchodzące, które możesz dokonać z góry, na kolejny okres aktywności
                             Twojego konta. </p>
+                        <hr>
+                        <p class="title is-3" id="howToWorks">Funkcjonowanie programu liqster</p>
+                        <p>Program liqster korzysta z dostępu do Twojego konta na Instagramie, pozostawiając w Twoim
+                            imieniu aktywność, wśród innych użytkowników serwisu.
+                            liqster pozostawia polubienia oraz opcjonalnie komentarze wśród najnowszych postów z
+                            określonych przez Ciebie #tagów.
+                            Program nie rozsyła prywatnych wiadomości ani nie zaczyna obserwować kont użytkowników.
+                            Aktywności są pozostawiane w cykłach, średnio co 15 minut, jeden cykl pozostawia do 20
+                            polubień oraz do trzech komentarzy.
+                            Możesz obserwować działanie programu w raporcie aktywności dostępnym w szczegółach konta.
+                            Aby program liqster funkcjonował poprawnie należy poprawnie uzupełnić listę #tagów. Jeśli
+                            nie chcesz zostawiać komentarzy wystarczy, że pozostawisz pole na tekst komentarzy puste.
+                            Możesz w dowolnym momencie zapauzować oraz aktywować działanie programu dla opłaconego
+                            konta.
+                        </p>
+                        <hr>
+                        <p class="title is-3" id="howToDanger">Krótkotrwała blokada konta</p>
+                        <p>Z użytkowaniem programu liqster wiąże się zagrożenie w postaci krótkotrwałej blokady
+                            aktywności dla Twojego konta na Instagramie.
+                            Blokada konta występuje sporadycznie, zazwyczaj spowodowana jest nałożeniem aktywności
+                            użytkownika z aktywnością programu liqster. Taka blokada zostaje założona przez serwis
+                            Instagram.com na 24 godziny.
+                            Po zaobserwowaniu niemożności pozostawienia aktywności należy zatrzymać program liqster, na
+                            okres 24 godzin, można to zrobić w szczegółach danego konta. Po upływie doby blokada
+                            zostanie automatycznie zdjęta. Możesz wtedy spokojnie ponownie aktywować działanie programu.
+                            Aby minimalizować zagrożenie blokadą konta należy minimalizować swoją aktywność wśród innych
+                            użytkowników na Instagramie w czasie pracy programu liqster.
+                        </p>
                         <hr>
                         <p class="title is-3" id="howToContact">Kontakt</p>
                         <p>W razie jakichkolwiek wątpliwości możesz skontaktować się z nami, nasi doradcy chętnie
