@@ -6,19 +6,6 @@
         <div class="container profile">
             <div class="columns">
                 <div class="column is-8-desktop is-offset-2-desktop is-12-mobile">
-
-                    <div>
-                        {% for purchase in purchases %}
-
-                            {% if  purchase.paid >= date.now %}
-
-                                Jeszcze trwa!
-
-                            {% endif %}
-
-                        {% endfor %}
-                    </div>
-
                     <div class="card">
                         <div class="card-content">
                             <div class="columns is-vcentered">
@@ -62,10 +49,28 @@
                         <div class="card-header">
                             <div class="card-header-title">Status konta (trzeba jeszcze zrobić)</div>
                         </div>
-                        <div class="card-content">
 
+                        <div class="card-content">
                             <div class="columns">
-                                <div class="column is-4-mobile is-block">
+                                <div class="column">
+
+                                    {% if not purchases %}
+                                        <p class="title is-5">Nie mamy informacji o żadnych płatnościach.</p>
+                                    {% endif %}
+
+                                    {% for purchase in purchases %}
+                                        {% if  purchase.paid >= date.now %}
+                                            <p class="subtitle is-5">purchase.product.type</p>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="columns">
+                                <div class="column is-block">
                                     <a class="button is-primary is-outlined"
                                        href="{{ path('account_check', { 'id': account.id }) }}">Odśwież</a>
                                 </div>
@@ -79,8 +84,8 @@
                                     {{ form_end(delete_form) }}
                                 </div>
                             </div>
-
                         </div>
+
                         <div class="card-content">
                             <form name="form" method="post">
                                 <input
@@ -125,10 +130,7 @@
                                     </div>
                                 </div>
                             </form>
-
-
                         </div>
-
                     </div>
 
                     <div class="card">
