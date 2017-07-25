@@ -30,7 +30,7 @@ class Sleep
      * @param float $range
      * @return int
      */
-    public static function calculateRangeDown(int $base, float $range)
+    public static function calculateRangeDown(int $base, float $range): int
     {
         return (int)($base - ($base * $range));
     }
@@ -40,7 +40,7 @@ class Sleep
      * @param float $range
      * @return int
      */
-    public static function calculateRangeUp(int $base, float $range)
+    public static function calculateRangeUp(int $base, float $range): int
     {
         return (int)($base + ($base * $range));
     }

@@ -4,6 +4,7 @@ namespace Liqster\HomePageBundle\Command;
 
 use Liqster\Domain\Mess\MessMinutes;
 use Liqster\Domain\MQ\MQ;
+use Liqster\Domain\Sleep\Sleep;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -81,7 +82,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
             $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-            sleep(random_int(10, 30));
+            Sleep::random(30);
         }
 
         $items = array_slice($tag_feed['items'], 0, random_int(3, 9));
@@ -98,7 +99,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
             $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-            sleep(random_int(10, 30));
+            Sleep::random(30);
         }
     }
 }
