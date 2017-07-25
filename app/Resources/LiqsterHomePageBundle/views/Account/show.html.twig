@@ -60,8 +60,26 @@
 
                                     {% for purchase in purchases %}
                                         {% if  purchase.paid >= date.now %}
-                                            <p class="subtitle is-5">{{ purchase.product.type }}</p>
-                                            <p>{{ (purchase.product.price / 100)|number_format(2) }} zł</p>
+                                            <p>Zamówienie:</p>
+                                            <ul>
+                                                <li>Identyfikator: {{ purchase.id }}</li>
+                                                <li>Utworzono: {{ purchase.create }}</li>
+                                                <li>Aktualizacja: {{ purchase.modification }}</li>
+                                                <li>Opłacono: {{ purchase.paid }}</li>
+                                                <li>Status: {{ purchase.status }}</li>
+                                            </ul>
+                                            <p>Płatość:</p>
+                                            <ul>
+                                                <li>Identyfikator: {{ purchase.payment.id }}</li>
+                                                <li>Token: {{ purchase.payment.token }}</li>
+                                            </ul>
+                                            <p>Produkt:</p>
+                                            <ul>
+                                                <li>Identyfikator: {{ purchase.product.id }}</li>
+                                                <li>Typ: {{ purchase.product.type }}</li>
+                                                <li>Okres: {{ purchase.product.period }}</li>
+                                                <li>Cena: {{ (purchase.product.price / 100)|number_format(2) }} zł</li>
+                                            </ul>
                                         {% endif %}
                                     {% endfor %}
 
