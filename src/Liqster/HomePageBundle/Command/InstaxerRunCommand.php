@@ -51,7 +51,9 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $em->merge($cronJob);
         $em->flush();
 
-        $tags = explode(', ', $account->getTagsText());
+        if ($account->getLikesRun())
+
+            $tags = explode(', ', $account->getTagsText());
 
         $tag = $tags[random_int(0, count($tags) - 1)];
 

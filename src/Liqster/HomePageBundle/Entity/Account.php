@@ -73,36 +73,55 @@ class Account implements TaggableInterface
     private $disabled = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @var boolean
+     * @ORM\Column(name="likes_run", type="boolean", unique=false, nullable=true)
      */
-    private $user;
+    private $likesRun = true;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="comments_run", type="boolean", unique=false, nullable=true)
+     */
+    private $commentsRun = true;
+
     /**
      * @var boolean
      * @ORM\Column(name="payed", type="boolean", unique=false)
      */
     private $payed = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\User", inversedBy="account")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
     /**
      * @ORM\OneToOne(targetEntity="Cron\CronBundle\Entity\CronJob", mappedBy="account")
      */
     private $cronJob;
+
     /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\AccountInstagramCache", mappedBy="account")
      */
     private $accountInstagramCache;
+
     /**
      * @ORM\OneToOne(targetEntity="Liqster\HomePageBundle\Entity\Schedule", mappedBy="account")
      */
     private $schedule;
+
     /**
      * @ORM\OneToMany(targetEntity="Liqster\HomePageBundle\Entity\Purchase", mappedBy="account")
      */
     private $purchase;
+
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\HomePageBundle\Entity\Product", inversedBy="account")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
     private $product;
+
     /**
      * @var string
      *
@@ -436,5 +455,37 @@ class Account implements TaggableInterface
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLikesRun(): bool
+    {
+        return $this->likesRun;
+    }
+
+    /**
+     * @param mixed $likesRun
+     */
+    public function setLikesRun(bool $likesRun)
+    {
+        $this->likesRun = $likesRun;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCommentsRun(): bool
+    {
+        return $this->commentsRun;
+    }
+
+    /**
+     * @param bool $commentsRun
+     */
+    public function setCommentsRun(bool $commentsRun)
+    {
+        $this->commentsRun = $commentsRun;
     }
 }
