@@ -60,6 +60,7 @@
 
                                     {% for purchase in purchases %}
                                         {% if  purchase.paid >= date.now %}
+                                            <p class="title">Płaność bieżąca:</p>
                                             <p class="subtitle">Zamówienie:</p>
                                             <ul>
                                                 <li>Identyfikator: {{ purchase.id }}</li>
