@@ -59,6 +59,9 @@
                                     {% endif %}
 
                                     {% for purchase in purchases %}
+
+                                        <p class="title is-5">Zamówienie bieżące:</p>
+
                                         {% if  purchase.paid >= date.now %}
 
                                             <article class="media">
