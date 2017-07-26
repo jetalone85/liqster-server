@@ -40,7 +40,7 @@ class Przelewy24
      *
      * @var bool
      */
-    private $testMode = true;
+    private $testMode = false;
 
     /**
      * Merchant id
