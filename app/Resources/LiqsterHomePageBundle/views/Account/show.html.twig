@@ -60,40 +60,30 @@
 
                                     {% for purchase in purchases %}
                                         {% if  purchase.paid >= date.now %}
-                                            <p class="title">Płaność bieżąca:</p>
-                                            <p class="subtitle">Zamówienie:</p>
-                                            <ul>
-                                                <li>Identyfikator: {{ purchase.id }}</li>
-                                                <li>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }}</li>
-                                                <li>Aktualizacja: {{ purchase.modification|date("Y/m/d H:i:s") }}</li>
-                                                <li>Opłacono: {{ purchase.paid|date("Y/m/d H:i:s") }}</li>
-                                                <li>Status: {{ purchase.status }}</li>
-                                            </ul>
-                                            <hr>
-                                            <p class="subtitle">Płatość:</p>
-                                            <ul>
-                                                <li>Identyfikator: {{ purchase.payment.id }}</li>
-                                                <li>Token: {{ purchase.payment.token }}</li>
-                                                <li>Sesja: {{ purchase.payment.session }}</li>
-                                                <li>Utworzono: {{ purchase.payment.created|date("Y/m/d H:i:s") }}</li>
-                                                <li>Identfikator przelewu: {{ purchase.payment.p24orderid }}</li>
-                                                <li>Komunikat: {{ purchase.payment.p24statement }}</li>
-                                                <li>Zweryfiowano: {{ purchase.payment.verify }}</li>
-                                                <li>
-                                                    Zweryfiowano: {{ purchase.payment.verifydate|date("Y/m/d H:i:s") }}</li>
-                                            </ul>
-                                            <hr>
-                                            <p class="subtitle">Produkt:</p>
-                                            <ul>
-                                                <li>Identyfikator: {{ purchase.product.id }}</li>
-                                                <li>Typ: {{ purchase.product.type }}</li>
-                                                <li>Okres: {{ purchase.product.period }}</li>
-                                                <li>Cena: {{ (purchase.product.price / 100)|number_format(2) }} zł</li>
-                                            </ul>
-                                            <hr>
-                                            <p class="subtitle">Opłać kolejny okres:</p>
-                                            <hr>
-                                            <p class="subtitle">Historia płatności:</p>
+
+                                            <article class="media">
+                                                <div class="media-content">
+                                                    <div class="content is-vcentered">
+                                                        <p class="title is-inline">{{ purchase.product.period }}</p>
+                                                        <p class="is-inline">
+                                                            Cena: {{ (purchase.product.price / 100)|number_format(2) }}
+                                                            zł</p>
+                                                    </div>
+                                                    <div class="content is-vcentered">
+                                                        <p>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }} |
+                                                            Opłacono do: {{ purchase.paid|date("Y/m/d H:i:s") }}</p>
+                                                        <p>Numer transakcji: {{ purchase.payment.p24statement }}</p>
+                                                    </div>
+                                                    <nav class=" level is-mobile">
+                                                        <div class="level-left">
+                                                            <a class="level-item button is-primary is-outlined">Szczegóły</a>
+                                                            <a class="level-item button is-success is-outlined">Ponów na
+                                                                nowy okres</a>
+                                                        </div>
+                                                    </nav>
+                                                </div>
+                                            </article>
+
                                         {% endif %}
                                     {% endfor %}
 
