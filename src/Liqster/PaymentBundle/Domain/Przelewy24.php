@@ -25,8 +25,8 @@ class Przelewy24
      *
      * @var string
      */
-    //    private $hostLive = 'https://secure.przelewy24.pl/';
-    private $hostLive = 'https://sandbox.przelewy24.pl/';
+    private $hostLive = 'https://secure.przelewy24.pl/';
+//    private $hostLive = 'https://sandbox.przelewy24.pl/';
 
     /**
      * Sandbox system URL address
