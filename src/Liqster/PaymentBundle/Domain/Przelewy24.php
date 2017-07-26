@@ -25,23 +25,22 @@ class Przelewy24
      *
      * @var string
      */
-    private $hostLive = 'https://secure.przelewy24.pl/';
-//    private $hostLive = 'https://sandbox.przelewy24.pl/';
+    //    private $hostLive = 'https://secure.przelewy24.pl/';
+    private $hostLive = 'https://sandbox.przelewy24.pl/';
 
     /**
      * Sandbox system URL address
      *
      * @var string
      */
-//    private $hostSandbox = 'https://sandbox.przelewy24.pl/';
-    private $hostSandbox = 'https://secure.przelewy24.pl/';
+    private $hostSandbox = 'https://sandbox.przelewy24.pl/';
 
     /**
      * Use Live (false) or Sandbox (true) enviroment
      *
      * @var bool
      */
-    private $testMode = false;
+    private $testMode = true;
 
     /**
      * Merchant id
