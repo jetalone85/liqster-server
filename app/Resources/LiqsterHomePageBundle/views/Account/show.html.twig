@@ -64,9 +64,9 @@
                                             <p class="subtitle">Zamówienie:</p>
                                             <ul>
                                                 <li>Identyfikator: {{ purchase.id }}</li>
-                                                <li>Utworzono: {{ purchase.create|date("m/d/Y H:i:s") }}</li>
-                                                <li>Aktualizacja: {{ purchase.modification|date("m/d/Y H:i:s") }}</li>
-                                                <li>Opłacono: {{ purchase.paid|date("m/d/Y H:i:s") }}</li>
+                                                <li>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }}</li>
+                                                <li>Aktualizacja: {{ purchase.modification|date("Y/m/d H:i:s") }}</li>
+                                                <li>Opłacono: {{ purchase.paid|date("Y/m/d H:i:s") }}</li>
                                                 <li>Status: {{ purchase.status }}</li>
                                             </ul>
                                             <hr>
@@ -75,12 +75,12 @@
                                                 <li>Identyfikator: {{ purchase.payment.id }}</li>
                                                 <li>Token: {{ purchase.payment.token }}</li>
                                                 <li>Sesja: {{ purchase.payment.session }}</li>
-                                                <li>Utworzono: {{ purchase.payment.created|date("m/d/Y H:i:s") }}</li>
+                                                <li>Utworzono: {{ purchase.payment.created|date("Y/m/d H:i:s") }}</li>
                                                 <li>Identfikator przelewu: {{ purchase.payment.p24orderid }}</li>
                                                 <li>Komunikat: {{ purchase.payment.p24statement }}</li>
                                                 <li>Zweryfiowano: {{ purchase.payment.verify }}</li>
                                                 <li>
-                                                    Zweryfiowano: {{ purchase.payment.verifydate|date("m/d/Y H:i:s") }}</li>
+                                                    Zweryfiowano: {{ purchase.payment.verifydate|date("Y/m/d H:i:s") }}</li>
                                             </ul>
                                             <hr>
                                             <p class="subtitle">Produkt:</p>
