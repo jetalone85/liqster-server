@@ -491,7 +491,7 @@ class AccountController extends Controller
             'LiqsterHomePageBundle:Account:show.html.twig', [
                 'account' => $account,
                 'purchases' => $purchase,
-                'date.now' => new \DateTime('now'),
+                'date' => new \DateTime('now'),
                 'instagram' => $instagram,
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),

@@ -23,7 +23,6 @@ class PurchaseController extends Controller
      */
     public function activeAction(Request $request): Response
     {
-
         return $this->render('LiqsterHomePageBundle:Purchase:active.html.twig', []);
     }
 }
