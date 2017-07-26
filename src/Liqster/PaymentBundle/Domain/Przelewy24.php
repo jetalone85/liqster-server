@@ -33,7 +33,8 @@ class Przelewy24
      *
      * @var string
      */
-    private $hostSandbox = 'https://sandbox.przelewy24.pl/';
+//    private $hostSandbox = 'https://sandbox.przelewy24.pl/';
+    private $hostSandbox = 'https://secure.przelewy24.pl/';
 
     /**
      * Use Live (false) or Sandbox (true) enviroment
