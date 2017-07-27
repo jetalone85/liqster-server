@@ -396,10 +396,17 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $accountInstagramCache = $em
-            ->getRepository('LiqsterHomePageBundle:AccountInstagramCache')
-            ->findOneBy(['account' => $account]);
-        $instagram = json_decode($accountInstagramCache->getValue(), true);
+        try {
+            $accountInstagramCache = $em
+                ->getRepository('LiqsterHomePageBundle:AccountInstagramCache')
+                ->findOneBy(['account' => $account]);
+            if (!$accountInstagramCache) {
+                throw new \RuntimeException('Don\'t find any cache.');
+            }
+            $instagram = json_decode($accountInstagramCache->getValue(), true);
+        } catch (Exception $exception) {
+            return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
+        }
 
         /**
          * @TODO
@@ -577,7 +584,7 @@ class AccountController extends Controller
 
         $em->flush();
 
-        return $this->redirectToRoute('account_index');
+        return $this->redirectToRoute('profile_deactivatedAccounts');
     }
 
     /**
@@ -624,6 +631,11 @@ class AccountController extends Controller
 
         $em->flush();
 
+        $deactivatedAccounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser(), 'disabled' => true]);
+
+        if (!$deactivatedAccounts) {
+            return $this->redirectToRoute('profile_deactivatedAccounts');
+        }
         return $this->redirectToRoute('account_index');
     }
 
@@ -709,14 +721,20 @@ class AccountController extends Controller
     public function recoveryAction(Account $account): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $account->setDisabled(false);
-        $em->merge($account);
 
-        $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
-        $cronJob->setEnabled(true);
-        $em->merge($cronJob);
+        try {
+            $account->setDisabled(false);
+            $em->merge($account);
 
-        $em->flush();
+            $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account]);
+            $cronJob->setEnabled(true);
+            $em->merge($cronJob);
+
+            $em->flush();
+
+        } catch (Exception $exception) {
+            return $this->redirectToRoute('profile_deactivatedAccounts', ['error' => 'restore_account: we could not restore your account.']);
+        }
 
         return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
     }
