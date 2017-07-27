@@ -20,7 +20,7 @@ class AccountPaymentType extends AbstractType
             ->add(
                 'product', EntityType::class, [
                     'class' => Product::class,
-                    'data_class' => Product::class,
+                    'data_class' => null,
                     'required' => true,
                     'label' => '',
                     'choice_label' => 'type',
