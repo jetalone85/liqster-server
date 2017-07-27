@@ -251,10 +251,9 @@ class AccountController extends Controller
 
                 $response = $P24->trnRegister(true);
 
-                dump($P24);
-                dump($response);
-
-                die();
+                if ($response['error'] !== '0') {
+                    throw new \LogicException('The payment provider returned an error.');
+                }
 
             } catch (Exception $exception) {
                 echo $exception->getMessage() . "\n";
