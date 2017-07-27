@@ -225,7 +225,7 @@ class AccountController extends Controller
             $payment->setSession(Uuid::uuid4());
             $payment->setPurchase($purchase);
 
-            $crc = md5($payment->getSession() . '|' . 61791 . '|' . 1 . '|' . 'PLN' . '|' . 'c751931d7ae41926');
+            $crc = md5($payment->getSession() . '|' . 61791 . '|' . 1 . '|' . 'PLN' . '|' . '8938c81eb462a997');
 
             $payment->setToken($crc);
 
@@ -234,7 +234,7 @@ class AccountController extends Controller
             $em->flush();
 
             try {
-                $P24 = new Przelewy24(61791, 61791, 'c751931d7ae41926', true);
+                $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', true);
 
                 $P24->addValue('p24_session_id', $payment->getSession());
                 $P24->addValue('p24_amount', $account->getProduct()->getPrice());
@@ -249,7 +249,10 @@ class AccountController extends Controller
                 $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
-                $P24->trnRegister(true);
+                $response = $P24->trnRegister(true);
+
+                dump($P24);
+                dump($response);
 
                 die();
 

@@ -62,6 +62,10 @@
 
                                         <p class="title is-5">Zamówienie bieżące:</p>
 
+                                        {% if  purchase.paid == null %}
+                                            {{ dump(purchases) }}
+                                        {% endif %}
+
                                         {% if  purchase.paid >= date %}
 
                                             <article class="media">
@@ -77,7 +81,7 @@
                                                             Opłacono do: {{ purchase.paid|date("Y/m/d H:i:s") }}</p>
                                                         <p>Numer transakcji: {{ purchase.payment.p24statement }}</p>
                                                     </div>
-                                                    <nav class=" level is-mobile">
+                                                    <nav class="level is-mobile">
                                                         <div class="level-left">
                                                             <a class="level-item button is-primary is-outlined">Szczegóły</a>
                                                             <a class="level-item button is-success is-outlined">Ponów na
