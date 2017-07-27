@@ -84,7 +84,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-                Sleep::random(30);
+                Sleep::random(10);
             }
 
             $items = array_slice($tag_feed['items'], 0, random_int(6, 12));
@@ -101,7 +101,60 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-                Sleep::random(30);
+                Sleep::random(15);
+            }
+        }
+
+        if ($account->isLikesRun()) {
+            $tags = explode(', ', $account->getTagsText());
+
+            $tag = $tags[random_int(0, count($tags) - 1)];
+
+            $mq = new MQ();
+            $instaxer_json = $mq->query(
+                'POST',
+                'instaxers/tags?username=' .
+                $account->getName() .
+                '&password=' .
+                $account->getPassword() .
+                '&tag=' .
+                $tag
+            );
+
+            $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
+
+            $items = array_slice($tag_feed['ranked_items'], 0, 5);
+
+            foreach ($items as $item) {
+                $response = $mq->query(
+                    'POST',
+                    'instaxers/likes?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&id=' .
+                    $item['id']);
+
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+
+                Sleep::random(10);
+            }
+
+            $items = array_slice($tag_feed['items'], 0, random_int(6, 12));
+
+            foreach ($items as $item) {
+                $response = $mq->query(
+                    'POST',
+                    'instaxers/likes?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&id=' .
+                    $item['id']);
+
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+
+                Sleep::random(15);
             }
         }
 
@@ -144,7 +197,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $output->writeln('comment: ' . $tag . '; id: ' . $item['id'] . '; comment: ' . $comment);
 
-                Sleep::random(30);
+                Sleep::random(20);
             }
         }
     }
