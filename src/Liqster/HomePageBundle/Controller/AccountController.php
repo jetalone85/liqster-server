@@ -195,7 +195,6 @@ class AccountController extends Controller
     }
 
     /**
-     *
      * @Route("/{id}/new_payment",  name="account_new_payment")
      * @Method({"GET", "POST"})
      *
@@ -206,32 +205,61 @@ class AccountController extends Controller
      */
     public function newPaymentAction(Request $request, Account $account): Response
     {
-        $payment = new Payment();
-        $purchase = new Purchase();
-
         $em = $this->getDoctrine()->getManager();
+
+        /**
+         * @TODO
+         * Dodać obsługę już dodanego konta...
+         */
+
+        $purchase = $em
+            ->getRepository('LiqsterHomePageBundle:Purchase')
+            ->findOneBy(['account' => $account, 'status' => 'open']);
+        if (!$purchase) {
+            $purchase = new Purchase();
+        }
+
+        $payment = $em
+            ->getRepository('LiqsterPaymentBundle:Payment')
+            ->findOneBy(['purchase' => $purchase]);
+        if (!$payment) {
+            $payment = new Payment();
+        }
 
         $form = $this->createForm(AccountPaymentType::class, $account);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $purchase->setAccount($account);
-            $purchase->setCreate(new \DateTime('now'));
-            $purchase->setModification(new \DateTime('now'));
-            $purchase->setProduct($account->getProduct());
-            $purchase->setStatus('open');
-            $em->persist($purchase);
 
-            $payment->setCreate(new \DateTime('now'));
-            $payment->setSession(Uuid::uuid4());
-            $payment->setPurchase($purchase);
+            try {
+                if (!$purchase->getCreate()) {
+                    $purchase->setAccount($account);
+                    $purchase->setCreate(new \DateTime('now'));
+                    $purchase->setModification(new \DateTime('now'));
+                    $purchase->setProduct($account->getProduct());
+                    $purchase->setStatus('open');
+                    $em->persist($purchase);
+                } else {
+                    $purchase->setModification(new \DateTime('now'));
+                    $em->merge($purchase);
+                }
 
-            $crc = md5($payment->getSession() . '|' . 61791 . '|' . 1 . '|' . 'PLN' . '|' . '8938c81eb462a997');
+                if (!$payment->getCreate()) {
+                    $payment->setCreate(new \DateTime('now'));
+                    $payment->setSession(Uuid::uuid4());
+                    $payment->setPurchase($purchase);
 
-            $payment->setToken($crc);
+                    $crc = md5($payment->getSession() . '|' . 61791 . '|' . 1 . '|' . 'PLN' . '|' . '8938c81eb462a997');
+                    $payment->setToken($crc);
+                    $em->persist($payment);
+                } else {
+                    $em->merge($payment);
+                }
 
-            $em->persist($payment);
-
-            $em->flush();
+                $em->flush();
+            } catch (\Exception $exception) {
+                echo $exception->getMessage() . "\n";
+            }
 
             try {
                 $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', true);
@@ -242,7 +270,7 @@ class AccountController extends Controller
                 $P24->addValue('p24_email', $this->getUser()->getEmail());
                 $P24->addValue('p24_description', $account->getName() . '/' . $account->getId());
                 $P24->addValue('p24_country', 'PL');
-                $P24->addValue('p24_phone', '+48500600700');
+                $P24->addValue('p24_phone', '');
                 $P24->addValue('p24_language', 'pl');
                 $P24->addValue('p24_method', '1');
                 $P24->addValue('p24_url_return', 'http://liqster.pl/account/' . $account->getId() . '/new_profiling_tags');
@@ -256,6 +284,10 @@ class AccountController extends Controller
                 }
 
             } catch (Exception $exception) {
+                /**
+                 * @TODO
+                 * Trzeba zrobić ekrean obsługi błędów.
+                 */
                 echo $exception->getMessage() . "\n";
             }
         }
@@ -266,6 +298,52 @@ class AccountController extends Controller
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    /**
+     * @Route("/{id}/continue_payment/{id_purchase}",  name="account_continue_payment")
+     * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Account $account
+     * @param Purchase $purchase
+     * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     */
+    public function contuniePaymentAction(Request $request, Account $account, Purchase $purchase): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $payment = $em
+            ->getRepository('LiqsterPaymentBundle:Payment')
+            ->findOneBy(['purchase' => $purchase]);
+
+        try {
+            $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', true);
+
+            $P24->addValue('p24_session_id', $payment->getSession());
+            $P24->addValue('p24_amount', $account->getProduct()->getPrice());
+            $P24->addValue('p24_currency', 'PLN');
+            $P24->addValue('p24_email', $this->getUser()->getEmail());
+            $P24->addValue('p24_description', $account->getName() . '/' . $account->getId());
+            $P24->addValue('p24_country', 'PL');
+            $P24->addValue('p24_phone', '');
+            $P24->addValue('p24_language', 'pl');
+            $P24->addValue('p24_method', '1');
+            $P24->addValue('p24_url_return', 'http://liqster.pl/account/' . $account->getId() . '/new_profiling_tags');
+            $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
+            $P24->addValue('p24_time_limit', 0);
+
+            $response = $P24->trnRegister(true);
+
+            if ($response['error'] !== '0') {
+                throw new \LogicException('The payment provider returned an error.');
+            }
+
+        } catch (Exception $exception) {
+            echo $exception->getMessage() . "\n";
+        }
     }
 
     /**

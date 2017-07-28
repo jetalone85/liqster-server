@@ -60,8 +60,6 @@
 
                                     {% for purchase in purchases %}
 
-                                        <p class="title is-5">Zamówienie bieżące:</p>
-
                                         {% if  purchase.paid == null and purchase.status == 'open' %}
 
                                             <p class="subtitle is-5">Rozpoczęte zamówienie:</p>
@@ -78,7 +76,12 @@
                                                     </div>
                                                     <nav class="level is-mobile">
                                                         <div class="level-left">
-                                                            <a class="level-item button is-success is-outlined">Kontynuuj</a>
+                                                            <a
+                                                                    href="{{ path('account_continue_payment', {
+                                                                        'id': account.id,
+                                                                        'id_purchase': purchase.id
+                                                                    }) }}"
+                                                                    class="level-item button is-success is-outlined">Kontynuuj</a>
                                                         </div>
                                                     </nav>
                                                 </div>
@@ -88,6 +91,7 @@
 
                                         {% if  purchase.paid >= date %}
 
+                                            <p class="subtitle is-5">Bieżące zamówienie:</p>
                                             <article class="media">
                                                 <div class="media-content">
                                                     <div class="content is-vcentered">
