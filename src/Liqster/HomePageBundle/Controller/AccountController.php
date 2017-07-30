@@ -301,17 +301,14 @@ class AccountController extends Controller
     }
 
     /**
-     * @Route("/{id}/continue_payment/{id_purchase}",  name="account_continue_payment")
+     * @Route("/{account}/continue_payment/{purchase}",  name="account_continue_payment")
      * @Method({"GET", "POST"})
-     *
-     * @param Request $request
      * @param Account $account
      * @param Purchase $purchase
      * @return Response
      * @throws \LogicException
-     * @throws \InvalidArgumentException
      */
-    public function contuniePaymentAction(Request $request, Account $account, Purchase $purchase): Response
+    public function contuniePaymentAction(Account $account, Purchase $purchase)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -341,13 +338,13 @@ class AccountController extends Controller
                 throw new \LogicException('The payment provider returned an error.');
             }
 
-        } catch (Exception $exception) {
-            echo $exception->getMessage() . "\n";
+        } catch
+        (Exception $exception) {
+            return $this->redirectToRoute('account_show', ['id' => $account->getId(), 'error' => 'paymentError', 'content' => $exception->getMessage()]);
         }
     }
 
     /**
-     *
      * @Route("/{id}/new_profiling_tags",  name="account_new_profiling_tags")
      * @Method({"GET", "POST"})
      *

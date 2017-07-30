@@ -63,6 +63,12 @@
 
     {% endblock %}
 
+    {% block error %}
+
+        {{ render(controller('LiqsterHomePageBundle:Error:index')) }}
+
+    {% endblock %}
+
     {% block header %}{% endblock %}
 
     {% block fos_user_content %}{% endblock %}
