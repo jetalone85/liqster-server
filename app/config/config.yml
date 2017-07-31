@@ -89,12 +89,12 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class:  Liqster\HomePageBundle\Entity\User
+    user_class:  Liqster\Bundle\HomePageBundle\Entity\User
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
         form:
-            type: Liqster\UserBundle\Form\RegistrationType
+            type: Liqster\Bundle\UserBundle\Form\RegistrationType
         confirmation:
             enabled: true
             template:   '@FOSUser/Registration/email.txt.twig'
@@ -111,7 +111,7 @@ parameters:
     user_photo_directory: '%kernel.root_dir%/../web/uploads/user_photos'
 
 beelab_tag:
-    tag_class: Liqster\HomePageBundle\Entity\Tag
+    tag_class: Liqster\Bundle\HomePageBundle\Entity\Tag
     purge:     true
 
 easy_admin:
@@ -120,21 +120,21 @@ easy_admin:
     site_name: 'liqster.pl Admin Panel'
     entities:
         Account:
-            class: Liqster\HomePageBundle\Entity\Account
+            class: Liqster\Bundle\HomePageBundle\Entity\Account
         Product:
-            class: Liqster\HomePageBundle\Entity\Product
+            class: Liqster\Bundle\HomePageBundle\Entity\Product
         Purchase:
-            class: Liqster\HomePageBundle\Entity\Purchase
+            class: Liqster\Bundle\HomePageBundle\Entity\Purchase
         Schedule:
-            class: Liqster\HomePageBundle\Entity\Schedule
+            class: Liqster\Bundle\HomePageBundle\Entity\Schedule
         User:
-            class: Liqster\HomePageBundle\Entity\User
+            class: Liqster\Bundle\HomePageBundle\Entity\User
         Tag:
-            class: Liqster\HomePageBundle\Entity\Tag
+            class: Liqster\Bundle\HomePageBundle\Entity\Tag
         AccountInstagramCache:
-            class: Liqster\HomePageBundle\Entity\AccountInstagramCache
+            class: Liqster\Bundle\HomePageBundle\Entity\AccountInstagramCache
         Payment:
-            class: Liqster\PaymentBundle\Entity\Payment
+            class: Liqster\Bundle\PaymentBundle\Entity\Payment
         CronJob:
             class: Cron\CronBundle\Entity\CronJob
         CronReport:

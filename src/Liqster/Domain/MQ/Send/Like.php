@@ -2,9 +2,9 @@
 
 namespace Liqster\Domain\MQ\Send;
 
+use Liqster\Bundle\HomePageBundle\Entity\Account;
 use Liqster\Domain\MQ\MQ;
 use Liqster\Domain\MQ\Send;
-use Liqster\HomePageBundle\Entity\Account;
 
 class Like extends Send
 {

@@ -24,13 +24,13 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new Liqster\HomePageBundle\LiqsterHomePageBundle(),
+            new Liqster\Bundle\HomePageBundle\LiqsterHomePageBundle(),
             new Cron\CronBundle\CronCronBundle(),
             new Beelab\TagBundle\BeelabTagBundle(),
-            new Liqster\PaymentBundle\LiqsterPaymentBundle(),
-            new Liqster\AdminBundle\AdminBundle(),
-            new Liqster\MQBundle\LiqsterMQBundle(),
-            new Liqster\UserBundle\LiqsterUserBundle(),
+            new Liqster\Bundle\PaymentBundle\LiqsterPaymentBundle(),
+            new Liqster\Bundle\AdminBundle\AdminBundle(),
+            new Liqster\Bundle\MQBundle\LiqsterMQBundle(),
+            new Liqster\Bundle\UserBundle\LiqsterUserBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
         ];
 

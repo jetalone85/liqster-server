@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class MQ
  *
- * @package Liqster\MQBundle\Domain
+ * @package Liqster\Bundle\MQBundle\Domain
  */
 class MQ
 {

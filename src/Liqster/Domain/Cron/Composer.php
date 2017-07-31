@@ -2,7 +2,7 @@
 
 namespace Liqster\Domain\Cron;
 
-use Liqster\HomePageBundle\Entity\Schedule;
+use Liqster\Bundle\HomePageBundle\Entity\Schedule;
 
 /**
  * Class Composer
