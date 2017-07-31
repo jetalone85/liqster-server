@@ -48,7 +48,7 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
 
             if ($payment->getP24OrderId()) {
 
-                $P24 = new Przelewy24(61791, 61791, 'c751931d7ae41926', true);
+                $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', false);
                 $P24->addValue('p24_session_id', $payment->getSession());
                 $P24->addValue('p24_amount', $payment->getPurchase()->getProduct()->getPrice());
                 $P24->addValue('p24_currency', 'PLN');
