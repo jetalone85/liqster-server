@@ -236,7 +236,7 @@ class Account implements TaggableInterface
     /**
      * @return DateTime
      */
-    public function getCreated(): DateTime
+    public function getCreated()
     {
         return $this->created;
     }
@@ -252,7 +252,7 @@ class Account implements TaggableInterface
     /**
      * @return DateTime
      */
-    public function getModif(): DateTime
+    public function getModif()
     {
         return $this->modif;
     }

@@ -113,7 +113,7 @@ class Payment
     /**
      * @return DateTime
      */
-    public function getCreate(): DateTime
+    public function getCreate()
     {
         return $this->create;
     }

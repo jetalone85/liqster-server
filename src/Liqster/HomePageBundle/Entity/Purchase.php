@@ -95,7 +95,7 @@ class Purchase
     /**
      * @return DateTime
      */
-    public function getCreate(): DateTime
+    public function getCreate()
     {
         return $this->create;
     }
@@ -111,7 +111,7 @@ class Purchase
     /**
      * @return DateTime
      */
-    public function getModification(): DateTime
+    public function getModification()
     {
         return $this->modification;
     }
