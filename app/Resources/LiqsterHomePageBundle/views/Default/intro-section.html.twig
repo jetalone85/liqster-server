@@ -10,7 +10,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="card-content">
-                            <form action="{{ path('fos_user_registration_register') }}" method="post">
+                            <form id="demo-form" action="{{ path('fos_user_registration_register') }}" method="post">
                                 <div id="fos_user_registration_form">
 
                                     <div class="field is-horizontal">
@@ -77,6 +77,15 @@
 
                                     <div class="field is-grouped is-pulled-right">
                                         <p class="control">
+                                        <div class="g-recaptcha"
+                                             data-sitekey="6LeyLSoUAAAAAGp9KclDzOVSe6adr7bFdaZqdDmB"
+                                             data-callback="onSubmit"
+                                             data-size="invisible">
+                                        </div>
+                                    </div>
+
+                                    <div class="field is-grouped is-pulled-right">
+                                        <p class="control">
                                             <input class="button is-primary is-centered" type="submit"
                                                    value="Zarejestruj się">
                                         </p>
@@ -95,7 +104,8 @@
                         <div class="card-footer">
                             <div class="card-footer-item">
                                 <div class="center-align">
-                                    <span>Jeśli masz już konto, <a href="{{ path('fos_user_security_login') }}">zaloguj się</a></span>
+                                <span>Jeśli masz już konto, <a
+                                            href="{{ path('fos_user_security_login') }}">zaloguj się</a></span>
                                 </div>
                             </div>
                         </div>

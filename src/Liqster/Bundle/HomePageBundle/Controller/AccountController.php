@@ -159,28 +159,32 @@ class AccountController extends Controller
                 );
             }
 
-            $em = $this->getDoctrine()->getManager();
-            $account->setUser($this->getUser());
-            $account->setCreated(new \DateTime('now'));
-            $account->setModif(new \DateTime('now'));
-            $account->setCommentsRun(true);
-            $account->setLikesRun(true);
-            $em->persist($account);
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $account->setUser($this->getUser());
+                $account->setCreated(new \DateTime('now'));
+                $account->setModif(new \DateTime('now'));
+                $account->setCommentsRun(true);
+                $account->setLikesRun(true);
+                $em->persist($account);
 
-            $schedule->setAccount($account);
-            $schedule->setCreate(new \DateTime('now'));
-            $schedule->setModification(new \DateTime('now'));
-            $em->persist($schedule);
+                $schedule->setAccount($account);
+                $schedule->setCreate(new \DateTime('now'));
+                $schedule->setModification(new \DateTime('now'));
+                $em->persist($schedule);
 
-            $cronJob->setName($account->getId());
-            $cronJob->setAccount($account);
-            $cronJob->setCommand('instaxer:run ' . $account->getId());
-            $cronJob->setDescription(' ');
-            $cronJob->setSchedule('* * * * *');
-            $cronJob->setEnabled(false);
-            $em->persist($cronJob);
+                $cronJob->setName($account->getId());
+                $cronJob->setAccount($account);
+                $cronJob->setCommand('instaxer:run ' . $account->getId());
+                $cronJob->setDescription(' ');
+                $cronJob->setSchedule('* * * * *');
+                $cronJob->setEnabled(false);
+                $em->persist($cronJob);
 
-            $em->flush();
+                $em->flush();
+            } catch (\Exception $exception) {
+                return $this->redirectToRoute('account_new', ['error' => 'paymentError', 'content' => $exception->getMessage()]);
+            }
 
             return $this->redirectToRoute('account_new_payment', ['id' => $account->getId()]);
         }
@@ -262,7 +266,7 @@ class AccountController extends Controller
             }
 
             try {
-                $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', true);
+                $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', false);
 
                 $P24->addValue('p24_session_id', $payment->getSession());
                 $P24->addValue('p24_amount', $account->getProduct()->getPrice());
@@ -284,11 +288,8 @@ class AccountController extends Controller
                 }
 
             } catch (Exception $exception) {
-                /**
-                 * @TODO
-                 * Trzeba zrobić ekrean obsługi błędów.
-                 */
-                echo $exception->getMessage() . "\n";
+                return $this->redirectToRoute('account_new_payment', ['id' => $account->getId(), 'error' => 'paymentError', 'content' => $exception->getMessage()]);
+
             }
         }
 
