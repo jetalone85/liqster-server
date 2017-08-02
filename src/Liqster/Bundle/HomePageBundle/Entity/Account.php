@@ -27,6 +27,7 @@ class Account implements TaggableInterface
      * @ORM\ManyToMany(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Tag")
      */
     protected $tags;
+
     protected $tagsText;
     /**
      * @var Uuid
@@ -121,6 +122,11 @@ class Account implements TaggableInterface
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
     private $product;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Liqster\Bundle\HomePageBundle\Entity\DiscountCode", mappedBy="account")
+     */
+    private $discountCode;
 
     /**
      * @var string
@@ -487,5 +493,21 @@ class Account implements TaggableInterface
     public function setCommentsRun(bool $commentsRun)
     {
         $this->commentsRun = $commentsRun;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDiscountCode()
+    {
+        return $this->discountCode;
+    }
+
+    /**
+     * @param mixed $discountCode
+     */
+    public function setDiscountCode($discountCode)
+    {
+        $this->discountCode = $discountCode;
     }
 }

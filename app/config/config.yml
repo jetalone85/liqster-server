@@ -121,6 +121,8 @@ easy_admin:
     entities:
         Account:
             class: Liqster\Bundle\HomePageBundle\Entity\Account
+        DiscountCode:
+            class: Liqster\Bundle\HomePageBundle\Entity\DiscountCode
         Product:
             class: Liqster\Bundle\HomePageBundle\Entity\Product
         Purchase:

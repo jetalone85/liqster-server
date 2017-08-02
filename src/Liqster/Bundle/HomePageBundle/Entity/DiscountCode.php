@@ -7,12 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Purchase
+ * DiscountCode
  *
- * @ORM\Table(name="purchase")
- * @ORM\Entity(repositoryClass="Liqster\Bundle\HomePageBundle\Repository\PurchaseRepository")
+ * @ORM\Table(name="discount_code")
+ * @ORM\Entity(repositoryClass="Liqster\Bundle\HomePageBundle\Repository\DiscountCodeRepository")
  */
-class Purchase
+class DiscountCode
 {
     /**
      * @var Uuid
@@ -37,50 +37,34 @@ class Purchase
     private $modification;
 
     /**
-     * @var DateTime
-     * @ORM\Column(name="date_paid", type="datetime", unique=false, nullable=true)
+     * @var float
+     * @ORM\Column(name="promotion", type="float", unique=false)
      */
-    private $paid;
+    private $promotion;
+
     /**
-     * @var string
-     * @ORM\Column(name="status", type="string", unique=false, nullable=true)
+     * @var float
+     * @ORM\Column(name="key", type="string", unique=true)
      */
-    private $status;
+    private $key;
+
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Product", inversedBy="purchase")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=false)
+     * @ORM\OneToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Purchase", inversedBy="discountCode")
+     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=true)
+     */
+    private $purchase;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Product", inversedBy="discountCode")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
     private $product;
 
     /**
-     * @ORM\OneToOne(targetEntity="Liqster\Bundle\PaymentBundle\Entity\Payment", mappedBy="purchase")
-     */
-    private $payment;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\DiscountCode", mappedBy="purchase")
-     */
-    private $discountCode;
-    /**
-     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Account", inversedBy="purchase")
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Account", inversedBy="discountCode")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=true)
      */
     private $account;
-
-    /**
-     */
-    public function getPaid()
-    {
-        return $this->paid;
-    }
-
-    /**
-     * @param DateTime $paid
-     */
-    public function setPaid(DateTime $paid)
-    {
-        $this->paid = $paid;
-    }
 
     /**
      * @return Uuid
@@ -131,19 +115,19 @@ class Purchase
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getStatus(): string
+    public function getPurchase()
     {
-        return $this->status;
+        return $this->purchase;
     }
 
     /**
-     * @param string $status
+     * @param mixed $purchase
      */
-    public function setStatus(string $status)
+    public function setPurchase($purchase)
     {
-        $this->status = $status;
+        $this->purchase = $purchase;
     }
 
     /**
@@ -163,19 +147,35 @@ class Purchase
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getPayment()
+    public function getPromotion()
     {
-        return $this->payment;
+        return $this->promotion;
     }
 
     /**
-     * @param mixed $payment
+     * @param float $promotion
      */
-    public function setPayment($payment)
+    public function setPromotion(float $promotion)
     {
-        $this->payment = $payment;
+        $this->promotion = $promotion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * @param mixed $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
     }
 
     /**
@@ -192,10 +192,5 @@ class Purchase
     public function setAccount($account)
     {
         $this->account = $account;
-    }
-
-    public function __toString()
-    {
-        return $this->getId()->getUrn();
     }
 }

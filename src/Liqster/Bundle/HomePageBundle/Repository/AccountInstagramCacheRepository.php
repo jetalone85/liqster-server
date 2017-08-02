@@ -5,7 +5,8 @@ namespace Liqster\Bundle\HomePageBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * AccountInstagramCacheRepository
+ * Class AccountInstagramCacheRepository
+ * @package Liqster\Bundle\HomePageBundle\Repository
  */
 class AccountInstagramCacheRepository extends EntityRepository
 {

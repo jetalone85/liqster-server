@@ -5,9 +5,9 @@ namespace Liqster\Bundle\HomePageBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class AccountRepository
+ * Class DiscountCodeRepository
  * @package Liqster\Bundle\HomePageBundle\Repository
  */
-class AccountRepository extends EntityRepository
+class DiscountCodeRepository extends EntityRepository
 {
 }

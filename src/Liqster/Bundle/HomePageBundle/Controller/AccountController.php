@@ -56,11 +56,6 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_new');
         }
 
-        /**
-         * Jeśli nie ma gdzieś AccountInstagramCache, przenosi do podstrony pobrania.
-         * @TODO
-         * Wymienić to na serwis aktualizujący cache.
-         */
         foreach ($accounts as $account) {
             if (!$account->getAccountInstagramCache()) {
                 return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
@@ -211,11 +206,6 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        /**
-         * @TODO
-         * Dodać obsługę już dodanego konta...
-         */
-
         $purchase = $em
             ->getRepository('LiqsterHomePageBundle:Purchase')
             ->findOneBy(['account' => $account, 'status' => 'open']);
@@ -235,6 +225,21 @@ class AccountController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            if ($account->getDiscountCode()) {
+                try {
+                    $discountCode = $em
+                        ->getRepository('LiqsterHomePageBundle:DiscountCode')
+                        ->findOneBy(['key' => $account->getDiscountCode()]);
+
+                    if (!$discountCode) {
+                        throw new \LogicException('No discount code was found.');
+                    }
+
+//                    $account->setDiscountCode();
+                } catch (\Exception $exception) {
+                }
+            }
+
             try {
                 if (!$purchase->getCreate()) {
                     $purchase->setAccount($account);
@@ -248,6 +253,7 @@ class AccountController extends Controller
                     $em->merge($purchase);
                 }
 
+
                 if (!$payment->getCreate()) {
                     $payment->setCreate(new \DateTime('now'));
                     $payment->setSession(Uuid::uuid4());
@@ -260,16 +266,30 @@ class AccountController extends Controller
                     $em->merge($payment);
                 }
 
+
                 $em->flush();
+
+                dump($account);
+                die();
             } catch (\Exception $exception) {
                 echo $exception->getMessage() . "\n";
             }
+
 
             try {
                 $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', false);
 
                 $P24->addValue('p24_session_id', $payment->getSession());
-                $P24->addValue('p24_amount', $account->getProduct()->getPrice());
+
+                if ($discountCode->getPromotion()) {
+                    $P24->addValue('p24_amount',
+                        $account->getProduct()->getPrice() * $discountCode->getPromotion()
+                    );
+                } else {
+                    $P24->addValue('p24_amount', $account->getProduct()->getPrice());
+                }
+
+
                 $P24->addValue('p24_currency', 'PLN');
                 $P24->addValue('p24_email', $this->getUser()->getEmail());
                 $P24->addValue('p24_description', $account->getName() . '/' . $account->getId());

@@ -6,6 +6,7 @@ use Liqster\Bundle\HomePageBundle\Entity\Account;
 use Liqster\Bundle\HomePageBundle\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,6 +28,16 @@ class AccountPaymentType extends AbstractType
                     'expanded' => true,
                     'attr' => [
                         'class' => '',
+                    ]
+                ]
+            )
+            ->add(
+                'discountCode', TextType::class, [
+                    'data_class' => null,
+                    'required' => false,
+                    'label' => 'Kod rabatowy',
+                    'attr' => [
+                        'class' => 'input'
                     ]
                 ]
             );
