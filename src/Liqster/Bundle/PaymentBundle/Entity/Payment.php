@@ -236,4 +236,12 @@ class Payment
     {
         $this->verifyDate = $verifyDate;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getId()->getBytes();
+    }
 }
