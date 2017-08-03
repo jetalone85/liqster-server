@@ -44,7 +44,7 @@ class DiscountCode
 
     /**
      * @var float
-     * @ORM\Column(name="key", type="string", unique=true)
+     * @ORM\Column(name="promo_code", type="string", unique=true)
      */
     private $key;
 
