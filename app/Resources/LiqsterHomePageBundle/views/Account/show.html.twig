@@ -70,7 +70,7 @@
                                                         <p class="is-inline">
                                                             {% if discountCode %}
                                                             Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
-                                                            zł</p> (kod: {{ discountCode.key }} )
+                                                            zł</p> (kod: {{ discountCode.key }})
                                                         {% else %}
                                                             Cena: {{ (purchase.product.price / 100)|number_format(2) }}
                                                             zł</p>
@@ -104,7 +104,7 @@
                                                         <p class="is-inline">
                                                             {% if discountCode %}
                                                             Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
-                                                            zł</p> (kod: {{ discountCode.key }} )
+                                                            zł</p> (kod: {{ discountCode.key }})
                                                         {% else %}
                                                             Cena: {{ (purchase.product.price / 100)|number_format(2) }}
                                                             zł</p>
