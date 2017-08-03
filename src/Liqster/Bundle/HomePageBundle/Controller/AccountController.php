@@ -439,6 +439,11 @@ class AccountController extends Controller
         $editProgramForm->handleRequest($request);
 
         if ($editProgramForm->isSubmitted() && $editProgramForm->isValid()) {
+            $account->setName($account->getName());
+            $account->setPassword($account->getPassword());
+            $account->setTagsText($account->getTagsText());
+            $account->setModif(new \DateTime('now'));
+            $account->setComments($account->getComments());
             $schedule = $account->getSchedule();
             $schedule->setModification(new \DateTime('now'));
             $em->merge($schedule);
