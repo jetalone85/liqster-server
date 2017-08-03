@@ -43,7 +43,7 @@ class DiscountCode
     private $promotion;
 
     /**
-     * @var float
+     * @var string
      * @ORM\Column(name="promo_code", type="string", unique=true)
      */
     private $key;
@@ -126,5 +126,13 @@ class DiscountCode
     public function setKey($key)
     {
         $this->key = $key;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getKey();
     }
 }
