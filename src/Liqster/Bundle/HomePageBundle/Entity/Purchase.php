@@ -58,10 +58,6 @@ class Purchase
     private $payment;
 
     /**
-     * @ORM\OneToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\DiscountCode", mappedBy="purchase")
-     */
-    private $discountCode;
-    /**
      * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Account", inversedBy="purchase")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      */

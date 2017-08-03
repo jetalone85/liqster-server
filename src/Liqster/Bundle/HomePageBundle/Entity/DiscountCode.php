@@ -49,12 +49,6 @@ class DiscountCode
     private $key;
 
     /**
-     * @ORM\OneToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Purchase", inversedBy="discountCode")
-     * @ORM\JoinColumn(name="purchase_id", referencedColumnName="id", nullable=true)
-     */
-    private $purchase;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Product", inversedBy="discountCode")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
@@ -106,22 +100,6 @@ class DiscountCode
     public function setModification(DateTime $modification)
     {
         $this->modification = $modification;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPurchase()
-    {
-        return $this->purchase;
-    }
-
-    /**
-     * @param mixed $purchase
-     */
-    public function setPurchase($purchase)
-    {
-        $this->purchase = $purchase;
     }
 
     /**

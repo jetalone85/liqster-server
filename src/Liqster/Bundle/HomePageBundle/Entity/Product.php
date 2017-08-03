@@ -30,11 +30,6 @@ class Product
     private $purchase;
 
     /**
-     * @ORM\OneToMany(targetEntity="Liqster\Bundle\HomePageBundle\Entity\DiscountCode", mappedBy="product")
-     */
-    private $discountCode;
-
-    /**
      * @ORM\OneToMany(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Account", mappedBy="product")
      */
     private $account;
@@ -281,21 +276,5 @@ class Product
     public function setDescription(string $description)
     {
         $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDiscountCode()
-    {
-        return $this->discountCode;
-    }
-
-    /**
-     * @param mixed $discountCode
-     */
-    public function setDiscountCode($discountCode)
-    {
-        $this->discountCode = $discountCode;
     }
 }
