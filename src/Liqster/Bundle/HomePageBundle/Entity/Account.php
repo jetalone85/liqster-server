@@ -21,6 +21,7 @@ class Account implements TaggableInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updated;
+
     /**
      * @var ArrayCollection
      *
@@ -28,7 +29,11 @@ class Account implements TaggableInterface
      */
     protected $tags;
 
+    /**
+     * @var
+     */
     protected $tagsText;
+
     /**
      * @var Uuid
      *
@@ -38,29 +43,34 @@ class Account implements TaggableInterface
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+
     /**
      * @var string
      *
      * @ORM\Column(name="instagram_image", type="string", length=255, unique=false, nullable=true)
      */
     private $image;
+
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, unique=false)
      */
     private $password;
+
     /**
      * @var DateTime
      * @ORM\Column(name="date_created", type="datetime", unique=false, nullable=true)
      */
     private $created;
+
     /**
      * @var DateTime
      * @ORM\Column(name="date_modif", type="datetime", unique=false, nullable=true)
@@ -86,10 +96,14 @@ class Account implements TaggableInterface
     private $commentsRun = true;
 
     /**
-     * @var boolean
      * @ORM\Column(name="payed", type="boolean", unique=false)
      */
     private $payed = false;
+
+    /**
+     * @ORM\Column(name="discount_code", type="string", length=255, nullable=true, unique=false)
+     */
+    private $discountCode;
 
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\User", inversedBy="account")
@@ -122,11 +136,6 @@ class Account implements TaggableInterface
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
     private $product;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Liqster\Bundle\HomePageBundle\Entity\DiscountCode", mappedBy="account")
-     */
-    private $discountCode;
 
     /**
      * @var string
@@ -458,6 +467,9 @@ class Account implements TaggableInterface
         $this->disabled = $disabled;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getName();

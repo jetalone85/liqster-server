@@ -33,7 +33,6 @@ class AccountPaymentType extends AbstractType
             )
             ->add(
                 'discountCode', TextType::class, [
-                    'data_class' => null,
                     'required' => false,
                     'label' => 'Kod rabatowy',
                     'attr' => [

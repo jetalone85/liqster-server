@@ -206,6 +206,8 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $discountCode = null;
+
         $purchase = $em
             ->getRepository('LiqsterHomePageBundle:Purchase')
             ->findOneBy(['account' => $account, 'status' => 'open']);
@@ -235,7 +237,6 @@ class AccountController extends Controller
                         throw new \LogicException('No discount code was found.');
                     }
 
-//                    $account->setDiscountCode();
                 } catch (\Exception $exception) {
                 }
             }
@@ -266,29 +267,29 @@ class AccountController extends Controller
                     $em->merge($payment);
                 }
 
+                if ($discountCode) {
+                    $discountCode->setProduct($purchase);
+                    $discountCode->setProduct($purchase->getProduct());
+                }
 
                 $em->flush();
 
-                dump($account);
-                die();
             } catch (\Exception $exception) {
                 echo $exception->getMessage() . "\n";
             }
-
 
             try {
                 $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', false);
 
                 $P24->addValue('p24_session_id', $payment->getSession());
 
-                if ($discountCode->getPromotion()) {
+                if ($discountCode) {
                     $P24->addValue('p24_amount',
                         $account->getProduct()->getPrice() * $discountCode->getPromotion()
                     );
                 } else {
                     $P24->addValue('p24_amount', $account->getProduct()->getPrice());
                 }
-
 
                 $P24->addValue('p24_currency', 'PLN');
                 $P24->addValue('p24_email', $this->getUser()->getEmail());
@@ -311,7 +312,6 @@ class AccountController extends Controller
 
             } catch (Exception $exception) {
                 return $this->redirectToRoute('account_new_payment', ['id' => $account->getId(), 'error' => 'paymentError', 'content' => $exception->getMessage()]);
-
             }
         }
 
@@ -339,11 +339,23 @@ class AccountController extends Controller
             ->getRepository('LiqsterPaymentBundle:Payment')
             ->findOneBy(['purchase' => $purchase]);
 
+        $discountCode = $em
+            ->getRepository('LiqsterHomePageBundle:DiscountCode')
+            ->findOneBy(['key' => $account->getDiscountCode()]);
+
         try {
             $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', true);
 
             $P24->addValue('p24_session_id', $payment->getSession());
-            $P24->addValue('p24_amount', $account->getProduct()->getPrice());
+
+            if ($discountCode) {
+                $P24->addValue('p24_amount',
+                    $account->getProduct()->getPrice() * $discountCode->getPromotion()
+                );
+            } else {
+                $P24->addValue('p24_amount', $account->getProduct()->getPrice());
+            }
+
             $P24->addValue('p24_currency', 'PLN');
             $P24->addValue('p24_email', $this->getUser()->getEmail());
             $P24->addValue('p24_description', $account->getName() . '/' . $account->getId());
@@ -507,6 +519,10 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
         }
 
+        $discountCode = $em
+            ->getRepository('LiqsterHomePageBundle:DiscountCode')
+            ->findOneBy(['key' => $account->getDiscountCode()]);
+
         /**
          * @TODO
          * Wywalić i dodać ustawienia
@@ -602,6 +618,7 @@ class AccountController extends Controller
                 'purchases' => $purchase,
                 'date' => new \DateTime('now'),
                 'instagram' => $instagram,
+                'discountCode' => $discountCode,
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),
                 'edit_comments_form' => $editCommentsForm->createView(),

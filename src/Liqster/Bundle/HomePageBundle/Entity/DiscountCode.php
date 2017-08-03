@@ -61,12 +61,6 @@ class DiscountCode
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Account", inversedBy="discountCode")
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=true)
-     */
-    private $account;
-
-    /**
      * @return Uuid
      */
     public function getId(): Uuid
@@ -176,21 +170,5 @@ class DiscountCode
     public function setKey($key)
     {
         $this->key = $key;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAccount()
-    {
-        return $this->account;
-    }
-
-    /**
-     * @param mixed $account
-     */
-    public function setAccount($account)
-    {
-        $this->account = $account;
     }
 }

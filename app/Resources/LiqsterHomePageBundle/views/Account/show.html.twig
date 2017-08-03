@@ -68,8 +68,13 @@
                                                     <div class="content is-vcentered">
                                                         <p class="title is-inline">{{ purchase.product.period }} dni</p>
                                                         <p class="is-inline">
+                                                            {% if discountCode %}
+                                                            Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
+                                                            zł</p> (kod: {{ discountCode.key }} )
+                                                        {% else %}
                                                             Cena: {{ (purchase.product.price / 100)|number_format(2) }}
                                                             zł</p>
+                                                        {% endif %}
                                                     </div>
                                                     <div class="content is-vcentered">
                                                         <p>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }}</p>
@@ -97,8 +102,13 @@
                                                     <div class="content is-vcentered">
                                                         <p class="title is-inline">{{ purchase.product.period }} dni</p>
                                                         <p class="is-inline">
+                                                            {% if discountCode %}
+                                                            Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
+                                                            zł</p> (kod: {{ discountCode.key }} )
+                                                        {% else %}
                                                             Cena: {{ (purchase.product.price / 100)|number_format(2) }}
                                                             zł</p>
+                                                        {% endif %}
                                                     </div>
                                                     <div class="content is-vcentered">
                                                         <p>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }} |
