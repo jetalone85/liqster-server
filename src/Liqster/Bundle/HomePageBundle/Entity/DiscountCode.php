@@ -49,12 +49,6 @@ class DiscountCode
     private $key;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Product", inversedBy="discountCode")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
-     */
-    private $product;
-
-    /**
      * @return Uuid
      */
     public function getId(): Uuid
@@ -100,22 +94,6 @@ class DiscountCode
     public function setModification(DateTime $modification)
     {
         $this->modification = $modification;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * @param mixed $product
-     */
-    public function setProduct($product)
-    {
-        $this->product = $product;
     }
 
     /**
