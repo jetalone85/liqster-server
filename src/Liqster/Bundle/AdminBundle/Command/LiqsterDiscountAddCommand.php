@@ -45,6 +45,8 @@ class LiqsterDiscountAddCommand extends ContainerAwareCommand
         $discount->setModification(new \DateTime('now'));
         $discount->setKey('polowa');
         $discount->setPromotion(0.5);
+        $discount->setProduct(null);
+        $discount->setPurchase(null);
         $em->persist($discount);
         $em->flush();
     }
