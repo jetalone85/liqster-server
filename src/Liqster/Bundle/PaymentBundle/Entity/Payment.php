@@ -242,6 +242,6 @@ class Payment
      */
     public function __toString()
     {
-        return $this->getId()->getBytes();
+        return $this->getP24Statement();
     }
 }
