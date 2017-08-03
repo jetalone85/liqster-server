@@ -471,6 +471,11 @@ class AccountController extends Controller
         $editProgramForm->handleRequest($request);
 
         if ($editProgramForm->isSubmitted() && $editProgramForm->isValid()) {
+            $account->setName($account->getName());
+            $account->setPassword($account->getPassword());
+            $account->setTagsText($account->getTagsText());
+            $account->setModif(new \DateTime('now'));
+            $account->setComments($account->getComments());
             $schedule = $account->getSchedule();
             $schedule->setModification(new \DateTime('now'));
             $em->merge($schedule);
@@ -529,6 +534,9 @@ class AccountController extends Controller
          */
         $account->setLikesRun(true);
         $account->setCommentsRun(true);
+        $account->setComments($account->getComments());
+        $account->setTagsText($account->getTagsText());
+        $em->merge($account);
         $em->flush();
         /**
          * koniecznie!!!!!!
@@ -795,7 +803,13 @@ class AccountController extends Controller
         $image = $instagram_user['user']['profile_pic_url'];
 
         $em = $this->getDoctrine()->getManager();
+
         $account->setImage($image);
+        $account->setLikesRun(true);
+        $account->setCommentsRun(true);
+        $account->setComments($account->getComments());
+        $account->setTagsText($account->getTagsText());
+        $em->merge($account);
         $em->flush();
 
         return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
