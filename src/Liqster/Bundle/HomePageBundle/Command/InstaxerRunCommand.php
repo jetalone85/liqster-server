@@ -54,7 +54,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
         if ($account->isLikesRun()) {
 
-            for ($i = 1; $i <= 5; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
 
                 $tags = explode(', ', $account->getTagsText());
 
@@ -113,7 +113,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
             $tags = explode(', ', $account->getTagsText());
             $comments = explode(',', $account->getComments());
 
-            for ($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 2; $i++) {
 
                 $tag = $tags[random_int(0, count($tags) - 1)];
 
