@@ -498,6 +498,9 @@ class AccountController extends Controller
          */
         $account->setLikesRun(true);
         $account->setCommentsRun(true);
+        $account->setComments($account->getComments());
+        $account->setTagsText($account->getTagsText());
+        $em->merge($account);
         $em->flush();
         /**
          * koniecznie!!!!!!
@@ -763,7 +766,13 @@ class AccountController extends Controller
         $image = $instagram_user['user']['profile_pic_url'];
 
         $em = $this->getDoctrine()->getManager();
+
         $account->setImage($image);
+        $account->setLikesRun(true);
+        $account->setCommentsRun(true);
+        $account->setComments($account->getComments());
+        $account->setTagsText($account->getTagsText());
+        $em->merge($account);
         $em->flush();
 
         return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
