@@ -141,11 +141,6 @@ class AccountController extends Controller
                     '&password=' .
                     $account->getPassword())->getBody()->getContents();
 
-                /**
-                 * @TODO:
-                 * Dodać Account Instagram Cache
-                 */
-
             } catch (\Exception $exception) {
                 return $this->redirectToRoute(
                     'account_new', [
@@ -538,9 +533,6 @@ class AccountController extends Controller
         $account->setTagsText($account->getTagsText());
         $em->merge($account);
         $em->flush();
-        /**
-         * koniecznie!!!!!!
-         */
 
         $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findBy(['account' => $account]);
 
