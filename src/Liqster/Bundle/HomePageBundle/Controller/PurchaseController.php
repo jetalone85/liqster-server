@@ -7,6 +7,7 @@ use Liqster\Bundle\PaymentBundle\Entity\Payment;
 use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,14 +30,36 @@ class PurchaseController extends Controller
     }
 
     /**
+     * @Route("/delete/{id}", name="purchase_delete")
+     * @Method({"GET"})
+     * @param Purchase $purchase
+     * @return RedirectResponse
+     * @throws \LogicException
+     */
+    public function deleteAction(Purchase $purchase): RedirectResponse
+    {
+        $em = $this->getDoctrine()->getManager();
+        $payment = $purchase->getPayment();
+
+        $account = $purchase->getAccount();
+
+        $em->remove($payment);
+        $em->remove($purchase);
+        $em->flush();
+
+        return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
+
+    }
+
+    /**
      * @Route("/duplicate/{id}", name="purchase_duplicate")
      * @Method({"GET"})
      * @param Purchase $purchase
-     * @return Response
+     * @return RedirectResponse
      * @throws \LogicException
      * @throws \InvalidArgumentException
      */
-    public function duplicateAction(Purchase $purchase): Response
+    public function duplicateAction(Purchase $purchase): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -49,7 +72,6 @@ class PurchaseController extends Controller
         $newPurchase->setModification(new \DateTime('now'));
         $newPurchase->setStatus('open');
         $em->persist($newPurchase);
-
 
         $payment = new Payment();
         $payment->setCreate(new \DateTime('now'));

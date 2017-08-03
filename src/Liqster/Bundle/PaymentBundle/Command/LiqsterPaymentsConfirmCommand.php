@@ -36,13 +36,15 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
+        /**
+         * @TODO:
+         * sprawdzić koniecznie potwierdzanie tych płatności
+         * powinno działać bezbłędnie, ale...
+         */
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-        $payments = $em->getRepository('LiqsterPaymentBundle:Payment')->findBy(
-            [
-                'verify' => null
-            ]
-        );
+        $payments = $em->getRepository('LiqsterPaymentBundle:Payment')->findBy(['verify' => null]);
 
         foreach ($payments as $payment) {
 
