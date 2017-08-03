@@ -301,11 +301,13 @@ class AccountController extends Controller
                 $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
                 $P24->addValue('p24_time_limit', 0);
 
-                $response = $P24->trnRegister(true);
+                $response = $P24->trnRegister(false);
 
-                if ($response['error'] !== '0') {
+                if ($response['error'] !== 0) {
                     throw new \LogicException('The payment provider returned an error.');
                 }
+
+                return $this->redirect($response['redirect']);
 
             } catch (Exception $exception) {
                 return $this->redirectToRoute('account_new_payment', ['id' => $account->getId(), 'error' => 'paymentError', 'content' => $exception->getMessage()]);
@@ -353,11 +355,13 @@ class AccountController extends Controller
             $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
             $P24->addValue('p24_time_limit', 0);
 
-            $response = $P24->trnRegister(true);
+            $response = $P24->trnRegister(false);
 
-            if ($response['error'] !== '0') {
+            if ($response['error'] !== 0) {
                 throw new \LogicException('The payment provider returned an error.');
             }
+
+            return $this->redirect($response['redirect']);
 
         } catch
         (Exception $exception) {

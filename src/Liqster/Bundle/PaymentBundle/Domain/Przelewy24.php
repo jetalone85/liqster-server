@@ -238,6 +238,7 @@ class Przelewy24
             return $RES;
 
         }
+
         $redirectAddress = $this->trnRequest($token);
 
         return ['error' => 0, 'token' => $token, 'redirect' => $redirectAddress];
@@ -249,18 +250,19 @@ class Przelewy24
      * Redirects or returns URL to a P24 payment screen
      *
      * @param  string $token Token
-     * @param  bool $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
      * @return string URL to P24 payment screen
+     * @internal param bool $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
      */
-    public function trnRequest($token, $redirect = true)
+    public function trnRequest($token)
     {
 
-        if ($redirect) {
-            header('Location:' . $this->hostLive . 'trnRequest/' . $token);
-            return '';
-        } else {
-            return $this->hostLive . 'trnRequest/' . $token;
-        }
+//        if ($redirect) {
+//            header('Location:' . $this->hostLive . 'trnRequest/' . $token);
+//            return '';
+//        } else {
+//            return $this->hostLive . 'trnRequest/' . $token;
+//        }
+        return $this->hostLive . 'trnRequest/' . $token;
 
     }
 

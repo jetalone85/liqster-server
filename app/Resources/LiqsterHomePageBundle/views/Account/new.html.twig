@@ -44,87 +44,98 @@
         <div class="hero-body">
             <div class="container">
                 <div class="columns">
-                    <div class="column is-half-desktop is-offset-one-quarter-desktop is-full-tablet is-full-mobile">
 
-                        {% if error %}
-                            <div class="notification is-danger error error500">
-                                <button class="delete error-close"></button>
-                                <h1 class="">
-                                    Serwer zwrócił błąd.
-                                </h1>
-                                <p>
-                                    Jeśli dane logowania, które zostały wprowadzone są poprawne, sprawdź prośbę o
-                                    autozyzację w swojej aplikacji Instagram na smartfonie lub komputerze.
-                                </p>
-                            </div>
-                        {% endif %}
+                    {% if error %}
+                    <div class="column is-half-desktop is-full-tablet is-full-mobile">
 
-                        <div class="card">
-                            <div class="card-content">
+                        <div class="notification is-danger error error500">
+                            <button class="delete error-close"></button>
+                            <h1 class="">
+                                Serwer zwrócił błąd.
+                            </h1>
+                            <p>
+                                Jeśli dane logowania, które zostały wprowadzone są poprawne, sprawdź prośbę o
+                                autozyzację w swojej aplikacji Instagram na smartfonie lub komputerze.
+                            </p>
+                            <p>
+                                <img src="{{ asset('asset/img/instagram_login_warn.png') }}">
+                            </p>
+                        </div>
+                    </div>
 
-                                <h1 class="title">Dodaj nowe konto</h1>
+                    <div class="column is-half-desktop is-full-tablet is-full-mobile">
 
-                                <p class="subtitle">Podaj dane logowania dla konta Instagram</p>
+                        {% else %}
+                        <div class="column is-half-desktop is-offset-one-quarter-desktop is-full-tablet is-full-mobile">
+                            {% endif %}
 
-                                <div class="columns">
-                                    <div class="column">
+                            <div class="card">
+                                <div class="card-content">
 
-                                        {{ form_start(form) }}
+                                    <h1 class="title">Dodaj nowe konto</h1>
 
-                                        <div class="field is-horizontal">
-                                            <div class="field-label is-normal">
-                                                {{ form_label(form.name, 'Login', {'label_attr': {'class': 'label'}}) }}
-                                            </div>
-                                            <div class="field-body">
-                                                <div class="field">
-                                                    <p class="control is-expanded has-icons-left">
-                                                        {{ form_widget(form.name, { 'attr': {'class': 'input' } }) }}
-                                                        <span class="icon is-small is-left"><i
-                                                                    class="fa fa-user"></i></span>
-                                                    </p>
+                                    <p class="subtitle">Podaj dane logowania dla konta Instagram</p>
+
+                                    <div class="columns">
+                                        <div class="column">
+
+                                            {{ form_start(form) }}
+
+                                            <div class="field is-horizontal">
+                                                <div class="field-label is-normal">
+                                                    {{ form_label(form.name, 'Login', {'label_attr': {'class': 'label'}}) }}
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <p class="control is-expanded has-icons-left">
+                                                            {{ form_widget(form.name, { 'attr': {'class': 'input' } }) }}
+                                                            <span class="icon is-small is-left"><i
+                                                                        class="fa fa-user"></i></span>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="field is-horizontal">
-                                            <div class="field-label is-normal">
-                                                {{ form_label(form.password, 'Hasło', {'label_attr': {'class': 'label'}}) }}
-                                            </div>
-                                            <div class="field-body">
-                                                <div class="field">
-                                                    <p class="control is-expanded has-icons-left">
-                                                        {{ form_widget(form.password, { 'attr': {'class': 'input' } }) }}
-                                                        <span class="icon is-small is-left"><i
-                                                                    class="fa fa-key"></i></span>
-                                                    </p>
+                                            <div class="field is-horizontal">
+                                                <div class="field-label is-normal">
+                                                    {{ form_label(form.password, 'Hasło', {'label_attr': {'class': 'label'}}) }}
+                                                </div>
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <p class="control is-expanded has-icons-left">
+                                                            {{ form_widget(form.password, { 'attr': {'class': 'input' } }) }}
+                                                            <span class="icon is-small is-left"><i
+                                                                        class="fa fa-key"></i></span>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <div class="field is-grouped is-pulled-right">
+                                                <p class="control">
+                                                    <input class="button is-primary is-centered" type="submit"
+                                                           id="_submit"
+                                                           name="_submit"
+                                                           value="Zapisz"/>
+                                                </p>
+                                            </div>
+
+                                            {{ form_end(form) }}
+
                                         </div>
-
-                                        <div class="field is-grouped is-pulled-right">
-                                            <p class="control">
-                                                <input class="button is-primary is-centered" type="submit" id="_submit"
-                                                       name="_submit"
-                                                       value="Zapisz"/>
-                                            </p>
-                                        </div>
-
-                                        {{ form_end(form) }}
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="columns">
-                    <div class="column is-half-desktop is-offset-one-quarter-desktop is-full-tablet is-full-mobile">
-                        <a class="button is-primary is-outlined is-centered is-fullwidth"
-                           href="{{ path('account_index') }}">Powrót do panelu</a>
+                    <div class="columns">
+                        <div class="column is-half-desktop is-offset-one-quarter-desktop is-full-tablet is-full-mobile">
+                            <a class="button is-primary is-outlined is-centered is-fullwidth"
+                               href="{{ path('account_index') }}">Powrót do panelu</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
 {% endblock %}
