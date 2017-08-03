@@ -118,7 +118,8 @@
                                                     <nav class="level is-mobile">
                                                         <div class="level-left">
                                                             <a class="level-item button is-primary is-outlined">Szczegóły</a>
-                                                            <a class="level-item button is-success is-outlined">Ponów na
+                                                            <a href="{{ path('purchase_duplicate', {'id': purchase.id }) }}"
+                                                               class="level-item button is-success is-outlined">Ponów
                                                                 nowy okres</a>
                                                         </div>
                                                     </nav>
