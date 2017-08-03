@@ -283,7 +283,7 @@ class AccountController extends Controller
 
                 $response = $P24->trnRegister(false);
 
-                if ($response['error'] !== '0') {
+                if ($response['error'] !== 0) {
                     throw new \LogicException('The payment provider returned an error.');
                 }
 
@@ -337,7 +337,7 @@ class AccountController extends Controller
 
             $response = $P24->trnRegister(false);
 
-            if ($response['error'] !== '0') {
+            if ($response['error'] !== 0) {
                 throw new \LogicException('The payment provider returned an error.');
             }
 
