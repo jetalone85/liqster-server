@@ -3,6 +3,8 @@
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
+date_default_timezone_set('Europe/Warsaw');
+
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/setup.html#checking-symfony-application-configuration-and-setup
 // for more information
