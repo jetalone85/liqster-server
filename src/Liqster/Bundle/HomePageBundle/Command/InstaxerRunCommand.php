@@ -52,57 +52,11 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $em->merge($cronJob);
         $em->flush();
 
-        if ($account->isCommentsRun()) {
-            $tags = explode(', ', $account->getTagsText());
-            $comments = explode(',', $account->getComments());
-
-            for ($i = 1; $i <= 2; $i++) {
-
-                $tag = $tags[random_int(0, count($tags) - 1)];
-
-                $mq = new MQ();
-
-                $instaxer_json = $mq->query(
-                    'POST',
-                    'instaxers/tags?username=' .
-                    $account->getName() .
-                    '&password=' .
-                    $account->getPassword() .
-                    '&tag=' .
-                    $tag
-                );
-
-                $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
-
-                $items = array_slice($tag_feed['items'], 0, random_int(1, 2));
-
-                foreach ($items as $item) {
-                    $comment = $comments[random_int(0, count($tags) - 1)];
-
-                    $response = $mq->query(
-                        'POST',
-                        'instaxers/comments?username=' .
-                        $account->getName() .
-                        '&password=' .
-                        $account->getPassword() .
-                        '&id=' .
-                        $item['id'] .
-                        '&comment=' .
-                        $comment
-                    );
-
-                    $output->writeln('comment: ' . $tag . '; id: ' . $item['id'] . '; comment: ' . $comment);
-
-                    Sleep::random(20);
-                }
-            }
-        }
-
         if ($account->isLikesRun()) {
 
-            for ($i = 1; $i <= 2; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
 
-                $tags = explode(', ', $account->getTagsText());
+                $tags = explode(',', $account->getTagsText());
 
                 $tag = $tags[random_int(0, count($tags) - 1)];
 
@@ -151,6 +105,52 @@ class InstaxerRunCommand extends ContainerAwareCommand
                     $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
                     Sleep::random(15);
+                }
+            }
+        }
+
+        if ($account->isCommentsRun()) {
+            $tags = explode(', ', $account->getTagsText());
+            $comments = explode(',', $account->getComments());
+
+            for ($i = 1; $i <= 2; $i++) {
+
+                $tag = $tags[random_int(0, count($tags) - 1)];
+
+                $mq = new MQ();
+
+                $instaxer_json = $mq->query(
+                    'POST',
+                    'instaxers/tags?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&tag=' .
+                    $tag
+                );
+
+                $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
+
+                $items = array_slice($tag_feed['items'], 0, random_int(1, 2));
+
+                foreach ($items as $item) {
+                    $comment = $comments[random_int(0, count($tags) - 1)];
+
+                    $response = $mq->query(
+                        'POST',
+                        'instaxers/comments?username=' .
+                        $account->getName() .
+                        '&password=' .
+                        $account->getPassword() .
+                        '&id=' .
+                        $item['id'] .
+                        '&comment=' .
+                        $comment
+                    );
+
+                    $output->writeln('comment: ' . $tag . '; id: ' . $item['id'] . '; comment: ' . $comment);
+
+                    Sleep::random(20);
                 }
             }
         }
