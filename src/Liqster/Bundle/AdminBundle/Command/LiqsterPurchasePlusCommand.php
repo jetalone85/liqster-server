@@ -48,6 +48,7 @@ class LiqsterPurchasePlusCommand extends ContainerAwareCommand
         $output->writeln($purchase->getPaid());
 
         $purchase->setPaid((new \DateTime('now'))->add(new \DateInterval('PT10M')));
+        $purchase->setStatus('verify');
 
         $output->writeln($purchase->getPaid()->format('Y-m-d H:i:s'));
 

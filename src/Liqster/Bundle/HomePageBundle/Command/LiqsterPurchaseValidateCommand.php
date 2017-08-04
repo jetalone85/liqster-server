@@ -40,6 +40,8 @@ class LiqsterPurchaseValidateCommand extends ContainerAwareCommand
 
         $now = new \DateTime('now');
 
+        $output->writeln('Current time: ' . $now->format('Y-m-d H:i:s'));
+
         $qb = $em->createQueryBuilder();
         $qb->select('e')
             ->from(Purchase::class, 'e')
