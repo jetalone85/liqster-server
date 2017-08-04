@@ -2,17 +2,17 @@
 
 namespace Liqster\Bundle\AdminBundle\Command;
 
-use Liqster\Bundle\HomePageBundle\Entity\DiscountCode;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class LiqsterProductAddCommand
+ * Class LiqsterPurchasePlusCommand
  *
  * @package Liqster\Bundle\AdminBundle\Command
  */
-class LiqsterDiscountAddCommand extends ContainerAwareCommand
+class LiqsterPurchasePlusCommand extends ContainerAwareCommand
 {
     /**
      *
@@ -21,14 +21,17 @@ class LiqsterDiscountAddCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('liqster:discount:add')
-            ->setDescription('Add first sample discount to database');
+            ->setName('liqster:purchase:plus')
+            ->addArgument('purchase', InputArgument::REQUIRED)
+            ->setDescription('');
     }
 
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|null|void
+     * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\ORMInvalidArgumentException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
@@ -37,15 +40,19 @@ class LiqsterDiscountAddCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $repository = $em->getRepository('LiqsterHomePageBundle:Purchase');
 
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
+        $purchase = $repository->find($input->getArgument('purchase'));
 
-        $discount = new DiscountCode();
-        $discount->setCreate(new \DateTime('now'));
-        $discount->setModification(new \DateTime('now'));
-        $discount->setKey('polowa');
-        $discount->setPromotion(0.5);
-        $em->persist($discount);
+        $output->writeln($purchase->getPaid());
+
+        $purchase->setPaid((new \DateTime('now'))->add(new \DateInterval('PT10M')));
+        $purchase->setStatus('verify');
+
+        $output->writeln($purchase->getPaid()->format('Y-m-d H:i:s'));
+
+        $em->merge($purchase);
         $em->flush();
     }
 }

@@ -81,6 +81,8 @@
                                                     </div>
                                                     <nav class="level is-mobile">
                                                         <div class="level-left">
+                                                            <a href="{{ path('purchase_delete', {'id': purchase.id }) }}"
+                                                               class="level-item button is-danger is-outlined">Kasuj</a>
                                                             <a
                                                                     href="{{ path('account_continue_payment', {
                                                                         'account': account.id,
@@ -117,8 +119,8 @@
                                                     </div>
                                                     <nav class="level is-mobile">
                                                         <div class="level-left">
-                                                            <a class="level-item button is-primary is-outlined">Szczegóły</a>
-                                                            <a class="level-item button is-success is-outlined">Ponów na
+                                                            <a href="{{ path('purchase_duplicate', {'id': purchase.id }) }}"
+                                                               class="level-item button is-success is-outlined">Ponów
                                                                 nowy okres</a>
                                                         </div>
                                                     </nav>
