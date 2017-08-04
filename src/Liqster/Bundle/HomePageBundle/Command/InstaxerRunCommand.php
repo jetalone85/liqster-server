@@ -73,7 +73,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
 
-                $items = array_slice($tag_feed['ranked_items'], 0, 5);
+                $items = array_slice($tag_feed['ranked_items'], 0, 3);
 
                 foreach ($items as $item) {
                     $response = $mq->query(
@@ -90,7 +90,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
                     Sleep::random(10);
                 }
 
-                $items = array_slice($tag_feed['items'], 0, random_int(6, 12));
+                $items = array_slice($tag_feed['items'], 0, random_int(3, 9));
 
                 foreach ($items as $item) {
                     $response = $mq->query(
