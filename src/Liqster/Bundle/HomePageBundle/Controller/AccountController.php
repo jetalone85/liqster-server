@@ -267,11 +267,6 @@ class AccountController extends Controller
                     $em->merge($payment);
                 }
 
-                if ($discountCode) {
-                    $discountCode->setProduct($purchase);
-                    $discountCode->setProduct($purchase->getProduct());
-                }
-
                 $em->flush();
 
             } catch (\Exception $exception) {
