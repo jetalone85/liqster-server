@@ -59,6 +59,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 $tags = explode(',', $account->getTagsText());
 
                 $tag = $tags[random_int(0, count($tags) - 1)];
+                $tag = str_replace(' ', '', $tag);
 
                 $mq = new MQ();
                 $instaxer_json = $mq->query(
