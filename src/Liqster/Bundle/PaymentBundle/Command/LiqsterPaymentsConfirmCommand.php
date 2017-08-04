@@ -48,6 +48,8 @@ class LiqsterPaymentsConfirmCommand extends ContainerAwareCommand
 
         foreach ($payments as $payment) {
 
+            dump($payment);
+
             if ($payment->getP24OrderId()) {
 
                 $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', false);
