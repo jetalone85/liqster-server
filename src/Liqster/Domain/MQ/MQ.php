@@ -24,6 +24,14 @@ class MQ
     private $url;
 
     /**
+     * @var array
+     */
+    private $base = [
+        'https://nameless-taiga-58917.herokuapp.com',
+        'https://afternoon-meadow-17645.herokuapp.com'
+    ];
+
+    /**
      * MQ constructor.
      */
     public function __construct()
