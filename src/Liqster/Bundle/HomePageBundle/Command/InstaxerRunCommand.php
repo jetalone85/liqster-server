@@ -54,7 +54,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
         if ($account->isLikesRun()) {
 
-            for ($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 4; $i++) {
 
                 $tags = explode(',', $account->getTagsText());
 
@@ -115,7 +115,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
             $tags = explode(', ', $account->getTagsText());
             $comments = explode(',', $account->getComments());
 
-            for ($i = 1; $i <= 2; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
 
                 $tag = $tags[random_int(0, count($tags) - 1)];
 
@@ -133,7 +133,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
 
-                $items = array_slice($tag_feed['items'], 0, random_int(1, 2));
+                $items = array_slice($tag_feed['items'], 0, random_int(1, 3));
 
                 foreach ($items as $item) {
                     $comment = $comments[random_int(0, count($tags) - 1)];
