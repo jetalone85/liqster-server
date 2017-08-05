@@ -10,7 +10,7 @@
                 <thead>
                 <tr>
                     <th>Start</th>
-                    <th>Działało</th>
+                    <th>Czas działania</th>
                     <th>Konsola</th>
                 </tr>
                 </thead>
@@ -18,7 +18,7 @@
                 <tbody>
                 {% for report in reports %}
                     <tr>
-                        <td>{{ report.runat|date("Y-m-d H:i:s") }}</td>
+                        <td>{{ report.runat|date_modify("+2 hours")|date("Y-m-d H:i:s") }}</td>
                         <td>{{ report.runtime }} s</td>
                         <td>
                             <p>{{ report.output }}</p>
