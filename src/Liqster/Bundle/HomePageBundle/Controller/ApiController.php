@@ -3,6 +3,7 @@
 namespace Liqster\Bundle\HomePageBundle\Controller;
 
 use Liqster\Bundle\HomePageBundle\Entity\ApiDump;
+use Liqster\Domain\MQ\MQ;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,4 +48,58 @@ class ApiController extends Controller
 
         return $this->render('LiqsterHomePageBundle:Api:ok.json.twig');
     }
+
+    /**
+     * @Route("/api/market/tags/{name}", name="tags_input")
+     * @Method({"GET"})
+     * @param Request $request
+     * @return Response
+     * @throws \LogicException
+     */
+    public function getApiMarketTagsAction(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $account = $em
+            ->getRepository('LiqsterHomePageBundle:Account')
+            ->findOneBy(['user' => $this->getUser()]);
+
+        $mq = new MQ();
+        $instaxer_json = $mq->query(
+            'POST',
+            'instaxers/users?username=' .
+            $account->getName() .
+            '&password=' .
+            $account->getPassword() .
+            '&user_name=' .
+            $request->get('name')
+        );
+
+        $user_info = json_decode($instaxer_json->getBody()->getContents(), true);
+
+
+        $instaxer_json = $mq->query(
+            'POST',
+            'instaxers/feeds?username=' .
+            $account->getName() .
+            '&password=' .
+            $account->getPassword() .
+            '&user_id=' .
+            $user_info['user']['pk']
+        );
+
+        $user_feed = json_decode($instaxer_json->getBody()->getContents(), true);
+
+        foreach ($user_feed['items'] as $item) {
+            preg_match_all("/(#\w+)/", $item['caption']['text'], $samples);
+            $array[] = $samples;
+        }
+
+
+        $array = array_merge(...array_merge(...$array));
+        $array = array_count_values($array);
+
+        return $this->render('@LiqsterHomePage/Api/marketTags.json.twig', ['response' => $array]);
+    }
+
 }

@@ -1,0 +1,10 @@
+[
+    {%- for key,value in response -%}
+    {
+        "value": "{{ value / 2 }}",
+        "tag": "{{ key|replace({ '#': '' })  }}"
+    }
+    {% if not loop.last %},
+    {% endif %}
+    {%- endfor -%}
+]
