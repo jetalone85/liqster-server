@@ -133,7 +133,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
 
-                $items = array_slice($tag_feed['items'], 0, random_int(1, 3));
+                $items = array_slice($tag_feed['items'], 0, random_int(1, 2));
 
                 foreach ($items as $item) {
                     $comment = $comments[random_int(0, count($tags) - 1)];
