@@ -65,3 +65,35 @@ p.title.is-bold {
     margin-top: 1.0rem;
 
 }
+
+.statistic p {
+    margin-bottom: 0;
+}
+
+.statistic-border {
+    border-right: 1px solid #a4a4a4;
+}
+
+.experienceTitle {
+    font-size: 3rem;
+}
+
+.experienceInfo {
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    height: 0;
+    color: white;
+    font-size: 6rem;
+    text-align: center;
+    border: 0.1rem solid #efefef;
+}
+
+.hero-section {
+    background: url('../../asset/img/Background+image_website_Unlock+Your+Dream.jpg') 50% no-repeat;
+    background-size: cover;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

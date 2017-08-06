@@ -5,7 +5,7 @@
 
         <div class="container profile">
             <div class="columns">
-                <div class="column is-8-desktop is-offset-2-desktop is-12-touch">
+                <div class="column is-10-desktop is-offset-1-desktop is-12-touch">
                     <div class="card">
                         <div class="card-content">
                             <div class="columns is-vcentered">
@@ -26,18 +26,17 @@
 
                                 <div class="column is-6">
                                     <div class="columns is-hidden-mobile">
-                                        <div class="column has-text-centered">
+                                        <div class="column has-text-centered statistic statistic-border">
                                             <p class="title is-bold">{{ instagram.user.follower_count }}</p>
                                             <p class="">Obserwujący</p>
                                         </div>
-                                        <div class="column has-text-centered">
+                                        <div class="column has-text-centered statistic statistic-border">
                                             <p class="title is-bold">{{ instagram.user.following_count }}</p>
                                             <p class="">Obserwowane</p>
                                         </div>
-                                        <div class="column has-text-centered">
+                                        <div class="column has-text-centered statistic">
                                             <p class="title is-bold">{{ instagram.user.media_count }}</p>
                                             <p class="">Posty</p>
-
                                         </div>
                                     </div>
                                 </div>
@@ -46,95 +45,6 @@
                     </div>
 
                     <div class="card">
-                        <div class="card-header">
-                            <div class="card-header-title">Status konta:</div>
-                        </div>
-
-                        <div class="card-content">
-                            <div class="columns">
-                                <div class="column">
-
-                                    {% if not purchases %}
-                                        <p class="title is-5">Nie mamy informacji o żadnych płatnościach.</p>
-                                    {% endif %}
-
-                                    {% for purchase in purchases %}
-
-                                        {% if  purchase.paid == null and purchase.status == 'open' %}
-
-                                            <p class="subtitle is-5">Rozpoczęte zamówienie:</p>
-                                            <article class="media">
-                                                <div class="media-content">
-                                                    <div class="content is-vcentered">
-                                                        <p class="title is-inline">{{ purchase.product.period }} dni</p>
-                                                        <p class="is-inline">
-                                                            {% if discountCode %}
-                                                            Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
-                                                            zł</p> (kod: {{ discountCode.key }})
-                                                        {% else %}
-                                                            Cena: {{ (purchase.product.price / 100)|number_format(2) }}
-                                                            zł</p>
-                                                        {% endif %}
-                                                    </div>
-                                                    <div class="content is-vcentered">
-                                                        <p>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }}</p>
-                                                    </div>
-                                                    <nav class="level is-mobile">
-                                                        <div class="level-left">
-                                                            <a href="{{ path('purchase_delete', {'id': purchase.id }) }}"
-                                                               class="level-item button is-danger is-outlined">Kasuj</a>
-                                                            <a
-                                                                    href="{{ path('account_continue_payment', {
-                                                                        'account': account.id,
-                                                                        'purchase': purchase.id
-                                                                    }) }}"
-                                                                    class="level-item button is-success is-outlined">Kontynuuj</a>
-                                                        </div>
-                                                    </nav>
-                                                </div>
-                                            </article>
-
-                                        {% endif %}
-
-                                        {% if  purchase.paid >= date %}
-
-                                            <p class="subtitle is-5">Bieżące zamówienie:</p>
-                                            <article class="media">
-                                                <div class="media-content">
-                                                    <div class="content is-vcentered">
-                                                        <p class="title is-inline">{{ purchase.product.period }} dni</p>
-                                                        <p class="is-inline">
-                                                            {% if discountCode %}
-                                                            Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
-                                                            zł</p> (kod: {{ discountCode.key }})
-                                                        {% else %}
-                                                            Cena: {{ (purchase.product.price / 100)|number_format(2) }}
-                                                            zł</p>
-                                                        {% endif %}
-                                                    </div>
-                                                    <div class="content is-vcentered">
-                                                        <p>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }} |
-                                                            Opłacono do: {{ purchase.paid|date("Y/m/d H:i:s") }}</p>
-                                                        <p>Numer transakcji: {{ purchase.payment.p24statement }}</p>
-                                                    </div>
-                                                    <nav class="level is-mobile">
-                                                        <div class="level-left">
-                                                            <a href="{{ path('purchase_duplicate', {'id': purchase.id }) }}"
-                                                               class="level-item button is-success is-outlined">Ponów
-                                                                nowy okres</a>
-                                                        </div>
-                                                    </nav>
-                                                </div>
-                                            </article>
-
-                                        {% endif %}
-                                    {% endfor %}
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <hr>
 
                         <div class="card-content">
                             <div class="columns">
@@ -156,51 +66,169 @@
 
                         <hr>
 
-                        <div class="card-content">
-                            <form name="form" method="post">
-                                <input
-                                        type="hidden"
-                                        name="form[id]"
-                                        value="{{ account.id }}"
-                                />
+                        {% if account.type == 'free' %}
 
-                                <div class="field is-horizontal">
-                                    <div class="field-label is-normal">
-                                        <label class="label"
-                                               for="username">
-                                            {% if account.payed == false %}
-                                                Konto nieopłacone
-                                            {% elseif account.payed == true and account.cronJob.enabled == true %}
-                                                Konto aktywne
-                                            {% else %}
-                                                Konto nieaktywne
+                            <div class="card-content">
+                                <h1 class="card-header-title">Konto: "3 dni na testy" aktywne
+                                    do {{ purchase.paid|date("Y/m/d H:i:s") }}</h1>
+                            </div>
+
+                        {% elseif account.type == 'regular' %}
+
+                            <div class="card-content">
+                                <h1 class="card-header-title">Konto: "podstawowe"</h1>
+                            </div>
+
+                            <div class="card-content">
+                                <div class="columns">
+                                    <div class="column">
+
+                                        {% if not purchases %}
+                                            <p class="title is-5">Nie mamy informacji o żadnych płatnościach.</p>
+                                        {% endif %}
+
+                                        {% for purchase in purchases %}
+
+                                            {% if purchase.product %}
+                                                <p class="subtitle is-5">Rozpoczęte zamówienie:</p>
+                                                <article class="media">
+                                                    <div class="media-content">
+                                                        <div class="content is-vcentered">
+
+
+                                                            <p class="title is-inline">{{ purchase.product.period }}
+                                                                dni</p>
+                                                            <p class="is-inline">
+                                                                {% if discountCode %}
+                                                                Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
+                                                                zł</p> (kod: {{ discountCode.key }})
+                                                            {% else %}
+                                                                Cena: {{ (purchase.product.price / 100)|number_format(2) }}
+                                                                zł</p>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="content is-vcentered">
+                                                            <p>
+                                                                Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }}</p>
+                                                        </div>
+                                                        <nav class="level is-mobile">
+                                                            <div class="level-left">
+                                                                <a href="{{ path('purchase_delete', {'id': purchase.id }) }}"
+                                                                   class="level-item button is-danger is-outlined">Kasuj</a>
+                                                                <a
+                                                                        href="{{ path('account_continue_payment', {
+                                                                            'account': account.id,
+                                                                            'purchase': purchase.id
+                                                                        }) }}"
+                                                                        class="level-item button is-success is-outlined">Kontynuuj</a>
+                                                            </div>
+                                                        </nav>
+                                                    </div>
+                                                </article>
+
+
                                             {% endif %}
-                                        </label>
+
+                                            {% if  purchase.paid >= date %}
+
+                                                {% if purchase.product %}
+                                                    <p class="subtitle is-5">Bieżące zamówienie:</p>
+                                                    <article class="media">
+                                                        <div class="media-content">
+                                                            <div class="content is-vcentered">
+                                                                <p class="title is-inline">{{ purchase.product.period }}
+                                                                    dni</p>
+                                                                <p class="is-inline">
+                                                                    {% if discountCode %}
+                                                                    Cena: {{ (purchase.product.price / 100 * discountCode.promotion)|number_format(2) }}
+                                                                    zł</p> (kod: {{ discountCode.key }})
+                                                                {% else %}
+                                                                    Cena: {{ (purchase.product.price / 100)|number_format(2) }}
+                                                                    zł</p>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="content is-vcentered">
+                                                                <p>Utworzono: {{ purchase.create|date("Y/m/d H:i:s") }}
+                                                                    |
+                                                                    Opłacono
+                                                                    do: {{ purchase.paid|date("Y/m/d H:i:s") }}</p>
+                                                                <p>Numer
+                                                                    transakcji: {{ purchase.payment.p24statement }}</p>
+                                                            </div>
+                                                            <nav class="level is-mobile">
+                                                                <div class="level-left">
+                                                                    <a href="{{ path('purchase_duplicate', {'id': purchase.id }) }}"
+                                                                       class="level-item button is-success is-outlined">Ponów
+                                                                        nowy okres</a>
+                                                                </div>
+                                                            </nav>
+                                                        </div>
+                                                    </article>
+
+                                                {% endif %}
+
+                                            {% endif %}
+                                        {% endfor %}
+
                                     </div>
-                                    <div class="field-body">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <form name="form" method="post">
+                                    <input
+                                            type="hidden"
+                                            name="form[id]"
+                                            value="{{ account.id }}"
+                                    />
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            <label class="label"
+                                                   for="username">
+
+                                                {% if account.payed == false %}
+                                                    Konto nieopłacone
+                                                {% elseif account.payed == true and account.cronJob.enabled == true %}
+                                                    Konto aktywne
+                                                {% else %}
+                                                    Konto nieaktywne
+                                                {% endif %}
+                                            </label>
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded has-icons-left">
+                                                    <input
+                                                            {% if account.payed == false %}disabled{% endif %}
+                                                            type="checkbox" name="form[enable]"
+                                                            id="form_enable_{{ account.id }}"
+                                                            {% if account.cronJob.enabled == true %}checked{% endif %}
+                                                            class="">
+                                                </p>
+                                            </div>
+                                        </div>
                                         <div class="field">
-                                            <p class="control is-expanded has-icons-left">
-                                                <input
-                                                        {% if account.payed == false %}disabled{% endif %}
-                                                        type="checkbox" name="form[enable]"
-                                                        id="form_enable_{{ account.id }}"
-                                                        {% if account.cronJob.enabled == true %}checked{% endif %}
-                                                        class="">
+                                            <p class="control">
+                                                <input class="button is-primary  is-outlined is-centered"
+                                                       type="submit"
+                                                       id="_submit"
+                                                       name="_submit"
+                                                       value="Zapisz"/>
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="field">
-                                        <p class="control">
-                                            <input class="button is-primary  is-outlined is-centered"
-                                                   type="submit"
-                                                   id="_submit"
-                                                   name="_submit"
-                                                   value="Zapisz"/>
-                                        </p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+
+                        {% elseif account.type == 'pro' %}
+
+                            <div class="card-content">
+                                <h1 class="card-header-title">Konto: "pro"</h1>
+                            </div>
+
+                        {% endif %}
+
                     </div>
 
                     <div class="card">
@@ -246,7 +274,7 @@
                                     <div class="field">
                                         <p class="control">
                                             <input class="button is-primary is-outlined is-centered" type="submit"
-                                                   value="Zapisz dane">
+                                                   value="Zapisz dane" disabled>
                                         </p>
                                     </div>
 
@@ -307,7 +335,7 @@
                                     <div class="field">
                                         <p class="control">
                                             <input class="button is-primary is-outlined is-centered" type="submit"
-                                                   value="Zapisz ustawienia">
+                                                   value="Zapisz ustawienia" disabled>
                                         </p>
                                     </div>
 
@@ -321,13 +349,8 @@
                                     </p>
                                     <hr>
                                     <h3>Nie masz pomysłu? Nie szkodzi, dodaj komentarz z poniższych:</h3>
-                                    <a class="tag is-light is-medium comment_to_add">😊👍</a>
-                                    <a class="tag is-light is-medium comment_to_add">😊😊😊</a>
-                                    <a class="tag is-light is-medium comment_to_add">Wow! 😊</a>
-                                    <a class="tag is-light is-medium comment_to_add">Super! 👌</a>
-                                    <a class="tag is-light is-medium comment_to_add">👆👌👌</a>
-                                    <a class="tag is-light is-medium comment_to_add">😍❤️</a>
-                                    <a class="tag is-light is-medium comment_to_add">❤️❤️❤️!</a>
+                                    <a class="tag is-light is-medium comment_to_add">Wow!😊</a>
+                                    <a class="tag is-light is-medium comment_to_add">Super!👌</a>
                                 </div>
                             </div>
                         </div>
@@ -439,8 +462,7 @@
                                     <div class="field">
                                         <p class="control">
                                             <input class="button is-primary is-outlined is-centered"
-                                                   type="submit"
-                                                   value="Zapisz ustawienia">
+                                                   type="submit" disabled value="Zapisz ustawienia">
                                         </p>
                                     </div>
 

@@ -145,6 +145,13 @@ class Account implements TaggableInterface
     private $comments;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=128, unique=false, nullable=true)
+     */
+    private $type;
+
+    /**
      * Account constructor.
      */
     public function __construct()
@@ -521,5 +528,21 @@ class Account implements TaggableInterface
     public function setDiscountCode($discountCode)
     {
         $this->discountCode = $discountCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
     }
 }

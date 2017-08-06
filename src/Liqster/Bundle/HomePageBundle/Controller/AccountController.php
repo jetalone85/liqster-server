@@ -97,6 +97,10 @@ class AccountController extends Controller
             }
         }
 
+        if (count($accounts) === 1) {
+            return $this->redirectToRoute('account_show', ['id' => $accounts[0]->getId()]);
+        }
+
         return $this->render(
             'LiqsterHomePageBundle:Account:index.html.twig', [
                 'accounts' => $accounts,
@@ -121,6 +125,7 @@ class AccountController extends Controller
         $account = new Account();
         $schedule = new Schedule();
         $cronJob = new CronJob();
+        $purchase = new Purchase();
 
         $error = null;
 
@@ -155,7 +160,9 @@ class AccountController extends Controller
                 $account->setCreated(new \DateTime('now'));
                 $account->setModif(new \DateTime('now'));
                 $account->setCommentsRun(true);
+                $account->setComments('@liqster.pl :)');
                 $account->setLikesRun(true);
+                $account->setType('free');
                 $em->persist($account);
 
                 $schedule->setAccount($account);
@@ -167,16 +174,33 @@ class AccountController extends Controller
                 $cronJob->setAccount($account);
                 $cronJob->setCommand('instaxer:run ' . $account->getId());
                 $cronJob->setDescription(' ');
-                $cronJob->setSchedule('* * * * *');
+                $cronJob->setEnabled(true);
+                $cronJob->setSchedule('* 7-16 * * *');
                 $cronJob->setEnabled(false);
                 $em->persist($cronJob);
 
+                $purchase->setAccount($account);
+                $purchase->setCreate(new \DateTime('now'));
+                $purchase->setModification(new \DateTime('now'));
+                $purchase->setProduct(null);
+                $purchase->setPaid((new \DateTime('now'))->modify('+3 day'));
+                $purchase->setStatus('free');
+                $em->persist($purchase);
+
+                dump($account);
+                dump($schedule);
+                dump($cronJob);
+                dump($purchase);
+
+
+//                die();
                 $em->flush();
+
             } catch (\Exception $exception) {
-                return $this->redirectToRoute('account_new', ['error' => 'paymentError', 'content' => $exception->getMessage()]);
+                return $this->redirectToRoute('account_new', ['error' => 'createAccountError', 'content' => $exception->getMessage()]);
             }
 
-            return $this->redirectToRoute('account_new_payment', ['id' => $account->getId()]);
+            return $this->redirectToRoute('account_show', ['id' => $account->getId()]);
         }
 
         return $this->render(
@@ -529,7 +553,9 @@ class AccountController extends Controller
         $em->merge($account);
         $em->flush();
 
-        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findBy(['account' => $account]);
+        $purchases = $em->getRepository('LiqsterHomePageBundle:Purchase')->findBy(['account' => $account]);
+
+        $purchase = count($purchases) === 1 ? $purchases[0] : null;
 
         $editForm = $this->createForm(AccountEditType::class, $account);
         $editForm->handleRequest($request);
@@ -610,7 +636,8 @@ class AccountController extends Controller
         return $this->render(
             'LiqsterHomePageBundle:Account:show.html.twig', [
                 'account' => $account,
-                'purchases' => $purchase,
+                'purchases' => $purchases,
+                'purchase' => $purchase,
                 'date' => new \DateTime('now'),
                 'instagram' => $instagram,
                 'discountCode' => $discountCode,

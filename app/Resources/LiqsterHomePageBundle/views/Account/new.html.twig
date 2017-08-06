@@ -43,6 +43,12 @@
     <section class="hero is-fullheight is-light is-bold">
         <div class="hero-body">
             <div class="container">
+
+                <div class="columns">
+                    <div class="column">
+                    </div>
+                </div>
+
                 <div class="columns">
 
                     {% if error %}
@@ -57,9 +63,11 @@
                                 Jeśli dane logowania, które zostały wprowadzone są poprawne, sprawdź prośbę o
                                 autozyzację w swojej aplikacji Instagram na smartfonie lub komputerze.
                             </p>
-                            <p>
+
+                            <h4>Przykładowa informacja o potrzebnym autoryzowaniu może wyglądać tak:</h4>
+                            <div class="image">
                                 <img src="{{ asset('asset/img/instagram_login_warn.png') }}">
-                            </p>
+                            </div>
                         </div>
                     </div>
 
