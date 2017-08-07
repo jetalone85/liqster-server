@@ -8,8 +8,9 @@
   "autoload": {
     "psr-4": {
       "AppBundle\\": "src/AppBundle/",
-      "Liqster\\": "src/Liqster/",
-      "Instaxer\\": "src/Instaxer/"
+      "Cron\\CronBundle\\": "src/CronBundle/",
+      "Instaxer\\": "src/Instaxer/",
+      "Liqster\\": "src/Liqster/"
     },
     "classmap": [
       "app/AppKernel.php",
@@ -54,8 +55,8 @@
     "php-ai/php-ml": "^0.4.1",
     "jms/serializer-bundle": "^2.0",
     "nelmio/cors-bundle": "^1.5",
-    "twig/twig": "^1.0||^2.0",
-    "cron/cron-bundle": "dev-master"
+    "cron/cron": "^1.0.1",
+    "twig/twig": "^1.0||^2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^6.2.2",

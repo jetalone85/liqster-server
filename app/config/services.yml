@@ -21,8 +21,9 @@ services:
 
     _instanceof:
         cron.resolver:
+            calls: ["@cron.resolver", ["cron.manager", "cron.command_builder", "%kernel.root_dir%"]]
             class: "%cron.resolver.class%"
-            arguments: ["@cron.manager", "@cron.command_builder", "%kernel.root_dir%"]
+            arguments:
         cron.manager:
             class: "%cron.manager.class%"
             arguments: ["@doctrine"]

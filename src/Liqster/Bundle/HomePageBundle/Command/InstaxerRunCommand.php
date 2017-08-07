@@ -53,61 +53,59 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $em->flush();
 
         if ($account->isLikesRun()) {
-            for ($i = 1; $i <= 4; $i++) {
-                $tags = explode(',', $account->getTagsText());
+            $tags = explode(',', $account->getTagsText());
 
-                $tag = $tags[random_int(0, count($tags) - 1)];
-                $tag = str_replace(' ', '', $tag);
-                $tag = str_replace('#', '', $tag);
+            $tag = $tags[random_int(0, count($tags) - 1)];
+            $tag = str_replace(' ', '', $tag);
+            $tag = str_replace('#', '', $tag);
 
-                $mq = new MQ();
-                $instaxer_json = $mq->query(
+            $mq = new MQ();
+            $instaxer_json = $mq->query(
+                'POST',
+                'instaxers/tags.json?username=' .
+                $account->getName() .
+                '&password=' .
+                $account->getPassword() .
+                '&tag=' .
+                $tag
+            );
+
+            $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
+
+            $items = array_slice($tag_feed['ranked_items'], 0, 2);
+
+            foreach ($items as $item) {
+                $response = $mq->query(
                     'POST',
-                    'instaxers/tags.json?username=' .
+                    'instaxers/likes.json?username=' .
                     $account->getName() .
                     '&password=' .
                     $account->getPassword() .
-                    '&tag=' .
-                    $tag
+                    '&id=' .
+                    $item['id']
                 );
 
-                $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-                $items = array_slice($tag_feed['ranked_items'], 0, 3);
+                Sleep::random(5);
+            }
 
-                foreach ($items as $item) {
-                    $response = $mq->query(
-                        'POST',
-                        'instaxers/likes.json?username=' .
-                        $account->getName() .
-                        '&password=' .
-                        $account->getPassword() .
-                        '&id=' .
-                        $item['id']
-                    );
+            $items = array_slice($tag_feed['items'], 0, random_int(1, 2));
 
-                    $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+            foreach ($items as $item) {
+                $response = $mq->query(
+                    'POST',
+                    'instaxers/likes.json?username=' .
+                    $account->getName() .
+                    '&password=' .
+                    $account->getPassword() .
+                    '&id=' .
+                    $item['id']
+                );
 
-                    Sleep::random(5);
-                }
+                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-                $items = array_slice($tag_feed['items'], 0, random_int(3, 9));
-
-                foreach ($items as $item) {
-                    $response = $mq->query(
-                        'POST',
-                        'instaxers/likes.json?username=' .
-                        $account->getName() .
-                        '&password=' .
-                        $account->getPassword() .
-                        '&id=' .
-                        $item['id']
-                    );
-
-                    $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
-
-                    Sleep::random(10);
-                }
+                Sleep::random(10);
             }
         }
 
@@ -132,7 +130,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
 
-                $items = array_slice($tag_feed['items'], 0, random_int(1, 2));
+                $items = array_slice($tag_feed['items'], 0, 1);
 
                 foreach ($items as $item) {
                     $comment = $comments[random_int(0, count($tags) - 1)];
