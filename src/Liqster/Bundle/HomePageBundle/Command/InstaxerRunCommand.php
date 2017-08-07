@@ -92,7 +92,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 //            }
 
             $output->writeln('Normal:');
-            $items = array_slice($tag_feed['items'], 0, random_int(1, 3));
+            $items = array_slice($tag_feed['items'], 0, random_int(1, 5));
 
             foreach ($items as $item) {
                 $response = $mq->query(
