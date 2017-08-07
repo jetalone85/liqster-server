@@ -32,7 +32,7 @@ class Instaxer
         $this->instagram->setVerifyPeer(false);
 
         $this->session = new Session($sessionFilePath);
-        $this->session->restoredFromSession = FALSE;
+        $this->session->restoredFromSession = false;
     }
 
     /**
@@ -47,11 +47,11 @@ class Instaxer
             try {
                 $savedSession = $this->session->getSevedSession();
 
-                if ($savedSession !== FALSE) {
+                if ($savedSession !== false) {
                     $this->instagram->initFromSavedSession($savedSession);
                     $currentUser = $this->instagram->getCurrentUserAccount();
                     if ($currentUser->getUser()->getUsername() === $user) {
-                        $this->session->restoredFromSession = TRUE;
+                        $this->session->restoredFromSession = true;
                     }
                 }
             } catch (\Exception $e) {

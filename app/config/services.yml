@@ -33,17 +33,17 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    cron.resolver:
-        class: "%cron.resolver.class%"
-        arguments: ["@cron.manager", "@cron.command_builder", "%kernel.root_dir%"]
-    cron.manager:
-        class: "%cron.manager.class%"
-        arguments: ["@doctrine"]
-    cron.executor:
-        class: "%cron.executor.class%"
-    cron.command_builder:
-        class: "%cron.command_builder.class%"
-        arguments: ["%kernel.environment%"]
+#    cron.resolver:
+#        class: "%cron.resolver.class%"
+#        arguments: ["@cron.manager", "@cron.command_builder", "%kernel.root_dir%"]
+#    cron.manager:
+#        class: "%cron.manager.class%"
+#        arguments: ["@doctrine"]
+#    cron.executor:
+#        class: "%cron.executor.class%"
+#    cron.command_builder:
+#        class: "%cron.command_builder.class%"
+#        arguments: ["%kernel.environment%"]
 
     get_set_method_normalizer:
         class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
