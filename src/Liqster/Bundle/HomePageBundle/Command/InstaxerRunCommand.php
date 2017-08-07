@@ -63,7 +63,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 $mq = new MQ();
                 $instaxer_json = $mq->query(
                     'POST',
-                    'instaxers.json/tags?username=' .
+                    'instaxers/tags.json?username=' .
                     $account->getName() .
                     '&password=' .
                     $account->getPassword() .
@@ -78,7 +78,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 foreach ($items as $item) {
                     $response = $mq->query(
                         'POST',
-                        'instaxers.json/likes?username=' .
+                        'instaxers/likes.json?username=' .
                         $account->getName() .
                         '&password=' .
                         $account->getPassword() .
@@ -96,7 +96,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 foreach ($items as $item) {
                     $response = $mq->query(
                         'POST',
-                        'instaxers.json/likes?username=' .
+                        'instaxers/likes.json?username=' .
                         $account->getName() .
                         '&password=' .
                         $account->getPassword() .
@@ -122,7 +122,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $instaxer_json = $mq->query(
                     'POST',
-                    'instaxers.json/tags?username=' .
+                    'instaxers/tags.json?username=' .
                     $account->getName() .
                     '&password=' .
                     $account->getPassword() .
@@ -139,7 +139,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                     $response = $mq->query(
                         'POST',
-                        'instaxers.json/comments?username=' .
+                        'instaxers/comments.json?username=' .
                         $account->getName() .
                         '&password=' .
                         $account->getPassword() .

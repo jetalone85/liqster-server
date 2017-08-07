@@ -791,7 +791,7 @@ class AccountController extends Controller
         $mq = new MQ();
         $instaxer_json = $mq->query(
             'POST',
-            '^instaxers.json/infos?username=' .
+            '^instaxers/infos.json?username=' .
             $account->getName() .
             '&password=' .
             $account->getPassword())->getBody()->getContents();

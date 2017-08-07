@@ -67,7 +67,7 @@ class ApiController extends Controller
         $mq = new MQ();
         $instaxer_json = $mq->query(
             'POST',
-            'instaxers.json/users?username=' .
+            'instaxers/users.json?username=' .
             $account->getName() .
             '&password=' .
             $account->getPassword() .
@@ -80,7 +80,7 @@ class ApiController extends Controller
 
         $instaxer_json = $mq->query(
             'POST',
-            'instaxers.json/feeds?username=' .
+            'instaxers/feeds.json?username=' .
             $account->getName() .
             '&password=' .
             $account->getPassword() .
