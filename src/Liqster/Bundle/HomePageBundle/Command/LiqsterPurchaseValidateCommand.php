@@ -53,7 +53,6 @@ class LiqsterPurchaseValidateCommand extends ContainerAwareCommand
 
         if ($purchases) {
             foreach ($purchases as $purchase) {
-
                 $purchase->setStatus('old');
                 $purchase->setModification($now);
                 $em->merge($purchase);

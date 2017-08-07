@@ -53,9 +53,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $em->flush();
 
         if ($account->isLikesRun()) {
-
             for ($i = 1; $i <= 4; $i++) {
-
                 $tags = explode(',', $account->getTagsText());
 
                 $tag = $tags[random_int(0, count($tags) - 1)];
@@ -65,7 +63,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 $mq = new MQ();
                 $instaxer_json = $mq->query(
                     'POST',
-                    'instaxers/tags?username=' .
+                    'instaxers.json/tags?username=' .
                     $account->getName() .
                     '&password=' .
                     $account->getPassword() .
@@ -80,12 +78,13 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 foreach ($items as $item) {
                     $response = $mq->query(
                         'POST',
-                        'instaxers/likes?username=' .
+                        'instaxers.json/likes?username=' .
                         $account->getName() .
                         '&password=' .
                         $account->getPassword() .
                         '&id=' .
-                        $item['id']);
+                        $item['id']
+                    );
 
                     $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
@@ -97,12 +96,13 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 foreach ($items as $item) {
                     $response = $mq->query(
                         'POST',
-                        'instaxers/likes?username=' .
+                        'instaxers.json/likes?username=' .
                         $account->getName() .
                         '&password=' .
                         $account->getPassword() .
                         '&id=' .
-                        $item['id']);
+                        $item['id']
+                    );
 
                     $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
@@ -116,14 +116,13 @@ class InstaxerRunCommand extends ContainerAwareCommand
             $comments = explode(',', $account->getComments());
 
             for ($i = 1; $i <= 3; $i++) {
-
                 $tag = $tags[random_int(0, count($tags) - 1)];
 
                 $mq = new MQ();
 
                 $instaxer_json = $mq->query(
                     'POST',
-                    'instaxers/tags?username=' .
+                    'instaxers.json/tags?username=' .
                     $account->getName() .
                     '&password=' .
                     $account->getPassword() .
@@ -140,7 +139,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                     $response = $mq->query(
                         'POST',
-                        'instaxers/comments?username=' .
+                        'instaxers.json/comments?username=' .
                         $account->getName() .
                         '&password=' .
                         $account->getPassword() .
@@ -156,6 +155,5 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 }
             }
         }
-
     }
 }

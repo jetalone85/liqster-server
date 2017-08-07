@@ -12,12 +12,13 @@ class Like extends Send
     {
         $response = $MQ->query(
             'POST',
-            'instaxers/likes?username=' .
+            'instaxers.json/likes?username=' .
             $account->getName() .
             '&password=' .
             $account->getPassword() .
             '&id=' .
-            $item['id']);
+            $item['id']
+        );
 
         return $response;
     }

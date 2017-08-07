@@ -141,7 +141,7 @@ class AccountController extends Controller
                 $mq = new MQ();
                 $response = $mq->query(
                     'POST',
-                    'instaxers?username=' .
+                    'instaxers.json?username=' .
                     $account->getName() .
                     '&password=' .
                     $account->getPassword())->getBody()->getContents();
@@ -791,7 +791,7 @@ class AccountController extends Controller
         $mq = new MQ();
         $instaxer_json = $mq->query(
             'POST',
-            'instaxers/infos?username=' .
+            '^instaxers.json/infos?username=' .
             $account->getName() .
             '&password=' .
             $account->getPassword())->getBody()->getContents();
@@ -845,7 +845,8 @@ class AccountController extends Controller
         $cron = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['account' => $account->getId()]);
 
         return $this->render(
-            'LiqsterHomePageBundle:Account:activate.html.twig', [
+            'LiqsterHomePageBundle:Account:activate.html.twig',
+            [
                 'account' => $account,
                 'cron' => $cron,
             ]
@@ -877,7 +878,10 @@ class AccountController extends Controller
             $em->flush();
 
         } catch (Exception $exception) {
-            return $this->redirectToRoute('profile_deactivatedAccounts', ['error' => 'restore_account: we could not restore your account.']);
+            return $this->redirectToRoute(
+                'profile_deactivatedAccounts',
+                ['error' => 'restore_account: we could not restore your account.']
+            );
         }
 
         return $this->redirectToRoute('account_show', ['id' => $account->getId()]);

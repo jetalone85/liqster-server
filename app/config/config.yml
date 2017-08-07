@@ -3,9 +3,12 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
+parameters:
+    locale: pl
+
 framework:
     esi:             ~
-    translator:       ~
+    translator: { fallbacks: ['%locale%'] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -85,6 +88,33 @@ swiftmailer:
         threshold:  99
         sleep:      0
     delivery_addresses:   []
+
+nelmio_cors:
+    defaults:
+        allow_credentials: false
+        allow_origin: ['*']
+        allow_headers: ['*']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        max_age: 3600
+        hosts: []
+        origin_regex: false
+
+# FOSRest Configuration
+fos_rest:
+    routing_loader:
+        default_format: json
+    body_listener: true
+    format_listener:
+        rules:
+#            - { path: '^/instaxer', priorities: ['json'], fallback_format: json, prefer_extension: false }
+#            - { path: '^/', priorities: ['html'], fallback_format: html, prefer_extension: false }
+            - { path: '^/', priorities: ['json','html'], fallback_format: json, prefer_extension: true }
+    param_fetcher_listener: true
+    view:
+        view_response_listener: force
+        formats:
+            html: true
+            json: true
 
 fos_user:
     db_driver: orm

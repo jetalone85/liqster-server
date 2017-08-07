@@ -37,7 +37,8 @@ class MQ
     public function __construct()
     {
         $this->client = new Client();
-        $this->url = 'https://afternoon-meadow-17645.herokuapp.com';
+        $this->url = 'http://localhost:8000';
+//        $this->url = 'http://liqster.pl';
     }
 
     /**
