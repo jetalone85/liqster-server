@@ -6,9 +6,17 @@ namespace Liqster\Domain\Mess;
  * Class MessMinutes
  * @package Liqster\Domain\Mess
  */
+/**
+ * Class MessMinutes
+ * @package Liqster\Domain\Mess
+ */
 class MessMinutes extends Mess
 {
-    public static function messEntry($entry)
+    /**
+     * @param $entry
+     * @return string
+     */
+    public static function messEntry($entry): string
     {
         $minutes = self::getMinutes($entry);
 
@@ -20,12 +28,20 @@ class MessMinutes extends Mess
         return self::composer($entry, $newMinutes);
     }
 
+    /**
+     * @param $entry
+     * @return mixed
+     */
     public static function getMinutes($entry)
     {
         return explode(' ', $entry)[0];
     }
 
-    public static function addMessValue($value)
+    /**
+     * @param $value
+     * @return int
+     */
+    public static function addMessValue($value): int
     {
         $messValue = random_int(1, 5);
         $newValue = (int)$value + $messValue;
@@ -36,7 +52,12 @@ class MessMinutes extends Mess
         return $newValue;
     }
 
-    public static function composer($entry, $minutes)
+    /**
+     * @param $entry
+     * @param $minutes
+     * @return string
+     */
+    public static function composer($entry, $minutes): string
     {
         $array = explode(' ', $entry);
         $array[0] = $minutes;

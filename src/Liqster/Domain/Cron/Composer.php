@@ -23,7 +23,7 @@ class Composer
      * @param Schedule $schedule
      * @return string
      */
-    public static function switchDaily(Schedule $schedule)
+    public static function switchDaily(Schedule $schedule): string
     {
         $array = [];
         $text = '';
