@@ -16,15 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 class InstaxerController extends FOSRestController
 {
     /**
-     * @return View|Instaxer
-     * @throws \Exception
-     */
-    public function getInstaxerAction()
-    {
-        return new View('ok', Response::HTTP_OK);
-    }
-
-    /**
      * @param Request $request
      * @return View|Instaxer
      * @throws \Exception
@@ -57,7 +48,6 @@ class InstaxerController extends FOSRestController
     public function postInstaxerTagAction(Request $request)
     {
         $instaxer = Factory::create($request->get('username'), $request->get('password'));
-
         $tagFeed = $instaxer->instagram->getTagFeed($request->get('tag'));
 
         return new View($tagFeed, Response::HTTP_OK);
@@ -71,7 +61,6 @@ class InstaxerController extends FOSRestController
     public function postInstaxerFeedAction(Request $request)
     {
         $instaxer = Factory::create($request->get('username'), $request->get('password'));
-
         $userFeed = $instaxer->instagram->getUserFeed($request->get('user_id'));
 
         return new View($userFeed, Response::HTTP_OK);
@@ -85,7 +74,6 @@ class InstaxerController extends FOSRestController
     public function postInstaxerUserAction(Request $request)
     {
         $instaxer = Factory::create($request->get('username'), $request->get('password'));
-
         $userInfo = $instaxer->instagram->getUserInfo($instaxer->instagram->getUserByUsername($request->get('user_name')));
 
         return new View($userInfo, Response::HTTP_OK);
@@ -99,7 +87,6 @@ class InstaxerController extends FOSRestController
     public function postInstaxerLikeAction(Request $request)
     {
         $instaxer = Factory::create($request->get('username'), $request->get('password'));
-
         $response = $instaxer->instagram->likeMedia($request->get('id'));
 
         return new View($response, Response::HTTP_OK);
@@ -113,7 +100,6 @@ class InstaxerController extends FOSRestController
     public function postInstaxerCommentAction(Request $request)
     {
         $instaxer = Factory::create($request->get('username'), $request->get('password'));
-
         $response = $instaxer->instagram->commentOnMedia($request->get('id'), $request->get('comment'));
 
         return new View($response, Response::HTTP_OK);

@@ -107,6 +107,11 @@ class InstaxerRunCommand extends ContainerAwareCommand
                     $item['id']
                 );
 
+                $output->writeln('Odpowiedź:');
+                $output->write($response);
+
+                $output->writeln('');
+                $output->writeln('Podsumowanie:');
                 $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
                 Sleep::random(5);
