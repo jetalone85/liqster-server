@@ -806,7 +806,7 @@ class AccountController extends Controller
         $em->flush();
 
         $instagram_user = json_decode($instaxer_json, true);
-        $image = $instagram_user['user']['profile_pic_url'];
+        $image = $instagram_user['user']['hdProfilePicUrlInfo']['url'];
 
         $em = $this->getDoctrine()->getManager();
 
