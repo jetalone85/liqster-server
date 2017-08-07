@@ -109,49 +109,49 @@ class InstaxerRunCommand extends ContainerAwareCommand
             }
         }
 
-        if ($account->isCommentsRun()) {
-            $tags = explode(', ', $account->getTagsText());
-            $comments = explode(',', $account->getComments());
-
-            for ($i = 1; $i <= 3; $i++) {
-                $tag = $tags[random_int(0, count($tags) - 1)];
-
-                $mq = new MQ();
-
-                $instaxer_json = $mq->query(
-                    'POST',
-                    'instaxers/tags.json?username=' .
-                    $account->getName() .
-                    '&password=' .
-                    $account->getPassword() .
-                    '&tag=' .
-                    $tag
-                );
-
-                $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
-
-                $items = array_slice($tag_feed['items'], 0, 1);
-
-                foreach ($items as $item) {
-                    $comment = $comments[random_int(0, count($tags) - 1)];
-
-                    $response = $mq->query(
-                        'POST',
-                        'instaxers/comments.json?username=' .
-                        $account->getName() .
-                        '&password=' .
-                        $account->getPassword() .
-                        '&id=' .
-                        $item['id'] .
-                        '&comment=' .
-                        $comment
-                    );
-
-                    $output->writeln('comment: ' . $tag . '; id: ' . $item['id'] . '; comment: ' . $comment);
-
-                    Sleep::random(10);
-                }
-            }
-        }
+//        if ($account->isCommentsRun()) {
+//            $tags = explode(', ', $account->getTagsText());
+//            $comments = explode(',', $account->getComments());
+//
+//            for ($i = 1; $i <= 3; $i++) {
+//                $tag = $tags[random_int(0, count($tags) - 1)];
+//
+//                $mq = new MQ();
+//
+//                $instaxer_json = $mq->query(
+//                    'POST',
+//                    'instaxers/tags.json?username=' .
+//                    $account->getName() .
+//                    '&password=' .
+//                    $account->getPassword() .
+//                    '&tag=' .
+//                    $tag
+//                );
+//
+//                $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
+//
+//                $items = array_slice($tag_feed['items'], 0, 1);
+//
+//                foreach ($items as $item) {
+//                    $comment = $comments[random_int(0, count($tags) - 1)];
+//
+//                    $response = $mq->query(
+//                        'POST',
+//                        'instaxers/comments.json?username=' .
+//                        $account->getName() .
+//                        '&password=' .
+//                        $account->getPassword() .
+//                        '&id=' .
+//                        $item['id'] .
+//                        '&comment=' .
+//                        $comment
+//                    );
+//
+//                    $output->writeln('comment: ' . $tag . '; id: ' . $item['id'] . '; comment: ' . $comment);
+//
+//                    Sleep::random(10);
+//                }
+//            }
+//        }
     }
 }
