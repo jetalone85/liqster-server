@@ -109,7 +109,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $output->writeln('Odpowiedź:');
 
-                dump($response);
+                dump($response->getBody()->getContents());
 
                 $output->writeln('');
                 $output->writeln('Podsumowanie:');
