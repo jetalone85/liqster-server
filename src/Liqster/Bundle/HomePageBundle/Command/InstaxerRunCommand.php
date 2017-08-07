@@ -70,6 +70,8 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 $tag
             );
 
+            Sleep::random(5);
+
             $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
 
 //            $output->writeln('Ranked:');
@@ -107,7 +109,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                 $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
-                Sleep::random(15);
+                Sleep::random(5);
             }
         }
 
