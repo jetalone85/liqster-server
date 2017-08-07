@@ -37,3 +37,4 @@ web/instaxer/
 /web/js
 /tests/coverage/
 /list.txt
+/composer.lock
