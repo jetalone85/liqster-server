@@ -55,6 +55,8 @@ class InstaxerRunCommand extends ContainerAwareCommand
         if ($account->isLikesRun()) {
             $tags = explode(',', $account->getTagsText());
 
+            dump($tags);
+
             $tag = $tags[random_int(0, count($tags) - 1)];
             $tag = str_replace(' ', '', $tag);
             $tag = str_replace('#', '', $tag);
