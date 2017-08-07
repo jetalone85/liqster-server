@@ -18,6 +18,20 @@ services:
         public: false
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
+
+    _instanceof:
+        cron.resolver:
+            class: "%cron.resolver.class%"
+            arguments: ["@cron.manager", "@cron.command_builder", "%kernel.root_dir%"]
+        cron.manager:
+            class: "%cron.manager.class%"
+            arguments: ["@doctrine"]
+        cron.executor:
+            class: "%cron.executor.class%"
+        cron.command_builder:
+            class: "%cron.command_builder.class%"
+            arguments: ["%kernel.environment%"]
+
     AppBundle\:
         resource: '../../src/AppBundle/*'
         # you can exclude directories or files
@@ -33,17 +47,6 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-#    cron.resolver:
-#        class: "%cron.resolver.class%"
-#        arguments: ["@cron.manager", "@cron.command_builder", "%kernel.root_dir%"]
-#    cron.manager:
-#        class: "%cron.manager.class%"
-#        arguments: ["@doctrine"]
-#    cron.executor:
-#        class: "%cron.executor.class%"
-#    cron.command_builder:
-#        class: "%cron.command_builder.class%"
-#        arguments: ["%kernel.environment%"]
 
     get_set_method_normalizer:
         class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
