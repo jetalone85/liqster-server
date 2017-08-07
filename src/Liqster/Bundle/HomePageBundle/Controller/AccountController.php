@@ -173,10 +173,9 @@ class AccountController extends Controller
                 $cronJob->setName($account->getId());
                 $cronJob->setAccount($account);
                 $cronJob->setCommand('instaxer:run ' . $account->getId());
-                $cronJob->setDescription(' ');
+                $cronJob->setDescription('<opis>');
                 $cronJob->setEnabled(true);
                 $cronJob->setSchedule('* 7-16 * * *');
-                $cronJob->setEnabled(false);
                 $em->persist($cronJob);
 
                 $purchase->setAccount($account);
@@ -187,13 +186,6 @@ class AccountController extends Controller
                 $purchase->setStatus('free');
                 $em->persist($purchase);
 
-                dump($account);
-                dump($schedule);
-                dump($cronJob);
-                dump($purchase);
-
-
-//                die();
                 $em->flush();
 
             } catch (\Exception $exception) {
