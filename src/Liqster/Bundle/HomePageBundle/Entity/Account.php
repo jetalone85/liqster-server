@@ -54,7 +54,7 @@ class Account implements TaggableInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="instagram_image", type="string", length=255, unique=false, nullable=true)
+     * @ORM\Column(name="instagram_image", type="string", length=512, unique=false, nullable=true)
      */
     private $image;
 
