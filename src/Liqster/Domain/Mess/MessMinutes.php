@@ -43,7 +43,7 @@ class MessMinutes extends Mess
      */
     public static function addMessValue($value): int
     {
-        $messValue = random_int(1, 5);
+        $messValue = random_int(2, 5);
         $newValue = (int)$value + $messValue;
 
         if ($newValue > 59) {
