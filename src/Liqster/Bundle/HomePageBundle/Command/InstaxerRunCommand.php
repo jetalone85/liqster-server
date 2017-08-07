@@ -55,7 +55,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         if ($account->isLikesRun()) {
             $tags = explode(',', $account->getTagsText());
 
-            dump($tags);
+//            dump($tags);
 
             $tag = $tags[random_int(0, count($tags) - 1)];
             $tag = str_replace(' ', '', $tag);
@@ -95,7 +95,6 @@ class InstaxerRunCommand extends ContainerAwareCommand
 //                Sleep::random(15);
 //            }
 
-            $output->writeln('Normal:');
             $items = array_slice($tag_feed['items'], 0, random_int(1, 3));
 
             foreach ($items as $item) {
@@ -109,12 +108,12 @@ class InstaxerRunCommand extends ContainerAwareCommand
                     $item['id']
                 );
 
-                $output->writeln('Odpowiedź:');
-
-                dump($response->getBody()->getContents());
-
-                $output->writeln('');
-                $output->writeln('Podsumowanie:');
+//                $output->writeln('Odpowiedź:');
+//
+//                dump($response->getBody()->getContents());
+//
+//                $output->writeln('');
+//                $output->writeln('Podsumowanie:');
                 $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
 
                 Sleep::random(5);
