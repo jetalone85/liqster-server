@@ -72,24 +72,24 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
             $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
 
-            $output->writeln('Ranked:');
-            $items = array_slice($tag_feed['ranked_items'], 0, random_int(1, 3));
-
-            foreach ($items as $item) {
-                $response = $mq->query(
-                    'POST',
-                    'instaxers/likes.json?username=' .
-                    $account->getName() .
-                    '&password=' .
-                    $account->getPassword() .
-                    '&id=' .
-                    $item['id']
-                );
-
-                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
-
-                Sleep::random(15);
-            }
+//            $output->writeln('Ranked:');
+//            $items = array_slice($tag_feed['ranked_items'], 0, random_int(1, 3));
+//
+//            foreach ($items as $item) {
+//                $response = $mq->query(
+//                    'POST',
+//                    'instaxers/likes.json?username=' .
+//                    $account->getName() .
+//                    '&password=' .
+//                    $account->getPassword() .
+//                    '&id=' .
+//                    $item['id']
+//                );
+//
+//                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+//
+//                Sleep::random(15);
+//            }
 
             $output->writeln('Normal:');
             $items = array_slice($tag_feed['items'], 0, random_int(1, 3));
