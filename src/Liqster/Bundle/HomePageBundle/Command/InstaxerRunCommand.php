@@ -46,6 +46,9 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $repository = $em->getRepository('LiqsterHomePageBundle:Account');
         $account = $repository->find($input->getArgument('account'));
 
+
+        $output->writeln('<info>account: ' . $account->getUser() . '</info>');
+
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['name' => $account->getId()]);
         $cronJob->setSchedule(MessMinutes::messEntry($cronJob->getSchedule()));
 
@@ -147,7 +150,11 @@ class InstaxerRunCommand extends ContainerAwareCommand
                         $comment
                     );
 
-                    $output->writeln('comment: ' . $tag . '; id: ' . $item['id'] . '; comment: ' . $comment);
+                    $output->writeln(
+                        'comment: ' . $tag .
+                        '; id: ' . $item['id'] .
+                        '; image: ' . $item['imageVersions2']['candidates'][0]['url'] .
+                        '; comment: ' . $comment);
 
                     Sleep::random(15);
                 }
