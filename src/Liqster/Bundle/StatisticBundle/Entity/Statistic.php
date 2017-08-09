@@ -34,7 +34,7 @@ class Statistic
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\StatisticBundle\Entity\Statistic", inversedBy="statistic")
+     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Account", inversedBy="statistic")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", nullable=false)
      */
     private $account;
