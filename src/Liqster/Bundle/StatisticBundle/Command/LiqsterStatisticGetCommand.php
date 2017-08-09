@@ -52,7 +52,7 @@ class LiqsterStatisticGetCommand extends ContainerAwareCommand
         );
 
         if ($instaxer_json) {
-            $output->writeln('Get statistics to account: ' . $input->getArgument('account'));
+            $output->writeln('Get statistics to account: ' . $account->getName());
         }
 
         $statistic = new Statistic();
