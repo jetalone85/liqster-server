@@ -25,14 +25,15 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Liqster\Bundle\HomePageBundle\LiqsterHomePageBundle(),
+            new Liqster\Bundle\UserBundle\LiqsterUserBundle(),
+            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Cron\CronBundle\CronCronBundle(),
             new Beelab\TagBundle\BeelabTagBundle(),
             new Liqster\Bundle\PaymentBundle\LiqsterPaymentBundle(),
             new Liqster\Bundle\AdminBundle\AdminBundle(),
             new Liqster\Bundle\MQBundle\LiqsterMQBundle(),
-            new Liqster\Bundle\UserBundle\LiqsterUserBundle(),
-            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
-            new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new Liqster\Bundle\StatisticBundle\LiqsterStatisticBundle(),
             new AppBundle\AppBundle(),
         ];
 

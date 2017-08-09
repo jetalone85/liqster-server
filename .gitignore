@@ -38,3 +38,5 @@ web/instaxer/
 /tests/coverage/
 /list.txt
 /composer.lock
+/app/data.db3-journal
+W

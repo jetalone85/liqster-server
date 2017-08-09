@@ -132,6 +132,10 @@ class Account implements TaggableInterface
     private $purchase;
 
     /**
+     * @ORM\OneToMany(targetEntity="Liqster\Bundle\StatisticBundle\Entity\Statistic", mappedBy="account")
+     */
+    private $statistic;
+    /**
      * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Product", inversedBy="account")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
      */
@@ -528,6 +532,23 @@ class Account implements TaggableInterface
     public function setDiscountCode($discountCode)
     {
         $this->discountCode = $discountCode;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getStatistic()
+    {
+        return $this->statistic;
+    }
+
+    /**
+     * @param mixed $statistic
+     */
+    public function setStatistic($statistic)
+    {
+        $this->statistic = $statistic;
     }
 
     /**
