@@ -59,6 +59,8 @@ class InstaxerRunCommand extends ContainerAwareCommand
             $tag = str_replace(' ', '', $tag);
             $tag = str_replace('#', '', $tag);
 
+            $output->writeln('<info>tag: ' . $tag . '</info>');
+
             $mq = new MQ();
             $instaxer_json = $mq->query(
                 'POST',
@@ -70,12 +72,16 @@ class InstaxerRunCommand extends ContainerAwareCommand
                 $tag
             );
 
-            Sleep::random(10);
+            Sleep::random(5);
+
+            $elements = random_int(1, 4);
+            $output->writeln('<info>elements: ' . $elements . '</info>');
 
             $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
-            $items = array_slice($tag_feed['items'], 0, random_int(1, 3));
+            $items = array_slice($tag_feed['items'], 0, $elements);
 
             foreach ($items as $item) {
+
                 $response = $mq->query(
                     'POST',
                     'instaxers/likes.json?username=' .
@@ -86,18 +92,28 @@ class InstaxerRunCommand extends ContainerAwareCommand
                     $item['id']
                 );
 
-                $output->writeln('tag: ' . $tag . '; id: ' . $item['id']);
+                $output->writeln(
+                    'tag: ' . $tag .
+                    '; id: ' . $item['id'] .
+                    '; image: ' . $item['imageVersions2']['candidates'][0]['url']
+                );
 
-                Sleep::random(10);
+                Sleep::random(5);
             }
         }
 
         if ($account->isCommentsRun()) {
-            if (random_int(1, 3) === 1) {
+
+            $count = random_int(1, 4);
+            $output->writeln('<info>count: ' . $count . '</info>');
+
+            if ($count === 1) {
                 $tags = explode(', ', $account->getTagsText());
                 $comments = explode(',', $account->getComments());
 
                 $tag = $tags[random_int(0, count($tags) - 1)];
+
+                $output->writeln('<info>comments tag: ' . $tag . '</info>');
 
                 $mq = new MQ();
 
@@ -111,11 +127,13 @@ class InstaxerRunCommand extends ContainerAwareCommand
                     $tag
                 );
 
+                Sleep::random(5);
+
                 $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
                 $items = array_slice($tag_feed['items'], 0, 1);
 
                 foreach ($items as $item) {
-                    $comment = $comments[random_int(0, count($tags) - 1)];
+                    $comment = $comments[random_int(0, count($comments) - 1)];
 
                     $response = $mq->query(
                         'POST',
@@ -131,7 +149,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
                     $output->writeln('comment: ' . $tag . '; id: ' . $item['id'] . '; comment: ' . $comment);
 
-                    Sleep::random(20);
+                    Sleep::random(15);
                 }
             }
         }
