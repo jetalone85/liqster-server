@@ -71,8 +71,8 @@
                             <div class="card-content">
                                 <p class="">Konto: "3 dni na testy" aktywne
                                     do {{ purchase.paid|date("Y/m/d H:i:s") }}</p>
-                                <a href="{{ path('purchase_from_free_to_payed', {'purchase': purchase.id }) }}"
-                                   class="level-item button is-success is-outlined">Ponów nowy okres</a>
+                                {#<a href="{{ path('purchase_from_free_to_payed', {'purchase': purchase.id }) }}"#}
+                                {#class="level-item button is-success is-outlined">Ponów nowy okres</a>#}
                             </div>
 
                         {% elseif account.type == 'regular' %}
