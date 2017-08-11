@@ -77,7 +77,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
             Sleep::random(5);
 
-            $elements = random_int(1, 4);
+            $elements = random_int(3, 8);
             $output->writeln('<info>elements: ' . $elements . '</info>');
 
             $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
@@ -107,10 +107,10 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
         if ($account->isCommentsRun()) {
 
-            $count = random_int(1, 4);
+            $count = random_int(1, 10);
             $output->writeln('<info>count: ' . $count . '</info>');
 
-            if ($count === 1) {
+            if ($count <= 3) {
                 $tags = explode(', ', $account->getTagsText());
                 $comments = explode(',', $account->getComments());
 
