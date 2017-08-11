@@ -4338,16 +4338,16 @@
   "packages-dev": [
     {
       "name": "codacy/coverage",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": {
         "type": "git",
         "url": "https://github.com/codacy/php-codacy-coverage.git",
-        "reference": "978200f52b248aa5d66e37955ad33173a24627a2"
+        "reference": "d46740b6b884bea92157f5434f59c4e751d6db5f"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/codacy/php-codacy-coverage/zipball/978200f52b248aa5d66e37955ad33173a24627a2",
-        "reference": "978200f52b248aa5d66e37955ad33173a24627a2",
+        "url": "https://api.github.com/repos/codacy/php-codacy-coverage/zipball/d46740b6b884bea92157f5434f59c4e751d6db5f",
+        "reference": "d46740b6b884bea92157f5434f59c4e751d6db5f",
         "shasum": ""
       },
       "require": {
@@ -4379,7 +4379,7 @@
       ],
       "description": "Sends PHP test coverage information to Codacy.",
       "homepage": "https://github.com/codacy/php-codacy-coverage",
-      "time": "2017-04-04T12:41:57+00:00"
+      "time": "2017-08-09T14:23:33+00:00"
     },
     {
       "name": "gitonomy/gitlib",

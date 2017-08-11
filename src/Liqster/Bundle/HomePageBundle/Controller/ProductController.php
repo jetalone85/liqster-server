@@ -20,10 +20,13 @@ class ProductController extends Controller
     public function fieldAction(Request $request): Response
     {
         $em = $this->getDoctrine();
-        $product = $em->getRepository('LiqsterHomePageBundle:Product')->findOneBy(['id' => $request->attributes->get('id')]);
+        $product = $em
+            ->getRepository('LiqsterHomePageBundle:Product')
+            ->findOneBy(['id' => $request->attributes->get('id')]);
 
         return $this->render(
-            'LiqsterHomePageBundle:Product:field.html.twig', [
+            'LiqsterHomePageBundle:Product:field.html.twig',
+            [
                 'product' => $product
             ]
         );
