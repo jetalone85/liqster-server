@@ -2,7 +2,6 @@
 
 namespace Liqster\Bundle\HomePageBundle\Controller;
 
-use FOS\UserBundle\Form\Factory\FactoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -25,24 +24,11 @@ class DefaultController extends Controller
      */
     public function indexAction(): Response
     {
-        $em = $this->getDoctrine();
-        $products = $em->getRepository('LiqsterHomePageBundle:Product')->findAll();
+        if ($this->getUser()) {
+            return $this->redirectToRoute('account_index');
+        }
 
-        $accounts = $em->getRepository('LiqsterHomePageBundle:Account')->findBy(['user' => $this->getUser()]);
-
-        /**
-         * @var $formFactory FactoryInterface
-         */
-        $formFactory = $this->get('fos_user.registration.form.factory');
-        $form = $formFactory->createForm();
-
-        return $this->render(
-            'LiqsterHomePageBundle:Default:index.html.twig', [
-                'products' => $products,
-                'accounts' => $accounts,
-                'form' => $form->createView(),
-            ]
-        );
+        return $this->redirectToRoute('form_login');
     }
 
     /**

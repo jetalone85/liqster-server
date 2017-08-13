@@ -30,8 +30,6 @@ class AppKernel extends Kernel
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Cron\CronBundle\CronCronBundle(),
             new Beelab\TagBundle\BeelabTagBundle(),
-            new Liqster\Bundle\PaymentBundle\LiqsterPaymentBundle(),
-            new Liqster\Bundle\AdminBundle\AdminBundle(),
             new Liqster\Bundle\MQBundle\LiqsterMQBundle(),
             new Liqster\Bundle\StatisticBundle\LiqsterStatisticBundle(),
             new AppBundle\AppBundle(),

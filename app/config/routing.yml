@@ -3,24 +3,6 @@ liqster_mq:
     type:     annotation
     prefix:   /
 
-liqster_purchase:
-    resource: "@LiqsterHomePageBundle/Controller/PurchaseController.php"
-    type:     annotation
-
-liqster_home_page_notification:
-    resource: "@LiqsterHomePageBundle/Controller/NotificationController.php"
-    type:     annotation
-    prefix:   /
-
-liqster_payment_default:
-    resource: "@LiqsterPaymentBundle/Controller/DefaultController.php"
-    type:     annotation
-    prefix:   /
-
-liqster_home_page_result:
-    resource: "@LiqsterHomePageBundle/Controller/ResultController.php"
-    type:     annotation
-
 liqster_home_page_account:
     resource: "@LiqsterHomePageBundle/Controller/AccountController.php"
     type:     annotation

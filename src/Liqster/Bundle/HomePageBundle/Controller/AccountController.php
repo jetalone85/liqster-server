@@ -11,14 +11,12 @@ use Liqster\Bundle\HomePageBundle\Entity\Schedule;
 use Liqster\Bundle\HomePageBundle\Form\AccountEditCommentsType;
 use Liqster\Bundle\HomePageBundle\Form\AccountEditTagsType;
 use Liqster\Bundle\HomePageBundle\Form\AccountEditType;
-use Liqster\Bundle\HomePageBundle\Form\AccountPaymentType;
 use Liqster\Bundle\HomePageBundle\Form\AccountProgramType;
 use Liqster\Bundle\HomePageBundle\Form\AccountType;
 use Liqster\Bundle\PaymentBundle\Domain\Przelewy24;
 use Liqster\Bundle\PaymentBundle\Entity\Payment;
 use Liqster\Domain\Cron\Composer;
 use Liqster\Domain\MQ\MQ;
-use Ramsey\Uuid\Uuid;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -62,40 +60,6 @@ class AccountController extends Controller
             }
         }
 
-        foreach ($accounts as $account) {
-            $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
-
-            /**
-             * @TODO
-             * do przeniesienia do domain
-             */
-            if ($account->isPayed() === false && $purchase->getStatus() === 'verify') {
-                $account->setPayed(true);
-                $em->flush();
-
-                $cronJob = $account->getCronJob();
-                $cronJob->setEnabled(true);
-                $em->flush();
-
-                $mailer = $this->get('swiftmailer.mailer.default');
-
-                $message = $mailer->createMessage()
-                    ->setSubject('Aktywacja')
-                    ->setFrom('admin@liqster.pl')
-                    ->setTo($this->getUser()->getEmail())
-                    ->setContentType('text/html')
-                    ->setBody(
-                        $this->renderView(
-                            '@LiqsterHomePage/Email/activate_account.txt.twig', [
-                                'user' => $this->getUser()
-                            ]
-                        ),
-                        'text/html'
-                    );
-
-                $mailer->send($message);
-            }
-        }
 
         if (count($accounts) === 1) {
             return $this->redirectToRoute('account_show', ['id' => $accounts[0]->getId()]);
@@ -125,7 +89,6 @@ class AccountController extends Controller
         $account = new Account();
         $schedule = new Schedule();
         $cronJob = new CronJob();
-        $purchase = new Purchase();
 
         $error = null;
 
@@ -178,14 +141,6 @@ class AccountController extends Controller
                 $cronJob->setSchedule('* 7-16 * * *');
                 $em->persist($cronJob);
 
-                $purchase->setAccount($account);
-                $purchase->setCreate(new \DateTime('now'));
-                $purchase->setModification(new \DateTime('now'));
-                $purchase->setProduct(null);
-                $purchase->setPaid((new \DateTime('now'))->modify('+3 day'));
-                $purchase->setStatus('free');
-                $em->persist($purchase);
-
                 $em->flush();
 
             } catch (\Exception $exception) {
@@ -200,306 +155,6 @@ class AccountController extends Controller
                 'Account' => $account,
                 'error' => $error,
                 'form' => $form->createView(),
-            ]
-        );
-    }
-
-    /**
-     * @Route("/{id}/new_payment",  name="account_new_payment")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Account $account
-     * @return Response
-     * @throws \LogicException
-     */
-    public function newPaymentAction(Request $request, Account $account): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $discountCode = null;
-
-        $purchase = $em
-            ->getRepository('LiqsterHomePageBundle:Purchase')
-            ->findOneBy(['account' => $account, 'status' => 'open']);
-        if (!$purchase) {
-            $purchase = new Purchase();
-        }
-
-        $payment = $em
-            ->getRepository('LiqsterPaymentBundle:Payment')
-            ->findOneBy(['purchase' => $purchase]);
-        if (!$payment) {
-            $payment = new Payment();
-        }
-
-        $form = $this->createForm(AccountPaymentType::class, $account);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            if ($account->getDiscountCode()) {
-                try {
-                    $discountCode = $em
-                        ->getRepository('LiqsterHomePageBundle:DiscountCode')
-                        ->findOneBy(['key' => $account->getDiscountCode()]);
-
-                    if (!$discountCode) {
-                        throw new \LogicException('No discount code was found.');
-                    }
-
-                } catch (\Exception $exception) {
-                }
-            }
-
-            try {
-                if (!$purchase->getCreate()) {
-                    $purchase->setAccount($account);
-                    $purchase->setCreate(new \DateTime('now'));
-                    $purchase->setModification(new \DateTime('now'));
-                    $purchase->setProduct($account->getProduct());
-                    $purchase->setStatus('open');
-                    $em->persist($purchase);
-                } else {
-                    $purchase->setModification(new \DateTime('now'));
-                    $em->merge($purchase);
-                }
-
-
-                if (!$payment->getCreate()) {
-                    $payment->setCreate(new \DateTime('now'));
-                    $payment->setSession(Uuid::uuid4());
-                    $payment->setPurchase($purchase);
-
-                    $crc = md5($payment->getSession() . '|' . 61791 . '|' . 1 . '|' . 'PLN' . '|' . '8938c81eb462a997');
-                    $payment->setToken($crc);
-                    $em->persist($payment);
-                } else {
-                    $em->merge($payment);
-                }
-
-                $em->flush();
-
-            } catch (\Exception $exception) {
-                echo $exception->getMessage() . "\n";
-            }
-
-            try {
-                $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', false);
-
-                $P24->addValue('p24_session_id', $payment->getSession());
-
-                if ($discountCode) {
-                    $P24->addValue('p24_amount',
-                        $account->getProduct()->getPrice() * $discountCode->getPromotion()
-                    );
-                } else {
-                    $P24->addValue('p24_amount', $account->getProduct()->getPrice());
-                }
-
-                $P24->addValue('p24_currency', 'PLN');
-                $P24->addValue('p24_email', $this->getUser()->getEmail());
-                $P24->addValue('p24_description', $account->getName() . '/' . $account->getId());
-                $P24->addValue('p24_country', 'PL');
-                $P24->addValue('p24_phone', '');
-                $P24->addValue('p24_language', 'pl');
-                $P24->addValue('p24_method', '1');
-                $P24->addValue('p24_url_return', 'http://liqster.pl/account/' . $account->getId() . '/new_profiling_tags');
-                $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
-                $P24->addValue('p24_time_limit', 0);
-
-                $response = $P24->trnRegister(false);
-
-                if ($response['error'] !== 0) {
-                    throw new \LogicException('The payment provider returned an error.');
-                }
-
-                return $this->redirect($response['redirect']);
-
-            } catch (Exception $exception) {
-                return $this->redirectToRoute('account_new_payment', ['id' => $account->getId(), 'error' => 'paymentError', 'content' => $exception->getMessage()]);
-            }
-        }
-
-        return $this->render(
-            'LiqsterHomePageBundle:Account:newPayment.html.twig', [
-                'Account' => $account,
-                'form' => $form->createView(),
-            ]
-        );
-    }
-
-    /**
-     * @Route("/{account}/continue_payment/{purchase}",  name="account_continue_payment")
-     * @Method({"GET", "POST"})
-     * @param Account $account
-     * @param Purchase $purchase
-     * @return Response
-     * @throws \LogicException
-     */
-    public function contuniePaymentAction(Account $account, Purchase $purchase)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $payment = $em
-            ->getRepository('LiqsterPaymentBundle:Payment')
-            ->findOneBy(['purchase' => $purchase]);
-
-        $discountCode = $em
-            ->getRepository('LiqsterHomePageBundle:DiscountCode')
-            ->findOneBy(['key' => $account->getDiscountCode()]);
-
-        try {
-            $P24 = new Przelewy24(61791, 61791, '8938c81eb462a997', true);
-
-            $P24->addValue('p24_session_id', $payment->getSession());
-
-            if ($discountCode) {
-                $P24->addValue('p24_amount',
-                    $account->getProduct()->getPrice() * $discountCode->getPromotion()
-                );
-            } else {
-                $P24->addValue('p24_amount', $account->getProduct()->getPrice());
-            }
-
-            $P24->addValue('p24_currency', 'PLN');
-            $P24->addValue('p24_email', $this->getUser()->getEmail());
-            $P24->addValue('p24_description', $account->getName() . '/' . $account->getId());
-            $P24->addValue('p24_country', 'PL');
-            $P24->addValue('p24_phone', '');
-            $P24->addValue('p24_language', 'pl');
-            $P24->addValue('p24_method', '1');
-            $P24->addValue('p24_url_return', 'http://liqster.pl/account/' . $account->getId() . '/new_profiling_tags');
-            $P24->addValue('p24_url_status', 'http://liqster.pl/payment/');
-            $P24->addValue('p24_time_limit', 0);
-
-            $response = $P24->trnRegister(false);
-
-            if ($response['error'] !== 0) {
-                throw new \LogicException('The payment provider returned an error.');
-            }
-
-            return $this->redirect($response['redirect']);
-
-        } catch
-        (Exception $exception) {
-            return $this->redirectToRoute('account_show', ['id' => $account->getId(), 'error' => 'paymentError', 'content' => $exception->getMessage()]);
-        }
-    }
-
-    /**
-     * @Route("/{id}/new_profiling_tags",  name="account_new_profiling_tags")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Account $account
-     * @return Response
-     * @throws \LogicException
-     */
-    public function newProfilingTagsAction(Request $request, Account $account): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-        $editTagsForm = $this->createForm(AccountEditTagsType::class, $account);
-        $editTagsForm->handleRequest($request);
-
-        if ($editTagsForm->isSubmitted() && $editTagsForm->isValid()) {
-            $account->setName($account->getName());
-            $account->setPassword($account->getPassword());
-            $account->setComments($account->getComments());
-            $account->setModif(new \DateTime('now'));
-            $em->merge($account);
-
-            $em->flush();
-
-            return $this->redirectToRoute('account_new_profiling_comments', ['id' => $account->getId()]);
-        }
-
-        return $this->render(
-            'LiqsterHomePageBundle:Account:newProfilingTags.html.twig', [
-                'Account' => $account,
-                'edit_tags_form' => $editTagsForm->createView(),
-            ]
-        );
-    }
-
-    /**
-     *
-     * @Route("/{id}/new_profiling_comments",  name="account_new_profiling_comments")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Account $account
-     * @return Response
-     * @throws \LogicException
-     */
-    public function newProfilingCommentsAction(Request $request, Account $account): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $editCommentsForm = $this->createForm(AccountEditCommentsType::class, $account);
-        $editCommentsForm->handleRequest($request);
-
-        if ($editCommentsForm->isSubmitted() && $editCommentsForm->isValid()) {
-            $account->setName($account->getName());
-            $account->setPassword($account->getPassword());
-            $account->setTagsText($account->getTagsText());
-            $account->setModif(new \DateTime('now'));
-            $em->merge($account);
-
-            $em->flush();
-
-            return $this->redirectToRoute('account_new_profiling_program', ['id' => $account->getId()]);
-        }
-
-        return $this->render(
-            'LiqsterHomePageBundle:Account:newProfilingComments.html.twig', [
-                'Account' => $account,
-                'edit_comments_form' => $editCommentsForm->createView(),
-            ]
-        );
-    }
-
-    /**
-     *
-     * @Route("/{id}/new_profiling_program",  name="account_new_profiling_program")
-     * @Method({"GET", "POST"})
-     *
-     * @param Request $request
-     * @param Account $account
-     * @return Response
-     * @throws \LogicException
-     */
-    public function newProfilingProgramAction(Request $request, Account $account): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $editProgramForm = $this->createForm(AccountProgramType::class, $account->getSchedule());
-        $editProgramForm->handleRequest($request);
-
-        if ($editProgramForm->isSubmitted() && $editProgramForm->isValid()) {
-            $account->setName($account->getName());
-            $account->setPassword($account->getPassword());
-            $account->setTagsText($account->getTagsText());
-            $account->setModif(new \DateTime('now'));
-            $account->setComments($account->getComments());
-            $schedule = $account->getSchedule();
-            $schedule->setModification(new \DateTime('now'));
-            $em->merge($schedule);
-            $em->flush();
-
-            $cronJob = $account->getCronJob();
-            $cronJob->setSchedule(Composer::compose($schedule));
-
-            $em->merge($cronJob);
-            $em->flush();
-
-            return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
-        }
-
-        return $this->render(
-            'LiqsterHomePageBundle:Account:newProfilingProgram.html.twig', [
-                'Account' => $account,
-                'edit_program_form' => $editProgramForm->createView(),
             ]
         );
     }
@@ -530,24 +185,12 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
         }
 
-        $discountCode = $em
-            ->getRepository('LiqsterHomePageBundle:DiscountCode')
-            ->findOneBy(['key' => $account->getDiscountCode()]);
-
-        /**
-         * @TODO
-         * Wywalić i dodać ustawienia
-         */
         $account->setLikesRun(true);
         $account->setCommentsRun(true);
         $account->setComments($account->getComments());
         $account->setTagsText($account->getTagsText());
         $em->merge($account);
         $em->flush();
-
-        $purchases = $em->getRepository('LiqsterHomePageBundle:Purchase')->findBy(['account' => $account]);
-
-        $purchase = count($purchases) === 1 ? $purchases[0] : null;
 
         $editForm = $this->createForm(AccountEditType::class, $account);
         $editForm->handleRequest($request);
@@ -628,11 +271,8 @@ class AccountController extends Controller
         return $this->render(
             'LiqsterHomePageBundle:Account:show.html.twig', [
                 'account' => $account,
-                'purchases' => $purchases,
-                'purchase' => $purchase,
                 'date' => new \DateTime('now'),
                 'instagram' => $instagram,
-                'discountCode' => $discountCode,
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),
                 'edit_comments_form' => $editCommentsForm->createView(),
@@ -736,17 +376,6 @@ class AccountController extends Controller
         $schedule = $em->getRepository('LiqsterHomePageBundle:Schedule')->findOneBy(['account' => $account]);
         if ($schedule) {
             $em->remove($schedule);
-        }
-
-        $purchase = $em->getRepository('LiqsterHomePageBundle:Purchase')->findOneBy(['account' => $account]);
-        $payment = $em->getRepository('LiqsterPaymentBundle:Payment')->findOneBy(['purchase' => $purchase]);
-
-        if ($payment) {
-            $em->remove($payment);
-        }
-
-        if ($purchase) {
-            $em->remove($purchase);
         }
 
         $accountInstagramCache = $em

@@ -35,17 +35,13 @@ framework:
 
 monolog:
     handlers:
-        # this "file_log" key could be anything
         file_log:
             type: stream
-            # log to var/logs/(environment).log
             path: "%kernel.logs_dir%/%kernel.environment%.log"
-            # log *all* messages (debug is lowest level)
             level: error
 
         syslog_handler:
             type: syslog
-            # log error-level messages and higher
             level: error
 
 twig:
@@ -61,11 +57,6 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
         path:     "%database_path%"
 
         types:
@@ -99,16 +90,13 @@ nelmio_cors:
         hosts: []
         origin_regex: false
 
-# FOSRest Configuration
 fos_rest:
     routing_loader:
         default_format: json
     body_listener: true
     format_listener:
         rules:
-#            - { path: '^/instaxer', priorities: ['json'], fallback_format: json, prefer_extension: false }
-#            - { path: '^/', priorities: ['html'], fallback_format: html, prefer_extension: false }
-            - { path: '^/', priorities: ['json','html'], fallback_format: json, prefer_extension: true }
+           - { path: '^/', priorities: ['json','html'], fallback_format: json, prefer_extension: true }
     param_fetcher_listener: true
     view:
         view_response_listener: force
@@ -151,12 +139,6 @@ easy_admin:
     entities:
         Account:
             class: Liqster\Bundle\HomePageBundle\Entity\Account
-        DiscountCode:
-            class: Liqster\Bundle\HomePageBundle\Entity\DiscountCode
-        Product:
-            class: Liqster\Bundle\HomePageBundle\Entity\Product
-        Purchase:
-            class: Liqster\Bundle\HomePageBundle\Entity\Purchase
         Schedule:
             class: Liqster\Bundle\HomePageBundle\Entity\Schedule
         User:
@@ -165,8 +147,6 @@ easy_admin:
             class: Liqster\Bundle\HomePageBundle\Entity\Tag
         AccountInstagramCache:
             class: Liqster\Bundle\HomePageBundle\Entity\AccountInstagramCache
-        Payment:
-            class: Liqster\Bundle\PaymentBundle\Entity\Payment
         CronJob:
             class: Cron\CronBundle\Entity\CronJob
         CronReport:

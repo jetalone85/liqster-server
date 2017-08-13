@@ -95,15 +95,6 @@ class Account implements TaggableInterface
      */
     private $commentsRun = true;
 
-    /**
-     * @ORM\Column(name="payed", type="boolean", unique=false)
-     */
-    private $payed = false;
-
-    /**
-     * @ORM\Column(name="discount_code", type="string", length=255, nullable=true, unique=false)
-     */
-    private $discountCode;
 
     /**
      * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\User", inversedBy="account")
@@ -126,20 +117,11 @@ class Account implements TaggableInterface
      */
     private $schedule;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Purchase", mappedBy="account")
-     */
-    private $purchase;
 
     /**
      * @ORM\OneToMany(targetEntity="Liqster\Bundle\StatisticBundle\Entity\Statistic", mappedBy="account")
      */
     private $statistic;
-    /**
-     * @ORM\ManyToOne(targetEntity="Liqster\Bundle\HomePageBundle\Entity\Product", inversedBy="account")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
-     */
-    private $product;
 
     /**
      * @var string

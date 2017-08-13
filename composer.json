@@ -56,6 +56,7 @@
     "jms/serializer-bundle": "^2.0",
     "nelmio/cors-bundle": "^1.5",
     "cron/cron": "^1.0.1",
+    "pyrkamarcin/maxmodels-sdk-php": "dev-master",
     "twig/twig": "^1.0||^2.0"
   },
   "require-dev": {
@@ -69,6 +70,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/pyrkamarcin/Symfony-Bundle"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/pyrkamarcin/maxmodels-sdk-php"
     }
   ],
   "scripts": {
@@ -86,11 +91,6 @@
     "post-update-cmd": [
       "@symfony-scripts"
     ]
-  },
-  "config": {
-    "platform": {
-      "php": "7.0.1"
-    }
   },
   "extra": {
     "symfony-app-dir": "app",

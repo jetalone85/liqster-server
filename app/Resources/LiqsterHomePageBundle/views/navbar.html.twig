@@ -17,13 +17,6 @@
 
     <div id="navMenuDocumentation" class="navbar-menu">
         <div class="navbar-start">
-
-            <a href="{{ path('homepage') }}#experience" class="nav-item">Exp</a>
-            <a href="{{ path('homepage') }}#services" class="nav-item">Usługi</a>
-            <a href="{{ path('homepage') }}#price" class="nav-item">Cennik</a>
-            <a href="{{ path('homepage') }}#about" class="nav-item">O nas</a>
-            <a href="{{ path('homepage_helpDesk') }}" class="nav-item">Pomoc</a>
-
         </div>
 
         <div class="navbar-end">
@@ -37,8 +30,6 @@
                 {% else %}
                     <a href="{{ path('fos_user_security_login') }}"
                        class="nav-item is-tab">{{ 'layout.login'|trans({}, 'main') }}</a>
-                    <a href="{{ path('fos_user_registration_register') }}"
-                       class="nav-item is-tab">{{ 'layout.register'|trans({}, 'main') }}</a>
                 {% endif %}
             </div>
         </div>

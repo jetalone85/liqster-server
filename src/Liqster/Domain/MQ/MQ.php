@@ -29,7 +29,7 @@ class MQ
     public function __construct()
     {
         $this->client = new Client();
-        $this->url = 'http://liqster.pl/api';
+        $this->url = 'http://liqster.nazwa.pl/api';
     }
 
     /**

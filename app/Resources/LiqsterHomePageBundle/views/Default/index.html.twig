@@ -2,23 +2,7 @@
 
 {% block header %}
 
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-        {% include '@LiqsterHomePage/Default/intro-logged-section.html.twig' %}
-
-    {% else %}
-
-        {% include '@LiqsterHomePage/Default/intro-section.html.twig' %}
-
-    {% endif %}
-
-    {% include '@LiqsterHomePage/Default/experience-section.html.twig' %}
-
-    {% include '@LiqsterHomePage/Default/services-section.html.twig' %}
-
-    {% include '@LiqsterHomePage/Default/price-section.html.twig' %}
-
-    {% include '@LiqsterHomePage/Default/about-section.html.twig' %}
+    {% include '@LiqsterHomePage/Default/intro-section.html.twig' %}
 
 {% endblock %}
 
