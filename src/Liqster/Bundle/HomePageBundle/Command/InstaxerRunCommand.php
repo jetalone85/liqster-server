@@ -47,7 +47,6 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $account = $repository->find($input->getArgument('account'));
 
 
-        $output->writeln('<hr />');
         $output->writeln('<info>account: ' . $account->getName() . '</info>');
 
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['name' => $account->getId()]);
@@ -63,7 +62,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
             $tag = str_replace(' ', '', $tag);
             $tag = str_replace('#', '', $tag);
 
-            $output->writeln('<info>< h1 >tag: ' . $tag . '</h1 ></info>');
+            $output->writeln('<info>tag: ' . $tag . '</info>');
 
             $mq = new MQ();
             $instaxer_json = $mq->query(
@@ -79,7 +78,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
             Sleep::random(5);
 
             $elements = random_int(2, 6);
-            $output->writeln('<info>< p >elements: ' . $elements . '</p ></info>');
+            $output->writeln('<info>elements: ' . $elements . '</info>');
 
             $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
             $items = array_slice($tag_feed['items'], 0, $elements);
@@ -109,7 +108,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         if ($account->isCommentsRun()) {
 
             $count = random_int(1, 10);
-            $output->writeln('<info><p>count: ' . $count . '</p></info>');
+            $output->writeln('<info>count: ' . $count . '</info>');
 
             if ($count <= 3) {
                 $tags = explode(', ', $account->getTagsText());
