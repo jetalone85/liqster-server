@@ -185,6 +185,10 @@ class AccountController extends Controller
             return $this->redirectToRoute('account_check', ['id' => $account->getId()]);
         }
 
+        $reports = $em
+            ->getRepository('CronCronBundle:CronReport')
+            ->findBy(['job' => $account->getCronJob()], ['runAt' => 'DESC'], 20);
+
         $account->setLikesRun(true);
         $account->setCommentsRun(true);
         $account->setComments($account->getComments());
@@ -273,6 +277,7 @@ class AccountController extends Controller
                 'account' => $account,
                 'date' => new \DateTime('now'),
                 'instagram' => $instagram,
+                'reports' => $reports,
                 'edit_form' => $editForm->createView(),
                 'edit_tags_form' => $editTagsForm->createView(),
                 'edit_comments_form' => $editCommentsForm->createView(),
