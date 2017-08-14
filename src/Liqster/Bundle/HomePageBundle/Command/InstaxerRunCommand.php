@@ -47,6 +47,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         $account = $repository->find($input->getArgument('account'));
 
 
+        $output->writeln('<hr />');
         $output->writeln('<info>account: ' . $account->getUser() . '</info>');
 
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['name' => $account->getId()]);
