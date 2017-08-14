@@ -62,7 +62,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
             $tag = str_replace(' ', '', $tag);
             $tag = str_replace('#', '', $tag);
 
-            $output->writeln('<info>tag: ' . $tag . '</info>');
+            $output->writeln('<info>< h1 >tag: ' . $tag . '</h1 ></info>');
 
             $mq = new MQ();
             $instaxer_json = $mq->query(
@@ -78,7 +78,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
             Sleep::random(5);
 
             $elements = random_int(2, 6);
-            $output->writeln('<info>elements: ' . $elements . '</info>');
+            $output->writeln('<info>< p >elements: ' . $elements . '</p ></info>');
 
             $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
             $items = array_slice($tag_feed['items'], 0, $elements);
@@ -108,7 +108,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
         if ($account->isCommentsRun()) {
 
             $count = random_int(1, 10);
-            $output->writeln('<info>count: ' . $count . '</info>');
+            $output->writeln('<info><p>count: ' . $count . '</p></info>');
 
             if ($count <= 3) {
                 $tags = explode(', ', $account->getTagsText());
