@@ -22,6 +22,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="{{ path('account_new') }}" class="nav-item is-tab">Dodaj nowe</a>
                     <a href="{{ path('account_index') }}" class="nav-item is-tab">Lista kont</a>
                     <a href="{{ path('profile_index') }}"
                        class="nav-item is-tab">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'main') }}</a>
