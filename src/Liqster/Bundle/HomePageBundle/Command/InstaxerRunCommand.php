@@ -48,7 +48,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
 
         $output->writeln('<hr />');
-        $output->writeln('<info>account: ' . $account->getUser() . '</info>');
+        $output->writeln('<info>account: ' . $account->getName() . '</info>');
 
         $cronJob = $em->getRepository('CronCronBundle:CronJob')->findOneBy(['name' => $account->getId()]);
         $cronJob->setSchedule(MessMinutes::messEntry($cronJob->getSchedule()));
