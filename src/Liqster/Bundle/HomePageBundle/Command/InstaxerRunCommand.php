@@ -77,7 +77,7 @@ class InstaxerRunCommand extends ContainerAwareCommand
 
             Sleep::random(5);
 
-            $elements = random_int(3, 8);
+            $elements = random_int(2, 6);
             $output->writeln('<info>elements: ' . $elements . '</info>');
 
             $tag_feed = json_decode($instaxer_json->getBody()->getContents(), true);
