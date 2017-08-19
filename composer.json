@@ -55,8 +55,6 @@
     "php-ai/php-ml": "^0.4.1",
     "jms/serializer-bundle": "^2.0",
     "nelmio/cors-bundle": "^1.5",
-    "cron/cron": "^1.0.1",
-    "pyrkamarcin/maxmodels-sdk-php": "dev-master",
     "twig/twig": "^1.0||^2.0"
   },
   "require-dev": {
@@ -67,14 +65,6 @@
     "squizlabs/php_codesniffer": "^3.0"
   },
   "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/pyrkamarcin/Symfony-Bundle"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/pyrkamarcin/maxmodels-sdk-php"
-    }
   ],
   "scripts": {
     "symfony-scripts": [
