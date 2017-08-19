@@ -109,6 +109,8 @@ class ProfileController extends Controller
 
     /**
      * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      * @throws \LogicException
      * @Route("/billing", name="profile_billing")
      * @Method({"GET"})

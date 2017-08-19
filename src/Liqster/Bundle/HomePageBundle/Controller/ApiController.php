@@ -31,25 +31,6 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/tags/input", name="tags_input")
-     * @Method({"GET", "POST"})
-     * @param Request $request
-     * @return Response
-     * @throws \LogicException
-     */
-    public function getTagsAction(Request $request): Response
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $test = new ApiDump();
-        $test->setData($request->query->get('data'));
-        $em->persist($test);
-        $em->flush();
-
-        return $this->render('LiqsterHomePageBundle:Api:ok.json.twig');
-    }
-
-    /**
      * @Route("/api/market/tags/{name}", name="tags_input")
      * @Method({"GET"})
      * @param Request $request
